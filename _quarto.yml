@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Grafos bipartitos en redes de interacción ecológicas"
+  author: "Jesús Espinoza & Rosalía Hernández"
+  date: "13/7/2026"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+
