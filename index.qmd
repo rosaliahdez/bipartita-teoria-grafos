@@ -1,9 +1,7 @@
 # Bienvenida {.unnumbered}
 
-Este es el repositorio central de la segunda parte del **Seminario Bipartita**, correspondiente a la **Teoría de Grafos**, impartido durante el semestre 2026-1 en la Universidad de Sonora.
+Este es el repositorio de la segunda parte del **Seminario Bipartita**, correspondiente a la **Teoría de Grafos**, impartido durante el semestre 2026-1 en la Universidad de Sonora.
 
 El objetivo de estas notas es establecer claramente definiciones matemáticas de la Teoría de Grafos, y explorar sus aplicaciones en el análisis de redes de interacción ecológicas. 
 
 En las pestañas de navegación de estas notas se encuentra desarrollada la teoría, los ejemplos de ejecución de código en R (usando el paquete `bipartite`), los conjuntos de datos de estudio y la bibliografía.
-
-This is a Quarto book. To learn more about Quarto books visit <https://quarto.org/docs/books>.

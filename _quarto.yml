@@ -3,18 +3,24 @@ project:
 
 book:
   title: "Grafos bipartitos en redes de interacción ecológicas"
-  author: "Jesús Espinoza & Rosalía Hernández"
-  date: "Semestre 2026-1"
+  subtitle: "Seminario Bipartita <br> <small> Semestre 2026-1 </small>"
+  author: 
+    - "Jesús F. Espinoza"
+    - "Rosalía G. Hernández"
   chapters:
     - index.qmd
     # - intro.qmd
     - Sesion1.qmd
+    - Sesion2.qmd
     - summary.qmd
     - references.qmd
   page-footer:
     center: "Material desarrollado con [Quarto](https://quarto.org/)"
 
 lang: es
+
+language:
+  title-block-author-plural: "Autores"
 
 bibliography: references.bib
 
