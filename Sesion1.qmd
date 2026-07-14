@@ -35,8 +35,8 @@ La estructura bipartita permite: \* Representar el sistema combinatoriamente y/o
 ## Ejemplo: esquema de un grafo bipartito
 
 ```{tikz}
-#| fig-cap: "Esquema visual de interacciones bipartitas."
-#| echo: false
+%| fig-cap: "Esquema visual de interacciones bipartitas."
+%| echo: false
 \usetikzlibrary{positioning,arrows,fit,backgrounds,arrows.meta}
 \begin{tikzpicture}[>=Latex, node distance=0.9cm]
 \tikzset{
@@ -75,7 +75,7 @@ Una red bipartita puede representarse por una matriz $B\in\mathbb{R}_{\ge 0}^{p\
 
 $$B_{ij}=\begin{cases}0, & \text{si no se observa interacción} \\1, & \text{si se registra presencia/ausencia} \\w_{ij}>0, & \text{si se registra frecuencia/intensidad}\end{cases}$$
 
-Ejemplo (binario): $$\begin{array}{c|cccc}   & a_1 & a_2 & a_3 & a_4\\ \hlinep_1& 1   & 1   & 0   & 0\\p_2& 0   & 1   & 1   & 0\\p_3& 0   & 1   & 0   & 0\\p_4& 0   & 0   & 0   & 1\end{array}$$
+Ejemplo (binario): $$\begin{array}{c|cccc}   & a_1 & a_2 & a_3 & a_4\\ \hline p_1& 1   & 1   & 0   & 0\\p_2& 0   & 1   & 1   & 0\\p_3& 0   & 1   & 0   & 0\\p_4& 0   & 0   & 0   & 1\end{array}$$
 
 ## Propuesta de temario (roadmap)
 

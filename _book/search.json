@@ -1,5 +1,25 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Grafos bipartitos en redes de interacción ecológicas",
+    "section": "",
+    "text": "Bienvenida\nEste es el repositorio central de la segunda parte del Seminario Bipartita, correspondiente a la Teoría de Grafos, impartido durante el semestre 2026-1 en la Universidad de Sonora.\nEl objetivo de estas notas es establecer claramente definiciones matemáticas de la Teoría de Grafos, y explorar sus aplicaciones en el análisis de redes de interacción ecológicas.\nEn las pestañas de navegación de estas notas se encuentra desarrollada la teoría, los ejemplos de ejecución de código en R (usando el paquete bipartite), los conjuntos de datos de estudio y la bibliografía.\nThis is a Quarto book. To learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. «Literate Programming». Comput. J. (USA) 27 (2): 97-111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
     "objectID": "Sesion1.html",
     "href": "Sesion1.html",
     "title": "2  Sesion1",
@@ -54,7 +74,7 @@
     "href": "Sesion1.html#ejemplo-matriz-bipartita",
     "title": "2  Sesion1",
     "section": "3.5 Ejemplo: matriz bipartita",
-    "text": "3.5 Ejemplo: matriz bipartita\nUna red bipartita puede representarse por una matriz \\(B\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\):\n\\[B_{ij}=\\begin{cases}0, & \\text{si no se observa interacción} \\\\1, & \\text{si se registra presencia/ausencia} \\\\w_{ij}&gt;0, & \\text{si se registra frecuencia/intensidad}\\end{cases}\\]\nEjemplo (binario): \\[\\begin{array}{c|cccc}   & a_1 & a_2 & a_3 & a_4\\\\ \\hlinep_1& 1   & 1   & 0   & 0\\\\p_2& 0   & 1   & 1   & 0\\\\p_3& 0   & 1   & 0   & 0\\\\p_4& 0   & 0   & 0   & 1\\end{array}\\]",
+    "text": "3.5 Ejemplo: matriz bipartita\nUna red bipartita puede representarse por una matriz \\(B\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\):\n\\[B_{ij}=\\begin{cases}0, & \\text{si no se observa interacción} \\\\1, & \\text{si se registra presencia/ausencia} \\\\w_{ij}&gt;0, & \\text{si se registra frecuencia/intensidad}\\end{cases}\\]\nEjemplo (binario): \\[\\begin{array}{c|cccc}   & a_1 & a_2 & a_3 & a_4\\\\ \\hline p_1& 1   & 1   & 0   & 0\\\\p_2& 0   & 1   & 1   & 0\\\\p_3& 0   & 1   & 0   & 0\\\\p_4& 0   & 0   & 0   & 1\\end{array}\\]",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
     ]
@@ -240,16 +260,6 @@
     ]
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
     "objectID": "summary.html",
     "href": "summary.html",
     "title": "3  Summary",
@@ -267,16 +277,6 @@
     "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "References"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Grafos bipartitos en redes de interacción ecológicas",
-    "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
-    "crumbs": [
-      "Preface"
     ]
   }
 ]
