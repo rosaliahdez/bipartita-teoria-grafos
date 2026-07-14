@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Sesión 1: Roadmap del curso – Grafos bipartitos en redes de interacción ecológicas</title>
+<title>2&nbsp; Sesión 2: Introducción a la Teoría de Grafos – Grafos bipartitos en redes de interacción ecológicas</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -68,8 +33,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Sesion2.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./Sesion1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -149,7 +114,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -182,13 +147,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Sesion1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./Sesion1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Sesion2.html" class="sidebar-item-text sidebar-link">
+  <a href="./Sesion2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
   </div>
 </li>
@@ -214,19 +179,23 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-de-la-sesión-1" id="toc-objetivos-de-la-sesión-1" class="nav-link active" data-scroll-target="#objetivos-de-la-sesión-1"><span class="header-section-number">1.1</span> Objetivos de la sesión 1</a></li>
-  <li><a href="#objetivos-de-la-parte-de-teoría-de-grafos" id="toc-objetivos-de-la-parte-de-teoría-de-grafos" class="nav-link" data-scroll-target="#objetivos-de-la-parte-de-teoría-de-grafos"><span class="header-section-number">1.2</span> Objetivos de la parte de Teoría de Grafos</a></li>
-  <li><a href="#por-qué-grafos-bipartitos-en-ecología-de-interacciones" id="toc-por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="nav-link" data-scroll-target="#por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">1.3</span> ¿Por qué grafos bipartitos en ecología de interacciones?</a></li>
-  <li><a href="#ejemplo-esquema-de-un-grafo-bipartito" id="toc-ejemplo-esquema-de-un-grafo-bipartito" class="nav-link" data-scroll-target="#ejemplo-esquema-de-un-grafo-bipartito"><span class="header-section-number">1.4</span> Ejemplo: esquema de un grafo bipartito</a></li>
-  <li><a href="#ejemplo-matriz-bipartita" id="toc-ejemplo-matriz-bipartita" class="nav-link" data-scroll-target="#ejemplo-matriz-bipartita"><span class="header-section-number">1.5</span> Ejemplo: matriz bipartita</a></li>
-  <li><a href="#propuesta-de-temario-roadmap" id="toc-propuesta-de-temario-roadmap" class="nav-link" data-scroll-target="#propuesta-de-temario-roadmap"><span class="header-section-number">1.6</span> Propuesta de temario (roadmap)</a></li>
-  <li><a href="#herramienta-central-bipartite-en-r" id="toc-herramienta-central-bipartite-en-r" class="nav-link" data-scroll-target="#herramienta-central-bipartite-en-r"><span class="header-section-number">1.7</span> Herramienta central: <code>bipartite</code> en R</a>
+  <li><a href="#fundamentos-de-grafos-qué-es-un-grafo" id="toc-fundamentos-de-grafos-qué-es-un-grafo" class="nav-link active" data-scroll-target="#fundamentos-de-grafos-qué-es-un-grafo"><span class="header-section-number">2.1</span> Fundamentos de Grafos: Qué es un grafo</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-de-código-y-visualización" id="toc-ejemplo-de-código-y-visualización" class="nav-link" data-scroll-target="#ejemplo-de-código-y-visualización"><span class="header-section-number">1.7.1</span> Ejemplo de código y visualización</a></li>
+  <li><a href="#terminología-básica" id="toc-terminología-básica" class="nav-link" data-scroll-target="#terminología-básica"><span class="header-section-number">2.1.1</span> Terminología básica</a></li>
   </ul></li>
-  <li><a href="#conexión-con-datos-reales-y-abiertos" id="toc-conexión-con-datos-reales-y-abiertos" class="nav-link" data-scroll-target="#conexión-con-datos-reales-y-abiertos"><span class="header-section-number">1.8</span> Conexión con datos reales (y abiertos)</a></li>
-  <li><a href="#producto-entregable-github-quarto" id="toc-producto-entregable-github-quarto" class="nav-link" data-scroll-target="#producto-entregable-github-quarto"><span class="header-section-number">1.9</span> Producto entregable: GitHub + Quarto</a></li>
-  <li><a href="#qué-sigue" id="toc-qué-sigue" class="nav-link" data-scroll-target="#qué-sigue"><span class="header-section-number">1.10</span> ¿Qué sigue?</a></li>
+  <li><a href="#variaciones-del-concepto-de-grafo" id="toc-variaciones-del-concepto-de-grafo" class="nav-link" data-scroll-target="#variaciones-del-concepto-de-grafo"><span class="header-section-number">2.2</span> Variaciones del concepto de grafo</a>
+  <ul class="collapse">
+  <li><a href="#actividad-rápida-modelado-con-grafos" id="toc-actividad-rápida-modelado-con-grafos" class="nav-link" data-scroll-target="#actividad-rápida-modelado-con-grafos"><span class="header-section-number">2.2.1</span> Actividad rápida: Modelado con grafos</a></li>
+  </ul></li>
+  <li><a href="#subgrafos-y-subgrafos-inducidos" id="toc-subgrafos-y-subgrafos-inducidos" class="nav-link" data-scroll-target="#subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.3</span> Subgrafos y Subgrafos inducidos</a></li>
+  <li><a href="#isomorfismo-de-grafos" id="toc-isomorfismo-de-grafos" class="nav-link" data-scroll-target="#isomorfismo-de-grafos"><span class="header-section-number">2.4</span> Isomorfismo de grafos</a></li>
+  <li><a href="#grado-de-un-vértice" id="toc-grado-de-un-vértice" class="nav-link" data-scroll-target="#grado-de-un-vértice"><span class="header-section-number">2.5</span> Grado de un vértice</a></li>
+  <li><a href="#bibliografía-general-recomendada" id="toc-bibliografía-general-recomendada" class="nav-link" data-scroll-target="#bibliografía-general-recomendada"><span class="header-section-number">3</span> Bibliografía General Recomendada</a>
+  <ul class="collapse">
+  <li><a href="#fundamentos-de-grafos-bipartitos" id="toc-fundamentos-de-grafos-bipartitos" class="nav-link" data-scroll-target="#fundamentos-de-grafos-bipartitos"><span class="header-section-number">3.0.1</span> Fundamentos de grafos bipartitos</a></li>
+  <li><a href="#métricas-y-propiedades-estructurales-en-grafos-bipartitos" id="toc-métricas-y-propiedades-estructurales-en-grafos-bipartitos" class="nav-link" data-scroll-target="#métricas-y-propiedades-estructurales-en-grafos-bipartitos"><span class="header-section-number">3.0.2</span> Métricas y propiedades estructurales en grafos bipartitos</a></li>
+  <li><a href="#modelos-y-métricas-generalizables-a-redes-bipartitas" id="toc-modelos-y-métricas-generalizables-a-redes-bipartitas" class="nav-link" data-scroll-target="#modelos-y-métricas-generalizables-a-redes-bipartitas"><span class="header-section-number">3.0.3</span> Modelos y métricas generalizables a redes bipartitas</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -235,7 +204,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></h1>
 </div>
 
 
@@ -252,150 +221,200 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-de-la-sesión-1" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="objetivos-de-la-sesión-1"><span class="header-section-number">1.1</span> Objetivos de la sesión 1</h2>
-<ul>
-<li>Presentar una <strong>propuesta de temario</strong> (roadmap) para el estudio de <em>redes de interacción en Ecología</em> con el enfoque de la Teoría de Grafos.</li>
-<li>Motivar <strong>por qué</strong> el lenguaje de grafos bipartitos es natural en redes de interacción ecológicas.</li>
-<li>Delinear <strong>qué haremos</strong> en las siguientes sesiones: definiciones, cálculo computacional, interpretación y casos reales.</li>
-<li>Alinear expectativas sobre <strong>productos entregables</strong> y prácticas de reproducibilidad.</li>
-</ul>
-</section>
-<section id="objetivos-de-la-parte-de-teoría-de-grafos" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="objetivos-de-la-parte-de-teoría-de-grafos"><span class="header-section-number">1.2</span> Objetivos de la parte de Teoría de Grafos</h2>
-<p>Al finalizar esta parte del seminario, buscaremos que el grupo pueda:</p>
-<ol type="1">
-<li><strong>Definir matemáticamente</strong> métricas estándar en grafos bipartitos usados en ecología.</li>
-<li><strong>Calcular las métricas computacionalmente en R</strong> (paquete <code>bipartite</code>), con ejemplos ilustrativos, casos extremos y redes sintéticas.</li>
-<li><strong>Interpretarlas en contexto matemático</strong> (qué cuantifican, qué no cuantifican, y qué supuestos implican).</li>
-<li><strong>Conectar</strong> las métricas con <strong>redes reales</strong> (bases de datos abiertas y datos proporcionados), y con preguntas ecológicas concretas.</li>
-</ol>
-</section>
-<section id="por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">1.3</span> ¿Por qué grafos bipartitos en ecología de interacciones?</h2>
-<p>Muchos sistemas de interacción admiten una partición natural en dos tipos de entidades:</p>
-<ul>
-<li>plantas <span class="math inline">\(\leftrightarrow\)</span> polinizadores,</li>
-<li>plantas <span class="math inline">\(\leftrightarrow\)</span> dispersores,</li>
-<li>hospederos <span class="math inline">\(\leftrightarrow\)</span> parásitos,</li>
-<li>plantas <span class="math inline">\(\leftrightarrow\)</span> herbívoros, etc.</li>
-</ul>
-<p>La estructura bipartita permite:</p>
-<ul>
-<li>Representar el sistema combinatoriamente y/o como una <strong>matriz de incidencia</strong> (binaria o ponderada).</li>
-<li>Cuantificar <strong>patrones estructurales</strong> (especialización, anidamiento, modularidad).</li>
-<li>Evaluar <strong>robustez</strong> ante perturbaciones y cambios (tiempo/espacio).</li>
-</ul>
-</section>
-<section id="ejemplo-esquema-de-un-grafo-bipartito" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="ejemplo-esquema-de-un-grafo-bipartito"><span class="header-section-number">1.4</span> Ejemplo: esquema de un grafo bipartito</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Sesion1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Esquema visual de interacciones bipartitas.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="ejemplo-matriz-bipartita" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="ejemplo-matriz-bipartita"><span class="header-section-number">1.5</span> Ejemplo: matriz bipartita</h2>
-<p>Una red bipartita puede representarse por una matriz <span class="math inline">\(B\in\mathbb{R}_{\ge 0}^{p\times q}\)</span>:</p>
-<p><span class="math display">\[B_{ij}=\begin{cases}
-0, &amp; \text{si no se observa interacción} \\
-1, &amp; \text{si se registra presencia/ausencia} \\
-w_{ij}&gt;0, &amp; \text{si se registra frecuencia/intensidad}\end{cases}\]</span></p>
-<p>Ejemplo (binario): <span class="math display">\[\begin{array}{c|cccc}
-   &amp; a_1 &amp; a_2 &amp; a_3 &amp; a_4\\
-\hline
-p_1&amp; 1   &amp; 1   &amp; 0   &amp; 0\\
-p_2&amp; 0   &amp; 1   &amp; 1   &amp; 0\\
-p_3&amp; 0   &amp; 1   &amp; 0   &amp; 0\\
-p_4&amp; 0   &amp; 0   &amp; 0   &amp; 1
-\end{array}\]</span></p>
-</section>
-<section id="propuesta-de-temario-roadmap" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="propuesta-de-temario-roadmap"><span class="header-section-number">1.6</span> Propuesta de temario (roadmap)</h2>
-<ol type="1">
-<li><strong>Fundamentos y datos</strong>: redes bipartitas, matrices de incidencia, datos binarios/ponderados.</li>
-<li><strong>Métricas locales (por nodo/especie)</strong>: grado/fuerza, dependencia, índices de especialización y roles.</li>
-<li><strong>Métricas globales (por red)</strong>: conectancia, diversidad de interacciones, anidamiento, modularidad y estructuras mesoscópicas.</li>
-<li><strong>Dinámica temporal y espacial</strong>: redes por temporada/año/sitio, recambio de enlaces, beta-diversidad de interacciones.</li>
-<li><strong>Robustez y perturbaciones</strong>: extinción primaria/secundaria, curvas de robustez, sensibilidad a especies clave.</li>
-<li><strong>Casos de estudio + prácticas reproducibles</strong>: datasets abiertos, ejercicios en R, reporte en Quarto y repositorio en GitHub.</li>
-</ol>
-</section>
-<section id="herramienta-central-bipartite-en-r" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="herramienta-central-bipartite-en-r"><span class="header-section-number">1.7</span> Herramienta central: <code>bipartite</code> en R</h2>
-<p>Usaremos <code>bipartite</code> como marco común de implementación:</p>
-<ul>
-<li>Cálculo de métricas a nivel red/especie.</li>
-<li>Visualizaciones (matriz, <code>plotweb</code>, módulos).</li>
-<li>Detección de modularidad en bipartitas.</li>
-<li>Simulaciones de extinción y coextinción.</li>
-</ul>
-<section id="ejemplo-de-código-y-visualización" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="ejemplo-de-código-y-visualización"><span class="header-section-number">1.7.1</span> Ejemplo de código y visualización</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Safariland)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(Safariland, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"connectance"</span>,<span class="st">"nestedness"</span>,<span class="st">"H2"</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">computeModules</span>(Safariland)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotModuleWeb</span>(m,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">plotModules =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">rank =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayAlabels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayBlabels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">labsize =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="fundamentos-de-grafos-qué-es-un-grafo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="fundamentos-de-grafos-qué-es-un-grafo"><span class="header-section-number">2.1</span> Fundamentos de Grafos: Qué es un grafo</h2>
 <blockquote class="blockquote">
-<p><strong>Salida esperada:</strong> <strong>connectance</strong>: 0.160493827160494 <strong>nestedness</strong>: 19.8578346403513 <strong>H2</strong>: 0.853730724291418</p>
+<p><strong>Definición: Grafo simple</strong> Un <strong>grafo simple</strong> <span class="math inline">\(G\)</span> es un par ordenado <span class="math inline">\((V, E)\)</span>, donde:</p>
+<p>- <span class="math inline">\(V\)</span> es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman <strong>vértices</strong> (o nodos). - <span class="math inline">\(E\)</span> es un conjunto de pares no ordenados de vértices distintos. Los elementos de <span class="math inline">\(E\)</span> se llaman <strong>aristas</strong> (o enlaces).</p>
 </blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Safariland.JPG" class="img-fluid figure-img"></p>
-<figcaption>Red Safariland</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="conexión-con-datos-reales-y-abiertos" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="conexión-con-datos-reales-y-abiertos"><span class="header-section-number">1.8</span> Conexión con datos reales (y abiertos)</h2>
-<p>Trabajaremos con redes provenientes de:</p>
+<blockquote class="blockquote">
+<p><strong>Ejemplo:</strong> Sean: * <span class="math inline">\(V=\{1, 2, 3, 4\}\)</span> * <span class="math inline">\(E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}\)</span></p>
+</blockquote>
+<section id="terminología-básica" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="terminología-básica"><span class="header-section-number">2.1.1</span> Terminología básica</h3>
 <ul>
-<li><strong>Datasets incluidos en <code>bipartite</code></strong> (para arrancar rápido).</li>
-<li><strong>Repositorios abiertos</strong> (por ejemplo, <em>Web of Life</em>, <em>Mangal</em>).</li>
-<li><strong>Datos del grupo</strong> (cuando se proporcionen) y redes sintéticas controladas.</li>
+<li><strong>Adyacencia:</strong> Dos vértices <span class="math inline">\(u, v \in V\)</span> son <strong>adyacentes</strong> (o vecinos) si existe una arista que los une, es decir, si <span class="math inline">\(\{u, v\} \in E\)</span>.</li>
+<li><strong>Incidencia:</strong> Una arista <span class="math inline">\(e \in E\)</span> es <strong>incidente</strong> a un vértice <span class="math inline">\(v \in V\)</span> si <span class="math inline">\(v\)</span> es uno de los extremos de <span class="math inline">\(e\)</span>.</li>
+<li><strong>Orden y tamaño:</strong> El <strong>orden</strong> del grafo es el número de vértices, <span class="math inline">\(|V|\)</span>. El <strong>tamaño</strong> del grafo es el número de aristas, <span class="math inline">\(|E|\)</span>.</li>
 </ul>
-<p>Objetivo: vincular métricas con <strong>preguntas ecológicas</strong> concretas y con decisiones de modelado (binaria vs ponderada).</p>
 </section>
-<section id="producto-entregable-github-quarto" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="producto-entregable-github-quarto"><span class="header-section-number">1.9</span> Producto entregable: GitHub + Quarto</h2>
+</section>
+<section id="variaciones-del-concepto-de-grafo" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="variaciones-del-concepto-de-grafo"><span class="header-section-number">2.2</span> Variaciones del concepto de grafo</h2>
+<p>No todos los sistemas se modelan con grafos simples.</p>
 <ul>
-<li>notas en entorno web interactivo (definiciones, ejemplos, discusión),</li>
-<li>código en R (funciones y scripts),</li>
-<li>datasets (o instrucciones claras para descargarlos),</li>
-<li>figuras y salidas reproducibles.</li>
+<li><strong>Grafo dirigido (digrafo):</strong> Las aristas son <strong>pares ordenados</strong> de vértices, <span class="math inline">\((u, v)\)</span>, representando una dirección (de <span class="math inline">\(u\)</span> a <span class="math inline">\(v\)</span>). Se suelen llamar <strong>arcos</strong>.</li>
+<li><strong>Multigrafo:</strong> Se permiten múltiples aristas entre el mismo par de vértices (Ej: Rutas de vuelo entre ciudades).</li>
+<li><strong>Pseudografo:</strong> Se permiten <strong>bucles</strong> o lazos (aristas que conectan un vértice consigo mismo, <span class="math inline">\(\{v, v\}\)</span>).</li>
+<li><strong>Grafo ponderado (o red):</strong> A cada arista <span class="math inline">\(e \in E\)</span> se le asigna un valor numérico <span class="math inline">\(w(e)\)</span>, llamado <strong>peso</strong> (Ej: Pesos que representan distancias entre vuelos).</li>
 </ul>
-<p><strong>Meta</strong>: que el repositorio funcione como referencia del seminario y como punto de partida para proyectos.</p>
+<section id="actividad-rápida-modelado-con-grafos" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="actividad-rápida-modelado-con-grafos"><span class="header-section-number">2.2.1</span> Actividad rápida: Modelado con grafos</h3>
+<blockquote class="blockquote">
+<p><strong>Pregunta para la audiencia</strong> En los siguientes sistemas, ¿qué representarían los vértices y las aristas?, ¿qué tipo de grafo sería el más adecuado? 1. La red de amigos en Facebook. 2. El sistema de calles de una ciudad. 3. Las dependencias entre tareas en un proyecto.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Solución sugerida</strong> 1. Vértices: Personas. Aristas: Amistad (simétrica). Grafo simple (o quizás ponderado por intensidad). 2. Vértices: Intersecciones. Aristas: Calles. Grafo dirigido (si hay un sentido) y ponderado (distancia/tiempo). 3. Vértices: Tareas. Aristas: Dependencia. Grafo dirigido, acíclico.</p>
+</blockquote>
 </section>
-<section id="qué-sigue" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="qué-sigue"><span class="header-section-number">1.10</span> ¿Qué sigue?</h2>
-<p>En las próximas sesiones avanzaremos en el siguiente orden:</p>
-<ol type="1">
-<li>Notación y construcción de redes bipartitas desde datos.</li>
-<li>Métricas locales y globales: definiciones, propiedades y ejemplos.</li>
-<li>Implementación en R con <code>bipartite</code>: funciones, salidas y visualización.</li>
-<li>Interpretación y comparación; incorporación de dinámica y robustez.</li>
-<li>Casos de estudio con redes reales (y documentación).</li>
-</ol>
-<p><strong>Sugerencia práctica</strong>: tener instalado R/RStudio y el paquete <code>bipartite</code> antes de la siguiente sesión.</p>
+</section>
+<section id="subgrafos-y-subgrafos-inducidos" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.3</span> Subgrafos y Subgrafos inducidos</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Subgrafo</strong> Un grafo <span class="math inline">\(H=(V_H, E_H)\)</span> es un <strong>subgrafo</strong> de <span class="math inline">\(G=(V_G, E_G)\)</span> si <span class="math inline">\(V_H \subseteq V_G\)</span>, <span class="math inline">\(E_H \subseteq E_G\)</span> y todas las aristas en <span class="math inline">\(E_H\)</span> tienen sus extremos en <span class="math inline">\(V_H\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Definición: Subgrafo inducido</strong> Dado un subconjunto de vértices <span class="math inline">\(S \subseteq V_G\)</span>, el <strong>subgrafo inducido</strong> por <span class="math inline">\(S\)</span>, denotado <span class="math inline">\(G[S]\)</span>, es el grafo <span class="math inline">\((S, E_S)\)</span> donde <span class="math inline">\(E_S\)</span> contiene todas las aristas de <span class="math inline">\(E_G\)</span> cuyos dos extremos están en <span class="math inline">\(S\)</span>.</p>
+</blockquote>
+</section>
+<section id="isomorfismo-de-grafos" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="isomorfismo-de-grafos"><span class="header-section-number">2.4</span> Isomorfismo de grafos</h2>
+<p>¿Cuándo son dos grafos “<em>esencialmente el mismo</em>”?</p>
+<blockquote class="blockquote">
+<p><strong>Definición: Isomorfismo</strong> Dos grafos <span class="math inline">\(G_1=(V_1, E_1)\)</span> y <span class="math inline">\(G_2=(V_2, E_2)\)</span> son <strong>isomorfos</strong> (<span class="math inline">\(G_1 \cong G_2\)</span>) si existe una función biyectiva <span class="math inline">\(f: V_1 \to V_2\)</span> tal que: <span class="math display">\[\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2\]</span> La función <span class="math inline">\(f\)</span> preserva la adyacencia.</p>
+</blockquote>
+</section>
+<section id="grado-de-un-vértice" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="grado-de-un-vértice"><span class="header-section-number">2.5</span> Grado de un vértice</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Grado</strong> El <strong>grado</strong> de un vértice <span class="math inline">\(v\)</span> en un grafo <span class="math inline">\(G\)</span>, denotado <span class="math inline">\(\deg(v)\)</span> o <span class="math inline">\(d(v)\)</span>, es el número de aristas incidentes a <span class="math inline">\(v\)</span>. Equivalentemente, es el número de vecinos de <span class="math inline">\(v\)</span>.</p>
+</blockquote>
+<!-- ESTO NO SE USO EN ESTA SESION
+**Teorema: Lema del apretón de manos** Para cualquier grafo $G=(V, E)$, la suma de los grados de todos los vértices es igual al doble del número de aristas: $$\sum_{v \in V} \deg(v) = 2|E|$$ *Idea de la demostración:* Cada arista $\{u, v\}$ contribuye exactamente dos veces a la suma total de grados.
+
+### Actividad rápida: Lema del apretón de manos
+
+> **Ejercicio** ¿Es posible construir un grafo simple con 5 vértices que tengan los siguientes grados: 3, 3, 3, 1, 0?
+
+> **Solución** Calculamos la suma de los grados: $3+3+3+1+0 = 10$. Según el Lema del apretón de manos, la suma debe ser $2|E|$. Como $10$ es par, el lema se cumple ($|E|=5$). Sin embargo, cumplir el lema no garantiza la existencia del grafo. Un vértice tiene grado 0 (aislado). En el subgrafo restante de 4 vértices, los grados deben ser 3, 3, 3, 1. Si tres vértices tienen grado 3 en un grafo de 4, todos deben estar conectados a todos, lo que obliga al cuarto vértice a tener grado 3, contradiciendo que debe tener grado 1. **No es posible.**
+
+## Caminos, ciclos y conectividad
+
+- **Camino (simple):** Sucesión de vértices distintos $v_0, v_1, \dots, v_k$ tal que $\{v_{i-1}, v_i\}$ es una arista para todo $i$. Longitud = $k$.
+- **Ciclo (simple):** Un camino con $k \geq 3$ donde el primer y último vértice son el mismo ($v_0=v_k$).
+- **Conectividad:** Un grafo es **conexo** si existe un camino entre cualquier par de vértices distintos.
+- **Componente conexa:** Subgrafo maximal conexo.
+
+## Representaciones de grafos
+
+### Lista de adyacencia
+
+Para cada vértice, almacenamos una lista de sus vecinos. \* **Ventaja:** Eficiente en memoria para grafos **esparsos** (pocos enlaces). \* **Desventaja:** Verificar existencia de una arista toma tiempo.
+
+### Matriz de adyacencia
+
+> **Definición:** Sea $G=(V, E)$ con $|V|=n$. La matriz $A$ de $n \times n$ donde: $$A_{ij} = \begin{cases} 1 & \text{si } \{i, j\} \in E \\ 0 & \text{en otro caso} \end{cases}$$
+
+### Matriz de incidencia
+
+> **Definición:** Sea $G=(V, E)$ con $|V|=n$ y $|E|=m$. La matriz $B$ de $n \times m$ donde: $$B_{ie} = \begin{cases} 1 & \text{si el vértice } i \text{ es incidente a la arista } e \\ 0 & \text{en otro caso} \end{cases}$$
+
+### El Laplaciano del grafo
+
+Se define con la matriz de grados $D$ (diagonal con $D_{ii} = \deg(i)$).
+
+> **Definición: Matriz Laplaciana** $$L = D - A$$
+
+> **Propiedades espectrales de L:** 1. $L$ es simétrica. 2. $L$ es **semidefinida positiva** ($\lambda_i \geq 0$). 3. Siempre $\lambda_1=0$. La multiplicidad del autovalor 0 es igual al número de componentes conexas del grafo $G$.
+
+------------------------------------------------------------------------
+
+# Árboles y Conectividad
+
+## Estructura básica: Árboles
+
+> **Definición: Árbol y bosque** Un **árbol** es un grafo conexo y acíclico. Un **bosque** es un grafo acíclico (sus componentes conexas son árboles).
+
+> **Teorema de caracterización:** Sea $G=(V, E)$ un grafo con $n$ vértices. Son equivalentes: 1. $G$ es un árbol. 2. $G$ es conexo y tiene exactamente $n-1$ aristas. 3. $G$ es acíclico y tiene exactamente $n-1$ aristas. 4. Existe un **único** camino entre cualquier par de vértices. 5. $G$ es mínimamente conexo. 6. $G$ es máximamente acíclico.
+
+### Actividad rápida: Identificar árboles
+
+> **Ejercicio:** ¿Cuáles de los siguientes grafos son árboles? \* **G1:** $V=\{1..5\}$, $E=\{\{1,2\}, \{2,3\}, \{3,4\}, \{4,5\}\}$ \* **G2:** $V=\{1..5\}$, $E=\{\{1,2\}, \{2,3\}, \{3,4\}, \{4,5\}, \{5,1\}\}$ \* **G3:** $V=\{1..5\}$, $E=\{\{1,2\}, \{2,3\}, \{3,1\}, \{3,4\}, \{4,5\}\}$ \* **G4:** $V=\{1..6\}$, $E=\{\{1,2\}, \{2,3\}, \{4,5\}\}$
+
+> **Solución:** \* [**G1:**]{style="color:#003399;"} **Sí es un árbol**. \* [**G2:**]{style="color:#003399;"} **No es un árbol** (contiene ciclo). \* [**G3:**]{style="color:#003399;"} **No es un árbol** (grafo con $n$ vértices y $n$ aristas siempre tiene ciclo). \* [**G4:**]{style="color:#003399;"} **No es un árbol** (es un bosque desconectado).
+
+## Cortes y puentes
+
+- **Puente:** Arista cuya eliminación desconecta el grafo.
+- **Vértice de corte:** Vértice cuya eliminación aumenta las componentes conexas.
+
+> **Teorema de Menger (versión vértices)** El número mínimo de vértices que se deben eliminar para separar $u$ de $v$ es igual al número máximo de caminos internamente disjuntos entre $u$ y $v$.
+
+------------------------------------------------------------------------
+
+# Métricas y Análisis de Redes
+
+## Centralidad
+
+Medidas para cuantificar la "importancia" de un nodo.
+
+1.  **Centralidad de grado:** Popularidad inmediata. $C_D(v) = \deg(v)$.
+2.  **Centralidad de cercanía (Closeness):** Inverso de la distancia promedio a los demás. $$C_C(v) = \frac{1}{\sum_{u \neq v} d(v, u)}$$
+3.  **Centralidad de intermediación (Betweenness):** Frecuencia con la que actúa como puente en caminos más cortos. $$C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}$$
+4.  **Centralidad de vector propio:** Ecuación de autovalores de la matriz de adyacencia $A\mathbf{x} = \lambda\mathbf{x}$.
+
+## Coeficiente de agrupamiento (Clustering)
+
+> **Coeficiente de agrupamiento local:** Fracción de vecinos de $v$ que están conectados entre sí. $$C(v) = \frac{\text{Número de triángulos que incluyen a } v}{\text{Número de posibles triángulos centrados en } v}$$
+
+## Detección de comunidades y modularidad
+
+> **Modularidad (Q):** $$Q = \frac{1}{2m} \sum_{i,j} \left[ A_{ij} - \frac{k_i k_j}{2m} \right] \delta(c_i, c_j)$$ Valores altos indican una fuerte estructura de comunidad.
+
+------------------------------------------------------------------------
+
+# Grafos Bipartitos y Emparejamientos
+
+> **Definición: Grafo bipartito** Un grafo $G=(V, E)$ es **bipartito** si $V$ puede dividirse en $V_1$ y $V_2$ disjuntos tal que toda arista conecta $V_1$ con $V_2$. No hay aristas internas en los conjuntos.
+
+> **Teorema:** Un grafo es bipartito si y sólo si no contiene ciclos de longitud impar.
+
+> **Representación Matricial:** $$A = \begin{pmatrix}\mathbf{0} & B \\B^T & \mathbf{0}\end{pmatrix}$$ Donde $B$ es la matriz de **biadyacencia**.
+
+## Emparejamientos (Matchings)
+
+- **Emparejamiento:** Subconjunto de aristas que no comparten vértices.
+- **Emparejamiento perfecto:** Cubre todos los vértices del grafo.
+
+> **Teorema de Hall:** Sea $G=(V_1 \cup V_2, E)$ un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de $V_1$ si y sólo si para todo subconjunto $S \subseteq V_1$: $$|N(S)| \geq |S|$$
+
+------------------------------------------------------------------------
+-->
+</section>
+<section id="bibliografía-general-recomendada" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Bibliografía General Recomendada</h1>
+<section id="fundamentos-de-grafos-bipartitos" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="fundamentos-de-grafos-bipartitos"><span class="header-section-number">3.0.1</span> Fundamentos de grafos bipartitos</h3>
+<ul>
+<li><strong>Asratian, A. S., Denley, T. M. J., &amp; Häggkvist, R. (1998).</strong> <em>Bipartite Graphs and their Applications</em>. Cambridge University Press.</li>
+<li><strong>Hall, P. (1935).</strong> “On Representatives of Subsets.” <em>Journal of the London Mathematical Society</em>, 10(1), 26–30.</li>
+<li><strong>Bondy, J. A., &amp; Murty, U. S. R. (1976).</strong> <em>Graph Theory with Applications</em>. London: Macmillan.</li>
+<li><strong>Lovász, L., &amp; Plummer, M. D. (1986).</strong> <em>Matching Theory</em>. North-Holland.</li>
+<li><strong>Wasserman, S., &amp; Faust, K. (1994).</strong> <em>Social Network Analysis: Methods and Applications</em>. Cambridge University Press.</li>
+</ul>
+</section>
+<section id="métricas-y-propiedades-estructurales-en-grafos-bipartitos" class="level3" data-number="3.0.2">
+<h3 data-number="3.0.2" class="anchored" data-anchor-id="métricas-y-propiedades-estructurales-en-grafos-bipartitos"><span class="header-section-number">3.0.2</span> Métricas y propiedades estructurales en grafos bipartitos</h3>
+<ul>
+<li><strong>Latapy, M., Magnien, C., &amp; Del Vecchio, N. (2008).</strong> “Basic Notions for the Analysis of Large Two-Mode Networks.” <em>Social Networks</em>, 30(1), 31–48.</li>
+<li><strong>Borgatti, S. P., &amp; Everett, M. G. (1997).</strong> “Network Analysis of 2-Mode Data.” <em>Social Networks</em>, 19(3), 243–269.</li>
+<li><strong>Dormann, C. F., et al.&nbsp;(2009).</strong> “Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks.” <em>The Open Ecology Journal</em>, 2, 7–24.</li>
+<li><strong>Almeida-Neto, M., et al.&nbsp;(2008).</strong> “A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement.” <em>Oikos</em>, 117(8), 1227–1239.</li>
+<li><strong>Barber, M. J. (2007).</strong> “Modularity and Community Detection in Bipartite Networks.” <em>Physical Review E</em>, 76(6), 066102.</li>
+<li><strong>Ouadah, S., Latouche, P., &amp; Robin, S. (2022).</strong> “Motif-Based Tests for Bipartite Networks.” <em>Electronic Journal of Statistics</em>, 16(1), 293–330.</li>
+<li><strong>Borgatti, S. P., &amp; Everett, M. G. (1999).</strong> “Models of Core/Periphery Structures.” <em>Social Networks</em>, 21(4), 375–395.</li>
+</ul>
+</section>
+<section id="modelos-y-métricas-generalizables-a-redes-bipartitas" class="level3" data-number="3.0.3">
+<h3 data-number="3.0.3" class="anchored" data-anchor-id="modelos-y-métricas-generalizables-a-redes-bipartitas"><span class="header-section-number">3.0.3</span> Modelos y métricas generalizables a redes bipartitas</h3>
+<ul>
+<li><strong>Kunegis, J. (2015).</strong> “Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications.” <em>Internet Mathematics</em>, 11(4), 201–231.</li>
+<li><strong>Saracco, F., et al.&nbsp;(2015).</strong> “Randomizing Bipartite Networks: The Case of the World Trade Web.” <em>Scientific Reports</em>, 5, 10595.</li>
+<li><strong>Cimini, G., et al.&nbsp;(2019).</strong> “The Statistical Physics of Real-World Networks.” <em>Nature Reviews Physics</em>, 1(1), 58–71.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -801,13 +820,13 @@ p_4&amp; 0   &amp; 0   &amp; 0   &amp; 1
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Bienvenida">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bienvenida</span>
+      <a href="./Sesion1.html" class="pagination-link" aria-label="Sesión 1: Roadmap del curso">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Sesion2.html" class="pagination-link" aria-label="Sesión 2: Introducción a la Teoría de Grafos">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
