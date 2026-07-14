@@ -1,0 +1,282 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Grafos bipartitos en redes de interacción ecológicas",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html",
+    "href": "Sesion1.html",
+    "title": "2  Sesion1",
+    "section": "",
+    "text": "3 Sesión 1: Introducción a la Teoría de Grafos",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#objetivos-de-la-sesión-1",
+    "href": "Sesion1.html#objetivos-de-la-sesión-1",
+    "title": "2  Sesion1",
+    "section": "3.1 Objetivos de la sesión 1",
+    "text": "3.1 Objetivos de la sesión 1\n\nPresentar una propuesta de temario (roadmap) para el estudio de redes de interacción en Ecología con el enfoque de la Teoría de Grafos.\nMotivar por qué el lenguaje de grafos bipartitos es natural en redes de interacción ecológicas.\nDelinear qué haremos en las siguientes sesiones: definiciones, cálculo computacional, interpretación y casos reales.\nAlinear expectativas sobre productos entregables y prácticas de reproducibilidad.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#objetivos-de-la-parte-de-teoría-de-grafos",
+    "href": "Sesion1.html#objetivos-de-la-parte-de-teoría-de-grafos",
+    "title": "2  Sesion1",
+    "section": "3.2 Objetivos de la parte de Teoría de Grafos",
+    "text": "3.2 Objetivos de la parte de Teoría de Grafos\nAl finalizar esta parte del seminario, buscaremos que el grupo pueda:\n\nDefinir matemáticamente métricas estándar en grafos bipartitos usados en ecología.\nCalcular las métricas computacionalmente en R (paquete bipartite), con ejemplos ilustrativos, casos extremos y redes sintéticas.\nInterpretarlas en contexto matemático (qué cuantifican, qué no cuantifican, y qué supuestos implican).\nConectar las métricas con redes reales (bases de datos abiertas y datos proporcionados), y con preguntas ecológicas concretas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#por-qué-grafos-bipartitos-en-ecología-de-interacciones",
+    "href": "Sesion1.html#por-qué-grafos-bipartitos-en-ecología-de-interacciones",
+    "title": "2  Sesion1",
+    "section": "3.3 ¿Por qué grafos bipartitos en ecología de interacciones?",
+    "text": "3.3 ¿Por qué grafos bipartitos en ecología de interacciones?\nMuchos sistemas de interacción admiten una partición natural en dos tipos de entidades:\n\nplantas \\(\\leftrightarrow\\) polinizadores,\nplantas \\(\\leftrightarrow\\) dispersores,\nhospederos \\(\\leftrightarrow\\) parásitos,\nplantas \\(\\leftrightarrow\\) herbívoros, etc.\n\nLa estructura bipartita permite: * Representar el sistema combinatoriamente y/o como una matriz de incidencia (binaria o ponderada). * Cuantificar patrones estructurales (especialización, anidamiento, modularidad). * Evaluar robustez ante perturbaciones y cambios (tiempo/espacio).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#ejemplo-esquema-de-un-grafo-bipartito",
+    "href": "Sesion1.html#ejemplo-esquema-de-un-grafo-bipartito",
+    "title": "2  Sesion1",
+    "section": "3.4 Ejemplo: esquema de un grafo bipartito",
+    "text": "3.4 Ejemplo: esquema de un grafo bipartito\n\n\n\n\n\nEsquema visual de interacciones bipartitas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#ejemplo-matriz-bipartita",
+    "href": "Sesion1.html#ejemplo-matriz-bipartita",
+    "title": "2  Sesion1",
+    "section": "3.5 Ejemplo: matriz bipartita",
+    "text": "3.5 Ejemplo: matriz bipartita\nUna red bipartita puede representarse por una matriz \\(B\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\):\n\\[B_{ij}=\\begin{cases}0, & \\text{si no se observa interacción} \\\\1, & \\text{si se registra presencia/ausencia} \\\\w_{ij}&gt;0, & \\text{si se registra frecuencia/intensidad}\\end{cases}\\]\nEjemplo (binario): \\[\\begin{array}{c|cccc}   & a_1 & a_2 & a_3 & a_4\\\\ \\hline p_1& 1   & 1   & 0   & 0\\\\p_2& 0   & 1   & 1   & 0\\\\p_3& 0   & 1   & 0   & 0\\\\p_4& 0   & 0   & 0   & 1\\end{array}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#propuesta-de-temario-roadmap",
+    "href": "Sesion1.html#propuesta-de-temario-roadmap",
+    "title": "2  Sesion1",
+    "section": "3.6 Propuesta de temario (roadmap)",
+    "text": "3.6 Propuesta de temario (roadmap)\n\nFundamentos y datos: redes bipartitas, matrices de incidencia, datos binarios/ponderados.\nMétricas locales (por nodo/especie): grado/fuerza, dependencia, índices de especialización y roles.\nMétricas globales (por red): conectancia, diversidad de interacciones, anidamiento, modularidad y estructuras mesoscópicas.\nDinámica temporal y espacial: redes por temporada/año/sitio, recambio de enlaces, beta-diversidad de interacciones.\nRobustez y perturbaciones: extinción primaria/secundaria, curvas de robustez, sensibilidad a especies clave.\nCasos de estudio + prácticas reproducibles: datasets abiertos, ejercicios en R, reporte en Quarto y repositorio en GitHub.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#herramienta-central-bipartite-en-r",
+    "href": "Sesion1.html#herramienta-central-bipartite-en-r",
+    "title": "2  Sesion1",
+    "section": "3.7 Herramienta central: bipartite en R",
+    "text": "3.7 Herramienta central: bipartite en R\nUsaremos bipartite como marco común de implementación:\n\nCálculo de métricas a nivel red/especie.\nVisualizaciones (matriz, plotweb, módulos).\nDetección de modularidad en bipartitas.\nSimulaciones de extinción y coextinción.\n\n\n3.7.1 Ejemplo de código y visualización\n\nlibrary(bipartite)\ndata(Safariland)\nnetworklevel(Safariland, index = c(\"connectance\",\"nestedness\",\"H2\"))\n\nm &lt;- computeModules(Safariland)\nplotModuleWeb(m,\n              plotModules = TRUE,\n              rank = TRUE,\n              weighted = TRUE,\n              displayAlabels = TRUE,\n              displayBlabels = TRUE,\n              labsize = 0.8)\n\n\nSalida esperada: connectance: 0.160493827160494 nestedness: 19.8578346403513 H2: 0.853730724291418\n\n\n\n\nRed Safariland",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#conexión-con-datos-reales-y-abiertos",
+    "href": "Sesion1.html#conexión-con-datos-reales-y-abiertos",
+    "title": "2  Sesion1",
+    "section": "3.8 Conexión con datos reales (y abiertos)",
+    "text": "3.8 Conexión con datos reales (y abiertos)\nTrabajaremos con redes provenientes de:\n\nDatasets incluidos en bipartite (para arrancar rápido).\nRepositorios abiertos (por ejemplo, Web of Life, Mangal).\nDatos del grupo (cuando se proporcionen) y redes sintéticas controladas.\n\nObjetivo: vincular métricas con preguntas ecológicas concretas y con decisiones de modelado (binaria vs ponderada).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#producto-entregable-github-quarto",
+    "href": "Sesion1.html#producto-entregable-github-quarto",
+    "title": "2  Sesion1",
+    "section": "3.9 Producto entregable: GitHub + Quarto",
+    "text": "3.9 Producto entregable: GitHub + Quarto\n\nnotas en entorno web interactivo (definiciones, ejemplos, discusión),\ncódigo en R (funciones y scripts),\ndatasets (o instrucciones claras para descargarlos),\nfiguras y salidas reproducibles.\n\nMeta: que el repositorio funcione como referencia del seminario y como punto de partida para proyectos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#qué-sigue",
+    "href": "Sesion1.html#qué-sigue",
+    "title": "2  Sesion1",
+    "section": "3.10 ¿Qué sigue?",
+    "text": "3.10 ¿Qué sigue?\nEn las próximas sesiones avanzaremos en el siguiente orden:\n\nNotación y construcción de redes bipartitas desde datos.\nMétricas locales y globales: definiciones, propiedades y ejemplos.\nImplementación en R con bipartite: funciones, salidas y visualización.\nInterpretación y comparación; incorporación de dinámica y robustez.\nCasos de estudio con redes reales (y documentación).\n\nSugerencia práctica: tener instalado R/RStudio y el paquete bipartite antes de la siguiente sesión.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#qué-es-un-grafo",
+    "href": "Sesion1.html#qué-es-un-grafo",
+    "title": "2  Sesion1",
+    "section": "4.1 ¿Qué es un grafo?",
+    "text": "4.1 ¿Qué es un grafo?\n\nDefinición: Grafo simple Un grafo simple \\(G\\) es un par ordenado \\((V, E)\\), donde: * \\(V\\) es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman vértices (o nodos). * \\(E\\) es un conjunto de pares no ordenados de vértices distintos. Los elementos de \\(E\\) se llaman aristas (o enlaces).\n\n\nEjemplo: Sean: * \\(V=\\{1, 2, 3, 4\\}\\) * \\(E=\\{\\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}, \\{3, 4\\}\\}\\)\n\n\n4.1.1 Terminología básica\n\nAdyacencia: Dos vértices \\(u, v \\in V\\) son adyacentes (o vecinos) si existe una arista que los une, es decir, si \\(\\{u, v\\} \\in E\\).\nIncidencia: Una arista \\(e \\in E\\) es incidente a un vértice \\(v \\in V\\) si \\(v\\) es uno de los extremos de \\(e\\).\nOrden y tamaño: El orden del grafo es el número de vértices, \\(|V|\\). El tamaño del grafo es el número de aristas, \\(|E|\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#variaciones-del-concepto-de-grafo",
+    "href": "Sesion1.html#variaciones-del-concepto-de-grafo",
+    "title": "2  Sesion1",
+    "section": "4.2 Variaciones del concepto de grafo",
+    "text": "4.2 Variaciones del concepto de grafo\nNo todos los sistemas se modelan con grafos simples.\n\nGrafo dirigido (digrafo): Las aristas son pares ordenados de vértices, \\((u, v)\\), representando una dirección (de \\(u\\) a \\(v\\)). Se suelen llamar arcos.\nMultigrafo: Se permiten múltiples aristas entre el mismo par de vértices (Ej: Rutas de vuelo entre ciudades).\nPseudografo: Se permiten bucles o lazos (aristas que conectan un vértice consigo mismo, \\(\\{v, v\\}\\)).\nGrafo ponderado (o red): A cada arista \\(e \\in E\\) se le asigna un valor numérico \\(w(e)\\), llamado peso (Ej: Pesos que representan distancias entre vuelos).\n\n\n4.2.1 Actividad rápida: Modelado con grafos\n\nPregunta para la audiencia En los siguientes sistemas, ¿qué representarían los vértices y las aristas?, ¿qué tipo de grafo sería el más adecuado? 1. La red de amigos en Facebook. 2. El sistema de calles de una ciudad. 3. Las dependencias entre tareas en un proyecto.\n\n\nSolución sugerida 1. Vértices: Personas. Aristas: Amistad (simétrica). Grafo simple (o quizás ponderado por intensidad). 2. Vértices: Intersecciones. Aristas: Calles. Grafo dirigido (si hay un sentido) y ponderado (distancia/tiempo). 3. Vértices: Tareas. Aristas: Dependencia. Grafo dirigido, acíclico.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#subgrafos-y-subgrafos-inducidos",
+    "href": "Sesion1.html#subgrafos-y-subgrafos-inducidos",
+    "title": "2  Sesion1",
+    "section": "4.3 Subgrafos y Subgrafos inducidos",
+    "text": "4.3 Subgrafos y Subgrafos inducidos\n\nDefinición: Subgrafo Un grafo \\(H=(V_H, E_H)\\) es un subgrafo de \\(G=(V_G, E_G)\\) si \\(V_H \\subseteq V_G\\), \\(E_H \\subseteq E_G\\) y todas las aristas en \\(E_H\\) tienen sus extremos en \\(V_H\\).\n\n\nDefinición: Subgrafo inducido Dado un subconjunto de vértices \\(S \\subseteq V_G\\), el subgrafo inducido por \\(S\\), denotado \\(G[S]\\), es el grafo \\((S, E_S)\\) donde \\(E_S\\) contiene todas las aristas de \\(E_G\\) cuyos dos extremos están en \\(S\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#isomorfismo-de-grafos",
+    "href": "Sesion1.html#isomorfismo-de-grafos",
+    "title": "2  Sesion1",
+    "section": "4.4 Isomorfismo de grafos",
+    "text": "4.4 Isomorfismo de grafos\n¿Cuándo son dos grafos “esencialmente el mismo”?\n\nDefinición: Isomorfismo Dos grafos \\(G_1=(V_1, E_1)\\) y \\(G_2=(V_2, E_2)\\) son isomorfos (\\(G_1 \\cong G_2\\)) si existe una función biyectiva \\(f: V_1 \\to V_2\\) tal que: \\[\\{u, v\\} \\in E_1 \\Leftrightarrow \\{f(u), f(v)\\} \\in E_2\\] La función \\(f\\) preserva la adyacencia.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#grado-de-un-vértice",
+    "href": "Sesion1.html#grado-de-un-vértice",
+    "title": "2  Sesion1",
+    "section": "4.5 Grado de un vértice",
+    "text": "4.5 Grado de un vértice\n\nDefinición: Grado El grado de un vértice \\(v\\) en un grafo \\(G\\), denotado \\(\\deg(v)\\) o \\(d(v)\\), es el número de aristas incidentes a \\(v\\). Equivalentemente, es el número de vecinos de \\(v\\).\n\n\nTeorema: Lema del apretón de manos Para cualquier grafo \\(G=(V, E)\\), la suma de los grados de todos los vértices es igual al doble del número de aristas: \\[\\sum_{v \\in V} \\deg(v) = 2|E|\\] Idea de la demostración: Cada arista \\(\\{u, v\\}\\) contribuye exactamente dos veces a la suma total de grados.\n\n\n4.5.1 Actividad rápida: Lema del apretón de manos\n\nEjercicio ¿Es posible construir un grafo simple con 5 vértices que tengan los siguientes grados: 3, 3, 3, 1, 0?\n\n\nSolución Calculamos la suma de los grados: \\(3+3+3+1+0 = 10\\). Según el Lema del apretón de manos, la suma debe ser \\(2|E|\\). Como \\(10\\) es par, el lema se cumple (\\(|E|=5\\)). Sin embargo, cumplir el lema no garantiza la existencia del grafo. Un vértice tiene grado 0 (aislado). En el subgrafo restante de 4 vértices, los grados deben ser 3, 3, 3, 1. Si tres vértices tienen grado 3 en un grafo de 4, todos deben estar conectados a todos, lo que obliga al cuarto vértice a tener grado 3, contradiciendo que debe tener grado 1. No es posible.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#caminos-ciclos-y-conectividad",
+    "href": "Sesion1.html#caminos-ciclos-y-conectividad",
+    "title": "2  Sesion1",
+    "section": "4.6 Caminos, ciclos y conectividad",
+    "text": "4.6 Caminos, ciclos y conectividad\n\nCamino (simple): Sucesión de vértices distintos \\(v_0, v_1, \\dots, v_k\\) tal que \\(\\{v_{i-1}, v_i\\}\\) es una arista para todo \\(i\\). Longitud = \\(k\\).\nCiclo (simple): Un camino con \\(k \\geq 3\\) donde el primer y último vértice son el mismo (\\(v_0=v_k\\)).\nConectividad: Un grafo es conexo si existe un camino entre cualquier par de vértices distintos.\nComponente conexa: Subgrafo maximal conexo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#representaciones-de-grafos",
+    "href": "Sesion1.html#representaciones-de-grafos",
+    "title": "2  Sesion1",
+    "section": "4.7 Representaciones de grafos",
+    "text": "4.7 Representaciones de grafos\n\n4.7.1 Lista de adyacencia\nPara cada vértice, almacenamos una lista de sus vecinos. * Ventaja: Eficiente en memoria para grafos esparsos (pocos enlaces). * Desventaja: Verificar existencia de una arista toma tiempo.\n\n\n4.7.2 Matriz de adyacencia\n\nDefinición: Sea \\(G=(V, E)\\) con \\(|V|=n\\). La matriz \\(A\\) de \\(n \\times n\\) donde: \\[A_{ij} = \\begin{cases} 1 & \\text{si } \\{i, j\\} \\in E \\\\ 0 & \\text{en otro caso} \\end{cases}\\]\n\n\n\n4.7.3 Matriz de incidencia\n\nDefinición: Sea \\(G=(V, E)\\) con \\(|V|=n\\) y \\(|E|=m\\). La matriz \\(B\\) de \\(n \\times m\\) donde: \\[B_{ie} = \\begin{cases} 1 & \\text{si el vértice } i \\text{ es incidente a la arista } e \\\\ 0 & \\text{en otro caso} \\end{cases}\\]\n\n\n\n4.7.4 El Laplaciano del grafo\nSe define con la matriz de grados \\(D\\) (diagonal con \\(D_{ii} = \\deg(i)\\)).\n\nDefinición: Matriz Laplaciana \\[L = D - A\\]\n\n\nPropiedades espectrales de L: 1. \\(L\\) es simétrica. 2. \\(L\\) es semidefinida positiva (\\(\\lambda_i \\geq 0\\)). 3. Siempre \\(\\lambda_1=0\\). La multiplicidad del autovalor 0 es igual al número de componentes conexas del grafo \\(G\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#estructura-básica-árboles",
+    "href": "Sesion1.html#estructura-básica-árboles",
+    "title": "2  Sesion1",
+    "section": "5.1 Estructura básica: Árboles",
+    "text": "5.1 Estructura básica: Árboles\n\nDefinición: Árbol y bosque Un árbol es un grafo conexo y acíclico. Un bosque es un grafo acíclico (sus componentes conexas son árboles).\n\n\nTeorema de caracterización: Sea \\(G=(V, E)\\) un grafo con \\(n\\) vértices. Son equivalentes: 1. \\(G\\) es un árbol. 2. \\(G\\) es conexo y tiene exactamente \\(n-1\\) aristas. 3. \\(G\\) es acíclico y tiene exactamente \\(n-1\\) aristas. 4. Existe un único camino entre cualquier par de vértices. 5. \\(G\\) es mínimamente conexo. 6. \\(G\\) es máximamente acíclico.\n\n\n5.1.1 Actividad rápida: Identificar árboles\n\nEjercicio: ¿Cuáles de los siguientes grafos son árboles? * G1: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,4\\}, \\{4,5\\}\\}\\) * G2: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,4\\}, \\{4,5\\}, \\{5,1\\}\\}\\) * G3: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,1\\}, \\{3,4\\}, \\{4,5\\}\\}\\) * G4: \\(V=\\{1..6\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{4,5\\}\\}\\)\n\n\nSolución: * G1: Sí es un árbol. * G2: No es un árbol (contiene ciclo). * G3: No es un árbol (grafo con \\(n\\) vértices y \\(n\\) aristas siempre tiene ciclo). * G4: No es un árbol (es un bosque desconectado).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#cortes-y-puentes",
+    "href": "Sesion1.html#cortes-y-puentes",
+    "title": "2  Sesion1",
+    "section": "5.2 Cortes y puentes",
+    "text": "5.2 Cortes y puentes\n\nPuente: Arista cuya eliminación desconecta el grafo.\nVértice de corte: Vértice cuya eliminación aumenta las componentes conexas.\n\n\nTeorema de Menger (versión vértices) El número mínimo de vértices que se deben eliminar para separar \\(u\\) de \\(v\\) es igual al número máximo de caminos internamente disjuntos entre \\(u\\) y \\(v\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#centralidad",
+    "href": "Sesion1.html#centralidad",
+    "title": "2  Sesion1",
+    "section": "6.1 Centralidad",
+    "text": "6.1 Centralidad\nMedidas para cuantificar la “importancia” de un nodo.\n\nCentralidad de grado: Popularidad inmediata. \\(C_D(v) = \\deg(v)\\).\nCentralidad de cercanía (Closeness): Inverso de la distancia promedio a los demás. \\[C_C(v) = \\frac{1}{\\sum_{u \\neq v} d(v, u)}\\]\nCentralidad de intermediación (Betweenness): Frecuencia con la que actúa como puente en caminos más cortos. \\[C_B(v) = \\sum_{s \\neq v \\neq t} \\frac{\\sigma_{st}(v)}{\\sigma_{st}}\\]\nCentralidad de vector propio: Ecuación de autovalores de la matriz de adyacencia \\(A\\mathbf{x} = \\lambda\\mathbf{x}\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#coeficiente-de-agrupamiento-clustering",
+    "href": "Sesion1.html#coeficiente-de-agrupamiento-clustering",
+    "title": "2  Sesion1",
+    "section": "6.2 Coeficiente de agrupamiento (Clustering)",
+    "text": "6.2 Coeficiente de agrupamiento (Clustering)\n\nCoeficiente de agrupamiento local: Fracción de vecinos de \\(v\\) que están conectados entre sí. \\[C(v) = \\frac{\\text{Número de triángulos que incluyen a } v}{\\text{Número de posibles triángulos centrados en } v}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#detección-de-comunidades-y-modularidad",
+    "href": "Sesion1.html#detección-de-comunidades-y-modularidad",
+    "title": "2  Sesion1",
+    "section": "6.3 Detección de comunidades y modularidad",
+    "text": "6.3 Detección de comunidades y modularidad\n\nModularidad (Q): \\[Q = \\frac{1}{2m} \\sum_{i,j} \\left[ A_{ij} - \\frac{k_i k_j}{2m} \\right] \\delta(c_i, c_j)\\] Valores altos indican una fuerte estructura de comunidad.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion1.html#emparejamientos-matchings",
+    "href": "Sesion1.html#emparejamientos-matchings",
+    "title": "2  Sesion1",
+    "section": "7.1 Emparejamientos (Matchings)",
+    "text": "7.1 Emparejamientos (Matchings)\n\nEmparejamiento: Subconjunto de aristas que no comparten vértices.\nEmparejamiento perfecto: Cubre todos los vértices del grafo.\n\n\nTeorema de Hall: Sea \\(G=(V_1 \\cup V_2, E)\\) un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de \\(V_1\\) si y sólo si para todo subconjunto \\(S \\subseteq V_1\\): \\[|N(S)| \\geq |S|\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesion1</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
