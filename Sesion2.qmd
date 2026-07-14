@@ -16,6 +16,12 @@ Un grafo simple $G$ es un par ordenado $(V, E)$, donde:
 - $E$ es un conjunto de pares no ordenados de vértices distintos. Los elementos de $E$ se llaman **aristas** (o enlaces).
 :::
 
+> **Definición: grafo simple**
+>
+> Un grafo simple $G$ es un par ordenado $(V, E)$, donde:
+>
+> - $V$ es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman **vértices** (o nodos).
+> - $E$ es un conjunto de pares no ordenados de vértices distintos. Los elementos de $E$ se llaman **aristas** (o enlaces).
 
 
 > **Ejemplo:** Sean: \* $V=\{1, 2, 3, 4\}$ \* $E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}$
