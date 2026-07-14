@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Sesion1 – Grafos bipartitos en redes de interacción ecológicas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./intro.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion1.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesion1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grafos bipartitos en redes de interacción ecológicas</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesion1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sesión-1-introducción-a-la-teoría-de-grafos" id="toc-sesión-1-introducción-a-la-teoría-de-grafos" class="nav-link active" data-scroll-target="#sesión-1-introducción-a-la-teoría-de-grafos"><span class="header-section-number">3</span> Sesión 1: Introducción a la Teoría de Grafos</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-de-la-sesión-1" id="toc-objetivos-de-la-sesión-1" class="nav-link" data-scroll-target="#objetivos-de-la-sesión-1"><span class="header-section-number">3.1</span> Objetivos de la sesión 1</a></li>
+  <li><a href="#objetivos-de-la-parte-de-teoría-de-grafos" id="toc-objetivos-de-la-parte-de-teoría-de-grafos" class="nav-link" data-scroll-target="#objetivos-de-la-parte-de-teoría-de-grafos"><span class="header-section-number">3.2</span> Objetivos de la parte de Teoría de Grafos</a></li>
+  <li><a href="#por-qué-grafos-bipartitos-en-ecología-de-interacciones" id="toc-por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="nav-link" data-scroll-target="#por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">3.3</span> ¿Por qué grafos bipartitos en ecología de interacciones?</a></li>
+  <li><a href="#ejemplo-esquema-de-un-grafo-bipartito" id="toc-ejemplo-esquema-de-un-grafo-bipartito" class="nav-link" data-scroll-target="#ejemplo-esquema-de-un-grafo-bipartito"><span class="header-section-number">3.4</span> Ejemplo: esquema de un grafo bipartito</a></li>
+  <li><a href="#ejemplo-matriz-bipartita" id="toc-ejemplo-matriz-bipartita" class="nav-link" data-scroll-target="#ejemplo-matriz-bipartita"><span class="header-section-number">3.5</span> Ejemplo: matriz bipartita</a></li>
+  <li><a href="#propuesta-de-temario-roadmap" id="toc-propuesta-de-temario-roadmap" class="nav-link" data-scroll-target="#propuesta-de-temario-roadmap"><span class="header-section-number">3.6</span> Propuesta de temario (roadmap)</a></li>
+  <li><a href="#herramienta-central-bipartite-en-r" id="toc-herramienta-central-bipartite-en-r" class="nav-link" data-scroll-target="#herramienta-central-bipartite-en-r"><span class="header-section-number">3.7</span> Herramienta central: <code>bipartite</code> en R</a>
+  <ul class="collapse">
+  <li><a href="#ejemplo-de-código-y-visualización" id="toc-ejemplo-de-código-y-visualización" class="nav-link" data-scroll-target="#ejemplo-de-código-y-visualización"><span class="header-section-number">3.7.1</span> Ejemplo de código y visualización</a></li>
+  </ul></li>
+  <li><a href="#conexión-con-datos-reales-y-abiertos" id="toc-conexión-con-datos-reales-y-abiertos" class="nav-link" data-scroll-target="#conexión-con-datos-reales-y-abiertos"><span class="header-section-number">3.8</span> Conexión con datos reales (y abiertos)</a></li>
+  <li><a href="#producto-entregable-github-quarto" id="toc-producto-entregable-github-quarto" class="nav-link" data-scroll-target="#producto-entregable-github-quarto"><span class="header-section-number">3.9</span> Producto entregable: GitHub + Quarto</a></li>
+  <li><a href="#qué-sigue" id="toc-qué-sigue" class="nav-link" data-scroll-target="#qué-sigue"><span class="header-section-number">3.10</span> ¿Qué sigue?</a></li>
+  </ul></li>
+  <li><a href="#fundamentos-de-grafos" id="toc-fundamentos-de-grafos" class="nav-link" data-scroll-target="#fundamentos-de-grafos"><span class="header-section-number">4</span> Fundamentos de Grafos</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-un-grafo" id="toc-qué-es-un-grafo" class="nav-link" data-scroll-target="#qué-es-un-grafo"><span class="header-section-number">4.1</span> ¿Qué es un grafo?</a>
+  <ul class="collapse">
+  <li><a href="#terminología-básica" id="toc-terminología-básica" class="nav-link" data-scroll-target="#terminología-básica"><span class="header-section-number">4.1.1</span> Terminología básica</a></li>
+  </ul></li>
+  <li><a href="#variaciones-del-concepto-de-grafo" id="toc-variaciones-del-concepto-de-grafo" class="nav-link" data-scroll-target="#variaciones-del-concepto-de-grafo"><span class="header-section-number">4.2</span> Variaciones del concepto de grafo</a>
+  <ul class="collapse">
+  <li><a href="#actividad-rápida-modelado-con-grafos" id="toc-actividad-rápida-modelado-con-grafos" class="nav-link" data-scroll-target="#actividad-rápida-modelado-con-grafos"><span class="header-section-number">4.2.1</span> Actividad rápida: Modelado con grafos</a></li>
+  </ul></li>
+  <li><a href="#subgrafos-y-subgrafos-inducidos" id="toc-subgrafos-y-subgrafos-inducidos" class="nav-link" data-scroll-target="#subgrafos-y-subgrafos-inducidos"><span class="header-section-number">4.3</span> Subgrafos y Subgrafos inducidos</a></li>
+  <li><a href="#isomorfismo-de-grafos" id="toc-isomorfismo-de-grafos" class="nav-link" data-scroll-target="#isomorfismo-de-grafos"><span class="header-section-number">4.4</span> Isomorfismo de grafos</a></li>
+  <li><a href="#grado-de-un-vértice" id="toc-grado-de-un-vértice" class="nav-link" data-scroll-target="#grado-de-un-vértice"><span class="header-section-number">4.5</span> Grado de un vértice</a>
+  <ul class="collapse">
+  <li><a href="#actividad-rápida-lema-del-apretón-de-manos" id="toc-actividad-rápida-lema-del-apretón-de-manos" class="nav-link" data-scroll-target="#actividad-rápida-lema-del-apretón-de-manos"><span class="header-section-number">4.5.1</span> Actividad rápida: Lema del apretón de manos</a></li>
+  </ul></li>
+  <li><a href="#caminos-ciclos-y-conectividad" id="toc-caminos-ciclos-y-conectividad" class="nav-link" data-scroll-target="#caminos-ciclos-y-conectividad"><span class="header-section-number">4.6</span> Caminos, ciclos y conectividad</a></li>
+  <li><a href="#representaciones-de-grafos" id="toc-representaciones-de-grafos" class="nav-link" data-scroll-target="#representaciones-de-grafos"><span class="header-section-number">4.7</span> Representaciones de grafos</a>
+  <ul class="collapse">
+  <li><a href="#lista-de-adyacencia" id="toc-lista-de-adyacencia" class="nav-link" data-scroll-target="#lista-de-adyacencia"><span class="header-section-number">4.7.1</span> Lista de adyacencia</a></li>
+  <li><a href="#matriz-de-adyacencia" id="toc-matriz-de-adyacencia" class="nav-link" data-scroll-target="#matriz-de-adyacencia"><span class="header-section-number">4.7.2</span> Matriz de adyacencia</a></li>
+  <li><a href="#matriz-de-incidencia" id="toc-matriz-de-incidencia" class="nav-link" data-scroll-target="#matriz-de-incidencia"><span class="header-section-number">4.7.3</span> Matriz de incidencia</a></li>
+  <li><a href="#el-laplaciano-del-grafo" id="toc-el-laplaciano-del-grafo" class="nav-link" data-scroll-target="#el-laplaciano-del-grafo"><span class="header-section-number">4.7.4</span> El Laplaciano del grafo</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#árboles-y-conectividad" id="toc-árboles-y-conectividad" class="nav-link" data-scroll-target="#árboles-y-conectividad"><span class="header-section-number">5</span> Árboles y Conectividad</a>
+  <ul class="collapse">
+  <li><a href="#estructura-básica-árboles" id="toc-estructura-básica-árboles" class="nav-link" data-scroll-target="#estructura-básica-árboles"><span class="header-section-number">5.1</span> Estructura básica: Árboles</a>
+  <ul class="collapse">
+  <li><a href="#actividad-rápida-identificar-árboles" id="toc-actividad-rápida-identificar-árboles" class="nav-link" data-scroll-target="#actividad-rápida-identificar-árboles"><span class="header-section-number">5.1.1</span> Actividad rápida: Identificar árboles</a></li>
+  </ul></li>
+  <li><a href="#cortes-y-puentes" id="toc-cortes-y-puentes" class="nav-link" data-scroll-target="#cortes-y-puentes"><span class="header-section-number">5.2</span> Cortes y puentes</a></li>
+  </ul></li>
+  <li><a href="#métricas-y-análisis-de-redes" id="toc-métricas-y-análisis-de-redes" class="nav-link" data-scroll-target="#métricas-y-análisis-de-redes"><span class="header-section-number">6</span> Métricas y Análisis de Redes</a>
+  <ul class="collapse">
+  <li><a href="#centralidad" id="toc-centralidad" class="nav-link" data-scroll-target="#centralidad"><span class="header-section-number">6.1</span> Centralidad</a></li>
+  <li><a href="#coeficiente-de-agrupamiento-clustering" id="toc-coeficiente-de-agrupamiento-clustering" class="nav-link" data-scroll-target="#coeficiente-de-agrupamiento-clustering"><span class="header-section-number">6.2</span> Coeficiente de agrupamiento (Clustering)</a></li>
+  <li><a href="#detección-de-comunidades-y-modularidad" id="toc-detección-de-comunidades-y-modularidad" class="nav-link" data-scroll-target="#detección-de-comunidades-y-modularidad"><span class="header-section-number">6.3</span> Detección de comunidades y modularidad</a></li>
+  </ul></li>
+  <li><a href="#grafos-bipartitos-y-emparejamientos" id="toc-grafos-bipartitos-y-emparejamientos" class="nav-link" data-scroll-target="#grafos-bipartitos-y-emparejamientos"><span class="header-section-number">7</span> Grafos Bipartitos y Emparejamientos</a>
+  <ul class="collapse">
+  <li><a href="#emparejamientos-matchings" id="toc-emparejamientos-matchings" class="nav-link" data-scroll-target="#emparejamientos-matchings"><span class="header-section-number">7.1</span> Emparejamientos (Matchings)</a></li>
+  </ul></li>
+  <li><a href="#bibliografía-general-recomendada" id="toc-bibliografía-general-recomendada" class="nav-link" data-scroll-target="#bibliografía-general-recomendada"><span class="header-section-number">8</span> Bibliografía General Recomendada</a>
+  <ul class="collapse">
+  <li><a href="#fundamentos-de-grafos-bipartitos" id="toc-fundamentos-de-grafos-bipartitos" class="nav-link" data-scroll-target="#fundamentos-de-grafos-bipartitos"><span class="header-section-number">8.0.1</span> Fundamentos de grafos bipartitos</a></li>
+  <li><a href="#métricas-y-propiedades-estructurales-en-grafos-bipartitos" id="toc-métricas-y-propiedades-estructurales-en-grafos-bipartitos" class="nav-link" data-scroll-target="#métricas-y-propiedades-estructurales-en-grafos-bipartitos"><span class="header-section-number">8.0.2</span> Métricas y propiedades estructurales en grafos bipartitos</a></li>
+  <li><a href="#modelos-y-métricas-generalizables-a-redes-bipartitas" id="toc-modelos-y-métricas-generalizables-a-redes-bipartitas" class="nav-link" data-scroll-target="#modelos-y-métricas-generalizables-a-redes-bipartitas"><span class="header-section-number">8.0.3</span> Modelos y métricas generalizables a redes bipartitas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesion1</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sesión-1-introducción-a-la-teoría-de-grafos" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Sesión 1: Introducción a la Teoría de Grafos</h1>
+<section id="objetivos-de-la-sesión-1" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="objetivos-de-la-sesión-1"><span class="header-section-number">3.1</span> Objetivos de la sesión 1</h2>
+<ul>
+<li>Presentar una <strong>propuesta de temario</strong> (roadmap) para el estudio de <em>redes de interacción en Ecología</em> con el enfoque de la Teoría de Grafos.</li>
+<li>Motivar <strong>por qué</strong> el lenguaje de grafos bipartitos es natural en redes de interacción ecológicas.</li>
+<li>Delinear <strong>qué haremos</strong> en las siguientes sesiones: definiciones, cálculo computacional, interpretación y casos reales.</li>
+<li>Alinear expectativas sobre <strong>productos entregables</strong> y prácticas de reproducibilidad.</li>
+</ul>
+</section>
+<section id="objetivos-de-la-parte-de-teoría-de-grafos" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="objetivos-de-la-parte-de-teoría-de-grafos"><span class="header-section-number">3.2</span> Objetivos de la parte de Teoría de Grafos</h2>
+<p>Al finalizar esta parte del seminario, buscaremos que el grupo pueda:</p>
+<ol type="1">
+<li><strong>Definir matemáticamente</strong> métricas estándar en grafos bipartitos usados en ecología.</li>
+<li><strong>Calcular las métricas computacionalmente en R</strong> (paquete <code>bipartite</code>), con ejemplos ilustrativos, casos extremos y redes sintéticas.</li>
+<li><strong>Interpretarlas en contexto matemático</strong> (qué cuantifican, qué no cuantifican, y qué supuestos implican).</li>
+<li><strong>Conectar</strong> las métricas con <strong>redes reales</strong> (bases de datos abiertas y datos proporcionados), y con preguntas ecológicas concretas.</li>
+</ol>
+</section>
+<section id="por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">3.3</span> ¿Por qué grafos bipartitos en ecología de interacciones?</h2>
+<p>Muchos sistemas de interacción admiten una partición natural en dos tipos de entidades:</p>
+<ul>
+<li>plantas <span class="math inline">\(\leftrightarrow\)</span> polinizadores,</li>
+<li>plantas <span class="math inline">\(\leftrightarrow\)</span> dispersores,</li>
+<li>hospederos <span class="math inline">\(\leftrightarrow\)</span> parásitos,</li>
+<li>plantas <span class="math inline">\(\leftrightarrow\)</span> herbívoros, etc.</li>
+</ul>
+<p>La estructura bipartita permite: * Representar el sistema combinatoriamente y/o como una <strong>matriz de incidencia</strong> (binaria o ponderada). * Cuantificar <strong>patrones estructurales</strong> (especialización, anidamiento, modularidad). * Evaluar <strong>robustez</strong> ante perturbaciones y cambios (tiempo/espacio).</p>
+</section>
+<section id="ejemplo-esquema-de-un-grafo-bipartito" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="ejemplo-esquema-de-un-grafo-bipartito"><span class="header-section-number">3.4</span> Ejemplo: esquema de un grafo bipartito</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Esquema visual de interacciones bipartitas.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ejemplo-matriz-bipartita" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="ejemplo-matriz-bipartita"><span class="header-section-number">3.5</span> Ejemplo: matriz bipartita</h2>
+<p>Una red bipartita puede representarse por una matriz <span class="math inline">\(B\in\mathbb{R}_{\ge 0}^{p\times q}\)</span>:</p>
+<p><span class="math display">\[B_{ij}=\begin{cases}0, &amp; \text{si no se observa interacción} \\1, &amp; \text{si se registra presencia/ausencia} \\w_{ij}&gt;0, &amp; \text{si se registra frecuencia/intensidad}\end{cases}\]</span></p>
+<p>Ejemplo (binario): <span class="math display">\[\begin{array}{c|cccc}   &amp; a_1 &amp; a_2 &amp; a_3 &amp; a_4\\ \hlinep_1&amp; 1   &amp; 1   &amp; 0   &amp; 0\\p_2&amp; 0   &amp; 1   &amp; 1   &amp; 0\\p_3&amp; 0   &amp; 1   &amp; 0   &amp; 0\\p_4&amp; 0   &amp; 0   &amp; 0   &amp; 1\end{array}\]</span></p>
+</section>
+<section id="propuesta-de-temario-roadmap" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="propuesta-de-temario-roadmap"><span class="header-section-number">3.6</span> Propuesta de temario (roadmap)</h2>
+<ol type="1">
+<li><strong>Fundamentos y datos</strong>: redes bipartitas, matrices de incidencia, datos binarios/ponderados.</li>
+<li><strong>Métricas locales (por nodo/especie)</strong>: grado/fuerza, dependencia, índices de especialización y roles.</li>
+<li><strong>Métricas globales (por red)</strong>: conectancia, diversidad de interacciones, anidamiento, modularidad y estructuras mesoscópicas.</li>
+<li><strong>Dinámica temporal y espacial</strong>: redes por temporada/año/sitio, recambio de enlaces, beta-diversidad de interacciones.</li>
+<li><strong>Robustez y perturbaciones</strong>: extinción primaria/secundaria, curvas de robustez, sensibilidad a especies clave.</li>
+<li><strong>Casos de estudio + prácticas reproducibles</strong>: datasets abiertos, ejercicios en R, reporte en Quarto y repositorio en GitHub.</li>
+</ol>
+</section>
+<section id="herramienta-central-bipartite-en-r" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="herramienta-central-bipartite-en-r"><span class="header-section-number">3.7</span> Herramienta central: <code>bipartite</code> en R</h2>
+<p>Usaremos <code>bipartite</code> como marco común de implementación:</p>
+<ul>
+<li>Cálculo de métricas a nivel red/especie.</li>
+<li>Visualizaciones (matriz, <code>plotweb</code>, módulos).</li>
+<li>Detección de modularidad en bipartitas.</li>
+<li>Simulaciones de extinción y coextinción.</li>
+</ul>
+<section id="ejemplo-de-código-y-visualización" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="ejemplo-de-código-y-visualización"><span class="header-section-number">3.7.1</span> Ejemplo de código y visualización</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Safariland)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(Safariland, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"connectance"</span>,<span class="st">"nestedness"</span>,<span class="st">"H2"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">computeModules</span>(Safariland)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotModuleWeb</span>(m,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">plotModules =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">rank =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayAlabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayBlabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">labsize =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Salida esperada:</strong> <strong>connectance</strong>: 0.160493827160494 <strong>nestedness</strong>: 19.8578346403513 <strong>H2</strong>: 0.853730724291418</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Safariland.JPG" class="img-fluid figure-img"></p>
+<figcaption>Red Safariland</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="conexión-con-datos-reales-y-abiertos" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="conexión-con-datos-reales-y-abiertos"><span class="header-section-number">3.8</span> Conexión con datos reales (y abiertos)</h2>
+<p>Trabajaremos con redes provenientes de:</p>
+<ul>
+<li><strong>Datasets incluidos en <code>bipartite</code></strong> (para arrancar rápido).</li>
+<li><strong>Repositorios abiertos</strong> (por ejemplo, <em>Web of Life</em>, <em>Mangal</em>).</li>
+<li><strong>Datos del grupo</strong> (cuando se proporcionen) y redes sintéticas controladas.</li>
+</ul>
+<p>Objetivo: vincular métricas con <strong>preguntas ecológicas</strong> concretas y con decisiones de modelado (binaria vs ponderada).</p>
+</section>
+<section id="producto-entregable-github-quarto" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="producto-entregable-github-quarto"><span class="header-section-number">3.9</span> Producto entregable: GitHub + Quarto</h2>
+<ul>
+<li>notas en entorno web interactivo (definiciones, ejemplos, discusión),</li>
+<li>código en R (funciones y scripts),</li>
+<li>datasets (o instrucciones claras para descargarlos),</li>
+<li>figuras y salidas reproducibles.</li>
+</ul>
+<p><strong>Meta</strong>: que el repositorio funcione como referencia del seminario y como punto de partida para proyectos.</p>
+</section>
+<section id="qué-sigue" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="qué-sigue"><span class="header-section-number">3.10</span> ¿Qué sigue?</h2>
+<p>En las próximas sesiones avanzaremos en el siguiente orden:</p>
+<ol type="1">
+<li>Notación y construcción de redes bipartitas desde datos.</li>
+<li>Métricas locales y globales: definiciones, propiedades y ejemplos.</li>
+<li>Implementación en R con <code>bipartite</code>: funciones, salidas y visualización.</li>
+<li>Interpretación y comparación; incorporación de dinámica y robustez.</li>
+<li>Casos de estudio con redes reales (y documentación).</li>
+</ol>
+<p><strong>Sugerencia práctica</strong>: tener instalado R/RStudio y el paquete <code>bipartite</code> antes de la siguiente sesión.</p>
+<hr>
+</section>
+</section>
+<section id="fundamentos-de-grafos" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Fundamentos de Grafos</h1>
+<section id="qué-es-un-grafo" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="qué-es-un-grafo"><span class="header-section-number">4.1</span> ¿Qué es un grafo?</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Grafo simple</strong> Un <strong>grafo simple</strong> <span class="math inline">\(G\)</span> es un par ordenado <span class="math inline">\((V, E)\)</span>, donde: * <span class="math inline">\(V\)</span> es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman <strong>vértices</strong> (o nodos). * <span class="math inline">\(E\)</span> es un conjunto de pares no ordenados de vértices distintos. Los elementos de <span class="math inline">\(E\)</span> se llaman <strong>aristas</strong> (o enlaces).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Ejemplo:</strong> Sean: * <span class="math inline">\(V=\{1, 2, 3, 4\}\)</span> * <span class="math inline">\(E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}\)</span></p>
+</blockquote>
+<section id="terminología-básica" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="terminología-básica"><span class="header-section-number">4.1.1</span> Terminología básica</h3>
+<ul>
+<li><strong>Adyacencia:</strong> Dos vértices <span class="math inline">\(u, v \in V\)</span> son <strong>adyacentes</strong> (o vecinos) si existe una arista que los une, es decir, si <span class="math inline">\(\{u, v\} \in E\)</span>.</li>
+<li><strong>Incidencia:</strong> Una arista <span class="math inline">\(e \in E\)</span> es <strong>incidente</strong> a un vértice <span class="math inline">\(v \in V\)</span> si <span class="math inline">\(v\)</span> es uno de los extremos de <span class="math inline">\(e\)</span>.</li>
+<li><strong>Orden y tamaño:</strong> El <strong>orden</strong> del grafo es el número de vértices, <span class="math inline">\(|V|\)</span>. El <strong>tamaño</strong> del grafo es el número de aristas, <span class="math inline">\(|E|\)</span>.</li>
+</ul>
+</section>
+</section>
+<section id="variaciones-del-concepto-de-grafo" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="variaciones-del-concepto-de-grafo"><span class="header-section-number">4.2</span> Variaciones del concepto de grafo</h2>
+<p>No todos los sistemas se modelan con grafos simples.</p>
+<ul>
+<li><strong>Grafo dirigido (digrafo):</strong> Las aristas son <strong>pares ordenados</strong> de vértices, <span class="math inline">\((u, v)\)</span>, representando una dirección (de <span class="math inline">\(u\)</span> a <span class="math inline">\(v\)</span>). Se suelen llamar <strong>arcos</strong>.</li>
+<li><strong>Multigrafo:</strong> Se permiten múltiples aristas entre el mismo par de vértices (Ej: Rutas de vuelo entre ciudades).</li>
+<li><strong>Pseudografo:</strong> Se permiten <strong>bucles</strong> o lazos (aristas que conectan un vértice consigo mismo, <span class="math inline">\(\{v, v\}\)</span>).</li>
+<li><strong>Grafo ponderado (o red):</strong> A cada arista <span class="math inline">\(e \in E\)</span> se le asigna un valor numérico <span class="math inline">\(w(e)\)</span>, llamado <strong>peso</strong> (Ej: Pesos que representan distancias entre vuelos).</li>
+</ul>
+<section id="actividad-rápida-modelado-con-grafos" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="actividad-rápida-modelado-con-grafos"><span class="header-section-number">4.2.1</span> Actividad rápida: Modelado con grafos</h3>
+<blockquote class="blockquote">
+<p><strong>Pregunta para la audiencia</strong> En los siguientes sistemas, ¿qué representarían los vértices y las aristas?, ¿qué tipo de grafo sería el más adecuado? 1. La red de amigos en Facebook. 2. El sistema de calles de una ciudad. 3. Las dependencias entre tareas en un proyecto.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Solución sugerida</strong> 1. Vértices: Personas. Aristas: Amistad (simétrica). Grafo simple (o quizás ponderado por intensidad). 2. Vértices: Intersecciones. Aristas: Calles. Grafo dirigido (si hay un sentido) y ponderado (distancia/tiempo). 3. Vértices: Tareas. Aristas: Dependencia. Grafo dirigido, acíclico.</p>
+</blockquote>
+</section>
+</section>
+<section id="subgrafos-y-subgrafos-inducidos" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="subgrafos-y-subgrafos-inducidos"><span class="header-section-number">4.3</span> Subgrafos y Subgrafos inducidos</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Subgrafo</strong> Un grafo <span class="math inline">\(H=(V_H, E_H)\)</span> es un <strong>subgrafo</strong> de <span class="math inline">\(G=(V_G, E_G)\)</span> si <span class="math inline">\(V_H \subseteq V_G\)</span>, <span class="math inline">\(E_H \subseteq E_G\)</span> y todas las aristas en <span class="math inline">\(E_H\)</span> tienen sus extremos en <span class="math inline">\(V_H\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Definición: Subgrafo inducido</strong> Dado un subconjunto de vértices <span class="math inline">\(S \subseteq V_G\)</span>, el <strong>subgrafo inducido</strong> por <span class="math inline">\(S\)</span>, denotado <span class="math inline">\(G[S]\)</span>, es el grafo <span class="math inline">\((S, E_S)\)</span> donde <span class="math inline">\(E_S\)</span> contiene todas las aristas de <span class="math inline">\(E_G\)</span> cuyos dos extremos están en <span class="math inline">\(S\)</span>.</p>
+</blockquote>
+</section>
+<section id="isomorfismo-de-grafos" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="isomorfismo-de-grafos"><span class="header-section-number">4.4</span> Isomorfismo de grafos</h2>
+<p>¿Cuándo son dos grafos “<em>esencialmente el mismo</em>”?</p>
+<blockquote class="blockquote">
+<p><strong>Definición: Isomorfismo</strong> Dos grafos <span class="math inline">\(G_1=(V_1, E_1)\)</span> y <span class="math inline">\(G_2=(V_2, E_2)\)</span> son <strong>isomorfos</strong> (<span class="math inline">\(G_1 \cong G_2\)</span>) si existe una función biyectiva <span class="math inline">\(f: V_1 \to V_2\)</span> tal que: <span class="math display">\[\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2\]</span> La función <span class="math inline">\(f\)</span> preserva la adyacencia.</p>
+</blockquote>
+</section>
+<section id="grado-de-un-vértice" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="grado-de-un-vértice"><span class="header-section-number">4.5</span> Grado de un vértice</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Grado</strong> El <strong>grado</strong> de un vértice <span class="math inline">\(v\)</span> en un grafo <span class="math inline">\(G\)</span>, denotado <span class="math inline">\(\deg(v)\)</span> o <span class="math inline">\(d(v)\)</span>, es el número de aristas incidentes a <span class="math inline">\(v\)</span>. Equivalentemente, es el número de vecinos de <span class="math inline">\(v\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Teorema: Lema del apretón de manos</strong> Para cualquier grafo <span class="math inline">\(G=(V, E)\)</span>, la suma de los grados de todos los vértices es igual al doble del número de aristas: <span class="math display">\[\sum_{v \in V} \deg(v) = 2|E|\]</span> <em>Idea de la demostración:</em> Cada arista <span class="math inline">\(\{u, v\}\)</span> contribuye exactamente dos veces a la suma total de grados.</p>
+</blockquote>
+<section id="actividad-rápida-lema-del-apretón-de-manos" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="actividad-rápida-lema-del-apretón-de-manos"><span class="header-section-number">4.5.1</span> Actividad rápida: Lema del apretón de manos</h3>
+<blockquote class="blockquote">
+<p><strong>Ejercicio</strong> ¿Es posible construir un grafo simple con 5 vértices que tengan los siguientes grados: 3, 3, 3, 1, 0?</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Solución</strong> Calculamos la suma de los grados: <span class="math inline">\(3+3+3+1+0 = 10\)</span>. Según el Lema del apretón de manos, la suma debe ser <span class="math inline">\(2|E|\)</span>. Como <span class="math inline">\(10\)</span> es par, el lema se cumple (<span class="math inline">\(|E|=5\)</span>). Sin embargo, cumplir el lema no garantiza la existencia del grafo. Un vértice tiene grado 0 (aislado). En el subgrafo restante de 4 vértices, los grados deben ser 3, 3, 3, 1. Si tres vértices tienen grado 3 en un grafo de 4, todos deben estar conectados a todos, lo que obliga al cuarto vértice a tener grado 3, contradiciendo que debe tener grado 1. <strong>No es posible.</strong></p>
+</blockquote>
+</section>
+</section>
+<section id="caminos-ciclos-y-conectividad" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="caminos-ciclos-y-conectividad"><span class="header-section-number">4.6</span> Caminos, ciclos y conectividad</h2>
+<ul>
+<li><strong>Camino (simple):</strong> Sucesión de vértices distintos <span class="math inline">\(v_0, v_1, \dots, v_k\)</span> tal que <span class="math inline">\(\{v_{i-1}, v_i\}\)</span> es una arista para todo <span class="math inline">\(i\)</span>. Longitud = <span class="math inline">\(k\)</span>.</li>
+<li><strong>Ciclo (simple):</strong> Un camino con <span class="math inline">\(k \geq 3\)</span> donde el primer y último vértice son el mismo (<span class="math inline">\(v_0=v_k\)</span>).</li>
+<li><strong>Conectividad:</strong> Un grafo es <strong>conexo</strong> si existe un camino entre cualquier par de vértices distintos.</li>
+<li><strong>Componente conexa:</strong> Subgrafo maximal conexo.</li>
+</ul>
+</section>
+<section id="representaciones-de-grafos" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="representaciones-de-grafos"><span class="header-section-number">4.7</span> Representaciones de grafos</h2>
+<section id="lista-de-adyacencia" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="lista-de-adyacencia"><span class="header-section-number">4.7.1</span> Lista de adyacencia</h3>
+<p>Para cada vértice, almacenamos una lista de sus vecinos. * <strong>Ventaja:</strong> Eficiente en memoria para grafos <strong>esparsos</strong> (pocos enlaces). * <strong>Desventaja:</strong> Verificar existencia de una arista toma tiempo.</p>
+</section>
+<section id="matriz-de-adyacencia" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="matriz-de-adyacencia"><span class="header-section-number">4.7.2</span> Matriz de adyacencia</h3>
+<blockquote class="blockquote">
+<p><strong>Definición:</strong> Sea <span class="math inline">\(G=(V, E)\)</span> con <span class="math inline">\(|V|=n\)</span>. La matriz <span class="math inline">\(A\)</span> de <span class="math inline">\(n \times n\)</span> donde: <span class="math display">\[A_{ij} = \begin{cases} 1 &amp; \text{si } \{i, j\} \in E \\ 0 &amp; \text{en otro caso} \end{cases}\]</span></p>
+</blockquote>
+</section>
+<section id="matriz-de-incidencia" class="level3" data-number="4.7.3">
+<h3 data-number="4.7.3" class="anchored" data-anchor-id="matriz-de-incidencia"><span class="header-section-number">4.7.3</span> Matriz de incidencia</h3>
+<blockquote class="blockquote">
+<p><strong>Definición:</strong> Sea <span class="math inline">\(G=(V, E)\)</span> con <span class="math inline">\(|V|=n\)</span> y <span class="math inline">\(|E|=m\)</span>. La matriz <span class="math inline">\(B\)</span> de <span class="math inline">\(n \times m\)</span> donde: <span class="math display">\[B_{ie} = \begin{cases} 1 &amp; \text{si el vértice } i \text{ es incidente a la arista } e \\ 0 &amp; \text{en otro caso} \end{cases}\]</span></p>
+</blockquote>
+</section>
+<section id="el-laplaciano-del-grafo" class="level3" data-number="4.7.4">
+<h3 data-number="4.7.4" class="anchored" data-anchor-id="el-laplaciano-del-grafo"><span class="header-section-number">4.7.4</span> El Laplaciano del grafo</h3>
+<p>Se define con la matriz de grados <span class="math inline">\(D\)</span> (diagonal con <span class="math inline">\(D_{ii} = \deg(i)\)</span>).</p>
+<blockquote class="blockquote">
+<p><strong>Definición: Matriz Laplaciana</strong> <span class="math display">\[L = D - A\]</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Propiedades espectrales de L:</strong> 1. <span class="math inline">\(L\)</span> es simétrica. 2. <span class="math inline">\(L\)</span> es <strong>semidefinida positiva</strong> (<span class="math inline">\(\lambda_i \geq 0\)</span>). 3. Siempre <span class="math inline">\(\lambda_1=0\)</span>. La multiplicidad del autovalor 0 es igual al número de componentes conexas del grafo <span class="math inline">\(G\)</span>.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+</section>
+<section id="árboles-y-conectividad" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Árboles y Conectividad</h1>
+<section id="estructura-básica-árboles" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="estructura-básica-árboles"><span class="header-section-number">5.1</span> Estructura básica: Árboles</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Árbol y bosque</strong> Un <strong>árbol</strong> es un grafo conexo y acíclico. Un <strong>bosque</strong> es un grafo acíclico (sus componentes conexas son árboles).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Teorema de caracterización:</strong> Sea <span class="math inline">\(G=(V, E)\)</span> un grafo con <span class="math inline">\(n\)</span> vértices. Son equivalentes: 1. <span class="math inline">\(G\)</span> es un árbol. 2. <span class="math inline">\(G\)</span> es conexo y tiene exactamente <span class="math inline">\(n-1\)</span> aristas. 3. <span class="math inline">\(G\)</span> es acíclico y tiene exactamente <span class="math inline">\(n-1\)</span> aristas. 4. Existe un <strong>único</strong> camino entre cualquier par de vértices. 5. <span class="math inline">\(G\)</span> es mínimamente conexo. 6. <span class="math inline">\(G\)</span> es máximamente acíclico.</p>
+</blockquote>
+<section id="actividad-rápida-identificar-árboles" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="actividad-rápida-identificar-árboles"><span class="header-section-number">5.1.1</span> Actividad rápida: Identificar árboles</h3>
+<blockquote class="blockquote">
+<p><strong>Ejercicio:</strong> ¿Cuáles de los siguientes grafos son árboles? * <strong>G1:</strong> <span class="math inline">\(V=\{1..5\}\)</span>, <span class="math inline">\(E=\{\{1,2\}, \{2,3\}, \{3,4\}, \{4,5\}\}\)</span> * <strong>G2:</strong> <span class="math inline">\(V=\{1..5\}\)</span>, <span class="math inline">\(E=\{\{1,2\}, \{2,3\}, \{3,4\}, \{4,5\}, \{5,1\}\}\)</span> * <strong>G3:</strong> <span class="math inline">\(V=\{1..5\}\)</span>, <span class="math inline">\(E=\{\{1,2\}, \{2,3\}, \{3,1\}, \{3,4\}, \{4,5\}\}\)</span> * <strong>G4:</strong> <span class="math inline">\(V=\{1..6\}\)</span>, <span class="math inline">\(E=\{\{1,2\}, \{2,3\}, \{4,5\}\}\)</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Solución:</strong> * <span style="color:#003399;"><strong>G1:</strong></span> <strong>Sí es un árbol</strong>. * <span style="color:#003399;"><strong>G2:</strong></span> <strong>No es un árbol</strong> (contiene ciclo). * <span style="color:#003399;"><strong>G3:</strong></span> <strong>No es un árbol</strong> (grafo con <span class="math inline">\(n\)</span> vértices y <span class="math inline">\(n\)</span> aristas siempre tiene ciclo). * <span style="color:#003399;"><strong>G4:</strong></span> <strong>No es un árbol</strong> (es un bosque desconectado).</p>
+</blockquote>
+</section>
+</section>
+<section id="cortes-y-puentes" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="cortes-y-puentes"><span class="header-section-number">5.2</span> Cortes y puentes</h2>
+<ul>
+<li><strong>Puente:</strong> Arista cuya eliminación desconecta el grafo.</li>
+<li><strong>Vértice de corte:</strong> Vértice cuya eliminación aumenta las componentes conexas.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Teorema de Menger (versión vértices)</strong> El número mínimo de vértices que se deben eliminar para separar <span class="math inline">\(u\)</span> de <span class="math inline">\(v\)</span> es igual al número máximo de caminos internamente disjuntos entre <span class="math inline">\(u\)</span> y <span class="math inline">\(v\)</span>.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="métricas-y-análisis-de-redes" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Métricas y Análisis de Redes</h1>
+<section id="centralidad" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="centralidad"><span class="header-section-number">6.1</span> Centralidad</h2>
+<p>Medidas para cuantificar la “importancia” de un nodo.</p>
+<ol type="1">
+<li><strong>Centralidad de grado:</strong> Popularidad inmediata. <span class="math inline">\(C_D(v) = \deg(v)\)</span>.</li>
+<li><strong>Centralidad de cercanía (Closeness):</strong> Inverso de la distancia promedio a los demás. <span class="math display">\[C_C(v) = \frac{1}{\sum_{u \neq v} d(v, u)}\]</span></li>
+<li><strong>Centralidad de intermediación (Betweenness):</strong> Frecuencia con la que actúa como puente en caminos más cortos. <span class="math display">\[C_B(v) = \sum_{s \neq v \neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}\]</span></li>
+<li><strong>Centralidad de vector propio:</strong> Ecuación de autovalores de la matriz de adyacencia <span class="math inline">\(A\mathbf{x} = \lambda\mathbf{x}\)</span>.</li>
+</ol>
+</section>
+<section id="coeficiente-de-agrupamiento-clustering" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="coeficiente-de-agrupamiento-clustering"><span class="header-section-number">6.2</span> Coeficiente de agrupamiento (Clustering)</h2>
+<blockquote class="blockquote">
+<p><strong>Coeficiente de agrupamiento local:</strong> Fracción de vecinos de <span class="math inline">\(v\)</span> que están conectados entre sí. <span class="math display">\[C(v) = \frac{\text{Número de triángulos que incluyen a } v}{\text{Número de posibles triángulos centrados en } v}\]</span></p>
+</blockquote>
+</section>
+<section id="detección-de-comunidades-y-modularidad" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="detección-de-comunidades-y-modularidad"><span class="header-section-number">6.3</span> Detección de comunidades y modularidad</h2>
+<blockquote class="blockquote">
+<p><strong>Modularidad (Q):</strong> <span class="math display">\[Q = \frac{1}{2m} \sum_{i,j} \left[ A_{ij} - \frac{k_i k_j}{2m} \right] \delta(c_i, c_j)\]</span> Valores altos indican una fuerte estructura de comunidad.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="grafos-bipartitos-y-emparejamientos" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Grafos Bipartitos y Emparejamientos</h1>
+<blockquote class="blockquote">
+<p><strong>Definición: Grafo bipartito</strong> Un grafo <span class="math inline">\(G=(V, E)\)</span> es <strong>bipartito</strong> si <span class="math inline">\(V\)</span> puede dividirse en <span class="math inline">\(V_1\)</span> y <span class="math inline">\(V_2\)</span> disjuntos tal que toda arista conecta <span class="math inline">\(V_1\)</span> con <span class="math inline">\(V_2\)</span>. No hay aristas internas en los conjuntos.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Teorema:</strong> Un grafo es bipartito si y sólo si no contiene ciclos de longitud impar.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Representación Matricial:</strong> <span class="math display">\[A = \begin{pmatrix}\mathbf{0} &amp; B \\B^T &amp; \mathbf{0}\end{pmatrix}\]</span> Donde <span class="math inline">\(B\)</span> es la matriz de <strong>biadyacencia</strong>.</p>
+</blockquote>
+<section id="emparejamientos-matchings" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="emparejamientos-matchings"><span class="header-section-number">7.1</span> Emparejamientos (Matchings)</h2>
+<ul>
+<li><strong>Emparejamiento:</strong> Subconjunto de aristas que no comparten vértices.</li>
+<li><strong>Emparejamiento perfecto:</strong> Cubre todos los vértices del grafo.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Teorema de Hall:</strong> Sea <span class="math inline">\(G=(V_1 \cup V_2, E)\)</span> un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de <span class="math inline">\(V_1\)</span> si y sólo si para todo subconjunto <span class="math inline">\(S \subseteq V_1\)</span>: <span class="math display">\[|N(S)| \geq |S|\]</span></p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="bibliografía-general-recomendada" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Bibliografía General Recomendada</h1>
+<section id="fundamentos-de-grafos-bipartitos" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="fundamentos-de-grafos-bipartitos"><span class="header-section-number">8.0.1</span> Fundamentos de grafos bipartitos</h3>
+<ul>
+<li><strong>Asratian, A. S., Denley, T. M. J., &amp; Häggkvist, R. (1998).</strong> <em>Bipartite Graphs and their Applications</em>. Cambridge University Press.</li>
+<li><strong>Hall, P. (1935).</strong> “On Representatives of Subsets.” <em>Journal of the London Mathematical Society</em>, 10(1), 26–30.</li>
+<li><strong>Bondy, J. A., &amp; Murty, U. S. R. (1976).</strong> <em>Graph Theory with Applications</em>. London: Macmillan.</li>
+<li><strong>Lovász, L., &amp; Plummer, M. D. (1986).</strong> <em>Matching Theory</em>. North-Holland.</li>
+<li><strong>Wasserman, S., &amp; Faust, K. (1994).</strong> <em>Social Network Analysis: Methods and Applications</em>. Cambridge University Press.</li>
+</ul>
+</section>
+<section id="métricas-y-propiedades-estructurales-en-grafos-bipartitos" class="level3" data-number="8.0.2">
+<h3 data-number="8.0.2" class="anchored" data-anchor-id="métricas-y-propiedades-estructurales-en-grafos-bipartitos"><span class="header-section-number">8.0.2</span> Métricas y propiedades estructurales en grafos bipartitos</h3>
+<ul>
+<li><strong>Latapy, M., Magnien, C., &amp; Del Vecchio, N. (2008).</strong> “Basic Notions for the Analysis of Large Two-Mode Networks.” <em>Social Networks</em>, 30(1), 31–48.</li>
+<li><strong>Borgatti, S. P., &amp; Everett, M. G. (1997).</strong> “Network Analysis of 2-Mode Data.” <em>Social Networks</em>, 19(3), 243–269.</li>
+<li><strong>Dormann, C. F., et al.&nbsp;(2009).</strong> “Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks.” <em>The Open Ecology Journal</em>, 2, 7–24.</li>
+<li><strong>Almeida-Neto, M., et al.&nbsp;(2008).</strong> “A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement.” <em>Oikos</em>, 117(8), 1227–1239.</li>
+<li><strong>Barber, M. J. (2007).</strong> “Modularity and Community Detection in Bipartite Networks.” <em>Physical Review E</em>, 76(6), 066102.</li>
+<li><strong>Ouadah, S., Latouche, P., &amp; Robin, S. (2022).</strong> “Motif-Based Tests for Bipartite Networks.” <em>Electronic Journal of Statistics</em>, 16(1), 293–330.</li>
+<li><strong>Borgatti, S. P., &amp; Everett, M. G. (1999).</strong> “Models of Core/Periphery Structures.” <em>Social Networks</em>, 21(4), 375–395.</li>
+</ul>
+</section>
+<section id="modelos-y-métricas-generalizables-a-redes-bipartitas" class="level3" data-number="8.0.3">
+<h3 data-number="8.0.3" class="anchored" data-anchor-id="modelos-y-métricas-generalizables-a-redes-bipartitas"><span class="header-section-number">8.0.3</span> Modelos y métricas generalizables a redes bipartitas</h3>
+<ul>
+<li><strong>Kunegis, J. (2015).</strong> “Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications.” <em>Internet Mathematics</em>, 11(4), 201–231.</li>
+<li><strong>Saracco, F., et al.&nbsp;(2015).</strong> “Randomizing Bipartite Networks: The Case of the World Trade Web.” <em>Scientific Reports</em>, 5, 10595.</li>
+<li><strong>Cimini, G., et al.&nbsp;(2019).</strong> “The Statistical Physics of Real-World Networks.” <em>Nature Reviews Physics</em>, 1(1), 58–71.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
