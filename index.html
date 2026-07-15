@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -131,14 +160,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./Sesion4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
   </div>
 </li>
     </ul>
@@ -161,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Grafos bipartitos en redes de interacción ecológicas</h1>
-<p class="subtitle lead">Seminario Bipartita <br> <small> Semestre 2026-1 </small></p>
+<p class="subtitle lead"><span style="color: #696969; font-weight: 400;">Seminario Bipartita</span> <br> <span style="color: #777777; font-size: 0.85em;">Semestre 2026-1</span></p>
 </div>
 
 
@@ -187,9 +222,9 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="bienvenida" class="level1 unnumbered">
 <h1 class="unnumbered">Bienvenida</h1>
-<p>Este es el repositorio de la segunda parte del <strong>Seminario Bipartita</strong>, correspondiente a la <strong>Teoría de Grafos</strong>, impartido durante el semestre 2026-1 en la Universidad de Sonora.</p>
-<p>El objetivo de estas notas es establecer claramente definiciones matemáticas de la Teoría de Grafos, y explorar sus aplicaciones en el análisis de redes de interacción ecológicas.</p>
-<p>En las pestañas de navegación de estas notas se encuentra desarrollada la teoría, los ejemplos de ejecución de código en R (usando el paquete <code>bipartite</code>), los conjuntos de datos de estudio y la bibliografía.</p>
+<p>Estas notas corresponden a la segunda parte del <strong>Seminario Bipartita</strong>, donde se estudia una introducción a la <strong>Teoría de Grafos</strong>, impartido durante el semestre 2026-1 en la Universidad de Sonora.</p>
+<p>El objetivo de estas notas es establecer desde un punto de vista formal y riguroso definiciones matemáticas de la Teoría de Grafos y explorar su interpretación en el análisis de redes de interacción ecológicas.</p>
+<p>En este seminario participan activamente estudiantes y docentes del Departamento de Matemáticas y el Posgrado en Biociencias de la Universidad de Sonora.</p>
 
 
 </section>
