@@ -1,4 +1,25 @@
-# References {.unnumbered}
+# Bibliografía general recomendada {.unnumbered}
 
-::: {#refs}
-:::
+## Fundamentos de grafos bipartitos
+
+- **Asratian, A. S., Denley, T. M. J., & Häggkvist, R. (1998).** *Bipartite Graphs and their Applications*. Cambridge University Press.
+- **Hall, P. (1935).** "On Representatives of Subsets." *Journal of the London Mathematical Society*, 10(1), 26–30.
+- **Bondy, J. A., & Murty, U. S. R. (1976).** *Graph Theory with Applications*. London: Macmillan.
+- **Lovász, L., & Plummer, M. D. (1986).** *Matching Theory*. North-Holland.
+- **Wasserman, S., & Faust, K. (1994).** *Social Network Analysis: Methods and Applications*. Cambridge University Press.
+
+## Métricas y propiedades estructurales en grafos bipartitos
+
+- **Latapy, M., Magnien, C., & Del Vecchio, N. (2008).** "Basic Notions for the Analysis of Large Two-Mode Networks." *Social Networks*, 30(1), 31–48.
+- **Borgatti, S. P., & Everett, M. G. (1997).** "Network Analysis of 2-Mode Data." *Social Networks*, 19(3), 243–269.
+- **Dormann, C. F., et al. (2009).** "Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks." *The Open Ecology Journal*, 2, 7–24.
+- **Almeida-Neto, M., et al. (2008).** "A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement." *Oikos*, 117(8), 1227–1239.
+- **Barber, M. J. (2007).** "Modularity and Community Detection in Bipartite Networks." *Physical Review E*, 76(6), 066102.
+- **Ouadah, S., Latouche, P., & Robin, S. (2022).** "Motif-Based Tests for Bipartite Networks." *Electronic Journal of Statistics*, 16(1), 293–330.
+- **Borgatti, S. P., & Everett, M. G. (1999).** "Models of Core/Periphery Structures." *Social Networks*, 21(4), 375–395.
+
+## Modelos y métricas generalizables a redes bipartitas
+
+- **Kunegis, J. (2015).** "Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications." *Internet Mathematics*, 11(4), 201–231.
+- **Saracco, F., et al. (2015).** "Randomizing Bipartite Networks: The Case of the World Trade Web." *Scientific Reports*, 5, 10595.
+- **Cimini, G., et al. (2019).** "The Statistical Physics of Real-World Networks." *Nature Reviews Physics*, 1(1), 58–71.

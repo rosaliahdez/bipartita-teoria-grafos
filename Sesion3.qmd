@@ -1,0 +1,591 @@
+---
+title: "Sesión 3: Métricas y análisis de redes: Centralidad"
+editor: source
+engine: knitr
+---
+
+## Objetivos
+
+1. Entender qué significa "ser importante" en una red y por qué existen múltiples centralidades.
+2. Definir y calcular las centralidades: $C_D$ (grado), $C_C$ (cercanía), $C_B$ (intermediación), y centralidad de vector propio.
+3. Interpretar cada métrica en redes ecológicas de interacción (planta--polinizador, hospedero--parásito, tróficas).
+4. Identificar fortalezas, limitaciones y cuándo conviene usar cada medida.
+
+<!-- 
+## Temas
+
+1. **Elementos previos**: notación, distancias, caminos más cortos, matrices.
+2. **Conceptos centrales**: $C_D$, $C_C$, $C_B$ y vector propio.
+3. **Ejemplos**: cálculo e interpretación ecológica.
+4. **Ejercicios**: problemas para resolver.
+
+::: {.callout-note title="Subtemas"}
+1. Centralidad de grado (*Degree centrality*).
+2. Centralidad de cercanía (*Closeness centrality*).
+3. Centralidad de intermediación (*Betweenness centrality*).
+4. Centralidad de vector propio (*Eigenvector centrality*).
+:::
+
+## Motivación ecológica: "especies importantes"
+
+En ecología de redes solemos preguntarnos:
+
+* ¿Qué especies son **generalistas** (muchas interacciones) vs **especialistas**?
+* ¿Qué especies conectan **módulos** o **grupos funcionales**?
+* ¿Qué especies están en el **núcleo** de la red, sosteniendo la cohesión global?
+* Si una especie desaparece, ¿qué tanto cambia la **conectividad** o la **propagación** de perturbaciones?
+
+> **Nota:** La "importancia" depende del mecanismo que nos interesa (contactos directos, accesibilidad global, rol de puente, influencia recursiva, etc.).
+
+---
+
+# 1. Elementos previos
+-->
+
+## Recordatorio: grafo simple y notación
+
+Consideremos un **Grafo simple (no dirigido)** esto es $G=(V,E)$, donde:
+
+- $V$ es el conjunto de vértices (nodos).
+- $E \subseteq \{\{u,v\}: u,v\in V,\ u\neq v\}$ es el conjunto de aristas.
+
+
+> **Definición: Vecindad**
+>
+> Se define **una vecindad de $v$:** $N(v)=\{u\in V: \{u,v\}\in E\}$.
+
+> **Definición: Grado**: $\deg(v)=|N(v)|$.
+
+::: {.callout-tip title="Redes de interacción ecológica:"}
+* Planta--polinizador (bipartita, no dirigida por simplicidad).
+* Hospedero--parásito (bipartita).
+* Red trófica (naturalmente dirigida; veremos la versión no dirigida como aproximación).
+
+:::
+
+## Distancias y caminos más cortos
+
+> **Definición: Camino**
+>
+> Un **camino** es una sucesión de vértices $v_0,v_1,\dots,v_k$ tal que $\{v_{i-1},v_i\}\in E$.
+
+> **Definición: Distancia geodésica**
+>
+> La **distancia geodésica (o distancia de grafo)**:
+$$
+d(u,v)=\min\{k: \text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
+$$
+
+::: {.callout-note title="Conectividad"}
+* Un grafo es **conexo** si para todo $u\neq v$ existe un camino entre ellos.
+
+:::
+
+## Caminos más cortos: contar geodésicas
+
+En varias métricas necesitamos contar **cuántos** caminos más cortos hay.
+
+* Sea $\sigma_{st}$ el número de caminos más cortos (geodésicos) entre $s$ y $t$.
+* Sea $\sigma_{st}(v)$ el número de esos caminos que pasan por $v$ (como vértice *interno*).
+
+::: {.callout-important title="Intuición"}
+Si una especie $v$ está "en medio" de muchos caminos más cortos entre pares de especies, entonces puede actuar como **puente** o **cuello de botella**.
+:::
+
+## Representación matricial
+
+Sea $|V|=n$ y vértices $1,\dots,n$.
+
+* **Matriz de adyacencia** $A\in\{0,1\}^{n\times n}$: $A_{ij}=1$ si $\{i,j\}\in E$, y 0 en otro caso.
+* **Matriz de grados** $D$: diagonal con $D_{ii}=\deg(i)$.
+
+<!-- 
+> **Vector propio (eigenvector)**: aparece al resolver $Ax=\lambda x$.
+
+---
+-->
+
+
+
+# Tipos de centralidad: 
+
+## Qué mide una "centralidad"
+
+Una **centralidad** es una función que asigna a cada nodo $v$ un número real (su "importancia"):
+$$
+\text{centralidad: } V\to \mathbb{R}_{\ge 0},\qquad v\mapsto C(v).
+$$
+**No hay una sola "mejor"**: cada definición formaliza un criterio distinto.
+
+::: {.callout-note title="En redes ecológicas"}
+Distintas centralidades pueden sugerir distintos tipos de **especies clave**:
+* generalistas (muchas interacciones),
+* conectores entre grupos,
+* especies "cercanas" a todas (difusión rápida),
+* especies influyentes por estar conectadas a otras influyentes.
+
+:::
+
+## Centralidad de grado (Degree centrality)
+
+**Definición** (no ponderado):
+$$
+C_D(v)=\deg(v).
+$$
+
+**Normalización frecuente** (para comparar redes de distinto tamaño, $|V|=n$):
+$$
+C_D^{\mathrm{norm}}(v)=\frac{\deg(v)}{n-1}\in[0,1].
+$$
+
+::: {.callout-tip title="Interpretación"}
+En una red planta--polinizador, $C_D$ mide cuántas especies del otro gremio interactúan con $v$.
+* Planta con alto grado: polinizada por muchas especies.
+* Polinizador con alto grado: visita muchas plantas (generalista).
+:::
+
+### Nota: redes ponderadas (fuerza)
+
+Si las aristas tienen pesos $w_{uv}\ge 0$ (frecuencia, biomasa, visitas), se usa la **fuerza**:
+$$
+s(v)=\sum_{u\sim v} w_{uv}.
+$$
+
+**Observación:**
+* $\deg(v)$ cuenta *diversidad de socios*.
+* $s(v)$ mide *intensidad total* (puede estar dominada por pocas interacciones muy fuertes).
+
+### Ejemplo 1: grado en una red planta--polinizador
+
+Considerar la red bipartita (no ponderada) con plantas $\{p_1,p_2,p_3,p_4\}$ y polinizadores $\{a_1,a_2,a_3\}$.
+
+:::: {.columns}
+
+::: {.column width="55%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  nodo/.style={base, fill=blue!15},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick}
+}
+\begin{tikzpicture}[>=Latex, node distance=0.8cm]
+  % Plantas
+  \node[planta] (p1) at (-2, 1.2) {$p_1$};
+  \node[planta] (p2) at (-2, 0.4) {$p_2$};
+  \node[planta] (p3) at (-2,-0.4) {$p_3$};
+  \node[planta] (p4) at (-2,-1.2) {$p_4$};
+  % Animales
+  \node[animal] (a1) at ( 2, 0.8) {$a_1$};
+  \node[animal] (a2) at ( 2, 0.0) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.8) {$a_3$};
+  % Edges
+  \draw[edge] (p1)--(a1);
+  \draw[edge] (p1)--(a2);
+  \draw[edge] (p2)--(a2);
+  \draw[edge] (p2)--(a3);
+  \draw[edge] (p3)--(a2);
+  \draw[edge] (p4)--(a3);
+\end{tikzpicture}
+```
+:::
+
+::: {.column width="45%"}
+**Cálculo de grados**
+
+- $\deg(p_1)=2$ ($a_1,a_2$).
+- $\deg(p_2)=2$ ($a_2,a_3$).
+- $\deg(p_3)=1$ ($a_2$).
+- $\deg(p_4)=1$ ($a_3$).
+- $\deg(a_1)=1$, $\deg(a_2)=3$, $\deg(a_3)=2$.
+:::
+
+::::
+
+::: {.callout-note title="Interpretación"}
+$a_2$ es el polinizador más generalista (se conecta con 3 plantas). $p_3$ y $p_4$ son más vulnerables a la pérdida de su(s) socio(s) directo(s).
+:::
+
+## Centralidad de cercanía
+
+### Centralidad de cercanía (Closeness centrality)
+
+**Idea:** un nodo es central si está "cerca" de todos los demás.
+
+En un grafo conexo, definimos:
+
+$$
+C_C(v)=\frac{1}{\sum_{u\in V\setminus\{v\}} d(v,u)}.
+$$
+
+**Normalización común**:
+
+$$
+C_C^{\mathrm{norm}}(v)=\frac{n-1}{\sum_{u\neq v} d(v,u)}\in(0,1].
+$$
+
+::: {.callout-tip title="Interpretación (difusión)"}
+Si una perturbación (enfermedad, cambio ambiental) se propaga a través de interacciones, un nodo con alta cercanía puede verse afectado (o afectar) rápidamente a muchos otros vía efectos indirectos.
+:::
+
+### ¿Y si el grafo no es conexo?
+
+Si el grafo tiene componentes desconectadas, algunas distancias son $\infty$, y $C_C$ queda mal definida.
+
+Alternativa: **cercanía armónica**
+
+$$
+C_{\mathrm{harm}}(v)=\sum_{u\neq v}\frac{1}{d(v,u)},
+$$
+
+donde por convención $1/\infty=0$.
+
+**Interpretación**: solo cuentan los nodos alcanzables, penalizando fuertemente distancias grandes.
+
+### Ejemplo 2: cercanía en una red "estrella"
+
+Considerar el grafo estrella $K_{1,3}$: un nodo central conectado a tres hojas.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  nodo/.style={base, fill=blue!15}
+}
+\begin{tikzpicture}[>=Latex]
+  \node[nodo] (c) at (0,0) {c};
+  \node[nodo] (l1) at (-1.3,0.9) {1};
+  \node[nodo] (l2) at (-1.3,-0.9) {2};
+  \node[nodo] (l3) at (1.5,0) {3};
+  \draw[thick] (c)--(l1);
+  \draw[thick] (c)--(l2);
+  \draw[thick] (c)--(l3);
+\end{tikzpicture}
+```
+:::
+
+::: {.column width="55%"}
+
+**Distancias**
+
+- Desde el centro: $d(c,1)=d(c,2)=d(c,3)=1$.
+- Desde una hoja (por ejemplo, el vértice 1): $d(1,c)=1$, $d(1,2)=2$, $d(1,3)=2$.
+
+:::
+
+::::
+
+**Cálculo (normalizado, $n=4$):**
+
+$$
+C_C^{\mathrm{norm}}(c)=\frac{3}{1+1+1}=1,\qquad
+C_C^{\mathrm{norm}}(1)=\frac{3}{1+2+2}=\frac{3}{5}=0.6.
+$$
+
+::: {.callout-tip title="Interpretación"}
+El centro es el punto desde el cual se llega más rápido al resto: en ecología, un "hub" puede acelerar la propagación de perturbaciones a través de la red.
+:::
+
+## Centralidad de intermediación
+
+### Centralidad de intermediación (Betweenness)
+
+**Idea:** un nodo es central si aparece frecuentemente en caminos más cortos entre otros.
+
+Sea $\sigma_{st}$ el número de caminos más cortos entre $s$ y $t$, y $\sigma_{st}(v)$ los que pasan por $v$. En grafos no dirigidos es natural sumar sobre pares no ordenados:
+
+$$
+C_B(v)=\sum_{\substack{s<t\\ s\neq v,\ t\neq v}} \frac{\sigma_{st}(v)}{\sigma_{st}}.
+$$
+
+**Normalización común** (no dirigida): dividir por $(n-1)(n-2)/2$.
+
+::: {.callout-tip title='Interpretación ("conectores")'}
+Una especie con alta intermediación puede conectar subcomunidades (módulos) o rutas de flujo (por ejemplo: movimiento de polen, transmisión de parásitos).
+:::
+
+### Ejemplo 3: intermediación en una "corbata de moño"
+
+Grafo con dos triángulos que comparten el nodo 3:
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  nodo/.style={base, fill=blue!15}
+}
+\begin{tikzpicture}[>=Latex, scale=1.0]
+  \node[nodo] (1) at (-1.4, 0.8) {1};
+  \node[nodo] (2) at (-1.4,-0.8) {2};
+  \node[nodo] (3) at ( 0.0, 0.0) {3};
+  \node[nodo] (4) at ( 1.4, 0.8) {4};
+  \node[nodo] (5) at ( 1.4,-0.8) {5};
+  % Triángulo izquierdo
+  \draw[thick] (1)--(2);
+  \draw[thick] (1)--(3);
+  \draw[thick] (2)--(3);
+  % Triángulo derecho
+  \draw[thick] (4)--(5);
+  \draw[thick] (4)--(3);
+  \draw[thick] (5)--(3);
+\end{tikzpicture}
+```
+:::
+
+:::{.column width="50%"}
+
+**Paso 1: pares relevantes**
+
+Para $C_B(3)$, miramos pares $(s,t)$ con $s,t\neq 3$:
+
+$$
+\{1,2,4,5\}\Rightarrow \binom{4}{2}=6\text{ pares.}
+$$
+
+**Paso 2: caminos más cortos**
+
+- Entre $1$ y $2$: camino directo $1-2$ (no pasa por 3).
+- Entre $4$ y $5$: camino directo $4-5$ (no pasa por 3).
+- Entre $\{1,2\}$ y $\{4,5\}$: el camino más corto siempre pasa por 3.
+:::
+
+::::
+
+**Cálculo** (contando pares no ordenados):
+
+$$
+C_B(3)=1\,(1\leftrightarrow 4)+1\,(1\leftrightarrow 5)+1\,(2\leftrightarrow 4)+1\,(2\leftrightarrow 5)=4.
+$$
+
+Para los nodos $1,2,4,5$, la intermediación es 0 (no están "entre" otros pares).
+
+::: {.callout-tip title="Interpretación ecológica"}
+El nodo 3 es un **conector** entre dos "módulos"; su pérdida puede fragmentar la red, aun si otros nodos tienen grados similares dentro de su módulo.
+:::
+
+<!-- 
+## Centralidad de vector propio y PageRank
+
+### Centralidad de vector propio (Eigenvector centrality)
+
+**Idea:** "soy importante si mis vecinos son importantes".
+
+Buscamos un vector de centralidades $x\in\mathbb{R}^n_{>0}$ tal que
+
+$$
+x_i = \frac{1}{\lambda}\sum_{j\sim i} x_j.
+$$
+
+En forma matricial:
+
+$$
+Ax = \lambda x.
+$$
+
+Se usa el **autovector dominante** (asociado al mayor autovalor $\lambda_{\max}$).
+
+::: {.callout-tip title="Interpretación ecológica"}
+No basta tener muchas interacciones: importa **con quién** interactúas.
+
+- Conectarte a especies muy conectadas aumenta tu centralidad.
+- Captura un tipo de "posición en el núcleo" (core) de la red.
+:::
+
+### Cálculo: método de potencias (intuición computacional)
+
+**Método de potencias** (power iteration):
+
+1. Empieza con un vector positivo $x^{(0)}$ (por ejemplo, todos unos).
+2. Itera $x^{(k+1)} = A x^{(k)}$.
+3. Normaliza en cada paso (por ejemplo, divide por $\|x^{(k+1)}\|$).
+
+Bajo condiciones generales (grafo conexo), $x^{(k)}$ converge al autovector dominante.
+
+::: {.callout-note title="¿Por qué esto tiene sentido?"}
+Multiplicar por $A$ suma "influencia" de vecinos. Repetirlo acumula influencia a **distancias mayores** (vecinos de vecinos, etc.).
+:::
+
+### Ejemplo 4: vector propio en la estrella $K_{1,3}$
+
+En la estrella, por simetría todas las hojas tienen la misma centralidad.
+
+
+Sea $x_c$ la centralidad del centro y $x_\ell$ la de cada hoja.
+
+Ecuaciones $Ax=\lambda x$:
+
+- Para una hoja: $\lambda x_\ell = x_c$ (solo vecina al centro).
+- Para el centro: $\lambda x_c = x_1+x_2+x_3 = 3x_\ell$.
+
+Combinando:
+
+$$
+\lambda(\lambda x_\ell)=3x_\ell \Rightarrow \lambda^2=3 \Rightarrow \lambda=\sqrt{3}.
+$$
+
+Entonces $x_c=\lambda x_\ell = \sqrt{3}\,x_\ell$.
+
+::: {.callout-tip title="Interpretación"}
+El centro es más central no solo por su grado, sino porque concentra la "influencia" de todas las hojas.
+:::
+
+-->
+
+## ¿Cuándo difieren estas métricas?
+
+- **Grado** mira solo vecindad inmediata (radio 1).
+- **Cercanía** mira distancias a todos (geometría global).
+- **Intermediación** mira control de rutas cortas (puentes/cuello de botella).
+- **Vector propio** mira influencia recursiva.
+
+::: {.callout-tip title="Ejemplo"}
+En una red mutualista, una planta con muchas visitas (alto grado) puede tener **baja intermediación** si está dentro de un módulo denso; una especie "rara" con pocas interacciones puede conectar módulos (alta intermediación).
+:::
+
+## Resumen comparativo (qué captura cada una)
+
+| Métrica | Pregunta matemática | Lectura ecológica típica |
+|---|---|---|
+| Grado $C_D$ | ¿Cuántos vecinos directos tengo? | Generalismo / diversidad de socios; exposición directa. |
+| Cercanía $C_C$ | ¿Qué tan pequeña es mi distancia promedio al resto? | Accesibilidad global; propagación rápida de perturbaciones/efectos indirectos. |
+| Intermediación $C_B$ | ¿Cuántos caminos más cortos pasan por mí? | Conector entre módulos; "puente" funcional; control de flujo entre grupos. |
+<!--| Vector propio | ¿Estoy conectado a nodos conectados? | Pertenencia al núcleo; influencia recursiva; relevancia estructural. |-->
+
+<!-- 
+## Ejercicios para la sesión
+
+### Ejercicio 1: grado en una matriz bipartita
+
+Sea la siguiente matriz de incidencia (planta–polinizador):
+
+$$
+\begin{array}{c|cccc}
+   & a_1 & a_2 & a_3 & a_4\\ \hline
+p_1& 1   & 1   & 0   & 0\\
+p_2& 0   & 1   & 1   & 0\\
+p_3& 0   & 1   & 0   & 0\\
+p_4& 0   & 0   & 1   & 1
+\end{array}
+$$
+
+**Actividad:**
+
+1. Calcula el grado de cada planta y de cada polinizador.
+2. Identifica especies generalistas y especialistas.
+3. Discute: ¿qué sesgos de muestreo podrían inflar/deflacionar el grado observado?
+
+### Ejercicio 2: cercanía en un camino
+
+Considerar el camino de 5 vértices $1-2-3-4-5$.
+
+**Actividad:**
+
+1. Construir la tabla de distancias $d(i,j)$.
+2. Calcular $C_C^{\mathrm{norm}}(i)$ para cada vértice.
+3. Interpretar ecológicamente si estos vértices fueran especies en una cadena trófica simplificada (sin dirección).
+
+::: {.callout-note title="Nota"}
+En un camino, el nodo central (aquí el 3) suele maximizar cercanía.
+:::
+
+### Ejercicio 3: intermediación en un "puente"
+
+Considerar el grafo formado por dos cuadrados unidos por un solo vértice:
+
+
+**Actividad:**
+
+1. Sin calcular todo, argumentar qué nodo(s) deben tener mayor $C_B$.
+2. Calcular $C_B(5)$ contando pares $(s,t)$ y caminos más cortos.
+3. Interpretar el rol de 5 como "conector" entre subredes.
+
+### Ejercicio 4: vector propio por iteración
+
+Sea el grafo con matriz de adyacencia
+
+$$
+A=\begin{pmatrix}
+0&1&1&0\\
+1&0&1&0\\
+1&1&0&1\\
+0&0&1&0
+\end{pmatrix}
+$$
+
+**Actividad:**
+
+1. Empezar con $x^{(0)}=(1,1,1,1)^\top$.
+2. Calcular $x^{(1)}=Ax^{(0)}$ y $x^{(2)}=Ax^{(1)}$.
+3. Normalizar (por ejemplo, dividir por el máximo) y comparar componentes.
+4. ¿Qué nodo cree que tendrá mayor centralidad de vector propio? **¿Por qué?**
+
+::: {.callout-note title="Nota"}
+El nodo 3 conecta un "triángulo" con una hoja (4). Eso suele aumentar su influencia espectral.
+:::
+
+### Ejercicio 5: comparar centralidades en una red ecológica
+
+Tomar la red del Ejemplo 1 (planta–polinizador).
+
+**Actividad:**
+
+1. Calcular $C_D$ para todas las especies.
+2. Calcular $C_C^{\mathrm{norm}}$ para todas las especies (usa distancias en el grafo bipartito).
+3. Sin hacer todos los cálculos, argumentar qué especie espera que tenga mayor $C_B$.
+4. Discutir: si eliminamos $a_2$, ¿qué cambia en conectividad y en rutas cortas?
+
+::: {.callout-tip title="Sugerencia"}
+Dibujar primero el grafo y detecta si hay "cuellos de botella" (nodos cuya eliminación desconecta muchos pares).
+:::
+
+### Lecturas sugeridas
+
+- Freeman, L. C. (1979). Centrality in social networks: Conceptual clarification. *Social Networks*.
+- Borgatti, S. P. (2005). Centrality and network flow. *Social Networks*.
+- Newman, M. E. J. (2010). *Networks: An Introduction*. (Capítulos de centralidad).
+- Bonacich, P. (1987). Power and centrality: a family of measures. *American Journal of Sociology*.
+- Page, L., Brin, S., Motwani, R., & Winograd, T. (1999). The PageRank citation ranking: Bringing order to the web.
+- Dormann, C. F. et al. (2009). Indices, graphs and null models: analyzing bipartite ecological networks. *The Open Ecology Journal*.
+
+### Apéndice: cálculo en R (`igraph`)
+
+Para una red (unimodal) en `igraph`, retomando la matriz de adyacencia del Ejercicio 4:
+
+```{r}
+#| message: false
+
+library(igraph)
+
+A <- matrix(c(
+  0,1,1,0,
+  1,0,1,0,
+  1,1,0,1,
+  0,0,1,0
+), nrow = 4, byrow = TRUE)
+
+g <- graph_from_adjacency_matrix(A, mode = "undirected")
+
+degree(g)
+closeness(g, normalized = TRUE)
+betweenness(g, normalized = TRUE)
+eigen_centrality(g)$vector
+page_rank(g, damping = 0.85)$vector
+```
+
+**Nota**: para redes bipartitas, se recomienda analizar el grafo bipartito sin proyectar (cuando sea posible) y comparar con proyecciones con cuidado.
+
+-->

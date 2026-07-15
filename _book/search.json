@@ -4,25 +4,15 @@
     "href": "index.html",
     "title": "Grafos bipartitos en redes de interacción ecológicas",
     "section": "",
-    "text": "Bienvenida\nEste es el repositorio de la segunda parte del Seminario Bipartita, correspondiente a la Teoría de Grafos, impartido durante el semestre 2026-1 en la Universidad de Sonora.\nEl objetivo de estas notas es establecer claramente definiciones matemáticas de la Teoría de Grafos, y explorar sus aplicaciones en el análisis de redes de interacción ecológicas.\nEn las pestañas de navegación de estas notas se encuentra desarrollada la teoría, los ejemplos de ejecución de código en R (usando el paquete bipartite), los conjuntos de datos de estudio y la bibliografía.",
+    "text": "Bienvenida\nEstas notas corresponden a la segunda parte del Seminario Bipartita, donde se estudia una introducción a la Teoría de Grafos, impartido durante el semestre 2026-1 en la Universidad de Sonora.\nEl objetivo de estas notas es establecer desde un punto de vista formal y riguroso definiciones matemáticas de la Teoría de Grafos y explorar su interpretación en el análisis de redes de interacción ecológicas.\nEn este seminario participan activamente estudiantes y docentes del Departamento de Matemáticas y el Posgrado en Biociencias de la Universidad de Sonora.",
     "crumbs": [
       "Bienvenida"
     ]
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. «Literate Programming». Comput. J. (USA) 27 (2): 97-111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
     "objectID": "Sesion1.html",
     "href": "Sesion1.html",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "",
     "text": "1.1 Objetivos de la sesión 1",
     "crumbs": [
@@ -32,7 +22,7 @@
   {
     "objectID": "Sesion1.html#objetivos-de-la-sesión-1",
     "href": "Sesion1.html#objetivos-de-la-sesión-1",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "",
     "text": "Presentar una propuesta de temario (roadmap) para el estudio de redes de interacción en Ecología con el enfoque de la Teoría de Grafos.\nMotivar por qué el lenguaje de grafos bipartitos es natural en redes de interacción ecológicas.\nDelinear qué haremos en las siguientes sesiones: definiciones, cálculo computacional, interpretación y casos reales.\nAlinear expectativas sobre productos entregables y prácticas de reproducibilidad.",
     "crumbs": [
@@ -42,7 +32,7 @@
   {
     "objectID": "Sesion1.html#objetivos-de-la-parte-de-teoría-de-grafos",
     "href": "Sesion1.html#objetivos-de-la-parte-de-teoría-de-grafos",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.2 Objetivos de la parte de Teoría de Grafos",
     "text": "1.2 Objetivos de la parte de Teoría de Grafos\nAl finalizar esta parte del seminario, buscaremos que el grupo pueda:\n\nDefinir matemáticamente métricas estándar en grafos bipartitos usados en ecología.\nCalcular las métricas computacionalmente en R (paquete bipartite), con ejemplos ilustrativos, casos extremos y redes sintéticas.\nInterpretarlas en contexto matemático (qué cuantifican, qué no cuantifican, y qué supuestos implican).\nConectar las métricas con redes reales (bases de datos abiertas y datos proporcionados), y con preguntas ecológicas concretas.",
     "crumbs": [
@@ -52,7 +42,7 @@
   {
     "objectID": "Sesion1.html#por-qué-grafos-bipartitos-en-ecología-de-interacciones",
     "href": "Sesion1.html#por-qué-grafos-bipartitos-en-ecología-de-interacciones",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.3 ¿Por qué grafos bipartitos en ecología de interacciones?",
     "text": "1.3 ¿Por qué grafos bipartitos en ecología de interacciones?\nMuchos sistemas de interacción admiten una partición natural en dos tipos de entidades:\n\nplantas \\(\\leftrightarrow\\) polinizadores,\nplantas \\(\\leftrightarrow\\) dispersores,\nhospederos \\(\\leftrightarrow\\) parásitos,\nplantas \\(\\leftrightarrow\\) herbívoros, etc.\n\nLa estructura bipartita permite:\n\nRepresentar el sistema combinatoriamente y/o como una matriz de incidencia (binaria o ponderada).\nCuantificar patrones estructurales (especialización, anidamiento, modularidad).\nEvaluar robustez ante perturbaciones y cambios (tiempo/espacio).",
     "crumbs": [
@@ -62,7 +52,7 @@
   {
     "objectID": "Sesion1.html#ejemplo-esquema-de-un-grafo-bipartito",
     "href": "Sesion1.html#ejemplo-esquema-de-un-grafo-bipartito",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.4 Ejemplo: esquema de un grafo bipartito",
     "text": "1.4 Ejemplo: esquema de un grafo bipartito\n\n\n\n\n\nEsquema visual de interacciones bipartitas.",
     "crumbs": [
@@ -72,7 +62,7 @@
   {
     "objectID": "Sesion1.html#ejemplo-matriz-bipartita",
     "href": "Sesion1.html#ejemplo-matriz-bipartita",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.5 Ejemplo: matriz bipartita",
     "text": "1.5 Ejemplo: matriz bipartita\nUna red bipartita puede representarse por una matriz \\(B\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\):\n\\[B_{ij}=\\begin{cases}\n0, & \\text{si no se observa interacción} \\\\\n1, & \\text{si se registra presencia/ausencia} \\\\\nw_{ij}&gt;0, & \\text{si se registra frecuencia/intensidad}\\end{cases}\\]\nEjemplo (binario): \\[\\begin{array}{c|cccc}\n   & a_1 & a_2 & a_3 & a_4\\\\\n\\hline\np_1& 1   & 1   & 0   & 0\\\\\np_2& 0   & 1   & 1   & 0\\\\\np_3& 0   & 1   & 0   & 0\\\\\np_4& 0   & 0   & 0   & 1\n\\end{array}\\]",
     "crumbs": [
@@ -82,7 +72,7 @@
   {
     "objectID": "Sesion1.html#propuesta-de-temario-roadmap",
     "href": "Sesion1.html#propuesta-de-temario-roadmap",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.6 Propuesta de temario (roadmap)",
     "text": "1.6 Propuesta de temario (roadmap)\n\nFundamentos y datos: redes bipartitas, matrices de incidencia, datos binarios/ponderados.\nMétricas locales (por nodo/especie): grado/fuerza, dependencia, índices de especialización y roles.\nMétricas globales (por red): conectancia, diversidad de interacciones, anidamiento, modularidad y estructuras mesoscópicas.\nDinámica temporal y espacial: redes por temporada/año/sitio, recambio de enlaces, beta-diversidad de interacciones.\nRobustez y perturbaciones: extinción primaria/secundaria, curvas de robustez, sensibilidad a especies clave.\nCasos de estudio + prácticas reproducibles: datasets abiertos, ejercicios en R, reporte en Quarto y repositorio en GitHub.",
     "crumbs": [
@@ -92,7 +82,7 @@
   {
     "objectID": "Sesion1.html#herramienta-central-bipartite-en-r",
     "href": "Sesion1.html#herramienta-central-bipartite-en-r",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.7 Herramienta central: bipartite en R",
     "text": "1.7 Herramienta central: bipartite en R\nUsaremos bipartite como marco común de implementación:\n\nCálculo de métricas a nivel red/especie.\nVisualizaciones (matriz, plotweb, módulos).\nDetección de modularidad en bipartitas.\nSimulaciones de extinción y coextinción.\n\n\n1.7.1 Ejemplo de código y visualización\n\nlibrary(bipartite)\ndata(Safariland)\nnetworklevel(Safariland, index = c(\"connectance\",\"nestedness\",\"H2\"))\n\nm &lt;- computeModules(Safariland)\nplotModuleWeb(m,\n              plotModules = TRUE,\n              rank = TRUE,\n              weighted = TRUE,\n              displayAlabels = TRUE,\n              displayBlabels = TRUE,\n              labsize = 0.8)\n\n\nSalida esperada: connectance: 0.160493827160494 nestedness: 19.8578346403513 H2: 0.853730724291418\n\n\n\n\nRed Safariland",
     "crumbs": [
@@ -102,7 +92,7 @@
   {
     "objectID": "Sesion1.html#conexión-con-datos-reales-y-abiertos",
     "href": "Sesion1.html#conexión-con-datos-reales-y-abiertos",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.8 Conexión con datos reales (y abiertos)",
     "text": "1.8 Conexión con datos reales (y abiertos)\nTrabajaremos con redes provenientes de:\n\nDatasets incluidos en bipartite (para arrancar rápido).\nRepositorios abiertos (por ejemplo, Web of Life, Mangal).\nDatos del grupo (cuando se proporcionen) y redes sintéticas controladas.\n\nObjetivo: vincular métricas con preguntas ecológicas concretas y con decisiones de modelado (binaria vs ponderada).",
     "crumbs": [
@@ -112,7 +102,7 @@
   {
     "objectID": "Sesion1.html#producto-entregable-github-quarto",
     "href": "Sesion1.html#producto-entregable-github-quarto",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.9 Producto entregable: GitHub + Quarto",
     "text": "1.9 Producto entregable: GitHub + Quarto\n\nnotas en entorno web interactivo (definiciones, ejemplos, discusión),\ncódigo en R (funciones y scripts),\ndatasets (o instrucciones claras para descargarlos),\nfiguras y salidas reproducibles.\n\nMeta: que el repositorio funcione como referencia del seminario y como punto de partida para proyectos.",
     "crumbs": [
@@ -122,161 +112,11 @@
   {
     "objectID": "Sesion1.html#qué-sigue",
     "href": "Sesion1.html#qué-sigue",
-    "title": "1  Sesión 1: Roadmap",
+    "title": "1  Sesión 1: Roadmap del curso",
     "section": "1.10 ¿Qué sigue?",
     "text": "1.10 ¿Qué sigue?\nEn las próximas sesiones avanzaremos en el siguiente orden:\n\nNotación y construcción de redes bipartitas desde datos.\nMétricas locales y globales: definiciones, propiedades y ejemplos.\nImplementación en R con bipartite: funciones, salidas y visualización.\nInterpretación y comparación; incorporación de dinámica y robustez.\nCasos de estudio con redes reales (y documentación).\n\nSugerencia práctica: tener instalado R/RStudio y el paquete bipartite antes de la siguiente sesión.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Roadmap del curso</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#qué-es-un-grafo",
-    "href": "Sesion1.html#qué-es-un-grafo",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.1 ¿Qué es un grafo?",
-    "text": "2.1 ¿Qué es un grafo?\n\nDefinición: Grafo simple Un grafo simple \\(G\\) es un par ordenado \\((V, E)\\), donde: * \\(V\\) es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman vértices (o nodos). * \\(E\\) es un conjunto de pares no ordenados de vértices distintos. Los elementos de \\(E\\) se llaman aristas (o enlaces).\n\n\nEjemplo: Sean: * \\(V=\\{1, 2, 3, 4\\}\\) * \\(E=\\{\\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}, \\{3, 4\\}\\}\\)\n\n\n2.1.1 Terminología básica\n\nAdyacencia: Dos vértices \\(u, v \\in V\\) son adyacentes (o vecinos) si existe una arista que los une, es decir, si \\(\\{u, v\\} \\in E\\).\nIncidencia: Una arista \\(e \\in E\\) es incidente a un vértice \\(v \\in V\\) si \\(v\\) es uno de los extremos de \\(e\\).\nOrden y tamaño: El orden del grafo es el número de vértices, \\(|V|\\). El tamaño del grafo es el número de aristas, \\(|E|\\).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#variaciones-del-concepto-de-grafo",
-    "href": "Sesion1.html#variaciones-del-concepto-de-grafo",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.2 Variaciones del concepto de grafo",
-    "text": "2.2 Variaciones del concepto de grafo\nNo todos los sistemas se modelan con grafos simples.\n\nGrafo dirigido (digrafo): Las aristas son pares ordenados de vértices, \\((u, v)\\), representando una dirección (de \\(u\\) a \\(v\\)). Se suelen llamar arcos.\nMultigrafo: Se permiten múltiples aristas entre el mismo par de vértices (Ej: Rutas de vuelo entre ciudades).\nPseudografo: Se permiten bucles o lazos (aristas que conectan un vértice consigo mismo, \\(\\{v, v\\}\\)).\nGrafo ponderado (o red): A cada arista \\(e \\in E\\) se le asigna un valor numérico \\(w(e)\\), llamado peso (Ej: Pesos que representan distancias entre vuelos).\n\n\n2.2.1 Actividad rápida: Modelado con grafos\n\nPregunta para la audiencia En los siguientes sistemas, ¿qué representarían los vértices y las aristas?, ¿qué tipo de grafo sería el más adecuado? 1. La red de amigos en Facebook. 2. El sistema de calles de una ciudad. 3. Las dependencias entre tareas en un proyecto.\n\n\nSolución sugerida 1. Vértices: Personas. Aristas: Amistad (simétrica). Grafo simple (o quizás ponderado por intensidad). 2. Vértices: Intersecciones. Aristas: Calles. Grafo dirigido (si hay un sentido) y ponderado (distancia/tiempo). 3. Vértices: Tareas. Aristas: Dependencia. Grafo dirigido, acíclico.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#subgrafos-y-subgrafos-inducidos",
-    "href": "Sesion1.html#subgrafos-y-subgrafos-inducidos",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.3 Subgrafos y Subgrafos inducidos",
-    "text": "2.3 Subgrafos y Subgrafos inducidos\n\nDefinición: Subgrafo Un grafo \\(H=(V_H, E_H)\\) es un subgrafo de \\(G=(V_G, E_G)\\) si \\(V_H \\subseteq V_G\\), \\(E_H \\subseteq E_G\\) y todas las aristas en \\(E_H\\) tienen sus extremos en \\(V_H\\).\n\n\nDefinición: Subgrafo inducido Dado un subconjunto de vértices \\(S \\subseteq V_G\\), el subgrafo inducido por \\(S\\), denotado \\(G[S]\\), es el grafo \\((S, E_S)\\) donde \\(E_S\\) contiene todas las aristas de \\(E_G\\) cuyos dos extremos están en \\(S\\).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#isomorfismo-de-grafos",
-    "href": "Sesion1.html#isomorfismo-de-grafos",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.4 Isomorfismo de grafos",
-    "text": "2.4 Isomorfismo de grafos\n¿Cuándo son dos grafos “esencialmente el mismo”?\n\nDefinición: Isomorfismo Dos grafos \\(G_1=(V_1, E_1)\\) y \\(G_2=(V_2, E_2)\\) son isomorfos (\\(G_1 \\cong G_2\\)) si existe una función biyectiva \\(f: V_1 \\to V_2\\) tal que: \\[\\{u, v\\} \\in E_1 \\Leftrightarrow \\{f(u), f(v)\\} \\in E_2\\] La función \\(f\\) preserva la adyacencia.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#grado-de-un-vértice",
-    "href": "Sesion1.html#grado-de-un-vértice",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.5 Grado de un vértice",
-    "text": "2.5 Grado de un vértice\n\nDefinición: Grado El grado de un vértice \\(v\\) en un grafo \\(G\\), denotado \\(\\deg(v)\\) o \\(d(v)\\), es el número de aristas incidentes a \\(v\\). Equivalentemente, es el número de vecinos de \\(v\\).\n\n\nTeorema: Lema del apretón de manos Para cualquier grafo \\(G=(V, E)\\), la suma de los grados de todos los vértices es igual al doble del número de aristas: \\[\\sum_{v \\in V} \\deg(v) = 2|E|\\] Idea de la demostración: Cada arista \\(\\{u, v\\}\\) contribuye exactamente dos veces a la suma total de grados.\n\n\n2.5.1 Actividad rápida: Lema del apretón de manos\n\nEjercicio ¿Es posible construir un grafo simple con 5 vértices que tengan los siguientes grados: 3, 3, 3, 1, 0?\n\n\nSolución Calculamos la suma de los grados: \\(3+3+3+1+0 = 10\\). Según el Lema del apretón de manos, la suma debe ser \\(2|E|\\). Como \\(10\\) es par, el lema se cumple (\\(|E|=5\\)). Sin embargo, cumplir el lema no garantiza la existencia del grafo. Un vértice tiene grado 0 (aislado). En el subgrafo restante de 4 vértices, los grados deben ser 3, 3, 3, 1. Si tres vértices tienen grado 3 en un grafo de 4, todos deben estar conectados a todos, lo que obliga al cuarto vértice a tener grado 3, contradiciendo que debe tener grado 1. No es posible.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#caminos-ciclos-y-conectividad",
-    "href": "Sesion1.html#caminos-ciclos-y-conectividad",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.6 Caminos, ciclos y conectividad",
-    "text": "2.6 Caminos, ciclos y conectividad\n\nCamino (simple): Sucesión de vértices distintos \\(v_0, v_1, \\dots, v_k\\) tal que \\(\\{v_{i-1}, v_i\\}\\) es una arista para todo \\(i\\). Longitud = \\(k\\).\nCiclo (simple): Un camino con \\(k \\geq 3\\) donde el primer y último vértice son el mismo (\\(v_0=v_k\\)).\nConectividad: Un grafo es conexo si existe un camino entre cualquier par de vértices distintos.\nComponente conexa: Subgrafo maximal conexo.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#representaciones-de-grafos",
-    "href": "Sesion1.html#representaciones-de-grafos",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "2.7 Representaciones de grafos",
-    "text": "2.7 Representaciones de grafos\n\n2.7.1 Lista de adyacencia\nPara cada vértice, almacenamos una lista de sus vecinos. * Ventaja: Eficiente en memoria para grafos esparsos (pocos enlaces). * Desventaja: Verificar existencia de una arista toma tiempo.\n\n\n2.7.2 Matriz de adyacencia\n\nDefinición: Sea \\(G=(V, E)\\) con \\(|V|=n\\). La matriz \\(A\\) de \\(n \\times n\\) donde: \\[A_{ij} = \\begin{cases} 1 & \\text{si } \\{i, j\\} \\in E \\\\ 0 & \\text{en otro caso} \\end{cases}\\]\n\n\n\n2.7.3 Matriz de incidencia\n\nDefinición: Sea \\(G=(V, E)\\) con \\(|V|=n\\) y \\(|E|=m\\). La matriz \\(B\\) de \\(n \\times m\\) donde: \\[B_{ie} = \\begin{cases} 1 & \\text{si el vértice } i \\text{ es incidente a la arista } e \\\\ 0 & \\text{en otro caso} \\end{cases}\\]\n\n\n\n2.7.4 El Laplaciano del grafo\nSe define con la matriz de grados \\(D\\) (diagonal con \\(D_{ii} = \\deg(i)\\)).\n\nDefinición: Matriz Laplaciana \\[L = D - A\\]\n\n\nPropiedades espectrales de L: 1. \\(L\\) es simétrica. 2. \\(L\\) es semidefinida positiva (\\(\\lambda_i \\geq 0\\)). 3. Siempre \\(\\lambda_1=0\\). La multiplicidad del autovalor 0 es igual al número de componentes conexas del grafo \\(G\\).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#estructura-básica-árboles",
-    "href": "Sesion1.html#estructura-básica-árboles",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "3.1 Estructura básica: Árboles",
-    "text": "3.1 Estructura básica: Árboles\n\nDefinición: Árbol y bosque Un árbol es un grafo conexo y acíclico. Un bosque es un grafo acíclico (sus componentes conexas son árboles).\n\n\nTeorema de caracterización: Sea \\(G=(V, E)\\) un grafo con \\(n\\) vértices. Son equivalentes: 1. \\(G\\) es un árbol. 2. \\(G\\) es conexo y tiene exactamente \\(n-1\\) aristas. 3. \\(G\\) es acíclico y tiene exactamente \\(n-1\\) aristas. 4. Existe un único camino entre cualquier par de vértices. 5. \\(G\\) es mínimamente conexo. 6. \\(G\\) es máximamente acíclico.\n\n\n3.1.1 Actividad rápida: Identificar árboles\n\nEjercicio: ¿Cuáles de los siguientes grafos son árboles? * G1: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,4\\}, \\{4,5\\}\\}\\) * G2: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,4\\}, \\{4,5\\}, \\{5,1\\}\\}\\) * G3: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,1\\}, \\{3,4\\}, \\{4,5\\}\\}\\) * G4: \\(V=\\{1..6\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{4,5\\}\\}\\)\n\n\nSolución: * G1: Sí es un árbol. * G2: No es un árbol (contiene ciclo). * G3: No es un árbol (grafo con \\(n\\) vértices y \\(n\\) aristas siempre tiene ciclo). * G4: No es un árbol (es un bosque desconectado).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#cortes-y-puentes",
-    "href": "Sesion1.html#cortes-y-puentes",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "3.2 Cortes y puentes",
-    "text": "3.2 Cortes y puentes\n\nPuente: Arista cuya eliminación desconecta el grafo.\nVértice de corte: Vértice cuya eliminación aumenta las componentes conexas.\n\n\nTeorema de Menger (versión vértices) El número mínimo de vértices que se deben eliminar para separar \\(u\\) de \\(v\\) es igual al número máximo de caminos internamente disjuntos entre \\(u\\) y \\(v\\).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#centralidad",
-    "href": "Sesion1.html#centralidad",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "4.1 Centralidad",
-    "text": "4.1 Centralidad\nMedidas para cuantificar la “importancia” de un nodo.\n\nCentralidad de grado: Popularidad inmediata. \\(C_D(v) = \\deg(v)\\).\nCentralidad de cercanía (Closeness): Inverso de la distancia promedio a los demás. \\[C_C(v) = \\frac{1}{\\sum_{u \\neq v} d(v, u)}\\]\nCentralidad de intermediación (Betweenness): Frecuencia con la que actúa como puente en caminos más cortos. \\[C_B(v) = \\sum_{s \\neq v \\neq t} \\frac{\\sigma_{st}(v)}{\\sigma_{st}}\\]\nCentralidad de vector propio: Ecuación de autovalores de la matriz de adyacencia \\(A\\mathbf{x} = \\lambda\\mathbf{x}\\).",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#coeficiente-de-agrupamiento-clustering",
-    "href": "Sesion1.html#coeficiente-de-agrupamiento-clustering",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "4.2 Coeficiente de agrupamiento (Clustering)",
-    "text": "4.2 Coeficiente de agrupamiento (Clustering)\n\nCoeficiente de agrupamiento local: Fracción de vecinos de \\(v\\) que están conectados entre sí. \\[C(v) = \\frac{\\text{Número de triángulos que incluyen a } v}{\\text{Número de posibles triángulos centrados en } v}\\]",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#detección-de-comunidades-y-modularidad",
-    "href": "Sesion1.html#detección-de-comunidades-y-modularidad",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "4.3 Detección de comunidades y modularidad",
-    "text": "4.3 Detección de comunidades y modularidad\n\nModularidad (Q): \\[Q = \\frac{1}{2m} \\sum_{i,j} \\left[ A_{ij} - \\frac{k_i k_j}{2m} \\right] \\delta(c_i, c_j)\\] Valores altos indican una fuerte estructura de comunidad.",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion1.html#emparejamientos-matchings",
-    "href": "Sesion1.html#emparejamientos-matchings",
-    "title": "1  Sesión 1: Introducción a la Teoría de Grafos",
-    "section": "5.1 Emparejamientos (Matchings)",
-    "text": "5.1 Emparejamientos (Matchings)\n\nEmparejamiento: Subconjunto de aristas que no comparten vértices.\nEmparejamiento perfecto: Cubre todos los vértices del grafo.\n\n\nTeorema de Hall: Sea \\(G=(V_1 \\cup V_2, E)\\) un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de \\(V_1\\) si y sólo si para todo subconjunto \\(S \\subseteq V_1\\): \\[|N(S)| \\geq |S|\\]",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 1: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "References"
     ]
   },
   {
@@ -290,11 +130,11 @@
     ]
   },
   {
-    "objectID": "Sesion2.html#qué-es-un-grafo",
-    "href": "Sesion2.html#qué-es-un-grafo",
+    "objectID": "Sesion2.html#fundamentos-de-grafos-qué-es-un-grafo",
+    "href": "Sesion2.html#fundamentos-de-grafos-qué-es-un-grafo",
     "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "3.1 ¿Qué es un grafo?",
-    "text": "3.1 ¿Qué es un grafo?\n\nDefinición: Grafo simple Un grafo simple \\(G\\) es un par ordenado \\((V, E)\\), donde: * \\(V\\) es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman vértices (o nodos). * \\(E\\) es un conjunto de pares no ordenados de vértices distintos. Los elementos de \\(E\\) se llaman aristas (o enlaces).\n\n\nEjemplo: Sean: * \\(V=\\{1, 2, 3, 4\\}\\) * \\(E=\\{\\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}, \\{3, 4\\}\\}\\)\n\n\n3.1.1 Terminología básica\n\nAdyacencia: Dos vértices \\(u, v \\in V\\) son adyacentes (o vecinos) si existe una arista que los une, es decir, si \\(\\{u, v\\} \\in E\\).\nIncidencia: Una arista \\(e \\in E\\) es incidente a un vértice \\(v \\in V\\) si \\(v\\) es uno de los extremos de \\(e\\).\nOrden y tamaño: El orden del grafo es el número de vértices, \\(|V|\\). El tamaño del grafo es el número de aristas, \\(|E|\\).",
+    "section": "",
+    "text": "Definición: grafo simple\nUn grafo simple \\(G\\) es un par ordenado \\((V, E)\\), donde:\n\n\\(V\\) es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman vértices (o nodos).\n\\(E\\) es un conjunto de pares no ordenados de vértices distintos. Los elementos de \\(E\\) se llaman aristas (o enlaces).\n\n\n\nEjemplo\nSean\n\n\\(V=\\{1, 2, 3, 4\\}\\)\n\\(E=\\{\\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}, \\{3, 4\\}\\}\\)\n\n\n\n2.1.1 Terminología básica\n\nAdyacencia: Dos vértices \\(u, v \\in V\\) son adyacentes (o vecinos) si existe una arista que los une, es decir, si \\(\\{u, v\\} \\in E\\).\nIncidencia: Una arista \\(e \\in E\\) es incidente a un vértice \\(v \\in V\\) si \\(v\\) es uno de los extremos de \\(e\\).\nOrden y tamaño: El orden del grafo es el número de vértices, \\(|V|\\). El tamaño del grafo es el número de aristas, \\(|E|\\).",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
     ]
@@ -314,7 +154,7 @@
     "href": "Sesion2.html#subgrafos-y-subgrafos-inducidos",
     "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
     "section": "2.3 Subgrafos y Subgrafos inducidos",
-    "text": "2.3 Subgrafos y Subgrafos inducidos\n\nDefinición: Subgrafo Un grafo \\(H=(V_H, E_H)\\) es un subgrafo de \\(G=(V_G, E_G)\\) si \\(V_H \\subseteq V_G\\), \\(E_H \\subseteq E_G\\) y todas las aristas en \\(E_H\\) tienen sus extremos en \\(V_H\\).\n\n\nDefinición: Subgrafo inducido Dado un subconjunto de vértices \\(S \\subseteq V_G\\), el subgrafo inducido por \\(S\\), denotado \\(G[S]\\), es el grafo \\((S, E_S)\\) donde \\(E_S\\) contiene todas las aristas de \\(E_G\\) cuyos dos extremos están en \\(S\\).",
+    "text": "2.3 Subgrafos y Subgrafos inducidos\n\nDefinición: Subgrafo\nUn grafo \\(H=(V_H, E_H)\\) es un subgrafo de \\(G=(V_G, E_G)\\) si \\(V_H \\subseteq V_G\\), \\(E_H \\subseteq E_G\\) y todas las aristas en \\(E_H\\) tienen sus extremos en \\(V_H\\).\n\n\nDefinición: Subgrafo inducido\nDado un subconjunto de vértices \\(S \\subseteq V_G\\), el subgrafo inducido por \\(S\\), denotado \\(G[S]\\), es el grafo \\((S, E_S)\\) donde \\(E_S\\) contiene todas las aristas de \\(E_G\\) cuyos dos extremos están en \\(S\\).",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
     ]
@@ -324,7 +164,7 @@
     "href": "Sesion2.html#isomorfismo-de-grafos",
     "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
     "section": "2.4 Isomorfismo de grafos",
-    "text": "2.4 Isomorfismo de grafos\n¿Cuándo son dos grafos “esencialmente el mismo”?\n\nDefinición: Isomorfismo Dos grafos \\(G_1=(V_1, E_1)\\) y \\(G_2=(V_2, E_2)\\) son isomorfos (\\(G_1 \\cong G_2\\)) si existe una función biyectiva \\(f: V_1 \\to V_2\\) tal que: \\[\\{u, v\\} \\in E_1 \\Leftrightarrow \\{f(u), f(v)\\} \\in E_2\\] La función \\(f\\) preserva la adyacencia.",
+    "text": "2.4 Isomorfismo de grafos\n¿Cuándo son dos grafos “esencialmente el mismo”?\n\nDefinición: Isomorfismo\nDos grafos \\(G_1=(V_1, E_1)\\) y \\(G_2=(V_2, E_2)\\) son isomorfos (\\(G_1 \\cong G_2\\)) si existe una función biyectiva \\(f: V_1 \\to V_2\\) tal que: \\[\\{u, v\\} \\in E_1 \\Leftrightarrow \\{f(u), f(v)\\} \\in E_2\\] La función \\(f\\) preserva la adyacencia.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
     ]
@@ -340,103 +180,723 @@
     ]
   },
   {
-    "objectID": "Sesion2.html#caminos-ciclos-y-conectividad",
-    "href": "Sesion2.html#caminos-ciclos-y-conectividad",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "3.6 Caminos, ciclos y conectividad",
-    "text": "3.6 Caminos, ciclos y conectividad\n\nCamino (simple): Sucesión de vértices distintos \\(v_0, v_1, \\dots, v_k\\) tal que \\(\\{v_{i-1}, v_i\\}\\) es una arista para todo \\(i\\). Longitud = \\(k\\).\nCiclo (simple): Un camino con \\(k \\geq 3\\) donde el primer y último vértice son el mismo (\\(v_0=v_k\\)).\nConectividad: Un grafo es conexo si existe un camino entre cualquier par de vértices distintos.\nComponente conexa: Subgrafo maximal conexo.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#representaciones-de-grafos",
-    "href": "Sesion2.html#representaciones-de-grafos",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "3.7 Representaciones de grafos",
-    "text": "3.7 Representaciones de grafos\n\n3.7.1 Lista de adyacencia\nPara cada vértice, almacenamos una lista de sus vecinos. * Ventaja: Eficiente en memoria para grafos esparsos (pocos enlaces). * Desventaja: Verificar existencia de una arista toma tiempo.\n\n\n3.7.2 Matriz de adyacencia\n\nDefinición: Sea \\(G=(V, E)\\) con \\(|V|=n\\). La matriz \\(A\\) de \\(n \\times n\\) donde: \\[A_{ij} = \\begin{cases} 1 & \\text{si } \\{i, j\\} \\in E \\\\ 0 & \\text{en otro caso} \\end{cases}\\]\n\n\n\n3.7.3 Matriz de incidencia\n\nDefinición: Sea \\(G=(V, E)\\) con \\(|V|=n\\) y \\(|E|=m\\). La matriz \\(B\\) de \\(n \\times m\\) donde: \\[B_{ie} = \\begin{cases} 1 & \\text{si el vértice } i \\text{ es incidente a la arista } e \\\\ 0 & \\text{en otro caso} \\end{cases}\\]\n\n\n\n3.7.4 El Laplaciano del grafo\nSe define con la matriz de grados \\(D\\) (diagonal con \\(D_{ii} = \\deg(i)\\)).\n\nDefinición: Matriz Laplaciana \\[L = D - A\\]\n\n\nPropiedades espectrales de L: 1. \\(L\\) es simétrica. 2. \\(L\\) es semidefinida positiva (\\(\\lambda_i \\geq 0\\)). 3. Siempre \\(\\lambda_1=0\\). La multiplicidad del autovalor 0 es igual al número de componentes conexas del grafo \\(G\\).",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#estructura-básica-árboles",
-    "href": "Sesion2.html#estructura-básica-árboles",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "4.1 Estructura básica: Árboles",
-    "text": "4.1 Estructura básica: Árboles\n\nDefinición: Árbol y bosque Un árbol es un grafo conexo y acíclico. Un bosque es un grafo acíclico (sus componentes conexas son árboles).\n\n\nTeorema de caracterización: Sea \\(G=(V, E)\\) un grafo con \\(n\\) vértices. Son equivalentes: 1. \\(G\\) es un árbol. 2. \\(G\\) es conexo y tiene exactamente \\(n-1\\) aristas. 3. \\(G\\) es acíclico y tiene exactamente \\(n-1\\) aristas. 4. Existe un único camino entre cualquier par de vértices. 5. \\(G\\) es mínimamente conexo. 6. \\(G\\) es máximamente acíclico.\n\n\n4.1.1 Actividad rápida: Identificar árboles\n\nEjercicio: ¿Cuáles de los siguientes grafos son árboles? * G1: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,4\\}, \\{4,5\\}\\}\\) * G2: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,4\\}, \\{4,5\\}, \\{5,1\\}\\}\\) * G3: \\(V=\\{1..5\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{3,1\\}, \\{3,4\\}, \\{4,5\\}\\}\\) * G4: \\(V=\\{1..6\\}\\), \\(E=\\{\\{1,2\\}, \\{2,3\\}, \\{4,5\\}\\}\\)\n\n\nSolución: * G1: Sí es un árbol. * G2: No es un árbol (contiene ciclo). * G3: No es un árbol (grafo con \\(n\\) vértices y \\(n\\) aristas siempre tiene ciclo). * G4: No es un árbol (es un bosque desconectado).",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#cortes-y-puentes",
-    "href": "Sesion2.html#cortes-y-puentes",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "4.2 Cortes y puentes",
-    "text": "4.2 Cortes y puentes\n\nPuente: Arista cuya eliminación desconecta el grafo.\nVértice de corte: Vértice cuya eliminación aumenta las componentes conexas.\n\n\nTeorema de Menger (versión vértices) El número mínimo de vértices que se deben eliminar para separar \\(u\\) de \\(v\\) es igual al número máximo de caminos internamente disjuntos entre \\(u\\) y \\(v\\).",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#centralidad",
-    "href": "Sesion2.html#centralidad",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "5.1 Centralidad",
-    "text": "5.1 Centralidad\nMedidas para cuantificar la “importancia” de un nodo.\n\nCentralidad de grado: Popularidad inmediata. \\(C_D(v) = \\deg(v)\\).\nCentralidad de cercanía (Closeness): Inverso de la distancia promedio a los demás. \\[C_C(v) = \\frac{1}{\\sum_{u \\neq v} d(v, u)}\\]\nCentralidad de intermediación (Betweenness): Frecuencia con la que actúa como puente en caminos más cortos. \\[C_B(v) = \\sum_{s \\neq v \\neq t} \\frac{\\sigma_{st}(v)}{\\sigma_{st}}\\]\nCentralidad de vector propio: Ecuación de autovalores de la matriz de adyacencia \\(A\\mathbf{x} = \\lambda\\mathbf{x}\\).",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#coeficiente-de-agrupamiento-clustering",
-    "href": "Sesion2.html#coeficiente-de-agrupamiento-clustering",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "5.2 Coeficiente de agrupamiento (Clustering)",
-    "text": "5.2 Coeficiente de agrupamiento (Clustering)\n\nCoeficiente de agrupamiento local: Fracción de vecinos de \\(v\\) que están conectados entre sí. \\[C(v) = \\frac{\\text{Número de triángulos que incluyen a } v}{\\text{Número de posibles triángulos centrados en } v}\\]",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#detección-de-comunidades-y-modularidad",
-    "href": "Sesion2.html#detección-de-comunidades-y-modularidad",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "5.3 Detección de comunidades y modularidad",
-    "text": "5.3 Detección de comunidades y modularidad\n\nModularidad (Q): \\[Q = \\frac{1}{2m} \\sum_{i,j} \\left[ A_{ij} - \\frac{k_i k_j}{2m} \\right] \\delta(c_i, c_j)\\] Valores altos indican una fuerte estructura de comunidad.",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#emparejamientos-matchings",
-    "href": "Sesion2.html#emparejamientos-matchings",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
-    "section": "6.1 Emparejamientos (Matchings)",
-    "text": "6.1 Emparejamientos (Matchings)\n\nEmparejamiento: Subconjunto de aristas que no comparten vértices.\nEmparejamiento perfecto: Cubre todos los vértices del grafo.\n\n\nTeorema de Hall: Sea \\(G=(V_1 \\cup V_2, E)\\) un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de \\(V_1\\) si y sólo si para todo subconjunto \\(S \\subseteq V_1\\): \\[|N(S)| \\geq |S|\\]",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
-    ]
-  },
-  {
-    "objectID": "Sesion2.html#fundamentos-de-grafos.-qué-es-un-grafo",
-    "href": "Sesion2.html#fundamentos-de-grafos.-qué-es-un-grafo",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
     "section": "",
-    "text": "Definición: Grafo simple Un grafo simple \\(G\\) es un par ordenado \\((V, E)\\), donde:\n- \\(V\\) es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman vértices (o nodos). &gt; - \\(E\\) es un conjunto de pares no ordenados de vértices distintos. Los elementos de \\(E\\) se llaman aristas (o enlaces).\n\n\nEjemplo: Sean: * \\(V=\\{1, 2, 3, 4\\}\\) * \\(E=\\{\\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}, \\{3, 4\\}\\}\\)\n\n\n2.1.1 Terminología básica\n\nAdyacencia: Dos vértices \\(u, v \\in V\\) son adyacentes (o vecinos) si existe una arista que los une, es decir, si \\(\\{u, v\\} \\in E\\).\nIncidencia: Una arista \\(e \\in E\\) es incidente a un vértice \\(v \\in V\\) si \\(v\\) es uno de los extremos de \\(e\\).\nOrden y tamaño: El orden del grafo es el número de vértices, \\(|V|\\). El tamaño del grafo es el número de aristas, \\(|E|\\).",
+    "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {
-    "objectID": "Sesion2.html#fundamentos-de-grafos-qué-es-un-grafo",
-    "href": "Sesion2.html#fundamentos-de-grafos-qué-es-un-grafo",
-    "title": "2  Sesión 2: Introducción a la Teoría de Grafos",
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Bibliografía general recomendada",
     "section": "",
-    "text": "Definición: Grafo simple Un grafo simple \\(G\\) es un par ordenado \\((V, E)\\), donde:\n- \\(V\\) es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman vértices (o nodos). - \\(E\\) es un conjunto de pares no ordenados de vértices distintos. Los elementos de \\(E\\) se llaman aristas (o enlaces).\n\n\nEjemplo: Sean: * \\(V=\\{1, 2, 3, 4\\}\\) * \\(E=\\{\\{1, 2\\}, \\{1, 3\\}, \\{2, 3\\}, \\{3, 4\\}\\}\\)\n\n\n2.1.1 Terminología básica\n\nAdyacencia: Dos vértices \\(u, v \\in V\\) son adyacentes (o vecinos) si existe una arista que los une, es decir, si \\(\\{u, v\\} \\in E\\).\nIncidencia: Una arista \\(e \\in E\\) es incidente a un vértice \\(v \\in V\\) si \\(v\\) es uno de los extremos de \\(e\\).\nOrden y tamaño: El orden del grafo es el número de vértices, \\(|V|\\). El tamaño del grafo es el número de aristas, \\(|E|\\).",
+    "text": "Fundamentos de grafos bipartitos",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Sesión 2: Introducción a la Teoría de Grafos</span>"
+      "Bibliografía general recomendada"
+    ]
+  },
+  {
+    "objectID": "references.html#fundamentos-de-grafos-bipartitos",
+    "href": "references.html#fundamentos-de-grafos-bipartitos",
+    "title": "Bibliografía general recomendada",
+    "section": "",
+    "text": "Asratian, A. S., Denley, T. M. J., & Häggkvist, R. (1998). Bipartite Graphs and their Applications. Cambridge University Press.\nHall, P. (1935). “On Representatives of Subsets.” Journal of the London Mathematical Society, 10(1), 26–30.\nBondy, J. A., & Murty, U. S. R. (1976). Graph Theory with Applications. London: Macmillan.\nLovász, L., & Plummer, M. D. (1986). Matching Theory. North-Holland.\nWasserman, S., & Faust, K. (1994). Social Network Analysis: Methods and Applications. Cambridge University Press.",
+    "crumbs": [
+      "Bibliografía general recomendada"
+    ]
+  },
+  {
+    "objectID": "references.html#métricas-y-propiedades-estructurales-en-grafos-bipartitos",
+    "href": "references.html#métricas-y-propiedades-estructurales-en-grafos-bipartitos",
+    "title": "Bibliografía general recomendada",
+    "section": "Métricas y propiedades estructurales en grafos bipartitos",
+    "text": "Métricas y propiedades estructurales en grafos bipartitos\n\nLatapy, M., Magnien, C., & Del Vecchio, N. (2008). “Basic Notions for the Analysis of Large Two-Mode Networks.” Social Networks, 30(1), 31–48.\nBorgatti, S. P., & Everett, M. G. (1997). “Network Analysis of 2-Mode Data.” Social Networks, 19(3), 243–269.\nDormann, C. F., et al. (2009). “Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks.” The Open Ecology Journal, 2, 7–24.\nAlmeida-Neto, M., et al. (2008). “A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement.” Oikos, 117(8), 1227–1239.\nBarber, M. J. (2007). “Modularity and Community Detection in Bipartite Networks.” Physical Review E, 76(6), 066102.\nOuadah, S., Latouche, P., & Robin, S. (2022). “Motif-Based Tests for Bipartite Networks.” Electronic Journal of Statistics, 16(1), 293–330.\nBorgatti, S. P., & Everett, M. G. (1999). “Models of Core/Periphery Structures.” Social Networks, 21(4), 375–395.",
+    "crumbs": [
+      "Bibliografía general recomendada"
+    ]
+  },
+  {
+    "objectID": "references.html#modelos-y-métricas-generalizables-a-redes-bipartitas",
+    "href": "references.html#modelos-y-métricas-generalizables-a-redes-bipartitas",
+    "title": "Bibliografía general recomendada",
+    "section": "Modelos y métricas generalizables a redes bipartitas",
+    "text": "Modelos y métricas generalizables a redes bipartitas\n\nKunegis, J. (2015). “Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications.” Internet Mathematics, 11(4), 201–231.\nSaracco, F., et al. (2015). “Randomizing Bipartite Networks: The Case of the World Trade Web.” Scientific Reports, 5, 10595.\nCimini, G., et al. (2019). “The Statistical Physics of Real-World Networks.” Nature Reviews Physics, 1(1), 58–71.",
+    "crumbs": [
+      "Bibliografía general recomendada"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html",
+    "href": "Sesion3.html",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "",
+    "text": "3.1 Objetivos",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#objetivos",
+    "href": "Sesion3.html#objetivos",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "",
+    "text": "Entender qué significa “ser importante” en una red y por qué existen múltiples centralidades.\nDefinir y calcular las centralidades: \\(C_D\\) (grado), \\(C_C\\) (cercanía), \\(C_B\\) (intermediación), y centralidad de vector propio.\nInterpretar cada métrica en redes ecológicas de interacción (planta–polinizador, hospedero–parásito, tróficas).\nIdentificar fortalezas, limitaciones y cuándo conviene usar cada medida.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#temas",
+    "href": "Sesion3.html#temas",
+    "title": "Sesión 2: Métricas y análisis de redes: Centralidad",
+    "section": "1.2 Temas",
+    "text": "1.2 Temas\n\nElementos previos: notación, distancias, caminos más cortos, matrices.\nConceptos centrales: \\(C_D\\), \\(C_C\\), \\(C_B\\) y vector propio.\nEjemplos: cálculo e interpretación ecológica.\nEjercicios: problemas para resolver.\n\n\n\n\n\n\n\nNotaSubtemas\n\n\n\n\nCentralidad de grado (Degree centrality).\nCentralidad de cercanía (Closeness centrality).\nCentralidad de intermediación (Betweenness centrality).\nCentralidad de vector propio (Eigenvector centrality).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#motivación-ecológica-especies-importantes",
+    "href": "Sesion3.html#motivación-ecológica-especies-importantes",
+    "title": "Sesión 2: Métricas y análisis de redes: Centralidad",
+    "section": "1.3 Motivación ecológica: “especies importantes”",
+    "text": "1.3 Motivación ecológica: “especies importantes”\nEn ecología de redes solemos preguntarnos:\n\n¿Qué especies son generalistas (muchas interacciones) vs especialistas?\n¿Qué especies conectan módulos o grupos funcionales?\n¿Qué especies están en el núcleo de la red, sosteniendo la cohesión global?\nSi una especie desaparece, ¿qué tanto cambia la conectividad o la propagación de perturbaciones?\n\n\nNota: La “importancia” depende del mecanismo que nos interesa (contactos directos, accesibilidad global, rol de puente, influencia recursiva, etc.).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#recordatorio-grafo-simple-y-notación",
+    "href": "Sesion3.html#recordatorio-grafo-simple-y-notación",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "3.2 Recordatorio: grafo simple y notación",
+    "text": "3.2 Recordatorio: grafo simple y notación\nConsideremos un Grafo simple (no dirigido) esto es \\(G=(V,E)\\), donde:\n\n\\(V\\) es el conjunto de vértices (nodos).\n\\(E \\subseteq \\{\\{u,v\\}: u,v\\in V,\\ u\\neq v\\}\\) es el conjunto de aristas.\n\n\nDefinición: Vecindad\nSe define una vecindad de \\(v\\): \\(N(v)=\\{u\\in V: \\{u,v\\}\\in E\\}\\).\n\n\nDefinición: Grado: \\(\\deg(v)=|N(v)|\\).\n\n\n\n\n\n\n\nTipRedes de interacción ecológica:\n\n\n\n\nPlanta–polinizador (bipartita, no dirigida por simplicidad).\nHospedero–parásito (bipartita).\nRed trófica (naturalmente dirigida; veremos la versión no dirigida como aproximación).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#distancias-y-caminos-más-cortos",
+    "href": "Sesion3.html#distancias-y-caminos-más-cortos",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "3.3 Distancias y caminos más cortos",
+    "text": "3.3 Distancias y caminos más cortos\n\nDefinición: Camino\nUn camino es una sucesión de vértices \\(v_0,v_1,\\dots,v_k\\) tal que \\(\\{v_{i-1},v_i\\}\\in E\\).\n\n\nDefinición: Distancia geodésica\nLa distancia geodésica (o distancia de grafo): \\[\nd(u,v)=\\min\\{k: \\text{existe un camino de longitud }k\\text{ entre }u\\text{ y }v\\}.\n\\]\n\n\n\n\n\n\n\nNotaConectividad\n\n\n\n\nUn grafo es conexo si para todo \\(u\\neq v\\) existe un camino entre ellos.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#caminos-más-cortos-contar-geodésicas",
+    "href": "Sesion3.html#caminos-más-cortos-contar-geodésicas",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "3.4 Caminos más cortos: contar geodésicas",
+    "text": "3.4 Caminos más cortos: contar geodésicas\nEn varias métricas necesitamos contar cuántos caminos más cortos hay.\n\nSea \\(\\sigma_{st}\\) el número de caminos más cortos (geodésicos) entre \\(s\\) y \\(t\\).\nSea \\(\\sigma_{st}(v)\\) el número de esos caminos que pasan por \\(v\\) (como vértice interno).\n\n\n\n\n\n\n\nImportanteIntuición\n\n\n\nSi una especie \\(v\\) está “en medio” de muchos caminos más cortos entre pares de especies, entonces puede actuar como puente o cuello de botella.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#representación-matricial",
+    "href": "Sesion3.html#representación-matricial",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "3.5 Representación matricial",
+    "text": "3.5 Representación matricial\nSea \\(|V|=n\\) y vértices \\(1,\\dots,n\\).\n\nMatriz de adyacencia \\(A\\in\\{0,1\\}^{n\\times n}\\): \\(A_{ij}=1\\) si \\(\\{i,j\\}\\in E\\), y 0 en otro caso.\nMatriz de grados \\(D\\): diagonal con \\(D_{ii}=\\deg(i)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#qué-mide-una-centralidad",
+    "href": "Sesion3.html#qué-mide-una-centralidad",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "4.1 Qué mide una “centralidad”",
+    "text": "4.1 Qué mide una “centralidad”\nUna centralidad es una función que asigna a cada nodo \\(v\\) un número real (su “importancia”): \\[\n\\text{centralidad: } V\\to \\mathbb{R}_{\\ge 0},\\qquad v\\mapsto C(v).\n\\] No hay una sola “mejor”: cada definición formaliza un criterio distinto.\n\n\n\n\n\n\nNotaEn redes ecológicas\n\n\n\nDistintas centralidades pueden sugerir distintos tipos de especies clave: * generalistas (muchas interacciones), * conectores entre grupos, * especies “cercanas” a todas (difusión rápida), * especies influyentes por estar conectadas a otras influyentes.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#centralidad-de-grado-degree-centrality",
+    "href": "Sesion3.html#centralidad-de-grado-degree-centrality",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "4.2 Centralidad de grado (Degree centrality)",
+    "text": "4.2 Centralidad de grado (Degree centrality)\nDefinición (no ponderado): \\[\nC_D(v)=\\deg(v).\n\\]\nNormalización frecuente (para comparar redes de distinto tamaño, \\(|V|=n\\)): \\[\nC_D^{\\mathrm{norm}}(v)=\\frac{\\deg(v)}{n-1}\\in[0,1].\n\\]\n\n\n\n\n\n\nTipInterpretación\n\n\n\nEn una red planta–polinizador, \\(C_D\\) mide cuántas especies del otro gremio interactúan con \\(v\\). * Planta con alto grado: polinizada por muchas especies. * Polinizador con alto grado: visita muchas plantas (generalista).\n\n\n\n4.2.1 Nota: redes ponderadas (fuerza)\nSi las aristas tienen pesos \\(w_{uv}\\ge 0\\) (frecuencia, biomasa, visitas), se usa la fuerza: \\[\ns(v)=\\sum_{u\\sim v} w_{uv}.\n\\]\nObservación: * \\(\\deg(v)\\) cuenta diversidad de socios. * \\(s(v)\\) mide intensidad total (puede estar dominada por pocas interacciones muy fuertes).\n\n\n4.2.2 Ejemplo 1: grado en una red planta–polinizador\nConsiderar la red bipartita (no ponderada) con plantas \\(\\{p_1,p_2,p_3,p_4\\}\\) y polinizadores \\(\\{a_1,a_2,a_3\\}\\).\n\n\n\n\n\n\n\n\n\n\n\n\nCálculo de grados\n\n\\(\\deg(p_1)=2\\) (\\(a_1,a_2\\)).\n\\(\\deg(p_2)=2\\) (\\(a_2,a_3\\)).\n\\(\\deg(p_3)=1\\) (\\(a_2\\)).\n\\(\\deg(p_4)=1\\) (\\(a_3\\)).\n\\(\\deg(a_1)=1\\), \\(\\deg(a_2)=3\\), \\(\\deg(a_3)=2\\).\n\n\n\n\n\n\n\n\n\nNotaInterpretación\n\n\n\n\\(a_2\\) es el polinizador más generalista (se conecta con 3 plantas). \\(p_3\\) y \\(p_4\\) son más vulnerables a la pérdida de su(s) socio(s) directo(s).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#nota-redes-ponderadas-fuerza",
+    "href": "Sesion3.html#nota-redes-ponderadas-fuerza",
+    "title": "1  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "2.3 Nota: redes ponderadas (fuerza)",
+    "text": "2.3 Nota: redes ponderadas (fuerza)\nSi las aristas tienen pesos \\(w_{uv}\\ge 0\\) (frecuencia, biomasa, visitas), se usa la fuerza: \\[\ns(v)=\\sum_{u\\sim v} w_{uv}.\n\\]\nObservación: * \\(\\deg(v)\\) cuenta diversidad de socios. * \\(s(v)\\) mide intensidad total (puede estar dominada por pocas interacciones muy fuertes).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#ejemplo-1-grado-en-una-red-plantapolinizador",
+    "href": "Sesion3.html#ejemplo-1-grado-en-una-red-plantapolinizador",
+    "title": "1  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "2.4 Ejemplo 1: grado en una red planta–polinizador",
+    "text": "2.4 Ejemplo 1: grado en una red planta–polinizador\nConsiderar la red bipartita (no ponderada) con plantas \\(\\{p_1,p_2,p_3,p_4\\}\\) y polinizadores \\(\\{a_1,a_2,a_3\\}\\).\n\n\n\n\n\n\n\n\n\n\n\n\nCálculo de grados\n\n\\(\\deg(p_1)=2\\) (\\(a_1,a_2\\)).\n\\(\\deg(p_2)=2\\) (\\(a_2,a_3\\)).\n\\(\\deg(p_3)=1\\) (\\(a_2\\)).\n\\(\\deg(p_4)=1\\) (\\(a_3\\)).\n\\(\\deg(a_1)=1\\), \\(\\deg(a_2)=3\\), \\(\\deg(a_3)=2\\).\n\n\n\n\n\n\n\n\n\nNotaInterpretación\n\n\n\n\\(a_2\\) es el polinizador más generalista (se conecta con 3 plantas). \\(p_3\\) y \\(p_4\\) son más vulnerables a la pérdida de su(s) socio(s) directo(s).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#tipos-de-centralidad-qué-mide-una-centralidad",
+    "href": "Sesion3.html#tipos-de-centralidad-qué-mide-una-centralidad",
+    "title": "1  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "1.6 Tipos de centralidad: Qué mide una “centralidad”",
+    "text": "1.6 Tipos de centralidad: Qué mide una “centralidad”\nUna centralidad es una función que asigna a cada nodo \\(v\\) un número real (su “importancia”): \\[\n\\text{centralidad: } V\\to \\mathbb{R}_{\\ge 0},\\qquad v\\mapsto C(v).\n\\] No hay una sola “mejor”: cada definición formaliza un criterio distinto.\n\n\n\n\n\n\nNotaEn redes ecológicas\n\n\n\nDistintas centralidades pueden sugerir distintos tipos de especies clave: * generalistas (muchas interacciones), * conectores entre grupos, * especies “cercanas” a todas (difusión rápida), * especies influyentes por estar conectadas a otras influyentes.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#ejemplo-1-grado-en-una-red-plantapolinizador-1",
+    "href": "Sesion3.html#ejemplo-1-grado-en-una-red-plantapolinizador-1",
+    "title": "1  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "2.5 Ejemplo 1: grado en una red planta–polinizador",
+    "text": "2.5 Ejemplo 1: grado en una red planta–polinizador\nConsideremos la red bipartita (no ponderada) con plantas \\(\\{p_1,p_2,p_3,p_4\\}\\) y polinizadores \\(\\{a_1,a_2,a_3\\}\\).\n\nlibrary(igraph)\n\nWarning: package 'igraph' was built under R version 4.2.3\n\naristas &lt;- c(\"p1\",\"a1\", \"p1\",\"a2\", \"p2\",\"a2\", \"p2\",\"a3\", \"p3\",\"a2\", \"p4\",\"a3\")\nred &lt;- make_graph(edges = aristas, directed = FALSE)\n\npolinizadores &lt;- c(\"a1\", \"a2\", \"a3\")\nV(red)$type &lt;- V(red)$name %in% polinizadores\n\n# Layout manual: plantas a la izquierda, polinizadores a la derecha\ncoords &lt;- rbind(\n  p1 = c(-2,  1.2), p2 = c(-2,  0.4), p3 = c(-2, -0.4), p4 = c(-2, -1.2),\n  a1 = c( 2,  0.8), a2 = c( 2,  0.0), a3 = c( 2, -0.8)\n)\nlayout_manual &lt;- coords[V(red)$name, ]\n\nplot(red,\n     layout = layout_manual,\n     vertex.color = ifelse(V(red)$type, \"gold\", \"lightgreen\"),\n     vertex.size = 30,\n     vertex.label.color = \"black\",\n     edge.color = \"gray40\")\n\n\n\n\n\n\n\nFigura 2.1: Red bipartita planta–polinizador de ejemplo\n\n\n\n\n\nCálculo de grados\n\ndegree(red)\n\np1 a1 a2 p2 a3 p3 p4 \n 2  1  3  2  2  1  1 \n\n\nEn la Figura 2.1, \\(\\deg(p_1) = \\deg(p_2) = 2\\), mientras que \\(\\deg(p_3) = \\deg(p_4) = 1\\). Entre los polinizadores, \\(a_2\\) es quien más conexiones tiene, con \\(\\deg(a_2) = 3\\).\n\n\n\n\n\n\nTipInterpretación\n\n\n\n\\(a_2\\) es el polinizador más generalista (se conecta con 3 plantas). \\(p_3\\) y \\(p_4\\) son más vulnerables a la pérdida de su(s) socio(s) directo(s).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#centralidad-de-cercanía",
+    "href": "Sesion3.html#centralidad-de-cercanía",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "4.3 Centralidad de cercanía",
+    "text": "4.3 Centralidad de cercanía\n\n4.3.1 Centralidad de cercanía (Closeness centrality)\nIdea: un nodo es central si está “cerca” de todos los demás.\nEn un grafo conexo, definimos:\n\\[\nC_C(v)=\\frac{1}{\\sum_{u\\in V\\setminus\\{v\\}} d(v,u)}.\n\\]\nNormalización común:\n\\[\nC_C^{\\mathrm{norm}}(v)=\\frac{n-1}{\\sum_{u\\neq v} d(v,u)}\\in(0,1].\n\\]\n\n\n\n\n\n\nTipInterpretación (difusión)\n\n\n\nSi una perturbación (enfermedad, cambio ambiental) se propaga a través de interacciones, un nodo con alta cercanía puede verse afectado (o afectar) rápidamente a muchos otros vía efectos indirectos.\n\n\n\n\n4.3.2 ¿Y si el grafo no es conexo?\nSi el grafo tiene componentes desconectadas, algunas distancias son \\(\\infty\\), y \\(C_C\\) queda mal definida.\nAlternativa: cercanía armónica\n\\[\nC_{\\mathrm{harm}}(v)=\\sum_{u\\neq v}\\frac{1}{d(v,u)},\n\\]\ndonde por convención \\(1/\\infty=0\\).\nInterpretación: solo cuentan los nodos alcanzables, penalizando fuertemente distancias grandes.\n\n\n4.3.3 Ejemplo 2: cercanía en una red “estrella”\nConsiderar el grafo estrella \\(K_{1,3}\\): un nodo central conectado a tres hojas.\n\n\n\n\n\n\n\n\n\n\n\n\nDistancias\n\nDesde el centro: \\(d(c,1)=d(c,2)=d(c,3)=1\\).\nDesde una hoja (por ejemplo, el vértice 1): \\(d(1,c)=1\\), \\(d(1,2)=2\\), \\(d(1,3)=2\\).\n\n\n\nCálculo (normalizado, \\(n=4\\)):\n\\[\nC_C^{\\mathrm{norm}}(c)=\\frac{3}{1+1+1}=1,\\qquad\nC_C^{\\mathrm{norm}}(1)=\\frac{3}{1+2+2}=\\frac{3}{5}=0.6.\n\\]\n\n\n\n\n\n\nTipInterpretación\n\n\n\nEl centro es el punto desde el cual se llega más rápido al resto: en ecología, un “hub” puede acelerar la propagación de perturbaciones a través de la red.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#centralidad-de-intermediación",
+    "href": "Sesion3.html#centralidad-de-intermediación",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "4.4 Centralidad de intermediación",
+    "text": "4.4 Centralidad de intermediación\n\n4.4.1 Centralidad de intermediación (Betweenness)\nIdea: un nodo es central si aparece frecuentemente en caminos más cortos entre otros.\nSea \\(\\sigma_{st}\\) el número de caminos más cortos entre \\(s\\) y \\(t\\), y \\(\\sigma_{st}(v)\\) los que pasan por \\(v\\). En grafos no dirigidos es natural sumar sobre pares no ordenados:\n\\[\nC_B(v)=\\sum_{\\substack{s&lt;t\\\\ s\\neq v,\\ t\\neq v}} \\frac{\\sigma_{st}(v)}{\\sigma_{st}}.\n\\]\nNormalización común (no dirigida): dividir por \\((n-1)(n-2)/2\\).\n\n\n\n\n\n\nTipInterpretación (“conectores”)\n\n\n\nUna especie con alta intermediación puede conectar subcomunidades (módulos) o rutas de flujo (por ejemplo: movimiento de polen, transmisión de parásitos).\n\n\n\n\n4.4.2 Ejemplo 3: intermediación en una “corbata de moño”\nGrafo con dos triángulos que comparten el nodo 3:\n\n\n\n\n\n\n\n\n\n\n\n\nPaso 1: pares relevantes\nPara \\(C_B(3)\\), miramos pares \\((s,t)\\) con \\(s,t\\neq 3\\):\n\\[\n\\{1,2,4,5\\}\\Rightarrow \\binom{4}{2}=6\\text{ pares.}\n\\]\nPaso 2: caminos más cortos\n\nEntre \\(1\\) y \\(2\\): camino directo \\(1-2\\) (no pasa por 3).\nEntre \\(4\\) y \\(5\\): camino directo \\(4-5\\) (no pasa por 3).\nEntre \\(\\{1,2\\}\\) y \\(\\{4,5\\}\\): el camino más corto siempre pasa por 3.\n\n\n\nCálculo (contando pares no ordenados):\n\\[\nC_B(3)=1\\,(1\\leftrightarrow 4)+1\\,(1\\leftrightarrow 5)+1\\,(2\\leftrightarrow 4)+1\\,(2\\leftrightarrow 5)=4.\n\\]\nPara los nodos \\(1,2,4,5\\), la intermediación es 0 (no están “entre” otros pares).\n\n\n\n\n\n\nTipInterpretación ecológica\n\n\n\nEl nodo 3 es un conector entre dos “módulos”; su pérdida puede fragmentar la red, aun si otros nodos tienen grados similares dentro de su módulo.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#centralidad-de-vector-propio-y-pagerank",
+    "href": "Sesion3.html#centralidad-de-vector-propio-y-pagerank",
+    "title": "1  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "2.5 Centralidad de vector propio y PageRank",
+    "text": "2.5 Centralidad de vector propio y PageRank\n\n2.5.1 Centralidad de vector propio (Eigenvector centrality)\nIdea: “soy importante si mis vecinos son importantes”.\nBuscamos un vector de centralidades \\(x\\in\\mathbb{R}^n_{&gt;0}\\) tal que\n\\[\nx_i = \\frac{1}{\\lambda}\\sum_{j\\sim i} x_j.\n\\]\nEn forma matricial:\n\\[\nAx = \\lambda x.\n\\]\nSe usa el autovector dominante (asociado al mayor autovalor \\(\\lambda_{\\max}\\)).\n\n\n\n\n\n\nTipInterpretación ecológica\n\n\n\nNo basta tener muchas interacciones: importa con quién interactúas.\n\nConectarte a especies muy conectadas aumenta tu centralidad.\nCaptura un tipo de “posición en el núcleo” (core) de la red.\n\n\n\n\n\n2.5.2 Cálculo: método de potencias (intuición computacional)\nMétodo de potencias (power iteration):\n\nEmpieza con un vector positivo \\(x^{(0)}\\) (por ejemplo, todos unos).\nItera \\(x^{(k+1)} = A x^{(k)}\\).\nNormaliza en cada paso (por ejemplo, divide por \\(\\|x^{(k+1)}\\|\\)).\n\nBajo condiciones generales (grafo conexo), \\(x^{(k)}\\) converge al autovector dominante.\n\n\n\n\n\n\nNota¿Por qué esto tiene sentido?\n\n\n\nMultiplicar por \\(A\\) suma “influencia” de vecinos. Repetirlo acumula influencia a distancias mayores (vecinos de vecinos, etc.).\n\n\n\n\n2.5.3 Ejemplo 4: vector propio en la estrella \\(K_{1,3}\\)\nEn la estrella, por simetría todas las hojas tienen la misma centralidad.\nSea \\(x_c\\) la centralidad del centro y \\(x_\\ell\\) la de cada hoja.\nEcuaciones \\(Ax=\\lambda x\\):\n\nPara una hoja: \\(\\lambda x_\\ell = x_c\\) (solo vecina al centro).\nPara el centro: \\(\\lambda x_c = x_1+x_2+x_3 = 3x_\\ell\\).\n\nCombinando:\n\\[\n\\lambda(\\lambda x_\\ell)=3x_\\ell \\Rightarrow \\lambda^2=3 \\Rightarrow \\lambda=\\sqrt{3}.\n\\]\nEntonces \\(x_c=\\lambda x_\\ell = \\sqrt{3}\\,x_\\ell\\).\n\n\n\n\n\n\nTipInterpretación\n\n\n\nEl centro es más central no solo por su grado, sino porque concentra la “influencia” de todas las hojas.\n\n\n\n\n2.5.4 ¿Cuándo difieren estas métricas?\n\nGrado mira solo vecindad inmediata (radio 1).\nCercanía mira distancias a todos (geometría global).\nIntermediación mira control de rutas cortas (puentes/cuello de botella).\nVector propio mira influencia recursiva.\n\n\n\n\n\n\n\nTipEjemplo\n\n\n\nEn una red mutualista, una planta con muchas visitas (alto grado) puede tener baja intermediación si está dentro de un módulo denso; una especie “rara” con pocas interacciones puede conectar módulos (alta intermediación).\n\n\n\n\n2.5.5 Resumen comparativo (qué captura cada una)\n\n\n\n\n\n\n\n\nMétrica\nPregunta matemática\nLectura ecológica típica\n\n\n\n\nGrado \\(C_D\\)\n¿Cuántos vecinos directos tengo?\nGeneralismo / diversidad de socios; exposición directa.\n\n\nCercanía \\(C_C\\)\n¿Qué tan pequeña es mi distancia promedio al resto?\nAccesibilidad global; propagación rápida de perturbaciones/efectos indirectos.\n\n\nIntermediación \\(C_B\\)\n¿Cuántos caminos más cortos pasan por mí?\nConector entre módulos; “puente” funcional; control de flujo entre grupos.\n\n\nVector propio\n¿Estoy conectado a nodos conectados?\nPertenencia al núcleo; influencia recursiva; relevancia estructural.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#ejercicios-para-la-sesión",
+    "href": "Sesion3.html#ejercicios-para-la-sesión",
+    "title": "1  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "2.7 Ejercicios para la sesión",
+    "text": "2.7 Ejercicios para la sesión\n\n2.7.1 Ejercicio 1: grado en una matriz bipartita\nSea la siguiente matriz de incidencia (planta–polinizador):\n\\[\n\\begin{array}{c|cccc}\n   & a_1 & a_2 & a_3 & a_4\\\\ \\hline\np_1& 1   & 1   & 0   & 0\\\\\np_2& 0   & 1   & 1   & 0\\\\\np_3& 0   & 1   & 0   & 0\\\\\np_4& 0   & 0   & 1   & 1\n\\end{array}\n\\]\nActividad:\n\nCalcula el grado de cada planta y de cada polinizador.\nIdentifica especies generalistas y especialistas.\nDiscute: ¿qué sesgos de muestreo podrían inflar/deflacionar el grado observado?\n\n\n\n2.7.2 Ejercicio 2: cercanía en un camino\nConsiderar el camino de 5 vértices \\(1-2-3-4-5\\).\nActividad:\n\nConstruir la tabla de distancias \\(d(i,j)\\).\nCalcular \\(C_C^{\\mathrm{norm}}(i)\\) para cada vértice.\nInterpretar ecológicamente si estos vértices fueran especies en una cadena trófica simplificada (sin dirección).\n\n\n\n\n\n\n\nNotaNota\n\n\n\nEn un camino, el nodo central (aquí el 3) suele maximizar cercanía.\n\n\n\n\n2.7.3 Ejercicio 3: intermediación en un “puente”\nConsiderar el grafo formado por dos cuadrados unidos por un solo vértice:\nActividad:\n\nSin calcular todo, argumentar qué nodo(s) deben tener mayor \\(C_B\\).\nCalcular \\(C_B(5)\\) contando pares \\((s,t)\\) y caminos más cortos.\nInterpretar el rol de 5 como “conector” entre subredes.\n\n\n\n2.7.4 Ejercicio 4: vector propio por iteración\nSea el grafo con matriz de adyacencia\n\\[\nA=\\begin{pmatrix}\n0&1&1&0\\\\\n1&0&1&0\\\\\n1&1&0&1\\\\\n0&0&1&0\n\\end{pmatrix}\n\\]\nActividad:\n\nEmpezar con \\(x^{(0)}=(1,1,1,1)^\\top\\).\nCalcular \\(x^{(1)}=Ax^{(0)}\\) y \\(x^{(2)}=Ax^{(1)}\\).\nNormalizar (por ejemplo, dividir por el máximo) y comparar componentes.\n¿Qué nodo cree que tendrá mayor centralidad de vector propio? ¿Por qué?\n\n\n\n\n\n\n\nNotaNota\n\n\n\nEl nodo 3 conecta un “triángulo” con una hoja (4). Eso suele aumentar su influencia espectral.\n\n\n\n\n2.7.5 Ejercicio 5: comparar centralidades en una red ecológica\nTomar la red del Ejemplo 1 (planta–polinizador).\nActividad:\n\nCalcular \\(C_D\\) para todas las especies.\nCalcular \\(C_C^{\\mathrm{norm}}\\) para todas las especies (usa distancias en el grafo bipartito).\nSin hacer todos los cálculos, argumentar qué especie espera que tenga mayor \\(C_B\\).\nDiscutir: si eliminamos \\(a_2\\), ¿qué cambia en conectividad y en rutas cortas?\n\n\n\n\n\n\n\nTipSugerencia\n\n\n\nDibujar primero el grafo y detecta si hay “cuellos de botella” (nodos cuya eliminación desconecta muchos pares).\n\n\n\n\n2.7.6 Lecturas sugeridas\n\nFreeman, L. C. (1979). Centrality in social networks: Conceptual clarification. Social Networks.\nBorgatti, S. P. (2005). Centrality and network flow. Social Networks.\nNewman, M. E. J. (2010). Networks: An Introduction. (Capítulos de centralidad).\nBonacich, P. (1987). Power and centrality: a family of measures. American Journal of Sociology.\nPage, L., Brin, S., Motwani, R., & Winograd, T. (1999). The PageRank citation ranking: Bringing order to the web.\nDormann, C. F. et al. (2009). Indices, graphs and null models: analyzing bipartite ecological networks. The Open Ecology Journal.\n\n\n\n2.7.7 Apéndice: cálculo en R (igraph)\nPara una red (unimodal) en igraph, retomando la matriz de adyacencia del Ejercicio 4:\n\nlibrary(igraph)\n\nWarning: package 'igraph' was built under R version 4.2.3\n\nA &lt;- matrix(c(\n  0,1,1,0,\n  1,0,1,0,\n  1,1,0,1,\n  0,0,1,0\n), nrow = 4, byrow = TRUE)\n\ng &lt;- graph_from_adjacency_matrix(A, mode = \"undirected\")\n\ndegree(g)\n\n[1] 2 2 3 1\n\ncloseness(g, normalized = TRUE)\n\n[1] 0.75 0.75 1.00 0.60\n\nbetweenness(g, normalized = TRUE)\n\n[1] 0.0000000 0.0000000 0.6666667 0.0000000\n\neigen_centrality(g)$vector\n\n[1] 0.8546377 0.8546377 1.0000000 0.4608111\n\npage_rank(g, damping = 0.85)$vector\n\n[1] 0.2459278 0.2459278 0.3667359 0.1414085\n\n\nNota: para redes bipartitas, se recomienda analizar el grafo bipartito sin proyectar (cuando sea posible) y comparar con proyecciones con cuidado.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#cuándo-difieren-estas-métricas",
+    "href": "Sesion3.html#cuándo-difieren-estas-métricas",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "4.5 ¿Cuándo difieren estas métricas?",
+    "text": "4.5 ¿Cuándo difieren estas métricas?\n\nGrado mira solo vecindad inmediata (radio 1).\nCercanía mira distancias a todos (geometría global).\nIntermediación mira control de rutas cortas (puentes/cuello de botella).\nVector propio mira influencia recursiva.\n\n\n\n\n\n\n\nTipEjemplo\n\n\n\nEn una red mutualista, una planta con muchas visitas (alto grado) puede tener baja intermediación si está dentro de un módulo denso; una especie “rara” con pocas interacciones puede conectar módulos (alta intermediación).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion3.html#resumen-comparativo-qué-captura-cada-una",
+    "href": "Sesion3.html#resumen-comparativo-qué-captura-cada-una",
+    "title": "3  Sesión 3: Métricas y análisis de redes: Centralidad",
+    "section": "4.6 Resumen comparativo (qué captura cada una)",
+    "text": "4.6 Resumen comparativo (qué captura cada una)\n\n\n\n\n\n\n\n\nMétrica\nPregunta matemática\nLectura ecológica típica\n\n\n\n\nGrado \\(C_D\\)\n¿Cuántos vecinos directos tengo?\nGeneralismo / diversidad de socios; exposición directa.\n\n\nCercanía \\(C_C\\)\n¿Qué tan pequeña es mi distancia promedio al resto?\nAccesibilidad global; propagación rápida de perturbaciones/efectos indirectos.\n\n\nIntermediación \\(C_B\\)\n¿Cuántos caminos más cortos pasan por mí?\nConector entre módulos; “puente” funcional; control de flujo entre grupos.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sesión 3: Métricas y análisis de redes: Centralidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html",
+    "href": "Sesion4.html",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "",
+    "text": "4.1 Temas",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#temas",
+    "href": "Sesion4.html#temas",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "",
+    "text": "Repaso: red bipartita, matriz de interacción, caminos y centralidades vistas.\nConectancia: fracción de interacciones potenciales que se observan.\nAnidamiento: especialistas como subconjuntos de generalistas; índice \\(\\mathrm{NODF}\\).\nEspecialización cuantitativa: significado e interpretación de \\(H_2'\\).\nModularidad: bloques o módulos de interacción preferente.\n\n\n\n\n\n\n\nTip\n\n\n\nHasta ahora describimos especies individuales; ahora buscamos describir la arquitectura de la red completa.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#red-bipartita-y-matriz-de-interacción",
+    "href": "Sesion4.html#red-bipartita-y-matriz-de-interacción",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "4.2 Red bipartita y matriz de interacción",
+    "text": "4.2 Red bipartita y matriz de interacción\nUna red bipartita separa las especies en dos clases, por ejemplo plantas y polinizadores. La información puede codificarse como una matriz\n\\[\nB\\in \\mathbb{R}_{\\ge 0}^{p\\times q},\n\\]\ncon \\(B_{ij}=0\\) si no hay interacción y \\(B_{ij}&gt;0\\) si la interacción se observa.\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{array}{c|ccc}\n   & a_1 & a_2 & a_3 \\\\ \\hline\np_1& 1   & 1   & 0\\\\\np_2& 0   & 1   & 1\\\\\np_3& 0   & 1   & 0\\\\\np_4& 0   & 0   & 1\n\\end{array}\n\\]\n\n\n\n\n\n\n\n\nTip\n\n\n\nEn redes binarias, la matriz registra presencia/ausencia. En redes ponderadas, \\(B_{ij}\\) puede representar frecuencia, biomasa o número de eventos.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#caminos-distancias-y-conectividad",
+    "href": "Sesion4.html#caminos-distancias-y-conectividad",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "4.3 Caminos, distancias y conectividad",
+    "text": "4.3 Caminos, distancias y conectividad\nCamino: sucesión de vértices \\(v_0,v_1,\\dots,v_k\\) tal que cada par consecutivo está unido por una arista.\nDistancia geodésica: \\[\nd(u,v)=\\min\\{k:\\text{existe un camino de longitud }k\\text{ entre }u\\text{ y }v\\}.\n\\]\n\n\n\n\n\n\nNotaConectividad\n\n\n\nUn grafo es conexo si todo par de vértices puede unirse por un camino. Si no lo es, se descompone en componentes conexas.\n\n\n\nLa cercanía usa sumas de distancias al resto de la red.\nLa intermediación cuenta cuántas geodésicas pasan por un nodo.\nEstas ideas reaparecen al distinguir entre una red densa, anidada o modular.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#medidas-de-centralidad",
+    "href": "Sesion4.html#medidas-de-centralidad",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "4.4 Medidas de centralidad",
+    "text": "4.4 Medidas de centralidad\n\n\n\n\n\n\n\n\nMétrica\nDefinición típica\nLectura ecológica\n\n\n\n\nGrado \\(C_D(v)\\)\n\\(\\deg(v)\\)\nNúmero de vecinos directos; generalismo o especialización local.\n\n\nCercanía \\(C_C(v)\\)\nInverso de la distancia total al resto\nAccesibilidad global; rapidez potencial de propagación.\n\n\nIntermediación \\(C_B(v)\\)\nFracción de geodésicas que pasan por \\(v\\)\nRol de puente; conexión entre grupos o rutas cortas.\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEstas medidas son locales: asignan un valor a cada especie. Lo que sigue son medidas globales: asignan un valor a la red completa.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#aspectos-sobre-la-red",
+    "href": "Sesion4.html#aspectos-sobre-la-red",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.1 Aspectos sobre la red…",
+    "text": "5.1 Aspectos sobre la red…\n\n\n\n\n\n\n\nMétrica\nPregunta estructural\n\n\n\n\nConectancia \\(\\mathcal{C}\\)\n¿Qué fracción de las interacciones posibles está presente?\n\n\nAnidamiento \\(\\mathrm{NODF}\\)\n¿Los socios de las especies especialistas son subconjuntos de los de las generalistas?\n\n\nEspecialización \\(H_2'\\)\nEn una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales?\n\n\nModularidad \\(Q_B\\)\n¿Existen grupos con interacción preferente hacia adentro del mismo módulo?\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nDos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular. Por eso ninguna métrica por sí sola agota la estructura de la red.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#conectancia",
+    "href": "Sesion4.html#conectancia",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.2 Conectancia",
+    "text": "5.2 Conectancia\nMide la proporción de interacciones potenciales que sí aparecen en la red.\n\n\n\n\n\n\nNotaDefinición\n\n\n\nPara una matriz binaria \\(B\\in\\{0,1\\}^{p\\times q}\\), la conectancia es \\[\n\\mathcal{C} = \\frac{|E|}{p\\,q}=\\frac{1}{p\\,q}\\sum_{i=1}^{p}\\sum_{j=1}^{q} B_{ij}\\in[0,1].\n\\]\n\n\n\n\\(\\mathcal{C}=1\\): todas las interacciones posibles están presentes.\n\\(\\mathcal{C}\\) cercana a 0: la red es muy dispersa.\nEn redes ponderadas, la conectancia suele calcularse sobre la versión binarizada de la matriz.\n\n\n\n\n\n\n\nTip\n\n\n\nLa conectancia captura la densidad de enlaces de la red bipartita.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#ejemplo-de-conectancia",
+    "href": "Sesion4.html#ejemplo-de-conectancia",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.3 Ejemplo de conectancia",
+    "text": "5.3 Ejemplo de conectancia\nPara la matriz \\[\n\\begin{array}{c|ccc}\n   & a_1 & a_2 & a_3 \\\\ \\hline\np_1& 1   & 1   & 0\\\\\np_2& 0   & 1   & 1\\\\\np_3& 0   & 1   & 0\\\\\np_4& 0   & 0   & 1\n\\end{array}\n\\] se tiene:\n\n\\(p=4\\) plantas,\n\\(q=3\\) polinizadores,\n\\(|E|=6\\) interacciones observadas.\n\n\\[\n\\mathcal{C}=\\frac{|E|}{p\\,q}=\\frac{6}{4\\cdot 3}=\\frac{6}{12}=0.5.\n\\]\n\n\n\n\n\n\nNota\n\n\n\nSe realiza la mitad de las interacciones potenciales planta–polinizador de esta red.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#conectancia-fortalezas-y-limitaciones",
+    "href": "Sesion4.html#conectancia-fortalezas-y-limitaciones",
+    "title": "1  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.4 Conectancia: Fortalezas y limitaciones",
+    "text": "2.4 Conectancia: Fortalezas y limitaciones\n\nSí dice: cuán densa es la red.\nNo dice: si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).\nNo distingue: una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas.\nDebe interpretarse con cuidado: depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.\n\n\n\n\n\n\n\nNota\n\n\n\nLa conectancia es una buena primera descripción, pero no basta para caracterizar la arquitectura interna de una red.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#anidamiento",
+    "href": "Sesion4.html#anidamiento",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.5 Anidamiento",
+    "text": "5.5 Anidamiento\nUna red está anidada si, al ordenar filas y columnas por grado decreciente, los socios de las especies especialistas tienden a ser subconjuntos de los socios de las generalistas.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nLas especies especialistas interactúan con subconjuntos de socios que también son usados por las especies más generalistas.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#nodf",
+    "href": "Sesion4.html#nodf",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.6 NODF",
+    "text": "5.6 NODF\nSea \\(B\\in\\{0,1\\}^{p\\times q}\\) una matriz ordenada por grado decreciente en filas y columnas.\n\n\nFilas\n\nGrados: \\(k_i=\\sum_{\\alpha=1}^{q} B_{i\\alpha}\\).\nSolapamiento entre filas \\(i&lt;j\\): \\[\nO^{(r)}_{ij}=\\sum_{\\alpha=1}^{q} B_{i\\alpha}B_{j\\alpha}.\n\\]\nContribución anidada del par: \\[\nN^{(r)}_{ij}=\n\\begin{cases}\n100\\,\\dfrac{O^{(r)}_{ij}}{k_j}, & k_i&gt;k_j,\\\\[0.6ex]\n0, & k_i\\le k_j.\n\\end{cases}\n\\]\n\n\nColumnas\n\nGrados: \\(h_{\\alpha}=\\sum_{i=1}^{p} B_{i\\alpha}\\).\nSolapamiento entre columnas \\(\\alpha&lt;\\beta\\): \\[\nO^{(c)}_{\\alpha\\beta}=\\sum_{i=1}^{p} B_{i\\alpha}B_{i\\beta}.\n\\]\nContribución anidada del par: \\[\nN^{(c)}_{\\alpha\\beta}=\n\\begin{cases}\n100\\,\\dfrac{O^{(c)}_{\\alpha\\beta}}{h_{\\beta}}, & h_{\\alpha}&gt;h_{\\beta},\\\\[0.6ex]\n0, & h_{\\alpha}\\le h_{\\beta}.\n\\end{cases}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#índice-nodf-global",
+    "href": "Sesion4.html#índice-nodf-global",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.7 Índice NODF Global",
+    "text": "5.7 Índice NODF Global\nEl índice NODF (Nestedness based on Overlap and Decreasing Fill) promedia las contribuciones de filas y columnas: \\[\n\\mathrm{NODF}=\n\\frac{\\displaystyle\\sum_{i&lt;j} N^{(r)}_{ij}+\\sum_{\\alpha&lt;\\beta} N^{(c)}_{\\alpha\\beta}}\n{\\displaystyle \\binom{p}{2}+\\binom{q}{2}}\n\\in[0,100].\n\\]\n\n\\(\\mathrm{NODF}=100\\): anidamiento perfecto.\n\\(\\mathrm{NODF}=0\\): ausencia de solapamiento anidado entre pares con grado decreciente.\n\n\n\n\n\n\n\nTip\n\n\n\nMide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#especialización-cuantitativa-h_2",
+    "href": "Sesion4.html#especialización-cuantitativa-h_2",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.8 3.3 Especialización cuantitativa (\\(H_2'\\))",
+    "text": "2.8 3.3 Especialización cuantitativa (\\(H_2'\\))\nLa conectancia ignora la intensidad de los enlaces. Para capturar especialización a nivel de toda la red necesitamos una medida ponderada.\n\n\nMisma disponibilidad, uso difuso \\[\nW_1=\n\\begin{pmatrix}\n5 & 5\\\\\n5 & 5\n\\end{pmatrix}\n\\]\n\nMisma disponibilidad, uso selectivo \\[\nW_2=\n\\begin{pmatrix}\n10 & 0\\\\\n0 & 10\n\\end{pmatrix}\n\\]\n\n\nEn ambas matrices, los totales por fila y por columna son los mismos. La diferencia es cómo se distribuyen las interacciones: en \\(W_2\\) cada especie concentra su actividad en un solo socio.\n\n\n\n\n\n\nNotaConclusión\n\n\n\n\\(W_2\\) representa una red más especializada que \\(W_1\\), aunque sus marginales coincidan.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#h_2-y-h_2",
+    "href": "Sesion4.html#h_2-y-h_2",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.9 \\(H_2\\) y \\(H_2'\\)",
+    "text": "2.9 \\(H_2\\) y \\(H_2'\\)\nSea \\(W=(w_{ij})\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\) una matriz ponderada, y sea \\[\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} w_{ij},\n\\qquad\np_{ij}=\\frac{w_{ij}}{m}.\n\\]\nLa diversidad bidimensional de Shannon es \\[\nH_2=-\\sum_{i=1}^{p}\\sum_{j=1}^{q} p_{ij}\\ln(p_{ij}),\n\\] con la convención \\(0\\ln 0=0\\).\nEl índice estandarizado de especialización de red es \\[\nH_2'=\\frac{H_{2,\\max}-H_2}{H_{2,\\max}-H_{2,\\min}}\\in[0,1],\n\\] donde \\(H_{2,\\min}\\) y \\(H_{2,\\max}\\) son los extremos de \\(H_2\\) compatibles con los totales marginales observados.\n\n\n\n\n\n\nTipInterpretación\n\n\n\n\\(H_2'\\approx 0\\): baja especialización de red.\n\\(H_2'\\approx 1\\): alta especialización o fuerte partición de las interacciones.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#h_2-fortalezas-y-limitaciones",
+    "href": "Sesion4.html#h_2-fortalezas-y-limitaciones",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.10 \\(H_2'\\): Fortalezas y limitaciones",
+    "text": "2.10 \\(H_2'\\): Fortalezas y limitaciones\n\n\\(H_2'\\) es una medida global y ponderada: utiliza frecuencias de interacción, no solo presencia/ausencia.\nSu estandarización permite comparar redes con distintos marginales, evitando confundir especialización con abundancia o disponibilidad total.\nNo debe interpretarse como una medida de densidad: dos redes con la misma conectancia pueden tener valores muy distintos de \\(H_2'\\).\n\n\n\n\n\n\n\nNota\n\n\n\nSu interpretación ecológica es más informativa en matrices cuantitativas. En matrices puramente binarias se pierde justamente la parte que hace a \\(H_2'\\) interesante: la distribución de intensidades.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#modularidad",
+    "href": "Sesion4.html#modularidad",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.11 3.4 Modularidad",
+    "text": "2.11 3.4 Modularidad\nUna red es modular si puede separarse en módulos o bloques de especies con interacción preferente entre sí y relativamente pocas interacciones entre módulos.\n\n\n[Espacio para el código TikZ]\n\n\\[\n\\begin{array}{c|cccc}\n   & a_1 & a_2 & a_3 & a_4 \\\\ \\hline\np_1& 1 & 1 & 0 & 0\\\\\np_2& 1 & 1 & 0 & 0\\\\\np_3& 0 & 0 & 1 & 1\\\\\np_4& 0 & 0 & 1 & 1\n\\end{array}\n\\]\n\n\n\n\n\n\n\n\nTip\n\n\n\nLos módulos pueden reflejar compartimentación funcional, restricciones de rasgos, historia evolutiva o segregación espacial/temporal.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#modularidad-bipartita-de-barber",
+    "href": "Sesion4.html#modularidad-bipartita-de-barber",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.12 Modularidad bipartita de Barber",
+    "text": "2.12 Modularidad bipartita de Barber\nSea \\(B=(B_{ij})\\in\\{0,1\\}^{p\\times q}\\) la matriz bipartita, con \\[\nk_i=\\sum_{j=1}^{q} B_{ij},\n\\qquad\nd_j=\\sum_{i=1}^{p} B_{ij},\n\\qquad\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} B_{ij}.\n\\]\nSi las filas se asignan a módulos \\(g_i\\) y las columnas a módulos \\(h_j\\), la modularidad bipartita es \\[\nQ_B=\\frac{1}{m}\\sum_{i=1}^{p}\\sum_{j=1}^{q}\n\\left(B_{ij}-\\frac{k_i d_j}{m}\\right)\\delta(g_i,h_j),\n\\] donde \\(\\delta(g_i,h_j)=1\\) si la fila \\(i\\) y la columna \\(j\\) están en el mismo módulo, y 0 en otro caso.\n\n\n\n\n\n\nNota\n\n\n\n\\(Q_B\\) compara las interacciones observadas dentro de módulos con las esperadas bajo un modelo nulo que preserva los grados de filas y columnas.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#modularidad-fortalezas-y-precauciones",
+    "href": "Sesion4.html#modularidad-fortalezas-y-precauciones",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.13 Modularidad: Fortalezas y precauciones",
+    "text": "2.13 Modularidad: Fortalezas y precauciones\n\n\\(Q_B\\) no es una propiedad de la matriz sin más: depende de una partición en módulos y de cómo se la optimiza.\nUn valor alto de \\(Q_B\\) indica exceso de interacciones intra-módulo respecto al nulo basado en grados.\nLa modularidad y el anidamiento describen patrones distintos: una red puede ser principalmente modular, principalmente anidada, o presentar señales de ambos.\n\n\n\n\n\n\n\nNota\n\n\n\nEn redes bipartitas, la modularidad debe calcularse sobre la estructura original de dos modos. Las proyecciones a un solo modo introducen enlaces inducidos por vecinos compartidos, lo que puede alterar artificialmente la detección de módulos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#anidamiento-y-modularidad",
+    "href": "Sesion4.html#anidamiento-y-modularidad",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.14 Anidamiento y modularidad",
+    "text": "2.14 Anidamiento y modularidad\n\n\nAnidamiento\n[Espacio para el código TikZ]\nEspecialistas \\(\\subset\\) generalistas. Patrón triangular tras ordenar por grado.\n\nModularidad\n[Espacio para el código TikZ]\nBloques densos separados por pocos enlaces entre bloques.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\\(\\mathrm{NODF}\\) mira subconjuntos y solapamiento. \\(Q_B\\) mira bloques y exceso intra-módulo frente a un nulo.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#resumen-de-métricas-globales",
+    "href": "Sesion4.html#resumen-de-métricas-globales",
+    "title": "Sesión 3: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "2.15 Resumen de Métricas Globales",
+    "text": "2.15 Resumen de Métricas Globales\n\n\n\n\n\n\n\n\n\nMétrica\nRango\nMide\nTipo de dato\n\n\n\n\nConectancia \\(\\mathcal{C}\\)\n\\([0,1]\\)\nDensidad de interacciones realizadas\nBinario\n\n\nNODF\n\\([0,100]\\)\nSolapamiento anidado con grado decreciente\nBinario\n\n\nEspecialización \\(H_2'\\)\n\\([0,1]\\)\nEspecialización cuantitativa de la red\nPonderado\n\n\nModularidad \\(Q_B\\)\nVariable\nExceso de enlaces intra-módulo respecto a un nulo de grados\nBinario / bipartito\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEstas métricas son complementarias: ninguna resume por sí sola toda la organización de una red bipartita ecológica.\n\n\n```eof\n¡Avísame si prefieres ir pegando los bloques de TikZ uno por uno después para revisarlos, o si quieres avanzar con otra sesión del seminario!",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion4.html#conectancia-1",
+    "href": "Sesion4.html#conectancia-1",
+    "title": "4  Sesión 4: Métricas globales de red: Conectancia, anidamiento, \\(H_2'\\) y modularidad",
+    "section": "5.4 Conectancia",
+    "text": "5.4 Conectancia\n\nSí dice: cuán densa es la red.\nNo dice: si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).\nNo distingue: una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas.\nDebe interpretarse con cuidado: depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.\n\n\n\n\n\n\n\nNota\n\n\n\nLa conectancia es una buena primera descripción, pero no basta para caracterizar la arquitectura interna de una red.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html",
+    "href": "Sesion5.html",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "",
+    "text": "5.1 NODF ponderado (weighted NODF)\nSea \\(W=(w_{ij})\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\) una matriz de interacciones. Definimos la matriz binaria asociada \\[\nB=(b_{ij}),\\qquad b_{ij}=\\mathbf{1}_{\\{w_{ij}&gt;0\\}}.\n\\]\nOrdenamiento. Para calcular el NODF ponderado, primero se ordenan filas y columnas por número de socios en orden decreciente; en caso de empate, se rompe el empate por la suma de pesos de la fila o columna.\nContribución de un par de filas. Si las filas \\(i\\) y \\(j\\) satisfacen \\[\nk_i^{(r)} &gt; k_j^{(r)} &gt; 0,\n\\qquad\nk_i^{(r)}=\\sum_{\\ell=1}^q b_{i\\ell},\n\\] entonces su contribución ponderada es \\[\nN_{ij}^{(r,w)}\n=\n\\frac{1}{k_j^{(r)}}\n\\sum_{\\ell=1}^q\n\\mathbf{1}_{\\{\\,w_{i\\ell}&gt;w_{j\\ell}&gt;0\\,\\}}.\n\\]\nAnálogamente, para columnas \\(u,v\\) con \\[\nk_u^{(c)} &gt; k_v^{(c)} &gt; 0,\n\\] se define \\[\nN_{uv}^{(c,w)}\n=\n\\frac{1}{k_v^{(c)}}\n\\sum_{m=1}^p\n\\mathbf{1}_{\\{\\,w_{mu}&gt;w_{mv}&gt;0\\,\\}}.\n\\]\nÍndice global. \\[\n\\mathrm{WNODF}\n=\n100\\,\n\\frac{\n\\sum_{i&lt;j} N_{ij}^{(r,w)}+\\sum_{u&lt;v} N_{uv}^{(c,w)}\n}{\n\\binom{p}{2}+\\binom{q}{2}\n}.\n\\]\nEl valor es grande cuando, además del patrón anidado binario, las especies más generalistas tienden a tener interacciones más intensas que las menos generalistas sobre los socios que comparten.\nEl WNODF es la versión cuantitativa del NODF: combina la idea de solapamiento entre socios con la condición de decreasing fill, pero incorporando además la intensidad de las interacciones.\nImportante. \\[\n\\mathrm{WNODF}(W)\\neq \\mathrm{NODF}(\\mathbf{1}_{\\{W&gt;0\\}})\n\\] en general. Es decir, no se obtiene simplemente binarizando la matriz y calculando luego el NODF usual.\nEl WNODF es alto cuando:\nEn la implementación usada por bipartite, el cálculo se apoya en vegan::nestednodf: la matriz se ordena por frecuencias marginales (y, en la versión ponderada, los empates se rompen por abundancia total).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#nodf-ponderado-weighted-nodf",
+    "href": "Sesion5.html#nodf-ponderado-weighted-nodf",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "",
+    "text": "las especies con menos socios interactúan con subconjuntos de los socios de las más generalistas; y\nsobre esos socios compartidos, las especies más generalistas tienden a presentar mayores pesos de interacción.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#bipartite-conectancia-y-nodf",
+    "href": "Sesion5.html#bipartite-conectancia-y-nodf",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.2 bipartite: conectancia y NODF",
+    "text": "5.2 bipartite: conectancia y NODF\n\n\n\nMétrica\nFunción de R\n\n\n\n\nConectancia\nnetworklevel(web, index='connectance')\n\n\n\\(\\mathrm{NODF}\\)\nnetworklevel(web, index='NODF')\n\n\nNODF ponderado\nnetworklevel(web, index='weighted NODF')\n\n\n\n\n\n\n\n\n\nNota\n\n\n\n\\(\\mathrm{NODF}\\) en bipartite se evalúa sobre la matriz ordenada por decreasing fill.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#ejemplos",
+    "href": "Sesion5.html#ejemplos",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.3 Ejemplos",
+    "text": "1.3 Ejemplos",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#nodf-ejemplos.",
+    "href": "Sesion5.html#nodf-ejemplos.",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.4 NODF: Ejemplos.",
+    "text": "1.4 NODF: Ejemplos.\n\n\nAnidamiento perfecto \\[\n\\begin{pmatrix}\n1&1&1\\\\\n1&1&0\\\\\n1&0&0\n\\end{pmatrix}\n\\] \\[\n\\mathrm{NODF}=100\n\\] Cada par admisible comparte exactamente los contactos del miembro menos conectado.\n\nIdentidad / permutación \\[\n\\begin{pmatrix}\n1&0&0\\\\\n0&1&0\\\\\n0&0&1\n\\end{pmatrix}\n\\] \\[\n\\mathrm{NODF}=0\n\\] No aparecen subconjuntos: cada especialista usa un socio distinto.\n\nMatriz llena \\[\n\\begin{pmatrix}\n1&1&1\\\\\n1&1&1\\\\\n1&1&1\n\\end{pmatrix}\n\\] \\[\n\\text{NODF no está definido}\n\\] No existe decreasing fill: todos los grados de filas y columnas son iguales, de modo que no hay pares comparables para el cálculo del índice.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\\(\\mathrm{NODF}\\) debe alcanzar 100 en la triangular perfecta y 0 en una permutación sin solapamiento anidado.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#nodf-limitaciones-y-casos-degenerados",
+    "href": "Sesion5.html#nodf-limitaciones-y-casos-degenerados",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.4 NODF: limitaciones y casos degenerados",
+    "text": "5.4 NODF: limitaciones y casos degenerados\n\nSi \\(p&lt;2\\) o \\(q&lt;2\\), no existen pares de filas o columnas que comparar.\nSi la matriz es vacía o completamente llena, el índice deja de ser útil como descriptor de anidamiento.\nSi muchas filas o columnas tienen el mismo grado, esas parejas no aportan por la condición de decreasing fill; la métrica puede subestimar estructura.\nEn matrices cuantitativas conviene distinguir entre NODF binario y NODF ponderado; no responden exactamente a la misma pregunta.\n\n\n\n\n\n\n\nTipEn R\n\n\n\nnetworklevel(web, index='NODF') calcula el NODF binario global.\nnetworklevel(web, index='weighted NODF') agrega la versión ponderada.\nSi la matriz ponderada está llena y se quiere explotar el orden por abundancia, el complemento es nest.smdm(web, weighted=TRUE, decreasing='abund').",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#especialización-cuantitativa-h_2",
+    "href": "Sesion5.html#especialización-cuantitativa-h_2",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.5 3.3 Especialización cuantitativa (\\(H_2'\\))",
+    "text": "1.5 3.3 Especialización cuantitativa (\\(H_2'\\))\nLa conectancia ignora la intensidad de los enlaces. Para capturar especialización a nivel de toda la red necesitamos una medida ponderada.\n\n\nMisma disponibilidad, uso difuso \\[\nW_1=\n\\begin{pmatrix}\n5 & 5\\\\\n5 & 5\n\\end{pmatrix}\n\\]\n\nMisma disponibilidad, uso selectivo \\[\nW_2=\n\\begin{pmatrix}\n10 & 0\\\\\n0 & 10\n\\end{pmatrix}\n\\]\n\n\nEn ambas matrices, los totales por fila y por columna son los mismos. La diferencia es cómo se distribuyen las interacciones: en \\(W_2\\) cada especie concentra su actividad en un solo socio.\n\n\n\n\n\n\nNotaConclusión\n\n\n\n\\(W_2\\) representa una red más especializada que \\(W_1\\), aunque sus marginales coincidan.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#h_2-y-h_2",
+    "href": "Sesion5.html#h_2-y-h_2",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.6 \\(H_2\\) y \\(H_2'\\)",
+    "text": "1.6 \\(H_2\\) y \\(H_2'\\)\nSea \\(W=(w_{ij})\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\) una matriz ponderada, y sea \\[\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} w_{ij},\n\\qquad\np_{ij}=\\frac{w_{ij}}{m}.\n\\]\nLa diversidad bidimensional de Shannon es \\[\nH_2=-\\sum_{i=1}^{p}\\sum_{j=1}^{q} p_{ij}\\ln(p_{ij}),\n\\] con la convención \\(0\\ln 0=0\\).\nEl índice estandarizado de especialización de red es \\[\nH_2'=\\frac{H_{2,\\max}-H_2}{H_{2,\\max}-H_{2,\\min}}\\in[0,1],\n\\] donde \\(H_{2,\\min}\\) y \\(H_{2,\\max}\\) son los extremos de \\(H_2\\) compatibles con los totales marginales observados.\n\n\n\n\n\n\nTipInterpretación\n\n\n\n\\(H_2'\\approx 0\\): baja especialización de red.\n\\(H_2'\\approx 1\\): alta especialización o fuerte partición de las interacciones.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#h_2-fortalezas-y-limitaciones",
+    "href": "Sesion5.html#h_2-fortalezas-y-limitaciones",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.7 \\(H_2'\\): Fortalezas y limitaciones",
+    "text": "1.7 \\(H_2'\\): Fortalezas y limitaciones\n\n\\(H_2'\\) es una medida global y ponderada: utiliza frecuencias de interacción, no solo presencia/ausencia.\nSu estandarización permite comparar redes con distintos marginales, evitando confundir especialización con abundancia o disponibilidad total.\nNo debe interpretarse como una medida de densidad: dos redes con la misma conectancia pueden tener valores muy distintos de \\(H_2'\\).\n\n\n\n\n\n\n\nNota\n\n\n\nSu interpretación ecológica es más informativa en matrices cuantitativas. En matrices puramente binarias se pierde justamente la parte que hace a \\(H_2'\\) interesante: la distribución de intensidades.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#modularidad",
+    "href": "Sesion5.html#modularidad",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.8 3.4 Modularidad",
+    "text": "1.8 3.4 Modularidad\nUna red es modular si puede separarse en módulos o bloques de especies con interacción preferente entre sí y relativamente pocas interacciones entre módulos.\n\n\n[Espacio para el código TikZ]\n\n\\[\n\\begin{array}{c|cccc}\n   & a_1 & a_2 & a_3 & a_4 \\\\ \\hline\np_1& 1 & 1 & 0 & 0\\\\\np_2& 1 & 1 & 0 & 0\\\\\np_3& 0 & 0 & 1 & 1\\\\\np_4& 0 & 0 & 1 & 1\n\\end{array}\n\\]\n\n\n\n\n\n\n\n\nTip\n\n\n\nLos módulos pueden reflejar compartimentación funcional, restricciones de rasgos, historia evolutiva o segregación espacial/temporal.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#modularidad-bipartita-de-barber",
+    "href": "Sesion5.html#modularidad-bipartita-de-barber",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.9 Modularidad bipartita de Barber",
+    "text": "1.9 Modularidad bipartita de Barber\nSea \\(B=(B_{ij})\\in\\{0,1\\}^{p\\times q}\\) la matriz bipartita, con \\[\nk_i=\\sum_{j=1}^{q} B_{ij},\n\\qquad\nd_j=\\sum_{i=1}^{p} B_{ij},\n\\qquad\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} B_{ij}.\n\\]\nSi las filas se asignan a módulos \\(g_i\\) y las columnas a módulos \\(h_j\\), la modularidad bipartita es \\[\nQ_B=\\frac{1}{m}\\sum_{i=1}^{p}\\sum_{j=1}^{q}\n\\left(B_{ij}-\\frac{k_i d_j}{m}\\right)\\delta(g_i,h_j),\n\\] donde \\(\\delta(g_i,h_j)=1\\) si la fila \\(i\\) y la columna \\(j\\) están en el mismo módulo, y 0 en otro caso.\n\n\n\n\n\n\nNota\n\n\n\n\\(Q_B\\) compara las interacciones observadas dentro de módulos con las esperadas bajo un modelo nulo que preserva los grados de filas y columnas.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#modularidad-fortalezas-y-precauciones",
+    "href": "Sesion5.html#modularidad-fortalezas-y-precauciones",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.10 Modularidad: Fortalezas y precauciones",
+    "text": "1.10 Modularidad: Fortalezas y precauciones\n\n\\(Q_B\\) no es una propiedad de la matriz sin más: depende de una partición en módulos y de cómo se la optimiza.\nUn valor alto de \\(Q_B\\) indica exceso de interacciones intra-módulo respecto al nulo basado en grados.\nLa modularidad y el anidamiento describen patrones distintos: una red puede ser principalmente modular, principalmente anidada, o presentar señales de ambos.\n\n\n\n\n\n\n\nNota\n\n\n\nEn redes bipartitas, la modularidad debe calcularse sobre la estructura original de dos modos. Las proyecciones a un solo modo introducen enlaces inducidos por vecinos compartidos, lo que puede alterar artificialmente la detección de módulos.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#anidamiento-y-modularidad",
+    "href": "Sesion5.html#anidamiento-y-modularidad",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.11 Anidamiento y modularidad",
+    "text": "1.11 Anidamiento y modularidad\n\n\nAnidamiento\n[Espacio para el código TikZ]\nEspecialistas \\(\\subset\\) generalistas. Patrón triangular tras ordenar por grado.\n\nModularidad\n[Espacio para el código TikZ]\nBloques densos separados por pocos enlaces entre bloques.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\\(\\mathrm{NODF}\\) mira subconjuntos y solapamiento. \\(Q_B\\) mira bloques y exceso intra-módulo frente a un nulo.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#resumen-de-métricas-globales",
+    "href": "Sesion5.html#resumen-de-métricas-globales",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.12 Resumen de Métricas Globales",
+    "text": "1.12 Resumen de Métricas Globales\n\n\n\n\n\n\n\n\n\nMétrica\nRango\nMide\nTipo de dato\n\n\n\n\nConectancia \\(\\mathcal{C}\\)\n\\([0,1]\\)\nDensidad de interacciones realizadas\nBinario\n\n\nNODF\n\\([0,100]\\)\nSolapamiento anidado con grado decreciente\nBinario\n\n\nEspecialización \\(H_2'\\)\n\\([0,1]\\)\nEspecialización cuantitativa de la red\nPonderado\n\n\nModularidad \\(Q_B\\)\nVariable\nExceso de enlaces intra-módulo respecto a un nulo de grados\nBinario / bipartito\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEstas métricas son complementarias: ninguna resume por sí sola toda la organización de una red bipartita ecológica.\n\n\n```eof\n–&gt;",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#ejemplos-nodf",
+    "href": "Sesion5.html#ejemplos-nodf",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.3 Ejemplos: NODF",
+    "text": "5.3 Ejemplos: NODF\n\n\nAnidamiento perfecto \\[\n\\begin{pmatrix}\n1&1&1\\\\\n1&1&0\\\\\n1&0&0\n\\end{pmatrix}\n\\] \\[\n\\mathrm{NODF}=100\n\\] Cada par admisible comparte exactamente los contactos del miembro menos conectado.\n\nIdentidad / permutación \\[\n\\begin{pmatrix}\n1&0&0\\\\\n0&1&0\\\\\n0&0&1\n\\end{pmatrix}\n\\] \\[\n\\mathrm{NODF}=0\n\\] No aparecen subconjuntos: cada especialista usa un socio distinto.\n\nMatriz llena \\[\n\\begin{pmatrix}\n1&1&1\\\\\n1&1&1\\\\\n1&1&1\n\\end{pmatrix}\n\\] \\[\n\\text{NODF no está definido}\n\\] No existe decreasing fill: todos los grados de filas y columnas son iguales, de modo que no hay pares comparables para el cálculo del índice.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\\(\\mathrm{NODF}\\) debe alcanzar 100 en la triangular perfecta y 0 en una permutación sin solapamiento anidado.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#h_2-y-modularidad",
+    "href": "Sesion5.html#h_2-y-modularidad",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.5 \\(H_2'\\) y modularidad",
+    "text": "1.5 \\(H_2'\\) y modularidad\n\n\n\n\n\n\nNotaNotación para \\(H_2'\\)\n\n\n\nEn la literatura, la métrica de especialización de red se denota \\(H_2'\\). En bipartite, la función H2fun(web) devuelve un vector con nombres H2, H2min, H2max y H2uncorr; la componente llamada H2 es precisamente el valor estandarizado \\(H_2'\\).\n\n\n\n\n\n\n\n\nNotaModularidad\n\n\n\nLa fórmula binaria de Barber es la versión especial para matrices binarias. El paquete usa por defecto una modularidad bipartita ponderada mediante computeModules(web); si la matriz es binaria, se recupera el caso de Barber.\n\n\n\nEn R para \\(H_2'\\): H2fun(web) o networklevel(web, index='H2').\nEn R para modularidad: computeModules(web) o networklevel(web, index='modularity').",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#h_2",
+    "href": "Sesion5.html#h_2",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.6 \\(H_2'\\)",
+    "text": "1.6 \\(H_2'\\)\nSea \\(W=(w_{ij})\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\) una matriz ponderada, y sea \\[\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} w_{ij},\n\\qquad\np_{ij}=\\frac{w_{ij}}{m}.\n\\] La cantidad que el paquete llama H2uncorr es la entropía bidimensional \\[\nH_{2,\\mathrm{uncorr}}=-\\sum_{i=1}^{p}\\sum_{j=1}^{q} p_{ij}\\ln(p_{ij}),\n\\qquad 0\\ln 0:=0.\n\\] La especialización de red estandarizada es \\[\nH_2'=\\frac{H_{2,\\max}-H_{2,\\mathrm{uncorr}}}{H_{2,\\max}-H_{2,\\min}}\\in[0,1].\n\\]\n\n\n\n\n\n\nTip\n\n\n\n\\(H_{2,\\min}\\) y \\(H_{2,\\max}\\) no son valores libres: se construyen respetando los marginales observados. Por eso \\(H_2'\\) compara selectividad y no simplemente densidad o abundancia total.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#ejemplo",
+    "href": "Sesion5.html#ejemplo",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.6 Ejemplo",
+    "text": "5.6 Ejemplo\nLas tres matrices siguientes tienen los mismos totales por fila y columna: \\((10,10)\\).\n\n\nUso difuso \\[\nW_1=\n\\begin{pmatrix}\n5&5\\\\\n5&5\n\\end{pmatrix}\n\\] \\[\nH_2'=0\n\\]\n\nUso parcialmente selectivo \\[\nW_2=\n\\begin{pmatrix}\n9&1\\\\\n1&9\n\\end{pmatrix}\n\\] \\[\nH_2'\\approx 0.53\n\\]\n\nUso perfectamente selectivo \\[\nW_3=\n\\begin{pmatrix}\n10&0\\\\\n0&10\n\\end{pmatrix}\n\\] \\[\nH_2'=1\n\\]\n\n\n\n\n\n\n\n\nNota\n\n\n\nLo que cambia no es la disponibilidad total, sino cómo se reparte la actividad entre socios posibles. Ese es precisamente el rasgo que captura \\(H_2'\\).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#cálculo-de-h_2-para-un-caso-simple",
+    "href": "Sesion5.html#cálculo-de-h_2-para-un-caso-simple",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.7 Cálculo de \\(H_2'\\) para un caso simple",
+    "text": "5.7 Cálculo de \\(H_2'\\) para un caso simple\n\\[\nW_2=\n\\begin{pmatrix}\n9&1\\\\\n1&9\n\\end{pmatrix},\n\\qquad\nm=\\sum_{i,j} w_{ij}=20,\n\\qquad\np_{ij}=\\frac{w_{ij}}{m}.\n\\]\nAsí, \\[\nP=(p_{ij})=\n\\begin{pmatrix}\n9/20&1/20\\\\\n1/20&9/20\n\\end{pmatrix}.\n\\]\nPaso 1: valor no corregido. \\[\nH_{2,\\mathrm{uncorr}}\n=\n-\\sum_{i,j} p_{ij}\\ln p_{ij}\n=\n-2\\left(\n\\frac{9}{20}\\ln\\frac{9}{20}\n+\n\\frac{1}{20}\\ln\\frac{1}{20}\n\\right)\n\\approx 1.01823.\n\\]\nPaso 2: máximo y mínimo usados por H2fun. Las sumas marginales son \\[\nr=(10,10),\n\\qquad\nc=(10,10).\n\\]\nLa matriz fraccionaria de referencia usada para construir \\(H_{2,\\max}\\) es \\[\n\\operatorname{outer}\\!\\left(r,\\frac{c}{m}\\right)\n=\n\\begin{pmatrix}\n5&5\\\\\n5&5\n\\end{pmatrix},\n\\] por lo que \\[\nH_{2,\\max}\n=\n-4\\left(\\frac14\\ln\\frac14\\right)\n=\n\\ln 4\n\\approx 1.38629.\n\\]\nLa red de máxima agregación usada para \\(H_{2,\\min}\\) es \\[\n\\begin{pmatrix}\n10&0\\\\\n0&10\n\\end{pmatrix},\n\\] y entonces \\[\nH_{2,\\min}\n=\n-2\\left(\\frac12\\ln\\frac12\\right)\n=\n\\ln 2\n\\approx 0.69315.\n\\]\nPaso 3: Estandarización\nLa estandarización que usa H2fun es \\[\nH_2'\n=\n\\frac{H_{2,\\max}-H_{2,\\mathrm{uncorr}}}\n{H_{2,\\max}-H_{2,\\min}}.\n\\]\nSustituyendo: \\[\nH_2'\n=\n\\frac{1.38629-1.01823}{1.38629-0.69315}\n=\n\\frac{0.36806}{0.69314}\n\\approx 0.53100.\n\\]\n\\[\n\\boxed{H_2' \\approx 0.53}\n\\]\nInterpretación: La red muestra selectividad parcial: las interacciones se concentran sobre la diagonal, pero todavía existen interacciones cruzadas.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#h_2-qué-dice-y-qué-no-dice",
+    "href": "Sesion5.html#h_2-qué-dice-y-qué-no-dice",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.8 \\(H_2'\\): qué dice y qué no dice",
+    "text": "5.8 \\(H_2'\\): qué dice y qué no dice\n\n\nSí dice\n\nQué tan selectiva es la red completa.\nCuánto se aparta el uso observado del patrón esperable por los marginales.\n\n\nNo dice / limitaciones\n\nNo es una medida de conectancia.\nEn matrices binarias pierde su principal ventaja: la intensidad.\nSi los datos son continuos o tasas, conviene usar H2fun(web, H2_integer=FALSE).\nEn redes muy pequeñas o triviales, el denominador puede colapsar y la métrica deja de ser informativa.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#modularidad-bipartita",
+    "href": "Sesion5.html#modularidad-bipartita",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.9 Modularidad bipartita",
+    "text": "1.9 Modularidad bipartita\nSea \\(W=(w_{ij})\\) una matriz ponderada, con \\[\ns_i=\\sum_{j=1}^{q} w_{ij},\n\\qquad\nt_j=\\sum_{i=1}^{p} w_{ij},\n\\qquad\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} w_{ij}.\n\\] Si las filas pertenecen a módulos \\(g_i\\) y las columnas a módulos \\(h_j\\), la modularidad bipartita ponderada es \\[\nQ_B=\\frac{1}{m}\\sum_{i=1}^{p}\\sum_{j=1}^{q}\n\\left(w_{ij}-\\frac{s_i t_j}{m}\\right)\\delta(g_i,h_j).\n\\]\n\n\\(\\delta(g_i,h_j)=1\\) si fila y columna quedan en el mismo módulo, y 0 en otro caso.\nSi \\(w_{ij}\\in\\{0,1\\}\\), se recupera la fórmula binaria de Barber.\nEn bipartite, computeModules(web) busca la partición y mod@likelihood guarda el valor óptimo de \\(Q_B\\).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#ejemplo-ilustrativo-para-modularidad",
+    "href": "Sesion5.html#ejemplo-ilustrativo-para-modularidad",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.10 Ejemplo ilustrativo para modularidad",
+    "text": "1.10 Ejemplo ilustrativo para modularidad\n\n\nRed totalmente mezclada \\[\n\\begin{array}{c|cccc}\n   & a_1 & a_2 & a_3 & a_4 \\\\ \\hline\np_1& 1&1&1&1\\\\\np_2& 1&1&1&1\\\\\np_3& 1&1&1&1\\\\\np_4& 1&1&1&1\n\\end{array}\n\\] \\[\nQ_B=0\n\\] Observado y esperado coinciden: no hay bloques preferentes.\n\nDos bloques nítidos \\[\n\\begin{array}{c|cccc}\n   & a_1 & a_2 & a_3 & a_4 \\\\ \\hline\np_1& 1&1&0&0\\\\\np_2& 1&1&0&0\\\\\np_3& 0&0&1&1\\\\\np_4& 0&0&1&1\n\\end{array}\n\\] \\[\nQ_B=0.5\n\\] La partición natural en dos módulos produce exceso claro de enlaces intra-módulo.\n\n\n\n\n\n\n\n\nNota\n\n\n\nLa modularidad no mide cuántos enlaces hay, sino dónde caen respecto a una partición.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#modularidad-limitaciones-y-práctica-de-cálculo",
+    "href": "Sesion5.html#modularidad-limitaciones-y-práctica-de-cálculo",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.11 Modularidad: limitaciones y práctica de cálculo",
+    "text": "1.11 Modularidad: limitaciones y práctica de cálculo\n\n\\(Q_B\\) depende de la partición y del algoritmo de optimización; no es un número inherente a la matriz por sí sola.\nPuede haber varias particiones con valores muy parecidos de \\(Q_B\\).\nComo toda modularidad basada en nulos, puede sufrir límite de resolución: módulos pequeños pueden fusionarse.\nPara comparar redes distintas, conviene contrastar \\(Q_B\\) con modelos nulos, no sólo con el valor bruto.\nNo conviene proyectar la red a un solo modo: los enlaces inducidos pueden crear módulos artificiales.\n\n\n\n\n\n\n\nTipEn bipartite\n\n\n\ncomputeModules(web) detecta módulos y devuelve el objeto completo.\nplotModuleWeb(mod) ayuda a visualizarlos y czvalues(mod) resume el rol de cada especie dentro y entre módulos.\nEn redes perfectamente compartimentadas, el manual recomienda añadir una perturbación muy pequeña si el algoritmo se atasca.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#resumen-en-r",
+    "href": "Sesion5.html#resumen-en-r",
+    "title": "1  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "1.12 Resumen en R",
+    "text": "1.12 Resumen en R\n\nConectancia: networklevel(web, 'connectance')\n\nusa la matriz binarizada de la red.\n\nNODF: networklevel(web, 'NODF')\n\ncalcula el NODF binario global sobre la matriz ordenada.\n\nNODF ponderado: networklevel(web, 'weighted NODF')\n\ncomplementa el análisis cuando importan las intensidades.\n\n\\(H_2'\\): H2fun(web) o networklevel(web, 'H2')\n\nel paquete llama H2 al valor estandarizado \\(H_2'\\).\n\nModularidad: computeModules(web) o networklevel(web, 'modularity')\n\nprimero optimiza la partición y luego reporta \\(Q\\).\n\n\n\n\n\n\n\n\nNota\n\n\n\nConectancia, \\(\\mathrm{NODF}\\), \\(H_2'\\) y modularidad son métricas complementarias: densidad, anidamiento, selectividad cuantitativa y compartimentación no son lo mismo.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#especialización-de-red-h_2",
+    "href": "Sesion5.html#especialización-de-red-h_2",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.5 Especialización de red \\(H_2'\\)",
+    "text": "5.5 Especialización de red \\(H_2'\\)\nSea \\(W=(w_{ij})\\in\\mathbb{R}_{\\ge 0}^{p\\times q}\\) una matriz ponderada, y sea \\[\nm=\\sum_{i=1}^{p}\\sum_{j=1}^{q} w_{ij},\n\\qquad\np_{ij}=\\frac{w_{ij}}{m}.\n\\] La cantidad que el paquete llama H2uncorr es la entropía bidimensional \\[\nH_{2,\\mathrm{uncorr}}=-\\sum_{i=1}^{p}\\sum_{j=1}^{q} p_{ij}\\ln(p_{ij}),\n\\qquad 0\\ln 0:=0.\n\\] La especialización de red estandarizada es \\[\nH_2'=\\frac{H_{2,\\max}-H_{2,\\mathrm{uncorr}}}{H_{2,\\max}-H_{2,\\min}}\\in[0,1].\n\\]\n\n\n\n\n\n\nTip\n\n\n\n\\(H_{2,\\min}\\) y \\(H_{2,\\max}\\) no son valores libres: se construyen respetando los marginales observados. Por eso \\(H_2'\\) compara selectividad y no simplemente densidad o abundancia total.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
+    ]
+  },
+  {
+    "objectID": "Sesion5.html#en-r",
+    "href": "Sesion5.html#en-r",
+    "title": "5  Sesión 5: Métricas globales de red: \\(H_2'\\) y modularidad",
+    "section": "5.9 En R",
+    "text": "5.9 En R\n\n\n\n\n\n\nNotaNotación para \\(H_2'\\)\n\n\n\nEn la literatura, la métrica de especialización de red se denota \\(H_2'\\). En bipartite, la función H2fun(web) devuelve un vector con nombres H2, H2min, H2max y H2uncorr; la componente llamada H2 es precisamente el valor estandarizado \\(H_2'\\).\n\n\n\n\n\n\n\n\nNotaModularidad\n\n\n\nLa fórmula binaria de Barber es la versión especial para matrices binarias. El paquete usa por defecto una modularidad bipartita ponderada mediante computeModules(web); si la matriz es binaria, se recupera el caso de Barber.\n\n\n\nEn R para \\(H_2'\\): H2fun(web) o networklevel(web, index='H2').",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad</span>"
     ]
   }
 ]

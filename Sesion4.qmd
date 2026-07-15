@@ -1,0 +1,501 @@
+---
+title: "Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad"
+editor: source
+engine: knitr
+---
+
+## Temas
+
+1. **Repaso**: red bipartita, matriz de interacción, caminos y centralidades vistas.
+2. **Conectancia**: fracción de interacciones potenciales que se observan.
+3. **Anidamiento**: especialistas como subconjuntos de generalistas; índice $\mathrm{NODF}$.
+4. **Especialización cuantitativa**: significado e interpretación de $H_2'$.
+5. **Modularidad**: bloques o módulos de interacción preferente.
+
+::: {.callout-tip}
+Hasta ahora describimos **especies individuales**; ahora buscamos describir la **arquitectura de la red completa**.
+
+:::
+
+## Red bipartita y matriz de interacción
+
+Una red bipartita separa las especies en dos clases, por ejemplo plantas y polinizadores.
+La información puede codificarse como una matriz
+
+$$
+B\in \mathbb{R}_{\ge 0}^{p\times q},
+$$
+
+con $B_{ij}=0$ si no hay interacción y $B_{ij}>0$ si la interacción se observa.
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  nodo/.style={base, fill=blue!15},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick},
+  lab/.style={font=\small\bfseries}
+}
+\begin{tikzpicture}[>=Latex, node distance=0.8cm, scale=0.9]
+  \node[lab] at (-2.2,1.9) {Plantas};
+  \node[lab] at ( 2.2,1.9) {Polinizadores};
+
+  \node[planta] (p1) at (-2, 1.1) {$p_1$};
+  \node[planta] (p2) at (-2, 0.3) {$p_2$};
+  \node[planta] (p3) at (-2,-0.5) {$p_3$};
+  \node[planta] (p4) at (-2,-1.3) {$p_4$};
+
+  \node[animal] (a1) at ( 2, 0.7) {$a_1$};
+  \node[animal] (a2) at ( 2,-0.1) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.9) {$a_3$};
+
+  \draw[edge] (p1)--(a1);
+  \draw[edge] (p1)--(a2);
+  \draw[edge] (p2)--(a2);
+  \draw[edge] (p2)--(a3);
+  \draw[edge] (p3)--(a2);
+  \draw[edge] (p4)--(a3);
+\end{tikzpicture}
+```
+:::
+
+::: {.column width="50%"}
+$$
+\begin{array}{c|ccc}
+   & a_1 & a_2 & a_3 \\ \hline
+p_1& 1   & 1   & 0\\
+p_2& 0   & 1   & 1\\
+p_3& 0   & 1   & 0\\
+p_4& 0   & 0   & 1
+\end{array}
+$$
+:::
+::::
+
+::: {.callout-tip}
+En redes **binarias**, la matriz registra presencia/ausencia. En redes **ponderadas**, $B_{ij}$ puede representar frecuencia, biomasa o número de eventos.
+
+:::
+
+## Caminos, distancias y conectividad
+
+**Camino**: sucesión de vértices $v_0,v_1,\dots,v_k$ tal que cada par consecutivo está unido por una arista.
+
+**Distancia geodésica**: 
+$$
+d(u,v)=\min\{k:\text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
+$$
+
+::: {.callout-note title="Conectividad"}
+Un grafo es **conexo** si todo par de vértices puede unirse por un camino.
+Si no lo es, se descompone en **componentes conexas**.
+
+:::
+
+* La **cercanía** usa sumas de distancias al resto de la red.
+* La **intermediación** cuenta cuántas geodésicas pasan por un nodo.
+* Estas ideas reaparecen al distinguir entre una red densa, anidada o modular.
+
+## Medidas de centralidad
+
+| Métrica | Definición típica | Lectura ecológica |
+|---|---|---|
+| **Grado** $C_D(v)$ | $\deg(v)$ | Número de vecinos directos; generalismo o especialización local. |
+| **Cercanía** $C_C(v)$ | Inverso de la distancia total al resto | Accesibilidad global; rapidez potencial de propagación. |
+| **Intermediación** $C_B(v)$ | Fracción de geodésicas que pasan por $v$ | Rol de puente; conexión entre grupos o rutas cortas. |
+
+::: {.callout-note}
+Estas medidas son **locales**: asignan un valor a cada especie.
+Lo que sigue son medidas **globales**: asignan un valor a la red completa.
+
+:::
+
+---
+
+# Métricas globales
+
+## Aspectos sobre la red...
+
+| Métrica | Pregunta estructural |
+|---|---|
+| **Conectancia** $\mathcal{C}$ | ¿Qué fracción de las interacciones *posibles* está presente? |
+| **Anidamiento** $\mathrm{NODF}$ | ¿Los socios de las especies especialistas son subconjuntos de los de las generalistas? |
+| **Especialización** $H_2'$ | En una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales? |
+| **Modularidad** $Q_B$ | ¿Existen grupos con interacción preferente hacia adentro del mismo módulo? |
+
+::: {.callout-note}
+Dos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular.
+Por eso ninguna métrica por sí sola agota la estructura de la red.
+
+:::
+
+---
+
+## Conectancia
+
+Mide la proporción de interacciones potenciales que sí aparecen en la red.
+
+::: {.callout-note title="Definición"}
+Para una matriz binaria $B\in\{0,1\}^{p\times q}$, la **conectancia** es
+$$
+\mathcal{C} = \frac{|E|}{p\,q}=\frac{1}{p\,q}\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}\in[0,1].
+$$
+
+:::
+
+* $\mathcal{C}=1$: todas las interacciones posibles están presentes.
+* $\mathcal{C}$ cercana a 0: la red es muy *dispersa*.
+* En redes ponderadas, la conectancia suele calcularse sobre la versión **binarizada** de la matriz.
+
+::: {.callout-tip}
+La conectancia captura la **densidad de enlaces** de la red bipartita.
+
+:::
+
+## Ejemplo de conectancia
+
+Para la matriz
+$$
+\begin{array}{c|ccc}
+   & a_1 & a_2 & a_3 \\ \hline
+p_1& 1   & 1   & 0\\
+p_2& 0   & 1   & 1\\
+p_3& 0   & 1   & 0\\
+p_4& 0   & 0   & 1
+\end{array}
+$$
+se tiene:
+
+* $p=4$ plantas,
+* $q=3$ polinizadores,
+* $|E|=6$ interacciones observadas.
+
+$$
+\mathcal{C}=\frac{|E|}{p\,q}=\frac{6}{4\cdot 3}=\frac{6}{12}=0.5.
+$$
+
+::: {.callout-note}
+Se realiza la mitad de las interacciones potenciales planta--polinizador de esta red.
+
+:::
+
+## Conectancia
+
+* **Sí dice:** cuán densa es la red.
+* **No dice:** si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).
+* **No distingue:** una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas.
+* **Debe interpretarse con cuidado:** depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.
+
+::: {.callout-note}
+La conectancia es una buena primera descripción, pero no basta para caracterizar la **arquitectura interna** de una red.
+
+:::
+
+---
+
+## Anidamiento
+
+Una red está **anidada** si, al ordenar filas y columnas por grado decreciente, los socios de las especies especialistas tienden a ser **subconjuntos** de los socios de las generalistas.
+
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  lab/.style={font=\small\bfseries}
+}
+\begin{tikzpicture}[scale=0.72]
+% Matriz anidada
+\node[lab] at (1.6,4.4) {Patrón anidado};
+\draw[step=0.8cm, gray!40, thin] (0,0) grid (3.2,4.0);
+\draw[thick] (0,0) rectangle (3.2,4.0);
+\fill[green!40] (0.0,3.2) rectangle (0.8,4.0);
+\fill[green!40] (0.8,3.2) rectangle (1.6,4.0);
+\fill[green!40] (1.6,3.2) rectangle (2.4,4.0);
+\fill[green!40] (2.4,3.2) rectangle (3.2,4.0);
+\fill[green!40] (0.0,2.4) rectangle (0.8,3.2);
+\fill[green!40] (0.8,2.4) rectangle (1.6,3.2);
+\fill[green!40] (1.6,2.4) rectangle (2.4,3.2);
+\fill[green!40] (0.0,1.6) rectangle (0.8,2.4);
+\fill[green!40] (0.8,1.6) rectangle (1.6,2.4);
+\fill[green!40] (0.0,0.8) rectangle (0.8,1.6);
+
+% Matriz no anidada
+\begin{scope}[xshift=6.0cm]
+\node[lab] at (1.6,4.4) {Patrón no anidado};
+\draw[step=0.8cm, gray!40, thin] (0,0) grid (3.2,4.0);
+\draw[thick] (0,0) rectangle (3.2,4.0);
+\fill[brown!40] (0.0,3.2) rectangle (0.8,4.0);
+\fill[brown!40] (2.4,3.2) rectangle (3.2,4.0);
+\fill[brown!40] (0.8,2.4) rectangle (1.6,3.2);
+\fill[brown!40] (1.6,2.4) rectangle (2.4,3.2);
+\fill[brown!40] (0.0,1.6) rectangle (0.8,2.4);
+\fill[brown!40] (2.4,0.8) rectangle (3.2,1.6);
+\fill[brown!40] (1.6,0.0) rectangle (2.4,0.8);
+\end{scope}
+\end{tikzpicture}
+
+```
+
+::: {.callout-note}
+Las especies especialistas interactúan con subconjuntos de socios que también son usados por las especies más generalistas.
+
+:::
+
+## NODF
+
+Sea $B\in\{0,1\}^{p\times q}$ una matriz **ordenada** por grado decreciente en filas y columnas.
+
+:::: {.columns}
+::: {.column width="54%"}
+**Filas**
+
+* Grados: $k_i=\sum_{\alpha=1}^{q} B_{i\alpha}$.
+* Solapamiento entre filas $i<j$:
+  $$
+  O^{(r)}_{ij}=\sum_{\alpha=1}^{q} B_{i\alpha}B_{j\alpha}.
+  $$
+* Contribución anidada del par:
+  $$
+  N^{(r)}_{ij}=
+  \begin{cases}
+  100\,\dfrac{O^{(r)}_{ij}}{k_j}, & k_i>k_j,\\[0.6ex]
+  0, & k_i\le k_j.
+  \end{cases}
+  $$
+:::
+
+::: {.column width="46%"}
+**Columnas**
+
+* Grados: $h_{\alpha}=\sum_{i=1}^{p} B_{i\alpha}$.
+* Solapamiento entre columnas $\alpha<\beta$:
+  $$
+  O^{(c)}_{\alpha\beta}=\sum_{i=1}^{p} B_{i\alpha}B_{i\beta}.
+  $$
+* Contribución anidada del par:
+  $$
+  N^{(c)}_{\alpha\beta}=
+  \begin{cases}
+  100\,\dfrac{O^{(c)}_{\alpha\beta}}{h_{\beta}}, & h_{\alpha}>h_{\beta},\\[0.6ex]
+  0, & h_{\alpha}\le h_{\beta}.
+  \end{cases}
+  $$
+:::
+::::
+
+## Índice NODF Global
+
+El índice **NODF** (*Nestedness based on Overlap and Decreasing Fill*) promedia las contribuciones de filas y columnas:
+$$
+\mathrm{NODF}=
+\frac{\displaystyle\sum_{i<j} N^{(r)}_{ij}+\sum_{\alpha<\beta} N^{(c)}_{\alpha\beta}}
+{\displaystyle \binom{p}{2}+\binom{q}{2}}
+\in[0,100].
+$$
+
+* $\mathrm{NODF}=100$: anidamiento perfecto.
+* $\mathrm{NODF}=0$: ausencia de solapamiento anidado entre pares con grado decreciente.
+
+::: {.callout-tip}
+Mide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.
+
+:::
+
+<!--
+## 3.3 Especialización cuantitativa ($H_2'$)
+
+La conectancia ignora la **intensidad** de los enlaces.
+Para capturar especialización a nivel de toda la red necesitamos una medida **ponderada**.
+
+:::: {.columns}
+::: {.column width="50%"}
+**Misma disponibilidad, uso difuso**
+$$
+W_1=
+\begin{pmatrix}
+5 & 5\\
+5 & 5
+\end{pmatrix}
+$$
+:::
+::: {.column width="50%"}
+**Misma disponibilidad, uso selectivo**
+$$
+W_2=
+\begin{pmatrix}
+10 & 0\\
+0 & 10
+\end{pmatrix}
+$$
+:::
+::::
+
+En ambas matrices, los totales por fila y por columna son los mismos.
+La diferencia es **cómo** se distribuyen las interacciones: en $W_2$ cada especie concentra su actividad en un solo socio.
+
+::: {.callout-note title="Conclusión"}
+$W_2$ representa una red más **especializada** que $W_1$, aunque sus marginales coincidan.
+
+:::
+
+## $H_2$ y $H_2'$
+
+Sea $W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}$ una matriz **ponderada**, y sea
+$$
+m=\sum_{i=1}^{p}\sum_{j=1}^{q} w_{ij},
+\qquad
+ p_{ij}=\frac{w_{ij}}{m}.
+$$
+
+La **diversidad bidimensional de Shannon** es
+$$
+H_2=-\sum_{i=1}^{p}\sum_{j=1}^{q} p_{ij}\ln(p_{ij}),
+$$
+con la convención $0\ln 0=0$.
+
+El índice **estandarizado** de especialización de red es
+$$
+H_2'=\frac{H_{2,\max}-H_2}{H_{2,\max}-H_{2,\min}}\in[0,1],
+$$
+donde $H_{2,\min}$ y $H_{2,\max}$ son los extremos de $H_2$ compatibles con los totales marginales observados.
+
+::: {.callout-tip title="Interpretación"}
+$H_2'\approx 0$: baja especialización de red.
+
+$H_2'\approx 1$: alta especialización o fuerte partición de las interacciones.
+
+:::
+
+## $H_2'$: Fortalezas y limitaciones
+
+* $H_2'$ es una medida **global y ponderada**: utiliza frecuencias de interacción, no solo presencia/ausencia.
+* Su estandarización permite comparar redes con **distintos marginales**, evitando confundir especialización con abundancia o disponibilidad total.
+* No debe interpretarse como una medida de densidad: dos redes con la misma conectancia pueden tener valores muy distintos de $H_2'$.
+
+::: {.callout-note}
+Su interpretación ecológica es más informativa en matrices **cuantitativas**. En matrices puramente binarias se pierde justamente la parte que hace a $H_2'$ interesante: la distribución de intensidades.
+
+:::
+
+---
+
+## 3.4 Modularidad
+
+Una red es **modular** si puede separarse en **módulos** o bloques de especies con interacción preferente entre sí y relativamente pocas interacciones entre módulos.
+
+:::: {.columns}
+::: {.column width="50%"}
+
+
+[Espacio para el código TikZ]
+
+
+:::
+::: {.column width="50%"}
+$$
+\begin{array}{c|cccc}
+   & a_1 & a_2 & a_3 & a_4 \\ \hline
+p_1& 1 & 1 & 0 & 0\\
+p_2& 1 & 1 & 0 & 0\\
+p_3& 0 & 0 & 1 & 1\\
+p_4& 0 & 0 & 1 & 1
+\end{array}
+$$
+:::
+::::
+
+::: {.callout-tip}
+Los módulos pueden reflejar compartimentación funcional, restricciones de rasgos, historia evolutiva o segregación espacial/temporal.
+
+:::
+
+## Modularidad bipartita de Barber
+
+Sea $B=(B_{ij})\in\{0,1\}^{p\times q}$ la matriz bipartita, con
+$$
+k_i=\sum_{j=1}^{q} B_{ij},
+\qquad
+ d_j=\sum_{i=1}^{p} B_{ij},
+\qquad
+ m=\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}.
+$$
+
+Si las filas se asignan a módulos $g_i$ y las columnas a módulos $h_j$, la modularidad bipartita es
+$$
+Q_B=\frac{1}{m}\sum_{i=1}^{p}\sum_{j=1}^{q}
+\left(B_{ij}-\frac{k_i d_j}{m}\right)\delta(g_i,h_j),
+$$
+donde $\delta(g_i,h_j)=1$ si la fila $i$ y la columna $j$ están en el mismo módulo, y 0 en otro caso.
+
+::: {.callout-note}
+$Q_B$ compara las interacciones observadas **dentro de módulos** con las esperadas bajo un modelo nulo que preserva los grados de filas y columnas.
+
+:::
+
+## Modularidad: Fortalezas y precauciones
+
+* $Q_B$ no es una propiedad de la matriz *sin más*: depende de una **partición en módulos** y de cómo se la optimiza.
+* Un valor alto de $Q_B$ indica exceso de interacciones intra-módulo respecto al nulo basado en grados.
+* La modularidad y el anidamiento describen patrones distintos: una red puede ser principalmente modular, principalmente anidada, o presentar señales de ambos.
+
+::: {.callout-note}
+En redes bipartitas, la modularidad debe calcularse sobre la estructura original de dos modos. Las proyecciones a un solo modo introducen enlaces inducidos por vecinos compartidos, lo que puede alterar artificialmente la detección de módulos.
+
+:::
+
+## Anidamiento y modularidad
+
+:::: {.columns}
+::: {.column width="50%"}
+**Anidamiento**
+
+
+[Espacio para el código TikZ]
+
+
+Especialistas $\subset$ generalistas.
+Patrón triangular tras ordenar por grado.
+:::
+
+::: {.column width="50%"}
+**Modularidad**
+
+
+[Espacio para el código TikZ]
+
+
+Bloques densos separados por pocos enlaces entre bloques.
+:::
+::::
+
+::: {.callout-tip}
+$\mathrm{NODF}$ mira **subconjuntos y solapamiento**.
+$Q_B$ mira **bloques y exceso intra-módulo** frente a un nulo.
+
+:::
+
+## Resumen de Métricas Globales
+
+| Métrica | Rango | Mide | Tipo de dato |
+|---|---|---|---|
+| **Conectancia** $\mathcal{C}$ | $[0,1]$ | Densidad de interacciones realizadas | Binario |
+| **NODF** | $[0,100]$ | Solapamiento anidado con grado decreciente | Binario |
+| **Especialización** $H_2'$ | $[0,1]$ | Especialización cuantitativa de la red | Ponderado |
+| **Modularidad** $Q_B$ | Variable | Exceso de enlaces intra-módulo respecto a un nulo de grados | Binario / bipartito |
+
+::: {.callout-note}
+Estas métricas son **complementarias**: ninguna resume por sí sola toda la organización de una red bipartita ecológica.
+
+:::
+```eof
+
+-->

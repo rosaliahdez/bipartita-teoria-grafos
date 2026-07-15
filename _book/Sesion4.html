@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Sesión 4: Métricas globales de red: Conectancia, anidamiento, H_2' y modularidad – Grafos bipartitos en redes de interacción ecológicas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Sesion5.html" rel="next">
+<link href="./Sesion3.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grafos bipartitos en redes de interacción ecológicas</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas"><span class="header-section-number">4.1</span> Temas</a></li>
+  <li><a href="#red-bipartita-y-matriz-de-interacción" id="toc-red-bipartita-y-matriz-de-interacción" class="nav-link" data-scroll-target="#red-bipartita-y-matriz-de-interacción"><span class="header-section-number">4.2</span> Red bipartita y matriz de interacción</a></li>
+  <li><a href="#caminos-distancias-y-conectividad" id="toc-caminos-distancias-y-conectividad" class="nav-link" data-scroll-target="#caminos-distancias-y-conectividad"><span class="header-section-number">4.3</span> Caminos, distancias y conectividad</a></li>
+  <li><a href="#medidas-de-centralidad" id="toc-medidas-de-centralidad" class="nav-link" data-scroll-target="#medidas-de-centralidad"><span class="header-section-number">4.4</span> Medidas de centralidad</a></li>
+  <li><a href="#métricas-globales" id="toc-métricas-globales" class="nav-link" data-scroll-target="#métricas-globales"><span class="header-section-number">5</span> Métricas globales</a>
+  <ul class="collapse">
+  <li><a href="#aspectos-sobre-la-red" id="toc-aspectos-sobre-la-red" class="nav-link" data-scroll-target="#aspectos-sobre-la-red"><span class="header-section-number">5.1</span> Aspectos sobre la red…</a></li>
+  <li><a href="#conectancia" id="toc-conectancia" class="nav-link" data-scroll-target="#conectancia"><span class="header-section-number">5.2</span> Conectancia</a></li>
+  <li><a href="#ejemplo-de-conectancia" id="toc-ejemplo-de-conectancia" class="nav-link" data-scroll-target="#ejemplo-de-conectancia"><span class="header-section-number">5.3</span> Ejemplo de conectancia</a></li>
+  <li><a href="#conectancia-1" id="toc-conectancia-1" class="nav-link" data-scroll-target="#conectancia-1"><span class="header-section-number">5.4</span> Conectancia</a></li>
+  <li><a href="#anidamiento" id="toc-anidamiento" class="nav-link" data-scroll-target="#anidamiento"><span class="header-section-number">5.5</span> Anidamiento</a></li>
+  <li><a href="#nodf" id="toc-nodf" class="nav-link" data-scroll-target="#nodf"><span class="header-section-number">5.6</span> NODF</a></li>
+  <li><a href="#índice-nodf-global" id="toc-índice-nodf-global" class="nav-link" data-scroll-target="#índice-nodf-global"><span class="header-section-number">5.7</span> Índice NODF Global</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="temas" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="temas"><span class="header-section-number">4.1</span> Temas</h2>
+<ol type="1">
+<li><strong>Repaso</strong>: red bipartita, matriz de interacción, caminos y centralidades vistas.</li>
+<li><strong>Conectancia</strong>: fracción de interacciones potenciales que se observan.</li>
+<li><strong>Anidamiento</strong>: especialistas como subconjuntos de generalistas; índice <span class="math inline">\(\mathrm{NODF}\)</span>.</li>
+<li><strong>Especialización cuantitativa</strong>: significado e interpretación de <span class="math inline">\(H_2'\)</span>.</li>
+<li><strong>Modularidad</strong>: bloques o módulos de interacción preferente.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hasta ahora describimos <strong>especies individuales</strong>; ahora buscamos describir la <strong>arquitectura de la red completa</strong>.</p>
+</div>
+</div>
+</section>
+<section id="red-bipartita-y-matriz-de-interacción" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="red-bipartita-y-matriz-de-interacción"><span class="header-section-number">4.2</span> Red bipartita y matriz de interacción</h2>
+<p>Una red bipartita separa las especies en dos clases, por ejemplo plantas y polinizadores. La información puede codificarse como una matriz</p>
+<p><span class="math display">\[
+B\in \mathbb{R}_{\ge 0}^{p\times q},
+\]</span></p>
+<p>con <span class="math inline">\(B_{ij}=0\)</span> si no hay interacción y <span class="math inline">\(B_{ij}&gt;0\)</span> si la interacción se observa.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><span class="math display">\[
+\begin{array}{c|ccc}
+   &amp; a_1 &amp; a_2 &amp; a_3 \\ \hline
+p_1&amp; 1   &amp; 1   &amp; 0\\
+p_2&amp; 0   &amp; 1   &amp; 1\\
+p_3&amp; 0   &amp; 1   &amp; 0\\
+p_4&amp; 0   &amp; 0   &amp; 1
+\end{array}
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En redes <strong>binarias</strong>, la matriz registra presencia/ausencia. En redes <strong>ponderadas</strong>, <span class="math inline">\(B_{ij}\)</span> puede representar frecuencia, biomasa o número de eventos.</p>
+</div>
+</div>
+</section>
+<section id="caminos-distancias-y-conectividad" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="caminos-distancias-y-conectividad"><span class="header-section-number">4.3</span> Caminos, distancias y conectividad</h2>
+<p><strong>Camino</strong>: sucesión de vértices <span class="math inline">\(v_0,v_1,\dots,v_k\)</span> tal que cada par consecutivo está unido por una arista.</p>
+<p><strong>Distancia geodésica</strong>: <span class="math display">\[
+d(u,v)=\min\{k:\text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Conectividad">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Conectividad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un grafo es <strong>conexo</strong> si todo par de vértices puede unirse por un camino. Si no lo es, se descompone en <strong>componentes conexas</strong>.</p>
+</div>
+</div>
+<ul>
+<li>La <strong>cercanía</strong> usa sumas de distancias al resto de la red.</li>
+<li>La <strong>intermediación</strong> cuenta cuántas geodésicas pasan por un nodo.</li>
+<li>Estas ideas reaparecen al distinguir entre una red densa, anidada o modular.</li>
+</ul>
+</section>
+<section id="medidas-de-centralidad" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="medidas-de-centralidad"><span class="header-section-number">4.4</span> Medidas de centralidad</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Definición típica</th>
+<th>Lectura ecológica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Grado</strong> <span class="math inline">\(C_D(v)\)</span></td>
+<td><span class="math inline">\(\deg(v)\)</span></td>
+<td>Número de vecinos directos; generalismo o especialización local.</td>
+</tr>
+<tr class="even">
+<td><strong>Cercanía</strong> <span class="math inline">\(C_C(v)\)</span></td>
+<td>Inverso de la distancia total al resto</td>
+<td>Accesibilidad global; rapidez potencial de propagación.</td>
+</tr>
+<tr class="odd">
+<td><strong>Intermediación</strong> <span class="math inline">\(C_B(v)\)</span></td>
+<td>Fracción de geodésicas que pasan por <span class="math inline">\(v\)</span></td>
+<td>Rol de puente; conexión entre grupos o rutas cortas.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Estas medidas son <strong>locales</strong>: asignan un valor a cada especie. Lo que sigue son medidas <strong>globales</strong>: asignan un valor a la red completa.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="métricas-globales" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Métricas globales</h1>
+<section id="aspectos-sobre-la-red" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="aspectos-sobre-la-red"><span class="header-section-number">5.1</span> Aspectos sobre la red…</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Pregunta estructural</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Conectancia</strong> <span class="math inline">\(\mathcal{C}\)</span></td>
+<td>¿Qué fracción de las interacciones <em>posibles</em> está presente?</td>
+</tr>
+<tr class="even">
+<td><strong>Anidamiento</strong> <span class="math inline">\(\mathrm{NODF}\)</span></td>
+<td>¿Los socios de las especies especialistas son subconjuntos de los de las generalistas?</td>
+</tr>
+<tr class="odd">
+<td><strong>Especialización</strong> <span class="math inline">\(H_2'\)</span></td>
+<td>En una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales?</td>
+</tr>
+<tr class="even">
+<td><strong>Modularidad</strong> <span class="math inline">\(Q_B\)</span></td>
+<td>¿Existen grupos con interacción preferente hacia adentro del mismo módulo?</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular. Por eso ninguna métrica por sí sola agota la estructura de la red.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="conectancia" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="conectancia"><span class="header-section-number">5.2</span> Conectancia</h2>
+<p>Mide la proporción de interacciones potenciales que sí aparecen en la red.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para una matriz binaria <span class="math inline">\(B\in\{0,1\}^{p\times q}\)</span>, la <strong>conectancia</strong> es <span class="math display">\[
+\mathcal{C} = \frac{|E|}{p\,q}=\frac{1}{p\,q}\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}\in[0,1].
+\]</span></p>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(\mathcal{C}=1\)</span>: todas las interacciones posibles están presentes.</li>
+<li><span class="math inline">\(\mathcal{C}\)</span> cercana a 0: la red es muy <em>dispersa</em>.</li>
+<li>En redes ponderadas, la conectancia suele calcularse sobre la versión <strong>binarizada</strong> de la matriz.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La conectancia captura la <strong>densidad de enlaces</strong> de la red bipartita.</p>
+</div>
+</div>
+</section>
+<section id="ejemplo-de-conectancia" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="ejemplo-de-conectancia"><span class="header-section-number">5.3</span> Ejemplo de conectancia</h2>
+<p>Para la matriz <span class="math display">\[
+\begin{array}{c|ccc}
+   &amp; a_1 &amp; a_2 &amp; a_3 \\ \hline
+p_1&amp; 1   &amp; 1   &amp; 0\\
+p_2&amp; 0   &amp; 1   &amp; 1\\
+p_3&amp; 0   &amp; 1   &amp; 0\\
+p_4&amp; 0   &amp; 0   &amp; 1
+\end{array}
+\]</span> se tiene:</p>
+<ul>
+<li><span class="math inline">\(p=4\)</span> plantas,</li>
+<li><span class="math inline">\(q=3\)</span> polinizadores,</li>
+<li><span class="math inline">\(|E|=6\)</span> interacciones observadas.</li>
+</ul>
+<p><span class="math display">\[
+\mathcal{C}=\frac{|E|}{p\,q}=\frac{6}{4\cdot 3}=\frac{6}{12}=0.5.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se realiza la mitad de las interacciones potenciales planta–polinizador de esta red.</p>
+</div>
+</div>
+</section>
+<section id="conectancia-1" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="conectancia-1"><span class="header-section-number">5.4</span> Conectancia</h2>
+<ul>
+<li><strong>Sí dice:</strong> cuán densa es la red.</li>
+<li><strong>No dice:</strong> si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).</li>
+<li><strong>No distingue:</strong> una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas.</li>
+<li><strong>Debe interpretarse con cuidado:</strong> depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La conectancia es una buena primera descripción, pero no basta para caracterizar la <strong>arquitectura interna</strong> de una red.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="anidamiento" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="anidamiento"><span class="header-section-number">5.5</span> Anidamiento</h2>
+<p>Una red está <strong>anidada</strong> si, al ordenar filas y columnas por grado decreciente, los socios de las especies especialistas tienden a ser <strong>subconjuntos</strong> de los socios de las generalistas.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las especies especialistas interactúan con subconjuntos de socios que también son usados por las especies más generalistas.</p>
+</div>
+</div>
+</section>
+<section id="nodf" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="nodf"><span class="header-section-number">5.6</span> NODF</h2>
+<p>Sea <span class="math inline">\(B\in\{0,1\}^{p\times q}\)</span> una matriz <strong>ordenada</strong> por grado decreciente en filas y columnas.</p>
+<div class="columns">
+<div class="column" style="width:54%;">
+<p><strong>Filas</strong></p>
+<ul>
+<li>Grados: <span class="math inline">\(k_i=\sum_{\alpha=1}^{q} B_{i\alpha}\)</span>.</li>
+<li>Solapamiento entre filas <span class="math inline">\(i&lt;j\)</span>: <span class="math display">\[
+O^{(r)}_{ij}=\sum_{\alpha=1}^{q} B_{i\alpha}B_{j\alpha}.
+\]</span></li>
+<li>Contribución anidada del par: <span class="math display">\[
+N^{(r)}_{ij}=
+\begin{cases}
+100\,\dfrac{O^{(r)}_{ij}}{k_j}, &amp; k_i&gt;k_j,\\[0.6ex]
+0, &amp; k_i\le k_j.
+\end{cases}
+\]</span></li>
+</ul>
+</div><div class="column" style="width:46%;">
+<p><strong>Columnas</strong></p>
+<ul>
+<li>Grados: <span class="math inline">\(h_{\alpha}=\sum_{i=1}^{p} B_{i\alpha}\)</span>.</li>
+<li>Solapamiento entre columnas <span class="math inline">\(\alpha&lt;\beta\)</span>: <span class="math display">\[
+O^{(c)}_{\alpha\beta}=\sum_{i=1}^{p} B_{i\alpha}B_{i\beta}.
+\]</span></li>
+<li>Contribución anidada del par: <span class="math display">\[
+N^{(c)}_{\alpha\beta}=
+\begin{cases}
+100\,\dfrac{O^{(c)}_{\alpha\beta}}{h_{\beta}}, &amp; h_{\alpha}&gt;h_{\beta},\\[0.6ex]
+0, &amp; h_{\alpha}\le h_{\beta}.
+\end{cases}
+\]</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="índice-nodf-global" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="índice-nodf-global"><span class="header-section-number">5.7</span> Índice NODF Global</h2>
+<p>El índice <strong>NODF</strong> (<em>Nestedness based on Overlap and Decreasing Fill</em>) promedia las contribuciones de filas y columnas: <span class="math display">\[
+\mathrm{NODF}=
+\frac{\displaystyle\sum_{i&lt;j} N^{(r)}_{ij}+\sum_{\alpha&lt;\beta} N^{(c)}_{\alpha\beta}}
+{\displaystyle \binom{p}{2}+\binom{q}{2}}
+\in[0,100].
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathrm{NODF}=100\)</span>: anidamiento perfecto.</li>
+<li><span class="math inline">\(\mathrm{NODF}=0\)</span>: ausencia de solapamiento anidado entre pares con grado decreciente.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.</p>
+</div>
+</div>
+<!--
+## 3.3 Especialización cuantitativa ($H_2'$)
+
+La conectancia ignora la **intensidad** de los enlaces.
+Para capturar especialización a nivel de toda la red necesitamos una medida **ponderada**.
+
+:::: {.columns}
+::: {.column width="50%"}
+**Misma disponibilidad, uso difuso**
+$$
+W_1=
+\begin{pmatrix}
+5 & 5\\
+5 & 5
+\end{pmatrix}
+$$
+:::
+::: {.column width="50%"}
+**Misma disponibilidad, uso selectivo**
+$$
+W_2=
+\begin{pmatrix}
+10 & 0\\
+0 & 10
+\end{pmatrix}
+$$
+:::
+::::
+
+En ambas matrices, los totales por fila y por columna son los mismos.
+La diferencia es **cómo** se distribuyen las interacciones: en $W_2$ cada especie concentra su actividad en un solo socio.
+
+::: {.callout-note title="Conclusión"}
+$W_2$ representa una red más **especializada** que $W_1$, aunque sus marginales coincidan.
+
+:::
+
+## $H_2$ y $H_2'$
+
+Sea $W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}$ una matriz **ponderada**, y sea
+$$
+m=\sum_{i=1}^{p}\sum_{j=1}^{q} w_{ij},
+\qquad
+ p_{ij}=\frac{w_{ij}}{m}.
+$$
+
+La **diversidad bidimensional de Shannon** es
+$$
+H_2=-\sum_{i=1}^{p}\sum_{j=1}^{q} p_{ij}\ln(p_{ij}),
+$$
+con la convención $0\ln 0=0$.
+
+El índice **estandarizado** de especialización de red es
+$$
+H_2'=\frac{H_{2,\max}-H_2}{H_{2,\max}-H_{2,\min}}\in[0,1],
+$$
+donde $H_{2,\min}$ y $H_{2,\max}$ son los extremos de $H_2$ compatibles con los totales marginales observados.
+
+::: {.callout-tip title="Interpretación"}
+$H_2'\approx 0$: baja especialización de red.
+
+$H_2'\approx 1$: alta especialización o fuerte partición de las interacciones.
+
+:::
+
+## $H_2'$: Fortalezas y limitaciones
+
+* $H_2'$ es una medida **global y ponderada**: utiliza frecuencias de interacción, no solo presencia/ausencia.
+* Su estandarización permite comparar redes con **distintos marginales**, evitando confundir especialización con abundancia o disponibilidad total.
+* No debe interpretarse como una medida de densidad: dos redes con la misma conectancia pueden tener valores muy distintos de $H_2'$.
+
+::: {.callout-note}
+Su interpretación ecológica es más informativa en matrices **cuantitativas**. En matrices puramente binarias se pierde justamente la parte que hace a $H_2'$ interesante: la distribución de intensidades.
+
+:::
+
+---
+
+## 3.4 Modularidad
+
+Una red es **modular** si puede separarse en **módulos** o bloques de especies con interacción preferente entre sí y relativamente pocas interacciones entre módulos.
+
+:::: {.columns}
+::: {.column width="50%"}
+
+
+[Espacio para el código TikZ]
+
+
+:::
+::: {.column width="50%"}
+$$
+\begin{array}{c|cccc}
+   & a_1 & a_2 & a_3 & a_4 \\ \hline
+p_1& 1 & 1 & 0 & 0\\
+p_2& 1 & 1 & 0 & 0\\
+p_3& 0 & 0 & 1 & 1\\
+p_4& 0 & 0 & 1 & 1
+\end{array}
+$$
+:::
+::::
+
+::: {.callout-tip}
+Los módulos pueden reflejar compartimentación funcional, restricciones de rasgos, historia evolutiva o segregación espacial/temporal.
+
+:::
+
+## Modularidad bipartita de Barber
+
+Sea $B=(B_{ij})\in\{0,1\}^{p\times q}$ la matriz bipartita, con
+$$
+k_i=\sum_{j=1}^{q} B_{ij},
+\qquad
+ d_j=\sum_{i=1}^{p} B_{ij},
+\qquad
+ m=\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}.
+$$
+
+Si las filas se asignan a módulos $g_i$ y las columnas a módulos $h_j$, la modularidad bipartita es
+$$
+Q_B=\frac{1}{m}\sum_{i=1}^{p}\sum_{j=1}^{q}
+\left(B_{ij}-\frac{k_i d_j}{m}\right)\delta(g_i,h_j),
+$$
+donde $\delta(g_i,h_j)=1$ si la fila $i$ y la columna $j$ están en el mismo módulo, y 0 en otro caso.
+
+::: {.callout-note}
+$Q_B$ compara las interacciones observadas **dentro de módulos** con las esperadas bajo un modelo nulo que preserva los grados de filas y columnas.
+
+:::
+
+## Modularidad: Fortalezas y precauciones
+
+* $Q_B$ no es una propiedad de la matriz *sin más*: depende de una **partición en módulos** y de cómo se la optimiza.
+* Un valor alto de $Q_B$ indica exceso de interacciones intra-módulo respecto al nulo basado en grados.
+* La modularidad y el anidamiento describen patrones distintos: una red puede ser principalmente modular, principalmente anidada, o presentar señales de ambos.
+
+::: {.callout-note}
+En redes bipartitas, la modularidad debe calcularse sobre la estructura original de dos modos. Las proyecciones a un solo modo introducen enlaces inducidos por vecinos compartidos, lo que puede alterar artificialmente la detección de módulos.
+
+:::
+
+## Anidamiento y modularidad
+
+:::: {.columns}
+::: {.column width="50%"}
+**Anidamiento**
+
+
+[Espacio para el código TikZ]
+
+
+Especialistas $\subset$ generalistas.
+Patrón triangular tras ordenar por grado.
+:::
+
+::: {.column width="50%"}
+**Modularidad**
+
+
+[Espacio para el código TikZ]
+
+
+Bloques densos separados por pocos enlaces entre bloques.
+:::
+::::
+
+::: {.callout-tip}
+$\mathrm{NODF}$ mira **subconjuntos y solapamiento**.
+$Q_B$ mira **bloques y exceso intra-módulo** frente a un nulo.
+
+:::
+
+## Resumen de Métricas Globales
+
+| Métrica | Rango | Mide | Tipo de dato |
+|---|---|---|---|
+| **Conectancia** $\mathcal{C}$ | $[0,1]$ | Densidad de interacciones realizadas | Binario |
+| **NODF** | $[0,100]$ | Solapamiento anidado con grado decreciente | Binario |
+| **Especialización** $H_2'$ | $[0,1]$ | Especialización cuantitativa de la red | Ponderado |
+| **Modularidad** $Q_B$ | Variable | Exceso de enlaces intra-módulo respecto a un nulo de grados | Binario / bipartito |
+
+::: {.callout-note}
+Estas métricas son **complementarias**: ninguna resume por sí sola toda la organización de una red bipartita ecológica.
+
+:::
+```eof
+
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Sesion3.html" class="pagination-link" aria-label="Sesión 3: Métricas y análisis de redes: Centralidad">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Sesion5.html" class="pagination-link" aria-label="Sesión 5: Métricas globales de red: $H_2'$ y modularidad">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Material desarrollado con <a href="https://quarto.org/">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

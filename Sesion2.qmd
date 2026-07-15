@@ -7,24 +7,21 @@ editor: source
 ## Fundamentos de Grafos: Qué es un grafo
 
 
-::: {.callout-note}
-## Definición: grafo simple
-
-Un grafo simple $G$ es un par ordenado $(V, E)$, donde:
-
-- $V$ es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman **vértices** (o nodos).
-- $E$ es un conjunto de pares no ordenados de vértices distintos. Los elementos de $E$ se llaman **aristas** (o enlaces).
-:::
-
 > **Definición: grafo simple**
 >
-> Un grafo simple $G$ es un par ordenado $(V, E)$, donde:
+> Un **grafo simple** $G$ es un par ordenado $(V, E)$, donde:
 >
 > - $V$ es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman **vértices** (o nodos).
 > - $E$ es un conjunto de pares no ordenados de vértices distintos. Los elementos de $E$ se llaman **aristas** (o enlaces).
 
 
-> **Ejemplo:** Sean: \* $V=\{1, 2, 3, 4\}$ \* $E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}$
+> **Ejemplo**
+>
+> Sean
+>
+> - $V=\{1, 2, 3, 4\}$
+> - $E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}$
+
 
 ### Terminología básica
 
@@ -49,22 +46,29 @@ No todos los sistemas se modelan con grafos simples.
 
 ## Subgrafos y Subgrafos inducidos
 
-> **Definición: Subgrafo** Un grafo $H=(V_H, E_H)$ es un **subgrafo** de $G=(V_G, E_G)$ si $V_H \subseteq V_G$, $E_H \subseteq E_G$ y todas las aristas en $E_H$ tienen sus extremos en $V_H$.
+> **Definición: Subgrafo**
+>
+> Un grafo $H=(V_H, E_H)$ es un **subgrafo** de $G=(V_G, E_G)$ si $V_H \subseteq V_G$, $E_H \subseteq E_G$ y todas las aristas en $E_H$ tienen sus extremos en $V_H$.
 
-> **Definición: Subgrafo inducido** Dado un subconjunto de vértices $S \subseteq V_G$, el **subgrafo inducido** por $S$, denotado $G[S]$, es el grafo $(S, E_S)$ donde $E_S$ contiene todas las aristas de $E_G$ cuyos dos extremos están en $S$.
+> **Definición: Subgrafo inducido** 
+>
+> Dado un subconjunto de vértices $S \subseteq V_G$, el **subgrafo inducido** por $S$, denotado $G[S]$, es el grafo $(S, E_S)$ donde $E_S$ contiene todas las aristas de $E_G$ cuyos dos extremos están en $S$.
 
 ## Isomorfismo de grafos
 
 ¿Cuándo son dos grafos "*esencialmente el mismo*"?
 
-> **Definición: Isomorfismo** Dos grafos $G_1=(V_1, E_1)$ y $G_2=(V_2, E_2)$ son **isomorfos** ($G_1 \cong G_2$) si existe una función biyectiva $f: V_1 \to V_2$ tal que: $$\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2$$ La función $f$ preserva la adyacencia.
+> **Definición: Isomorfismo**
+>
+> Dos grafos $G_1=(V_1, E_1)$ y $G_2=(V_2, E_2)$ son **isomorfos** ($G_1 \cong G_2$) si existe una función biyectiva $f: V_1 \to V_2$ tal que: $$\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2$$ La función $f$ preserva la adyacencia.
 
 ## Grado de un vértice
 
-> **Definición: Grado** El **grado** de un vértice $v$ en un grafo $G$, denotado $\deg(v)$ o $d(v)$, es el número de aristas incidentes a $v$. Equivalentemente, es el número de vecinos de $v$.
+> **Definición: Grado** 
+> El **grado** de un vértice $v$ en un grafo $G$, denotado $\deg(v)$ o $d(v)$, es el número de aristas incidentes a $v$. Equivalentemente, es el número de vecinos de $v$.
 
 
-<!-- ESTO NO SE USO EN ESTA SESION
+<!-- ESTO NO SE USÓ EN ESTA SESION
 **Teorema: Lema del apretón de manos** Para cualquier grafo $G=(V, E)$, la suma de los grados de todos los vértices es igual al doble del número de aristas: $$\sum_{v \in V} \deg(v) = 2|E|$$ *Idea de la demostración:* Cada arista $\{u, v\}$ contribuye exactamente dos veces a la suma total de grados.
 
 ### Actividad rápida: Lema del apretón de manos
@@ -163,31 +167,7 @@ Medidas para cuantificar la "importancia" de un nodo.
 
 > **Teorema de Hall:** Sea $G=(V_1 \cup V_2, E)$ un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de $V_1$ si y sólo si para todo subconjunto $S \subseteq V_1$: $$|N(S)| \geq |S|$$
 
-------------------------------------------------------------------------
+
 -->
 
-# Bibliografía General Recomendada
 
-### Fundamentos de grafos bipartitos
-
-- **Asratian, A. S., Denley, T. M. J., & Häggkvist, R. (1998).** *Bipartite Graphs and their Applications*. Cambridge University Press.
-- **Hall, P. (1935).** “On Representatives of Subsets.” *Journal of the London Mathematical Society*, 10(1), 26–30.
-- **Bondy, J. A., & Murty, U. S. R. (1976).** *Graph Theory with Applications*. London: Macmillan.
-- **Lovász, L., & Plummer, M. D. (1986).** *Matching Theory*. North-Holland.
-- **Wasserman, S., & Faust, K. (1994).** *Social Network Analysis: Methods and Applications*. Cambridge University Press.
-
-### Métricas y propiedades estructurales en grafos bipartitos
-
-- **Latapy, M., Magnien, C., & Del Vecchio, N. (2008).** “Basic Notions for the Analysis of Large Two-Mode Networks.” *Social Networks*, 30(1), 31–48.
-- **Borgatti, S. P., & Everett, M. G. (1997).** “Network Analysis of 2-Mode Data.” *Social Networks*, 19(3), 243–269.
-- **Dormann, C. F., et al. (2009).** “Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks.” *The Open Ecology Journal*, 2, 7–24.
-- **Almeida-Neto, M., et al. (2008).** “A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement.” *Oikos*, 117(8), 1227–1239.
-- **Barber, M. J. (2007).** “Modularity and Community Detection in Bipartite Networks.” *Physical Review E*, 76(6), 066102.
-- **Ouadah, S., Latouche, P., & Robin, S. (2022).** “Motif-Based Tests for Bipartite Networks.” *Electronic Journal of Statistics*, 16(1), 293–330.
-- **Borgatti, S. P., & Everett, M. G. (1999).** “Models of Core/Periphery Structures.” *Social Networks*, 21(4), 375–395.
-
-### Modelos y métricas generalizables a redes bipartitas
-
-- **Kunegis, J. (2015).** “Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications.” *Internet Mathematics*, 11(4), 201–231.
-- **Saracco, F., et al. (2015).** “Randomizing Bipartite Networks: The Case of the World Trade Web.” *Scientific Reports*, 5, 10595.
-- **Cimini, G., et al. (2019).** “The Statistical Physics of Real-World Networks.” *Nature Reviews Physics*, 1(1), 58–71.

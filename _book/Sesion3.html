@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Sesión 3: Métricas y análisis de redes: Centralidad – Grafos bipartitos en redes de interacción ecológicas</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Sesion4.html" rel="next">
+<link href="./Sesion2.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grafos bipartitos en redes de interacción ecológicas</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos"><span class="header-section-number">3.1</span> Objetivos</a></li>
+  <li><a href="#recordatorio-grafo-simple-y-notación" id="toc-recordatorio-grafo-simple-y-notación" class="nav-link" data-scroll-target="#recordatorio-grafo-simple-y-notación"><span class="header-section-number">3.2</span> Recordatorio: grafo simple y notación</a></li>
+  <li><a href="#distancias-y-caminos-más-cortos" id="toc-distancias-y-caminos-más-cortos" class="nav-link" data-scroll-target="#distancias-y-caminos-más-cortos"><span class="header-section-number">3.3</span> Distancias y caminos más cortos</a></li>
+  <li><a href="#caminos-más-cortos-contar-geodésicas" id="toc-caminos-más-cortos-contar-geodésicas" class="nav-link" data-scroll-target="#caminos-más-cortos-contar-geodésicas"><span class="header-section-number">3.4</span> Caminos más cortos: contar geodésicas</a></li>
+  <li><a href="#representación-matricial" id="toc-representación-matricial" class="nav-link" data-scroll-target="#representación-matricial"><span class="header-section-number">3.5</span> Representación matricial</a></li>
+  <li><a href="#tipos-de-centralidad" id="toc-tipos-de-centralidad" class="nav-link" data-scroll-target="#tipos-de-centralidad"><span class="header-section-number">4</span> Tipos de centralidad:</a>
+  <ul class="collapse">
+  <li><a href="#qué-mide-una-centralidad" id="toc-qué-mide-una-centralidad" class="nav-link" data-scroll-target="#qué-mide-una-centralidad"><span class="header-section-number">4.1</span> Qué mide una “centralidad”</a></li>
+  <li><a href="#centralidad-de-grado-degree-centrality" id="toc-centralidad-de-grado-degree-centrality" class="nav-link" data-scroll-target="#centralidad-de-grado-degree-centrality"><span class="header-section-number">4.2</span> Centralidad de grado (Degree centrality)</a>
+  <ul class="collapse">
+  <li><a href="#nota-redes-ponderadas-fuerza" id="toc-nota-redes-ponderadas-fuerza" class="nav-link" data-scroll-target="#nota-redes-ponderadas-fuerza"><span class="header-section-number">4.2.1</span> Nota: redes ponderadas (fuerza)</a></li>
+  <li><a href="#ejemplo-1-grado-en-una-red-plantapolinizador" id="toc-ejemplo-1-grado-en-una-red-plantapolinizador" class="nav-link" data-scroll-target="#ejemplo-1-grado-en-una-red-plantapolinizador"><span class="header-section-number">4.2.2</span> Ejemplo 1: grado en una red planta–polinizador</a></li>
+  </ul></li>
+  <li><a href="#centralidad-de-cercanía" id="toc-centralidad-de-cercanía" class="nav-link" data-scroll-target="#centralidad-de-cercanía"><span class="header-section-number">4.3</span> Centralidad de cercanía</a>
+  <ul class="collapse">
+  <li><a href="#centralidad-de-cercanía-closeness-centrality" id="toc-centralidad-de-cercanía-closeness-centrality" class="nav-link" data-scroll-target="#centralidad-de-cercanía-closeness-centrality"><span class="header-section-number">4.3.1</span> Centralidad de cercanía (Closeness centrality)</a></li>
+  <li><a href="#y-si-el-grafo-no-es-conexo" id="toc-y-si-el-grafo-no-es-conexo" class="nav-link" data-scroll-target="#y-si-el-grafo-no-es-conexo"><span class="header-section-number">4.3.2</span> ¿Y si el grafo no es conexo?</a></li>
+  <li><a href="#ejemplo-2-cercanía-en-una-red-estrella" id="toc-ejemplo-2-cercanía-en-una-red-estrella" class="nav-link" data-scroll-target="#ejemplo-2-cercanía-en-una-red-estrella"><span class="header-section-number">4.3.3</span> Ejemplo 2: cercanía en una red “estrella”</a></li>
+  </ul></li>
+  <li><a href="#centralidad-de-intermediación" id="toc-centralidad-de-intermediación" class="nav-link" data-scroll-target="#centralidad-de-intermediación"><span class="header-section-number">4.4</span> Centralidad de intermediación</a>
+  <ul class="collapse">
+  <li><a href="#centralidad-de-intermediación-betweenness" id="toc-centralidad-de-intermediación-betweenness" class="nav-link" data-scroll-target="#centralidad-de-intermediación-betweenness"><span class="header-section-number">4.4.1</span> Centralidad de intermediación (Betweenness)</a></li>
+  <li><a href="#ejemplo-3-intermediación-en-una-corbata-de-moño" id="toc-ejemplo-3-intermediación-en-una-corbata-de-moño" class="nav-link" data-scroll-target="#ejemplo-3-intermediación-en-una-corbata-de-moño"><span class="header-section-number">4.4.2</span> Ejemplo 3: intermediación en una “corbata de moño”</a></li>
+  </ul></li>
+  <li><a href="#cuándo-difieren-estas-métricas" id="toc-cuándo-difieren-estas-métricas" class="nav-link" data-scroll-target="#cuándo-difieren-estas-métricas"><span class="header-section-number">4.5</span> ¿Cuándo difieren estas métricas?</a></li>
+  <li><a href="#resumen-comparativo-qué-captura-cada-una" id="toc-resumen-comparativo-qué-captura-cada-una" class="nav-link" data-scroll-target="#resumen-comparativo-qué-captura-cada-una"><span class="header-section-number">4.6</span> Resumen comparativo (qué captura cada una)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objetivos" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="objetivos"><span class="header-section-number">3.1</span> Objetivos</h2>
+<ol type="1">
+<li>Entender qué significa “ser importante” en una red y por qué existen múltiples centralidades.</li>
+<li>Definir y calcular las centralidades: <span class="math inline">\(C_D\)</span> (grado), <span class="math inline">\(C_C\)</span> (cercanía), <span class="math inline">\(C_B\)</span> (intermediación), y centralidad de vector propio.</li>
+<li>Interpretar cada métrica en redes ecológicas de interacción (planta–polinizador, hospedero–parásito, tróficas).</li>
+<li>Identificar fortalezas, limitaciones y cuándo conviene usar cada medida.</li>
+</ol>
+<!-- 
+## Temas
+
+1. **Elementos previos**: notación, distancias, caminos más cortos, matrices.
+2. **Conceptos centrales**: $C_D$, $C_C$, $C_B$ y vector propio.
+3. **Ejemplos**: cálculo e interpretación ecológica.
+4. **Ejercicios**: problemas para resolver.
+
+::: {.callout-note title="Subtemas"}
+1. Centralidad de grado (*Degree centrality*).
+2. Centralidad de cercanía (*Closeness centrality*).
+3. Centralidad de intermediación (*Betweenness centrality*).
+4. Centralidad de vector propio (*Eigenvector centrality*).
+:::
+
+## Motivación ecológica: "especies importantes"
+
+En ecología de redes solemos preguntarnos:
+
+* ¿Qué especies son **generalistas** (muchas interacciones) vs **especialistas**?
+* ¿Qué especies conectan **módulos** o **grupos funcionales**?
+* ¿Qué especies están en el **núcleo** de la red, sosteniendo la cohesión global?
+* Si una especie desaparece, ¿qué tanto cambia la **conectividad** o la **propagación** de perturbaciones?
+
+> **Nota:** La "importancia" depende del mecanismo que nos interesa (contactos directos, accesibilidad global, rol de puente, influencia recursiva, etc.).
+
+---
+
+# 1. Elementos previos
+-->
+</section>
+<section id="recordatorio-grafo-simple-y-notación" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="recordatorio-grafo-simple-y-notación"><span class="header-section-number">3.2</span> Recordatorio: grafo simple y notación</h2>
+<p>Consideremos un <strong>Grafo simple (no dirigido)</strong> esto es <span class="math inline">\(G=(V,E)\)</span>, donde:</p>
+<ul>
+<li><span class="math inline">\(V\)</span> es el conjunto de vértices (nodos).</li>
+<li><span class="math inline">\(E \subseteq \{\{u,v\}: u,v\in V,\ u\neq v\}\)</span> es el conjunto de aristas.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Definición: Vecindad</strong></p>
+<p>Se define <strong>una vecindad de <span class="math inline">\(v\)</span>:</strong> <span class="math inline">\(N(v)=\{u\in V: \{u,v\}\in E\}\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Definición: Grado</strong>: <span class="math inline">\(\deg(v)=|N(v)|\)</span>.</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled" title="Redes de interacción ecológica:">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Redes de interacción ecológica:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Planta–polinizador (bipartita, no dirigida por simplicidad).</li>
+<li>Hospedero–parásito (bipartita).</li>
+<li>Red trófica (naturalmente dirigida; veremos la versión no dirigida como aproximación).</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="distancias-y-caminos-más-cortos" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="distancias-y-caminos-más-cortos"><span class="header-section-number">3.3</span> Distancias y caminos más cortos</h2>
+<blockquote class="blockquote">
+<p><strong>Definición: Camino</strong></p>
+<p>Un <strong>camino</strong> es una sucesión de vértices <span class="math inline">\(v_0,v_1,\dots,v_k\)</span> tal que <span class="math inline">\(\{v_{i-1},v_i\}\in E\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Definición: Distancia geodésica</strong></p>
+<p>La <strong>distancia geodésica (o distancia de grafo)</strong>: <span class="math display">\[
+d(u,v)=\min\{k: \text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
+\]</span></p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Conectividad">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Conectividad
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Un grafo es <strong>conexo</strong> si para todo <span class="math inline">\(u\neq v\)</span> existe un camino entre ellos.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="caminos-más-cortos-contar-geodésicas" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="caminos-más-cortos-contar-geodésicas"><span class="header-section-number">3.4</span> Caminos más cortos: contar geodésicas</h2>
+<p>En varias métricas necesitamos contar <strong>cuántos</strong> caminos más cortos hay.</p>
+<ul>
+<li>Sea <span class="math inline">\(\sigma_{st}\)</span> el número de caminos más cortos (geodésicos) entre <span class="math inline">\(s\)</span> y <span class="math inline">\(t\)</span>.</li>
+<li>Sea <span class="math inline">\(\sigma_{st}(v)\)</span> el número de esos caminos que pasan por <span class="math inline">\(v\)</span> (como vértice <em>interno</em>).</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled" title="Intuición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Intuición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si una especie <span class="math inline">\(v\)</span> está “en medio” de muchos caminos más cortos entre pares de especies, entonces puede actuar como <strong>puente</strong> o <strong>cuello de botella</strong>.</p>
+</div>
+</div>
+</section>
+<section id="representación-matricial" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="representación-matricial"><span class="header-section-number">3.5</span> Representación matricial</h2>
+<p>Sea <span class="math inline">\(|V|=n\)</span> y vértices <span class="math inline">\(1,\dots,n\)</span>.</p>
+<ul>
+<li><strong>Matriz de adyacencia</strong> <span class="math inline">\(A\in\{0,1\}^{n\times n}\)</span>: <span class="math inline">\(A_{ij}=1\)</span> si <span class="math inline">\(\{i,j\}\in E\)</span>, y 0 en otro caso.</li>
+<li><strong>Matriz de grados</strong> <span class="math inline">\(D\)</span>: diagonal con <span class="math inline">\(D_{ii}=\deg(i)\)</span>.</li>
+</ul>
+<!-- 
+> **Vector propio (eigenvector)**: aparece al resolver $Ax=\lambda x$.
+
+---
+-->
+</section>
+<section id="tipos-de-centralidad" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Tipos de centralidad:</h1>
+<section id="qué-mide-una-centralidad" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="qué-mide-una-centralidad"><span class="header-section-number">4.1</span> Qué mide una “centralidad”</h2>
+<p>Una <strong>centralidad</strong> es una función que asigna a cada nodo <span class="math inline">\(v\)</span> un número real (su “importancia”): <span class="math display">\[
+\text{centralidad: } V\to \mathbb{R}_{\ge 0},\qquad v\mapsto C(v).
+\]</span> <strong>No hay una sola “mejor”</strong>: cada definición formaliza un criterio distinto.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="En redes ecológicas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>En redes ecológicas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Distintas centralidades pueden sugerir distintos tipos de <strong>especies clave</strong>: * generalistas (muchas interacciones), * conectores entre grupos, * especies “cercanas” a todas (difusión rápida), * especies influyentes por estar conectadas a otras influyentes.</p>
+</div>
+</div>
+</section>
+<section id="centralidad-de-grado-degree-centrality" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="centralidad-de-grado-degree-centrality"><span class="header-section-number">4.2</span> Centralidad de grado (Degree centrality)</h2>
+<p><strong>Definición</strong> (no ponderado): <span class="math display">\[
+C_D(v)=\deg(v).
+\]</span></p>
+<p><strong>Normalización frecuente</strong> (para comparar redes de distinto tamaño, <span class="math inline">\(|V|=n\)</span>): <span class="math display">\[
+C_D^{\mathrm{norm}}(v)=\frac{\deg(v)}{n-1}\in[0,1].
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una red planta–polinizador, <span class="math inline">\(C_D\)</span> mide cuántas especies del otro gremio interactúan con <span class="math inline">\(v\)</span>. * Planta con alto grado: polinizada por muchas especies. * Polinizador con alto grado: visita muchas plantas (generalista).</p>
+</div>
+</div>
+<section id="nota-redes-ponderadas-fuerza" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="nota-redes-ponderadas-fuerza"><span class="header-section-number">4.2.1</span> Nota: redes ponderadas (fuerza)</h3>
+<p>Si las aristas tienen pesos <span class="math inline">\(w_{uv}\ge 0\)</span> (frecuencia, biomasa, visitas), se usa la <strong>fuerza</strong>: <span class="math display">\[
+s(v)=\sum_{u\sim v} w_{uv}.
+\]</span></p>
+<p><strong>Observación:</strong> * <span class="math inline">\(\deg(v)\)</span> cuenta <em>diversidad de socios</em>. * <span class="math inline">\(s(v)\)</span> mide <em>intensidad total</em> (puede estar dominada por pocas interacciones muy fuertes).</p>
+</section>
+<section id="ejemplo-1-grado-en-una-red-plantapolinizador" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="ejemplo-1-grado-en-una-red-plantapolinizador"><span class="header-section-number">4.2.2</span> Ejemplo 1: grado en una red planta–polinizador</h3>
+<p>Considerar la red bipartita (no ponderada) con plantas <span class="math inline">\(\{p_1,p_2,p_3,p_4\}\)</span> y polinizadores <span class="math inline">\(\{a_1,a_2,a_3\}\)</span>.</p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion3_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
+<p><strong>Cálculo de grados</strong></p>
+<ul>
+<li><span class="math inline">\(\deg(p_1)=2\)</span> (<span class="math inline">\(a_1,a_2\)</span>).</li>
+<li><span class="math inline">\(\deg(p_2)=2\)</span> (<span class="math inline">\(a_2,a_3\)</span>).</li>
+<li><span class="math inline">\(\deg(p_3)=1\)</span> (<span class="math inline">\(a_2\)</span>).</li>
+<li><span class="math inline">\(\deg(p_4)=1\)</span> (<span class="math inline">\(a_3\)</span>).</li>
+<li><span class="math inline">\(\deg(a_1)=1\)</span>, <span class="math inline">\(\deg(a_2)=3\)</span>, <span class="math inline">\(\deg(a_3)=2\)</span>.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Interpretación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(a_2\)</span> es el polinizador más generalista (se conecta con 3 plantas). <span class="math inline">\(p_3\)</span> y <span class="math inline">\(p_4\)</span> son más vulnerables a la pérdida de su(s) socio(s) directo(s).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="centralidad-de-cercanía" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="centralidad-de-cercanía"><span class="header-section-number">4.3</span> Centralidad de cercanía</h2>
+<section id="centralidad-de-cercanía-closeness-centrality" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="centralidad-de-cercanía-closeness-centrality"><span class="header-section-number">4.3.1</span> Centralidad de cercanía (Closeness centrality)</h3>
+<p><strong>Idea:</strong> un nodo es central si está “cerca” de todos los demás.</p>
+<p>En un grafo conexo, definimos:</p>
+<p><span class="math display">\[
+C_C(v)=\frac{1}{\sum_{u\in V\setminus\{v\}} d(v,u)}.
+\]</span></p>
+<p><strong>Normalización común</strong>:</p>
+<p><span class="math display">\[
+C_C^{\mathrm{norm}}(v)=\frac{n-1}{\sum_{u\neq v} d(v,u)}\in(0,1].
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación (difusión)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación (difusión)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si una perturbación (enfermedad, cambio ambiental) se propaga a través de interacciones, un nodo con alta cercanía puede verse afectado (o afectar) rápidamente a muchos otros vía efectos indirectos.</p>
+</div>
+</div>
+</section>
+<section id="y-si-el-grafo-no-es-conexo" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="y-si-el-grafo-no-es-conexo"><span class="header-section-number">4.3.2</span> ¿Y si el grafo no es conexo?</h3>
+<p>Si el grafo tiene componentes desconectadas, algunas distancias son <span class="math inline">\(\infty\)</span>, y <span class="math inline">\(C_C\)</span> queda mal definida.</p>
+<p>Alternativa: <strong>cercanía armónica</strong></p>
+<p><span class="math display">\[
+C_{\mathrm{harm}}(v)=\sum_{u\neq v}\frac{1}{d(v,u)},
+\]</span></p>
+<p>donde por convención <span class="math inline">\(1/\infty=0\)</span>.</p>
+<p><strong>Interpretación</strong>: solo cuentan los nodos alcanzables, penalizando fuertemente distancias grandes.</p>
+</section>
+<section id="ejemplo-2-cercanía-en-una-red-estrella" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="ejemplo-2-cercanía-en-una-red-estrella"><span class="header-section-number">4.3.3</span> Ejemplo 2: cercanía en una red “estrella”</h3>
+<p>Considerar el grafo estrella <span class="math inline">\(K_{1,3}\)</span>: un nodo central conectado a tres hojas.</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:55%;">
+<p><strong>Distancias</strong></p>
+<ul>
+<li>Desde el centro: <span class="math inline">\(d(c,1)=d(c,2)=d(c,3)=1\)</span>.</li>
+<li>Desde una hoja (por ejemplo, el vértice 1): <span class="math inline">\(d(1,c)=1\)</span>, <span class="math inline">\(d(1,2)=2\)</span>, <span class="math inline">\(d(1,3)=2\)</span>.</li>
+</ul>
+</div>
+</div>
+<p><strong>Cálculo (normalizado, <span class="math inline">\(n=4\)</span>):</strong></p>
+<p><span class="math display">\[
+C_C^{\mathrm{norm}}(c)=\frac{3}{1+1+1}=1,\qquad
+C_C^{\mathrm{norm}}(1)=\frac{3}{1+2+2}=\frac{3}{5}=0.6.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El centro es el punto desde el cual se llega más rápido al resto: en ecología, un “hub” puede acelerar la propagación de perturbaciones a través de la red.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="centralidad-de-intermediación" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="centralidad-de-intermediación"><span class="header-section-number">4.4</span> Centralidad de intermediación</h2>
+<section id="centralidad-de-intermediación-betweenness" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="centralidad-de-intermediación-betweenness"><span class="header-section-number">4.4.1</span> Centralidad de intermediación (Betweenness)</h3>
+<p><strong>Idea:</strong> un nodo es central si aparece frecuentemente en caminos más cortos entre otros.</p>
+<p>Sea <span class="math inline">\(\sigma_{st}\)</span> el número de caminos más cortos entre <span class="math inline">\(s\)</span> y <span class="math inline">\(t\)</span>, y <span class="math inline">\(\sigma_{st}(v)\)</span> los que pasan por <span class="math inline">\(v\)</span>. En grafos no dirigidos es natural sumar sobre pares no ordenados:</p>
+<p><span class="math display">\[
+C_B(v)=\sum_{\substack{s&lt;t\\ s\neq v,\ t\neq v}} \frac{\sigma_{st}(v)}{\sigma_{st}}.
+\]</span></p>
+<p><strong>Normalización común</strong> (no dirigida): dividir por <span class="math inline">\((n-1)(n-2)/2\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación (&quot;conectores&quot;)">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación (“conectores”)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una especie con alta intermediación puede conectar subcomunidades (módulos) o rutas de flujo (por ejemplo: movimiento de polen, transmisión de parásitos).</p>
+</div>
+</div>
+</section>
+<section id="ejemplo-3-intermediación-en-una-corbata-de-moño" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="ejemplo-3-intermediación-en-una-corbata-de-moño"><span class="header-section-number">4.4.2</span> Ejemplo 3: intermediación en una “corbata de moño”</h3>
+<p>Grafo con dos triángulos que comparten el nodo 3:</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Paso 1: pares relevantes</strong></p>
+<p>Para <span class="math inline">\(C_B(3)\)</span>, miramos pares <span class="math inline">\((s,t)\)</span> con <span class="math inline">\(s,t\neq 3\)</span>:</p>
+<p><span class="math display">\[
+\{1,2,4,5\}\Rightarrow \binom{4}{2}=6\text{ pares.}
+\]</span></p>
+<p><strong>Paso 2: caminos más cortos</strong></p>
+<ul>
+<li>Entre <span class="math inline">\(1\)</span> y <span class="math inline">\(2\)</span>: camino directo <span class="math inline">\(1-2\)</span> (no pasa por 3).</li>
+<li>Entre <span class="math inline">\(4\)</span> y <span class="math inline">\(5\)</span>: camino directo <span class="math inline">\(4-5\)</span> (no pasa por 3).</li>
+<li>Entre <span class="math inline">\(\{1,2\}\)</span> y <span class="math inline">\(\{4,5\}\)</span>: el camino más corto siempre pasa por 3.</li>
+</ul>
+</div>
+</div>
+<p><strong>Cálculo</strong> (contando pares no ordenados):</p>
+<p><span class="math display">\[
+C_B(3)=1\,(1\leftrightarrow 4)+1\,(1\leftrightarrow 5)+1\,(2\leftrightarrow 4)+1\,(2\leftrightarrow 5)=4.
+\]</span></p>
+<p>Para los nodos <span class="math inline">\(1,2,4,5\)</span>, la intermediación es 0 (no están “entre” otros pares).</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Interpretación ecológica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación ecológica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El nodo 3 es un <strong>conector</strong> entre dos “módulos”; su pérdida puede fragmentar la red, aun si otros nodos tienen grados similares dentro de su módulo.</p>
+</div>
+</div>
+<!-- 
+## Centralidad de vector propio y PageRank
+
+### Centralidad de vector propio (Eigenvector centrality)
+
+**Idea:** "soy importante si mis vecinos son importantes".
+
+Buscamos un vector de centralidades $x\in\mathbb{R}^n_{>0}$ tal que
+
+$$
+x_i = \frac{1}{\lambda}\sum_{j\sim i} x_j.
+$$
+
+En forma matricial:
+
+$$
+Ax = \lambda x.
+$$
+
+Se usa el **autovector dominante** (asociado al mayor autovalor $\lambda_{\max}$).
+
+::: {.callout-tip title="Interpretación ecológica"}
+No basta tener muchas interacciones: importa **con quién** interactúas.
+
+- Conectarte a especies muy conectadas aumenta tu centralidad.
+- Captura un tipo de "posición en el núcleo" (core) de la red.
+:::
+
+### Cálculo: método de potencias (intuición computacional)
+
+**Método de potencias** (power iteration):
+
+1. Empieza con un vector positivo $x^{(0)}$ (por ejemplo, todos unos).
+2. Itera $x^{(k+1)} = A x^{(k)}$.
+3. Normaliza en cada paso (por ejemplo, divide por $\|x^{(k+1)}\|$).
+
+Bajo condiciones generales (grafo conexo), $x^{(k)}$ converge al autovector dominante.
+
+::: {.callout-note title="¿Por qué esto tiene sentido?"}
+Multiplicar por $A$ suma "influencia" de vecinos. Repetirlo acumula influencia a **distancias mayores** (vecinos de vecinos, etc.).
+:::
+
+### Ejemplo 4: vector propio en la estrella $K_{1,3}$
+
+En la estrella, por simetría todas las hojas tienen la misma centralidad.
+
+
+Sea $x_c$ la centralidad del centro y $x_\ell$ la de cada hoja.
+
+Ecuaciones $Ax=\lambda x$:
+
+- Para una hoja: $\lambda x_\ell = x_c$ (solo vecina al centro).
+- Para el centro: $\lambda x_c = x_1+x_2+x_3 = 3x_\ell$.
+
+Combinando:
+
+$$
+\lambda(\lambda x_\ell)=3x_\ell \Rightarrow \lambda^2=3 \Rightarrow \lambda=\sqrt{3}.
+$$
+
+Entonces $x_c=\lambda x_\ell = \sqrt{3}\,x_\ell$.
+
+::: {.callout-tip title="Interpretación"}
+El centro es más central no solo por su grado, sino porque concentra la "influencia" de todas las hojas.
+:::
+
+-->
+</section>
+</section>
+<section id="cuándo-difieren-estas-métricas" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="cuándo-difieren-estas-métricas"><span class="header-section-number">4.5</span> ¿Cuándo difieren estas métricas?</h2>
+<ul>
+<li><strong>Grado</strong> mira solo vecindad inmediata (radio 1).</li>
+<li><strong>Cercanía</strong> mira distancias a todos (geometría global).</li>
+<li><strong>Intermediación</strong> mira control de rutas cortas (puentes/cuello de botella).</li>
+<li><strong>Vector propio</strong> mira influencia recursiva.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una red mutualista, una planta con muchas visitas (alto grado) puede tener <strong>baja intermediación</strong> si está dentro de un módulo denso; una especie “rara” con pocas interacciones puede conectar módulos (alta intermediación).</p>
+</div>
+</div>
+</section>
+<section id="resumen-comparativo-qué-captura-cada-una" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="resumen-comparativo-qué-captura-cada-una"><span class="header-section-number">4.6</span> Resumen comparativo (qué captura cada una)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Pregunta matemática</th>
+<th>Lectura ecológica típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Grado <span class="math inline">\(C_D\)</span></td>
+<td>¿Cuántos vecinos directos tengo?</td>
+<td>Generalismo / diversidad de socios; exposición directa.</td>
+</tr>
+<tr class="even">
+<td>Cercanía <span class="math inline">\(C_C\)</span></td>
+<td>¿Qué tan pequeña es mi distancia promedio al resto?</td>
+<td>Accesibilidad global; propagación rápida de perturbaciones/efectos indirectos.</td>
+</tr>
+<tr class="odd">
+<td>Intermediación <span class="math inline">\(C_B\)</span></td>
+<td>¿Cuántos caminos más cortos pasan por mí?</td>
+<td>Conector entre módulos; “puente” funcional; control de flujo entre grupos.</td>
+</tr>
+</tbody>
+</table>
+<!--| Vector propio | ¿Estoy conectado a nodos conectados? | Pertenencia al núcleo; influencia recursiva; relevancia estructural. |-->
+<!-- 
+## Ejercicios para la sesión
+
+### Ejercicio 1: grado en una matriz bipartita
+
+Sea la siguiente matriz de incidencia (planta–polinizador):
+
+$$
+\begin{array}{c|cccc}
+   & a_1 & a_2 & a_3 & a_4\\ \hline
+p_1& 1   & 1   & 0   & 0\\
+p_2& 0   & 1   & 1   & 0\\
+p_3& 0   & 1   & 0   & 0\\
+p_4& 0   & 0   & 1   & 1
+\end{array}
+$$
+
+**Actividad:**
+
+1. Calcula el grado de cada planta y de cada polinizador.
+2. Identifica especies generalistas y especialistas.
+3. Discute: ¿qué sesgos de muestreo podrían inflar/deflacionar el grado observado?
+
+### Ejercicio 2: cercanía en un camino
+
+Considerar el camino de 5 vértices $1-2-3-4-5$.
+
+**Actividad:**
+
+1. Construir la tabla de distancias $d(i,j)$.
+2. Calcular $C_C^{\mathrm{norm}}(i)$ para cada vértice.
+3. Interpretar ecológicamente si estos vértices fueran especies en una cadena trófica simplificada (sin dirección).
+
+::: {.callout-note title="Nota"}
+En un camino, el nodo central (aquí el 3) suele maximizar cercanía.
+:::
+
+### Ejercicio 3: intermediación en un "puente"
+
+Considerar el grafo formado por dos cuadrados unidos por un solo vértice:
+
+
+**Actividad:**
+
+1. Sin calcular todo, argumentar qué nodo(s) deben tener mayor $C_B$.
+2. Calcular $C_B(5)$ contando pares $(s,t)$ y caminos más cortos.
+3. Interpretar el rol de 5 como "conector" entre subredes.
+
+### Ejercicio 4: vector propio por iteración
+
+Sea el grafo con matriz de adyacencia
+
+$$
+A=\begin{pmatrix}
+0&1&1&0\\
+1&0&1&0\\
+1&1&0&1\\
+0&0&1&0
+\end{pmatrix}
+$$
+
+**Actividad:**
+
+1. Empezar con $x^{(0)}=(1,1,1,1)^\top$.
+2. Calcular $x^{(1)}=Ax^{(0)}$ y $x^{(2)}=Ax^{(1)}$.
+3. Normalizar (por ejemplo, dividir por el máximo) y comparar componentes.
+4. ¿Qué nodo cree que tendrá mayor centralidad de vector propio? **¿Por qué?**
+
+::: {.callout-note title="Nota"}
+El nodo 3 conecta un "triángulo" con una hoja (4). Eso suele aumentar su influencia espectral.
+:::
+
+### Ejercicio 5: comparar centralidades en una red ecológica
+
+Tomar la red del Ejemplo 1 (planta–polinizador).
+
+**Actividad:**
+
+1. Calcular $C_D$ para todas las especies.
+2. Calcular $C_C^{\mathrm{norm}}$ para todas las especies (usa distancias en el grafo bipartito).
+3. Sin hacer todos los cálculos, argumentar qué especie espera que tenga mayor $C_B$.
+4. Discutir: si eliminamos $a_2$, ¿qué cambia en conectividad y en rutas cortas?
+
+::: {.callout-tip title="Sugerencia"}
+Dibujar primero el grafo y detecta si hay "cuellos de botella" (nodos cuya eliminación desconecta muchos pares).
+:::
+
+### Lecturas sugeridas
+
+- Freeman, L. C. (1979). Centrality in social networks: Conceptual clarification. *Social Networks*.
+- Borgatti, S. P. (2005). Centrality and network flow. *Social Networks*.
+- Newman, M. E. J. (2010). *Networks: An Introduction*. (Capítulos de centralidad).
+- Bonacich, P. (1987). Power and centrality: a family of measures. *American Journal of Sociology*.
+- Page, L., Brin, S., Motwani, R., & Winograd, T. (1999). The PageRank citation ranking: Bringing order to the web.
+- Dormann, C. F. et al. (2009). Indices, graphs and null models: analyzing bipartite ecological networks. *The Open Ecology Journal*.
+
+### Apéndice: cálculo en R (`igraph`)
+
+Para una red (unimodal) en `igraph`, retomando la matriz de adyacencia del Ejercicio 4:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+library(igraph)
+```
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning: package 'igraph' was built under R version 4.2.3
+```
+
+
+:::
+
+```{.r .cell-code}
+A <- matrix(c(
+  0,1,1,0,
+  1,0,1,0,
+  1,1,0,1,
+  0,0,1,0
+), nrow = 4, byrow = TRUE)
+
+g <- graph_from_adjacency_matrix(A, mode = "undirected")
+
+degree(g)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 2 2 3 1
+```
+
+
+:::
+
+```{.r .cell-code}
+closeness(g, normalized = TRUE)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.75 0.75 1.00 0.60
+```
+
+
+:::
+
+```{.r .cell-code}
+betweenness(g, normalized = TRUE)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.0000000 0.0000000 0.6666667 0.0000000
+```
+
+
+:::
+
+```{.r .cell-code}
+eigen_centrality(g)$vector
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.8546377 0.8546377 1.0000000 0.4608111
+```
+
+
+:::
+
+```{.r .cell-code}
+page_rank(g, damping = 0.85)$vector
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.2459278 0.2459278 0.3667359 0.1414085
+```
+
+
+:::
+:::
+
+
+**Nota**: para redes bipartitas, se recomienda analizar el grafo bipartito sin proyectar (cuando sea posible) y comparar con proyecciones con cuidado.
+
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Sesion2.html" class="pagination-link" aria-label="Sesión 2: Introducción a la Teoría de Grafos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Sesion4.html" class="pagination-link" aria-label="Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Material desarrollado con <a href="https://quarto.org/">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./Sesion3.html" rel="next">
 <link href="./Sesion1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -159,14 +159,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+  <a href="./Sesion4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
   </div>
 </li>
     </ul>
@@ -190,12 +196,6 @@ window.Quarto = {
   <li><a href="#subgrafos-y-subgrafos-inducidos" id="toc-subgrafos-y-subgrafos-inducidos" class="nav-link" data-scroll-target="#subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.3</span> Subgrafos y Subgrafos inducidos</a></li>
   <li><a href="#isomorfismo-de-grafos" id="toc-isomorfismo-de-grafos" class="nav-link" data-scroll-target="#isomorfismo-de-grafos"><span class="header-section-number">2.4</span> Isomorfismo de grafos</a></li>
   <li><a href="#grado-de-un-vértice" id="toc-grado-de-un-vértice" class="nav-link" data-scroll-target="#grado-de-un-vértice"><span class="header-section-number">2.5</span> Grado de un vértice</a></li>
-  <li><a href="#bibliografía-general-recomendada" id="toc-bibliografía-general-recomendada" class="nav-link" data-scroll-target="#bibliografía-general-recomendada"><span class="header-section-number">3</span> Bibliografía General Recomendada</a>
-  <ul class="collapse">
-  <li><a href="#fundamentos-de-grafos-bipartitos" id="toc-fundamentos-de-grafos-bipartitos" class="nav-link" data-scroll-target="#fundamentos-de-grafos-bipartitos"><span class="header-section-number">3.0.1</span> Fundamentos de grafos bipartitos</a></li>
-  <li><a href="#métricas-y-propiedades-estructurales-en-grafos-bipartitos" id="toc-métricas-y-propiedades-estructurales-en-grafos-bipartitos" class="nav-link" data-scroll-target="#métricas-y-propiedades-estructurales-en-grafos-bipartitos"><span class="header-section-number">3.0.2</span> Métricas y propiedades estructurales en grafos bipartitos</a></li>
-  <li><a href="#modelos-y-métricas-generalizables-a-redes-bipartitas" id="toc-modelos-y-métricas-generalizables-a-redes-bipartitas" class="nav-link" data-scroll-target="#modelos-y-métricas-generalizables-a-redes-bipartitas"><span class="header-section-number">3.0.3</span> Modelos y métricas generalizables a redes bipartitas</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,11 +224,20 @@ window.Quarto = {
 <section id="fundamentos-de-grafos-qué-es-un-grafo" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="fundamentos-de-grafos-qué-es-un-grafo"><span class="header-section-number">2.1</span> Fundamentos de Grafos: Qué es un grafo</h2>
 <blockquote class="blockquote">
-<p><strong>Definición: Grafo simple</strong> Un <strong>grafo simple</strong> <span class="math inline">\(G\)</span> es un par ordenado <span class="math inline">\((V, E)\)</span>, donde:</p>
-<p>- <span class="math inline">\(V\)</span> es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman <strong>vértices</strong> (o nodos). - <span class="math inline">\(E\)</span> es un conjunto de pares no ordenados de vértices distintos. Los elementos de <span class="math inline">\(E\)</span> se llaman <strong>aristas</strong> (o enlaces).</p>
+<p><strong>Definición: grafo simple</strong></p>
+<p>Un <strong>grafo simple</strong> <span class="math inline">\(G\)</span> es un par ordenado <span class="math inline">\((V, E)\)</span>, donde:</p>
+<ul>
+<li><span class="math inline">\(V\)</span> es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman <strong>vértices</strong> (o nodos).</li>
+<li><span class="math inline">\(E\)</span> es un conjunto de pares no ordenados de vértices distintos. Los elementos de <span class="math inline">\(E\)</span> se llaman <strong>aristas</strong> (o enlaces).</li>
+</ul>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>Ejemplo:</strong> Sean: * <span class="math inline">\(V=\{1, 2, 3, 4\}\)</span> * <span class="math inline">\(E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}\)</span></p>
+<p><strong>Ejemplo</strong></p>
+<p>Sean</p>
+<ul>
+<li><span class="math inline">\(V=\{1, 2, 3, 4\}\)</span></li>
+<li><span class="math inline">\(E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}\)</span></li>
+</ul>
 </blockquote>
 <section id="terminología-básica" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="terminología-básica"><span class="header-section-number">2.1.1</span> Terminología básica</h3>
@@ -261,17 +270,20 @@ window.Quarto = {
 <section id="subgrafos-y-subgrafos-inducidos" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.3</span> Subgrafos y Subgrafos inducidos</h2>
 <blockquote class="blockquote">
-<p><strong>Definición: Subgrafo</strong> Un grafo <span class="math inline">\(H=(V_H, E_H)\)</span> es un <strong>subgrafo</strong> de <span class="math inline">\(G=(V_G, E_G)\)</span> si <span class="math inline">\(V_H \subseteq V_G\)</span>, <span class="math inline">\(E_H \subseteq E_G\)</span> y todas las aristas en <span class="math inline">\(E_H\)</span> tienen sus extremos en <span class="math inline">\(V_H\)</span>.</p>
+<p><strong>Definición: Subgrafo</strong></p>
+<p>Un grafo <span class="math inline">\(H=(V_H, E_H)\)</span> es un <strong>subgrafo</strong> de <span class="math inline">\(G=(V_G, E_G)\)</span> si <span class="math inline">\(V_H \subseteq V_G\)</span>, <span class="math inline">\(E_H \subseteq E_G\)</span> y todas las aristas en <span class="math inline">\(E_H\)</span> tienen sus extremos en <span class="math inline">\(V_H\)</span>.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><strong>Definición: Subgrafo inducido</strong> Dado un subconjunto de vértices <span class="math inline">\(S \subseteq V_G\)</span>, el <strong>subgrafo inducido</strong> por <span class="math inline">\(S\)</span>, denotado <span class="math inline">\(G[S]\)</span>, es el grafo <span class="math inline">\((S, E_S)\)</span> donde <span class="math inline">\(E_S\)</span> contiene todas las aristas de <span class="math inline">\(E_G\)</span> cuyos dos extremos están en <span class="math inline">\(S\)</span>.</p>
+<p><strong>Definición: Subgrafo inducido</strong></p>
+<p>Dado un subconjunto de vértices <span class="math inline">\(S \subseteq V_G\)</span>, el <strong>subgrafo inducido</strong> por <span class="math inline">\(S\)</span>, denotado <span class="math inline">\(G[S]\)</span>, es el grafo <span class="math inline">\((S, E_S)\)</span> donde <span class="math inline">\(E_S\)</span> contiene todas las aristas de <span class="math inline">\(E_G\)</span> cuyos dos extremos están en <span class="math inline">\(S\)</span>.</p>
 </blockquote>
 </section>
 <section id="isomorfismo-de-grafos" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="isomorfismo-de-grafos"><span class="header-section-number">2.4</span> Isomorfismo de grafos</h2>
 <p>¿Cuándo son dos grafos “<em>esencialmente el mismo</em>”?</p>
 <blockquote class="blockquote">
-<p><strong>Definición: Isomorfismo</strong> Dos grafos <span class="math inline">\(G_1=(V_1, E_1)\)</span> y <span class="math inline">\(G_2=(V_2, E_2)\)</span> son <strong>isomorfos</strong> (<span class="math inline">\(G_1 \cong G_2\)</span>) si existe una función biyectiva <span class="math inline">\(f: V_1 \to V_2\)</span> tal que: <span class="math display">\[\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2\]</span> La función <span class="math inline">\(f\)</span> preserva la adyacencia.</p>
+<p><strong>Definición: Isomorfismo</strong></p>
+<p>Dos grafos <span class="math inline">\(G_1=(V_1, E_1)\)</span> y <span class="math inline">\(G_2=(V_2, E_2)\)</span> son <strong>isomorfos</strong> (<span class="math inline">\(G_1 \cong G_2\)</span>) si existe una función biyectiva <span class="math inline">\(f: V_1 \to V_2\)</span> tal que: <span class="math display">\[\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2\]</span> La función <span class="math inline">\(f\)</span> preserva la adyacencia.</p>
 </blockquote>
 </section>
 <section id="grado-de-un-vértice" class="level2" data-number="2.5">
@@ -279,7 +291,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Definición: Grado</strong> El <strong>grado</strong> de un vértice <span class="math inline">\(v\)</span> en un grafo <span class="math inline">\(G\)</span>, denotado <span class="math inline">\(\deg(v)\)</span> o <span class="math inline">\(d(v)\)</span>, es el número de aristas incidentes a <span class="math inline">\(v\)</span>. Equivalentemente, es el número de vecinos de <span class="math inline">\(v\)</span>.</p>
 </blockquote>
-<!-- ESTO NO SE USO EN ESTA SESION
+<!-- ESTO NO SE USÓ EN ESTA SESION
 **Teorema: Lema del apretón de manos** Para cualquier grafo $G=(V, E)$, la suma de los grados de todos los vértices es igual al doble del número de aristas: $$\sum_{v \in V} \deg(v) = 2|E|$$ *Idea de la demostración:* Cada arista $\{u, v\}$ contribuye exactamente dos veces a la suma total de grados.
 
 ### Actividad rápida: Lema del apretón de manos
@@ -378,43 +390,10 @@ Medidas para cuantificar la "importancia" de un nodo.
 
 > **Teorema de Hall:** Sea $G=(V_1 \cup V_2, E)$ un grafo bipartito. Existe un emparejamiento que cubre todos los vértices de $V_1$ si y sólo si para todo subconjunto $S \subseteq V_1$: $$|N(S)| \geq |S|$$
 
-------------------------------------------------------------------------
+
 -->
-</section>
-<section id="bibliografía-general-recomendada" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Bibliografía General Recomendada</h1>
-<section id="fundamentos-de-grafos-bipartitos" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="fundamentos-de-grafos-bipartitos"><span class="header-section-number">3.0.1</span> Fundamentos de grafos bipartitos</h3>
-<ul>
-<li><strong>Asratian, A. S., Denley, T. M. J., &amp; Häggkvist, R. (1998).</strong> <em>Bipartite Graphs and their Applications</em>. Cambridge University Press.</li>
-<li><strong>Hall, P. (1935).</strong> “On Representatives of Subsets.” <em>Journal of the London Mathematical Society</em>, 10(1), 26–30.</li>
-<li><strong>Bondy, J. A., &amp; Murty, U. S. R. (1976).</strong> <em>Graph Theory with Applications</em>. London: Macmillan.</li>
-<li><strong>Lovász, L., &amp; Plummer, M. D. (1986).</strong> <em>Matching Theory</em>. North-Holland.</li>
-<li><strong>Wasserman, S., &amp; Faust, K. (1994).</strong> <em>Social Network Analysis: Methods and Applications</em>. Cambridge University Press.</li>
-</ul>
-</section>
-<section id="métricas-y-propiedades-estructurales-en-grafos-bipartitos" class="level3" data-number="3.0.2">
-<h3 data-number="3.0.2" class="anchored" data-anchor-id="métricas-y-propiedades-estructurales-en-grafos-bipartitos"><span class="header-section-number">3.0.2</span> Métricas y propiedades estructurales en grafos bipartitos</h3>
-<ul>
-<li><strong>Latapy, M., Magnien, C., &amp; Del Vecchio, N. (2008).</strong> “Basic Notions for the Analysis of Large Two-Mode Networks.” <em>Social Networks</em>, 30(1), 31–48.</li>
-<li><strong>Borgatti, S. P., &amp; Everett, M. G. (1997).</strong> “Network Analysis of 2-Mode Data.” <em>Social Networks</em>, 19(3), 243–269.</li>
-<li><strong>Dormann, C. F., et al.&nbsp;(2009).</strong> “Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks.” <em>The Open Ecology Journal</em>, 2, 7–24.</li>
-<li><strong>Almeida-Neto, M., et al.&nbsp;(2008).</strong> “A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement.” <em>Oikos</em>, 117(8), 1227–1239.</li>
-<li><strong>Barber, M. J. (2007).</strong> “Modularity and Community Detection in Bipartite Networks.” <em>Physical Review E</em>, 76(6), 066102.</li>
-<li><strong>Ouadah, S., Latouche, P., &amp; Robin, S. (2022).</strong> “Motif-Based Tests for Bipartite Networks.” <em>Electronic Journal of Statistics</em>, 16(1), 293–330.</li>
-<li><strong>Borgatti, S. P., &amp; Everett, M. G. (1999).</strong> “Models of Core/Periphery Structures.” <em>Social Networks</em>, 21(4), 375–395.</li>
-</ul>
-</section>
-<section id="modelos-y-métricas-generalizables-a-redes-bipartitas" class="level3" data-number="3.0.3">
-<h3 data-number="3.0.3" class="anchored" data-anchor-id="modelos-y-métricas-generalizables-a-redes-bipartitas"><span class="header-section-number">3.0.3</span> Modelos y métricas generalizables a redes bipartitas</h3>
-<ul>
-<li><strong>Kunegis, J. (2015).</strong> “Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications.” <em>Internet Mathematics</em>, 11(4), 201–231.</li>
-<li><strong>Saracco, F., et al.&nbsp;(2015).</strong> “Randomizing Bipartite Networks: The Case of the World Trade Web.” <em>Scientific Reports</em>, 5, 10595.</li>
-<li><strong>Cimini, G., et al.&nbsp;(2019).</strong> “The Statistical Physics of Real-World Networks.” <em>Nature Reviews Physics</em>, 1(1), 58–71.</li>
-</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -825,8 +804,8 @@ Medidas para cuantificar la "importancia" de un nodo.
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Sesion3.html" class="pagination-link" aria-label="Sesión 3: Métricas y análisis de redes: Centralidad">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
