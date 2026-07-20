@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Sesión 1: Roadmap del curso – Grafos bipartitos en redes de interacción ecológicas</title>
+<title>1&nbsp; Introducción – Grafos bipartitos en redes de interacción ecológicas</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bac3027a5876e01c08fed17debf2ea73.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -183,31 +183,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Métricas locales y análisis de redes: grado, cercanía, intermediación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></span></a>
   </div>
 </li>
     </ul>
@@ -220,19 +220,12 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#objetivos-de-la-sesión-1" id="toc-objetivos-de-la-sesión-1" class="nav-link active" data-scroll-target="#objetivos-de-la-sesión-1"><span class="header-section-number">1.1</span> Objetivos de la sesión 1</a></li>
-  <li><a href="#objetivos-de-la-parte-de-teoría-de-grafos" id="toc-objetivos-de-la-parte-de-teoría-de-grafos" class="nav-link" data-scroll-target="#objetivos-de-la-parte-de-teoría-de-grafos"><span class="header-section-number">1.2</span> Objetivos de la parte de Teoría de Grafos</a></li>
-  <li><a href="#por-qué-grafos-bipartitos-en-ecología-de-interacciones" id="toc-por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="nav-link" data-scroll-target="#por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">1.3</span> ¿Por qué grafos bipartitos en ecología de interacciones?</a></li>
-  <li><a href="#ejemplo-esquema-de-un-grafo-bipartito" id="toc-ejemplo-esquema-de-un-grafo-bipartito" class="nav-link" data-scroll-target="#ejemplo-esquema-de-un-grafo-bipartito"><span class="header-section-number">1.4</span> Ejemplo: esquema de un grafo bipartito</a></li>
-  <li><a href="#ejemplo-matriz-bipartita" id="toc-ejemplo-matriz-bipartita" class="nav-link" data-scroll-target="#ejemplo-matriz-bipartita"><span class="header-section-number">1.5</span> Ejemplo: matriz bipartita</a></li>
-  <li><a href="#propuesta-de-temario-roadmap" id="toc-propuesta-de-temario-roadmap" class="nav-link" data-scroll-target="#propuesta-de-temario-roadmap"><span class="header-section-number">1.6</span> Propuesta de temario (roadmap)</a></li>
-  <li><a href="#herramienta-central-bipartite-en-r" id="toc-herramienta-central-bipartite-en-r" class="nav-link" data-scroll-target="#herramienta-central-bipartite-en-r"><span class="header-section-number">1.7</span> Herramienta central: <code>bipartite</code> en R</a>
-  <ul class="collapse">
-  <li><a href="#ejemplo-de-código-y-visualización" id="toc-ejemplo-de-código-y-visualización" class="nav-link" data-scroll-target="#ejemplo-de-código-y-visualización"><span class="header-section-number">1.7.1</span> Ejemplo de código y visualización</a></li>
-  </ul></li>
-  <li><a href="#conexión-con-datos-reales-y-abiertos" id="toc-conexión-con-datos-reales-y-abiertos" class="nav-link" data-scroll-target="#conexión-con-datos-reales-y-abiertos"><span class="header-section-number">1.8</span> Conexión con datos reales (y abiertos)</a></li>
-  <li><a href="#producto-entregable-github-quarto" id="toc-producto-entregable-github-quarto" class="nav-link" data-scroll-target="#producto-entregable-github-quarto"><span class="header-section-number">1.9</span> Producto entregable: GitHub + Quarto</a></li>
-  <li><a href="#qué-sigue" id="toc-qué-sigue" class="nav-link" data-scroll-target="#qué-sigue"><span class="header-section-number">1.10</span> ¿Qué sigue?</a></li>
+  <li><a href="#por-qué-grafos-bipartitos-en-ecología-de-interacciones" id="toc-por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="nav-link active" data-scroll-target="#por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">1.1</span> ¿Por qué grafos bipartitos en ecología de interacciones?</a></li>
+  <li><a href="#roadmap-del-curso" id="toc-roadmap-del-curso" class="nav-link" data-scroll-target="#roadmap-del-curso"><span class="header-section-number">1.2</span> Roadmap del curso</a></li>
+  <li><a href="#herramienta-central-bipartite-en-r" id="toc-herramienta-central-bipartite-en-r" class="nav-link" data-scroll-target="#herramienta-central-bipartite-en-r"><span class="header-section-number">1.3</span> Herramienta central: <code>bipartite</code> en R</a></li>
+  <li><a href="#ejemplo-de-código-y-visualización" id="toc-ejemplo-de-código-y-visualización" class="nav-link" data-scroll-target="#ejemplo-de-código-y-visualización"><span class="header-section-number">1.4</span> Ejemplo de código y visualización</a></li>
+  <li><a href="#conexión-con-datos-reales-y-abiertos" id="toc-conexión-con-datos-reales-y-abiertos" class="nav-link" data-scroll-target="#conexión-con-datos-reales-y-abiertos"><span class="header-section-number">1.5</span> Conexión con datos reales (y abiertos)</a></li>
+  <li><a href="#un-idioma-común-grafo-ecología" id="toc-un-idioma-común-grafo-ecología" class="nav-link" data-scroll-target="#un-idioma-común-grafo-ecología"><span class="header-section-number">1.6</span> Un idioma común: grafo ↔︎ ecología</a></li>
   </ul>
 </nav>
     </div>
@@ -241,7 +234,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></h1>
 </div>
 
 
@@ -258,148 +251,226 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-de-la-sesión-1" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="objetivos-de-la-sesión-1"><span class="header-section-number">1.1</span> Objetivos de la sesión 1</h2>
-<ul>
-<li>Presentar una <strong>propuesta de temario</strong> (roadmap) para el estudio de <em>redes de interacción en Ecología</em> con el enfoque de la Teoría de Grafos.</li>
-<li>Motivar <strong>por qué</strong> el lenguaje de grafos bipartitos es natural en redes de interacción ecológicas.</li>
-<li>Delinear <strong>qué haremos</strong> en las siguientes sesiones: definiciones, cálculo computacional, interpretación y casos reales.</li>
-<li>Alinear expectativas sobre <strong>productos entregables</strong> y prácticas de reproducibilidad.</li>
-</ul>
-</section>
-<section id="objetivos-de-la-parte-de-teoría-de-grafos" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="objetivos-de-la-parte-de-teoría-de-grafos"><span class="header-section-number">1.2</span> Objetivos de la parte de Teoría de Grafos</h2>
-<p>Al finalizar esta parte del seminario, buscaremos que el grupo pueda:</p>
-<ol type="1">
-<li><strong>Definir matemáticamente</strong> métricas estándar en grafos bipartitos usados en ecología.</li>
-<li><strong>Calcular las métricas computacionalmente en R</strong> (paquete <code>bipartite</code>), con ejemplos ilustrativos, casos extremos y redes sintéticas.</li>
-<li><strong>Interpretarlas en contexto matemático</strong> (qué cuantifican, qué no cuantifican, y qué supuestos implican).</li>
-<li><strong>Conectar</strong> las métricas con <strong>redes reales</strong> (bases de datos abiertas y datos proporcionados), y con preguntas ecológicas concretas.</li>
-</ol>
-</section>
-<section id="por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">1.3</span> ¿Por qué grafos bipartitos en ecología de interacciones?</h2>
+<section id="por-qué-grafos-bipartitos-en-ecología-de-interacciones" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="por-qué-grafos-bipartitos-en-ecología-de-interacciones"><span class="header-section-number">1.1</span> ¿Por qué grafos bipartitos en ecología de interacciones?</h2>
 <p>Muchos sistemas de interacción admiten una partición natural en dos tipos de entidades:</p>
-<ul>
-<li>plantas <span class="math inline">\(\leftrightarrow\)</span> polinizadores,</li>
-<li>plantas <span class="math inline">\(\leftrightarrow\)</span> dispersores,</li>
-<li>hospederos <span class="math inline">\(\leftrightarrow\)</span> parásitos,</li>
-<li>plantas <span class="math inline">\(\leftrightarrow\)</span> herbívoros, etc.</li>
-</ul>
-<p>La estructura bipartita permite:</p>
-<ul>
-<li>Representar el sistema combinatoriamente y/o como una <strong>matriz de incidencia</strong> (binaria o ponderada).</li>
-<li>Cuantificar <strong>patrones estructurales</strong> (especialización, anidamiento, modularidad).</li>
-<li>Evaluar <strong>robustez</strong> ante perturbaciones y cambios (tiempo/espacio).</li>
-</ul>
-</section>
-<section id="ejemplo-esquema-de-un-grafo-bipartito" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="ejemplo-esquema-de-un-grafo-bipartito"><span class="header-section-number">1.4</span> Ejemplo: esquema de un grafo bipartito</h2>
-<div class="cell">
+<div class="cell" data-layout-align="left">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="Sesion1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Esquema visual de interacciones bipartitas.</figcaption>
+<p><img src="Sesion1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:95.0%"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>La estructura matemática de grafo bipartito permite:</p>
+<ul>
+<li>Representar el sistema <strong>combinatoriamente</strong> y/o como una <strong>matriz</strong> (binaria o ponderada).</li>
+<li>Medir <strong>importancia de elementos locales</strong> en la red (centralidad, cercanía, intermediación).</li>
+<li>Cuantificar <strong>patrones estructurales</strong> de la red (anidamiento, especialización, modularidad).</li>
+<li>Evaluar <strong>robustez</strong> ante perturbaciones y cambios (tiempo/espacio).</li>
+</ul>
+<!--
+## Ejemplo: matriz bipartita
+
+Una red bipartita puede representarse por una matriz $B\in\mathbb{R}_{\ge 0}^{p\times q}$:
+
+$$B_{ij}=\begin{cases}
+0, & \text{si no se observa interacción} \\
+1, & \text{si se registra presencia/ausencia} \\
+w_{ij}>0, & \text{si se registra frecuencia/intensidad}\end{cases}$$
+
+Ejemplo (binario): 
+$$\begin{array}{c|cccc}
+   & a_1 & a_2 & a_3 & a_4\\ 
+\hline 
+p_1& 1   & 1   & 0   & 0\\
+p_2& 0   & 1   & 1   & 0\\
+p_3& 0   & 1   & 0   & 0\\
+p_4& 0   & 0   & 0   & 1
+\end{array}$$
+-->
 </section>
-<section id="ejemplo-matriz-bipartita" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="ejemplo-matriz-bipartita"><span class="header-section-number">1.5</span> Ejemplo: matriz bipartita</h2>
-<p>Una red bipartita puede representarse por una matriz <span class="math inline">\(B\in\mathbb{R}_{\ge 0}^{p\times q}\)</span>:</p>
-<p><span class="math display">\[B_{ij}=\begin{cases}
-0, &amp; \text{si no se observa interacción} \\
-1, &amp; \text{si se registra presencia/ausencia} \\
-w_{ij}&gt;0, &amp; \text{si se registra frecuencia/intensidad}\end{cases}\]</span></p>
-<p>Ejemplo (binario): <span class="math display">\[\begin{array}{c|cccc}
-   &amp; a_1 &amp; a_2 &amp; a_3 &amp; a_4\\
-\hline
-p_1&amp; 1   &amp; 1   &amp; 0   &amp; 0\\
-p_2&amp; 0   &amp; 1   &amp; 1   &amp; 0\\
-p_3&amp; 0   &amp; 1   &amp; 0   &amp; 0\\
-p_4&amp; 0   &amp; 0   &amp; 0   &amp; 1
-\end{array}\]</span></p>
-</section>
-<section id="propuesta-de-temario-roadmap" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="propuesta-de-temario-roadmap"><span class="header-section-number">1.6</span> Propuesta de temario (roadmap)</h2>
+<section id="roadmap-del-curso" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="roadmap-del-curso"><span class="header-section-number">1.2</span> Roadmap del curso</h2>
+<p>En este seminario se pretende estudiar:</p>
 <ol type="1">
-<li><strong>Fundamentos y datos</strong>: redes bipartitas, matrices de incidencia, datos binarios/ponderados.</li>
-<li><strong>Métricas locales (por nodo/especie)</strong>: grado/fuerza, dependencia, índices de especialización y roles.</li>
-<li><strong>Métricas globales (por red)</strong>: conectancia, diversidad de interacciones, anidamiento, modularidad y estructuras mesoscópicas.</li>
+<li><strong>Fundamentos de la Teoría de grafos</strong>: redes bipartitas, matrices de interacción, datos binarios/ponderados.</li>
+<li><strong>Métricas locales (por nodo/especie)</strong>: grado/fuerza, dependencia, conectancia, diversidad de interacciones.</li>
+<li><strong>Métricas globales (por red)</strong>: anidamiento, modularidad, especialización.</li>
 <li><strong>Dinámica temporal y espacial</strong>: redes por temporada/año/sitio, recambio de enlaces, beta-diversidad de interacciones.</li>
 <li><strong>Robustez y perturbaciones</strong>: extinción primaria/secundaria, curvas de robustez, sensibilidad a especies clave.</li>
-<li><strong>Casos de estudio + prácticas reproducibles</strong>: datasets abiertos, ejercicios en R, reporte en Quarto y repositorio en GitHub.</li>
+<li><strong>Casos de estudio + prácticas reproducibles</strong>: datasets abiertos, implementación en R.</li>
 </ol>
 </section>
-<section id="herramienta-central-bipartite-en-r" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="herramienta-central-bipartite-en-r"><span class="header-section-number">1.7</span> Herramienta central: <code>bipartite</code> en R</h2>
-<p>Usaremos <code>bipartite</code> como marco común de implementación:</p>
+<section id="herramienta-central-bipartite-en-r" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="herramienta-central-bipartite-en-r"><span class="header-section-number">1.3</span> Herramienta central: <code>bipartite</code> en R</h2>
+<p>Usaremos <code>bipartite</code> como marco común de implementación para:</p>
 <ul>
-<li>Cálculo de métricas a nivel red/especie.</li>
+<li>Cálculo de métricas a nivel de red y de especie.</li>
 <li>Visualizaciones (matriz, <code>plotweb</code>, módulos).</li>
 <li>Detección de modularidad en bipartitas.</li>
 <li>Simulaciones de extinción y coextinción.</li>
 </ul>
-<section id="ejemplo-de-código-y-visualización" class="level3" data-number="1.7.1">
-<h3 data-number="1.7.1" class="anchored" data-anchor-id="ejemplo-de-código-y-visualización"><span class="header-section-number">1.7.1</span> Ejemplo de código y visualización</h3>
+<p>En estas notas se conciben ejemplos pequeños que se pueden trabajar a mano, y la implementación del softwware pretende resaltar que <strong>el paquete no es una caja negra</strong>, sino que <strong>confirma</strong> lo expuesto en la teoría.</p>
+<p><strong>Observación:</strong></p>
+<p><code>bipartite</code> es la herramienta central de estas notas. Sin embargo, aparecerán otras dos librerías mencionadas:</p>
+<ul>
+<li><strong><code>vegan</code></strong>, aunque no se usa directamente: es el <em>motor</em> que <code>bipartite</code> llama por debajo para algunos índices (por ejemplo, el NODF se calcula internamente con <code>vegan::nestednodf</code>). Lo mencionamos solo por transparencia.</li>
+<li><strong><code>igraph</code></strong> aparece de forma puntual en las <strong>centralidades clásicas</strong> (cercanía, intermediación), cuando queremos el valor <strong>estándar de Teoría de Grafos</strong>. Ahí <code>bipartite</code> también las calcula, pero las entrega reescaladas a <span class="math inline">\([0,1]\)</span>; usar <code>igraph</code> nos deja reproducir exactamente el número calculado a mano.</li>
+</ul>
+<p><strong>Sugerencia práctica</strong>: tener instalado R/RStudio y el paquete <code>bipartite</code>.</p>
+</section>
+<section id="ejemplo-de-código-y-visualización" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="ejemplo-de-código-y-visualización"><span class="header-section-number">1.4</span> Ejemplo de código y visualización</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Safariland)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(Safariland, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"connectance"</span>,<span class="st">"nestedness"</span>,<span class="st">"H2"</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">computeModules</span>(Safariland)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plotModuleWeb</span>(m,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">plotModules =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">rank =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayAlabels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayBlabels =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">labsize =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<blockquote class="blockquote">
-<p><strong>Salida esperada:</strong> <strong>connectance</strong>: 0.160493827160494 <strong>nestedness</strong>: 19.8578346403513 <strong>H2</strong>: 0.853730724291418</p>
-</blockquote>
-<div class="quarto-figure quarto-figure-center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el paquete central,que contiene las funciones matemáticas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar un conjunto de datos empíricos (reales) de la librería biprtite</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Safariland)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular las métricas globales </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">networklevel</span>(Safariland, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"connectance"</span>, <span class="st">"NODF"</span>, <span class="st">"weighted NODF"</span>, <span class="st">"H2"</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Imprimir una línea de texto con los resultados</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Salida:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(metricas)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la modularidad y la representación gráfica</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">computeModules</span>(Safariland)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plotModuleWeb</span>(m,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">plotModules =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">rank =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">weighted =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayAlabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">displayBlabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>              <span class="at">labsize =</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="Safariland.JPG" class="img-fluid figure-img"></p>
-<figcaption>Red Safariland</figcaption>
+<p><img src="Sesion1_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Salida:
+  connectance          NODF weighted NODF            H2 
+    0.1604938    24.5478036    11.6063738     0.8537307 </code></pre>
+</div>
+</div>
 </section>
-</section>
-<section id="conexión-con-datos-reales-y-abiertos" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="conexión-con-datos-reales-y-abiertos"><span class="header-section-number">1.8</span> Conexión con datos reales (y abiertos)</h2>
-<p>Trabajaremos con redes provenientes de:</p>
+<section id="conexión-con-datos-reales-y-abiertos" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="conexión-con-datos-reales-y-abiertos"><span class="header-section-number">1.5</span> Conexión con datos reales (y abiertos)</h2>
+<p>Con el objetivo de vincular métricas con <strong>preguntas ecológicas</strong> concretas y con decisiones de modelado (binaria vs ponderada), trabajaremos con redes provenientes de:</p>
 <ul>
-<li><strong>Datasets incluidos en <code>bipartite</code></strong> (para arrancar rápido).</li>
+<li><strong>Datos sintéticos controlados</strong> para ilustración de conceptos e interpretaciones generales.</li>
+<li><strong>Datasets incluidos en <code>bipartite</code></strong> (por ejemplo, Safariland).</li>
 <li><strong>Repositorios abiertos</strong> (por ejemplo, <em>Web of Life</em>, <em>Mangal</em>).</li>
-<li><strong>Datos del grupo</strong> (cuando se proporcionen) y redes sintéticas controladas.</li>
+<li><strong>Datos del grupo</strong> (cuando se proporcionen).</li>
 </ul>
-<p>Objetivo: vincular métricas con <strong>preguntas ecológicas</strong> concretas y con decisiones de modelado (binaria vs ponderada).</p>
+<!--
+## ¿Qué sigue?
+
+En las próximas sesiones avanzaremos en el siguiente orden:
+
+1.  Notación y construcción de redes.
+2.  Métricas locales y globales: definiciones, propiedades y ejemplos.
+3.  Implementación en R con `bipartite`: funciones, salidas y visualización.
+4.  Interpretación y comparación; incorporación de dinámica y robustez.
+5.  Casos de estudio con redes reales (y documentación).
+
+-->
 </section>
-<section id="producto-entregable-github-quarto" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="producto-entregable-github-quarto"><span class="header-section-number">1.9</span> Producto entregable: GitHub + Quarto</h2>
-<ul>
-<li>notas en entorno web interactivo (definiciones, ejemplos, discusión),</li>
-<li>código en R (funciones y scripts),</li>
-<li>datasets (o instrucciones claras para descargarlos),</li>
-<li>figuras y salidas reproducibles.</li>
-</ul>
-<p><strong>Meta</strong>: que el repositorio funcione como referencia del seminario y como punto de partida para proyectos.</p>
-</section>
-<section id="qué-sigue" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="qué-sigue"><span class="header-section-number">1.10</span> ¿Qué sigue?</h2>
-<p>En las próximas sesiones avanzaremos en el siguiente orden:</p>
-<ol type="1">
-<li>Notación y construcción de redes bipartitas desde datos.</li>
-<li>Métricas locales y globales: definiciones, propiedades y ejemplos.</li>
-<li>Implementación en R con <code>bipartite</code>: funciones, salidas y visualización.</li>
-<li>Interpretación y comparación; incorporación de dinámica y robustez.</li>
-<li>Casos de estudio con redes reales (y documentación).</li>
-</ol>
-<p><strong>Sugerencia práctica</strong>: tener instalado R/RStudio y el paquete <code>bipartite</code> antes de la siguiente sesión.</p>
+<section id="un-idioma-común-grafo-ecología" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="un-idioma-común-grafo-ecología"><span class="header-section-number">1.6</span> Un idioma común: grafo ↔︎ ecología</h2>
+<p>Antes de empezar, fijemos el diccionario que usaremos a lo largo del curso. La columna matemática es el objeto formal; la biológica, su lectura habitual en una red de interacción.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Objeto matemático</th>
+<th>Lectura ecológica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vértice / nodo</td>
+<td>Especie (o grupo funcional)</td>
+</tr>
+<tr class="even">
+<td>Arista / enlace</td>
+<td>Interacción observada entre dos especies</td>
+</tr>
+<tr class="odd">
+<td>Peso de la arista</td>
+<td>Frecuencia, número de visitas, biomasa</td>
+</tr>
+<tr class="even">
+<td>Grado de un vértice</td>
+<td>Número de socios (parejas de interacción)</td>
+</tr>
+<tr class="odd">
+<td>Partición <span class="math inline">\(V_1,V_2\)</span></td>
+<td>Los dos gremios (por ejemplo plantas / polinizadores)</td>
+</tr>
+<tr class="even">
+<td>Componente conexa</td>
+<td>Grupo de especies aisladas del resto de la red</td>
+</tr>
+<tr class="odd">
+<td>Camino más corto</td>
+<td>Cadena mínima de interacciones que conecta dos especies</td>
+</tr>
+</tbody>
+</table>
+<p>Cada concepto se define con precisión en su momento; esta tabla es solo una guía inicial para tomar intuición al ir introduciendo cada término.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="🍃 Nota ecológica sobre lo que este curso permite responder">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🍃 Nota ecológica sobre lo que este curso permite responder
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Herramienta que veremos</th>
+<th>Pregunta ecológica que ayuda a responder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Representar la comunidad como grafo y como matriz <span class="math inline">\(B\)</span></td>
+<td>¿Cómo paso de mis observaciones de campo a un objeto que puedo medir?</td>
+</tr>
+<tr class="even">
+<td>Métricas locales (por especie)</td>
+<td>¿Qué especies son más importantes, y en qué sentido?</td>
+</tr>
+<tr class="odd">
+<td>Métricas globales (por red)</td>
+<td>¿Cómo está organizada la comunidad en su conjunto?</td>
+</tr>
+<tr class="even">
+<td>Robustez y perturbaciones</td>
+<td>¿Qué le pasa a la red si una especie desaparece?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </section>
@@ -812,8 +883,8 @@ p_4&amp; 0   &amp; 0   &amp; 0   &amp; 1
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Sesion2.html" class="pagination-link" aria-label="Sesión 2: Introducción a la Teoría de Grafos">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Sesion2.html" class="pagination-link" aria-label="Fundamentos de la Teoría de Grafos y contexto bipartito">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

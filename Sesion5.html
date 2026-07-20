@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Sesión 5: Métricas globales de red: Conectancia, anidamiento, H_2' y modularidad – Grafos bipartitos en redes de interacción ecológicas</title>
+<title>5&nbsp; Más métricas globales de red: especialización y modularidad – Grafos bipartitos en redes de interacción ecológicas</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -43,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bac3027a5876e01c08fed17debf2ea73.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -147,31 +182,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Métricas locales y análisis de redes: grado, cercanía, intermediación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion5.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></span></a>
   </div>
 </li>
     </ul>
@@ -184,15 +219,12 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#nodf-ponderado-weighted-nodf" id="toc-nodf-ponderado-weighted-nodf" class="nav-link active" data-scroll-target="#nodf-ponderado-weighted-nodf"><span class="header-section-number">5.1</span> NODF ponderado (weighted NODF)</a></li>
-  <li><a href="#bipartite-conectancia-y-nodf" id="toc-bipartite-conectancia-y-nodf" class="nav-link" data-scroll-target="#bipartite-conectancia-y-nodf"><span class="header-section-number">5.2</span> <code>bipartite</code>: conectancia y NODF</a></li>
-  <li><a href="#ejemplos-nodf" id="toc-ejemplos-nodf" class="nav-link" data-scroll-target="#ejemplos-nodf"><span class="header-section-number">5.3</span> Ejemplos: NODF</a></li>
-  <li><a href="#nodf-limitaciones-y-casos-degenerados" id="toc-nodf-limitaciones-y-casos-degenerados" class="nav-link" data-scroll-target="#nodf-limitaciones-y-casos-degenerados"><span class="header-section-number">5.4</span> NODF: limitaciones y casos degenerados</a></li>
-  <li><a href="#especialización-de-red-h_2" id="toc-especialización-de-red-h_2" class="nav-link" data-scroll-target="#especialización-de-red-h_2"><span class="header-section-number">5.5</span> Especialización de red <span class="math inline">\(H_2'\)</span></a></li>
-  <li><a href="#ejemplo" id="toc-ejemplo" class="nav-link" data-scroll-target="#ejemplo"><span class="header-section-number">5.6</span> Ejemplo</a></li>
-  <li><a href="#cálculo-de-h_2-para-un-caso-simple" id="toc-cálculo-de-h_2-para-un-caso-simple" class="nav-link" data-scroll-target="#cálculo-de-h_2-para-un-caso-simple"><span class="header-section-number">5.7</span> Cálculo de <span class="math inline">\(H_2'\)</span> para un caso simple</a></li>
-  <li><a href="#h_2-qué-dice-y-qué-no-dice" id="toc-h_2-qué-dice-y-qué-no-dice" class="nav-link" data-scroll-target="#h_2-qué-dice-y-qué-no-dice"><span class="header-section-number">5.8</span> <span class="math inline">\(H_2'\)</span>: qué dice y qué no dice</a></li>
-  <li><a href="#en-r" id="toc-en-r" class="nav-link" data-scroll-target="#en-r"><span class="header-section-number">5.9</span> En R</a></li>
+  <li><a href="#qué-mide-la-especialización" id="toc-qué-mide-la-especialización" class="nav-link active" data-scroll-target="#qué-mide-la-especialización"><span class="header-section-number">5.1</span> ¿Qué mide la especialización?</a></li>
+  <li><a href="#especialización-de-red-h_2" id="toc-especialización-de-red-h_2" class="nav-link" data-scroll-target="#especialización-de-red-h_2"><span class="header-section-number">5.2</span> Especialización de red <span class="math inline">\(H_2'\)</span></a></li>
+  <li><a href="#ejemplo-h_2-en-la-red-plantapolinizador" id="toc-ejemplo-h_2-en-la-red-plantapolinizador" class="nav-link" data-scroll-target="#ejemplo-h_2-en-la-red-plantapolinizador"><span class="header-section-number">5.3</span> Ejemplo: <span class="math inline">\(H_2'\)</span> en la red planta–polinizador</a></li>
+  <li><a href="#en-r-con-bipartite-especialización" id="toc-en-r-con-bipartite-especialización" class="nav-link" data-scroll-target="#en-r-con-bipartite-especialización"><span class="header-section-number">5.4</span> En R con <code>bipartite</code>: Especialización</a></li>
+  <li><a href="#h2-limitaciones" id="toc-h2-limitaciones" class="nav-link" data-scroll-target="#h2-limitaciones"><span class="header-section-number">5.5</span> <span class="math inline">\(H2'\)</span>: limitaciones</a></li>
+  <li><a href="#resumen-en-contexto-biológico" id="toc-resumen-en-contexto-biológico" class="nav-link" data-scroll-target="#resumen-en-contexto-biológico"><span class="header-section-number">5.6</span> Resumen en contexto biológico</a></li>
   </ul>
 </nav>
     </div>
@@ -201,7 +233,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></h1>
 </div>
 
 
@@ -218,252 +250,52 @@ window.Quarto = {
 </header>
 
 
-<section id="nodf-ponderado-weighted-nodf" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="nodf-ponderado-weighted-nodf"><span class="header-section-number">5.1</span> NODF ponderado (weighted NODF)</h2>
-<p>Sea <span class="math inline">\(W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}\)</span> una matriz de interacciones. Definimos la matriz binaria asociada <span class="math display">\[
-B=(b_{ij}),\qquad b_{ij}=\mathbf{1}_{\{w_{ij}&gt;0\}}.
-\]</span></p>
-<p><strong>Ordenamiento.</strong> Para calcular el NODF ponderado, primero se ordenan filas y columnas por <strong>número de socios</strong> en orden decreciente; en caso de empate, se rompe el empate por la <strong>suma de pesos</strong> de la fila o columna.</p>
-<p><strong>Contribución de un par de filas.</strong> Si las filas <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> satisfacen <span class="math display">\[
-k_i^{(r)} &gt; k_j^{(r)} &gt; 0,
-\qquad
-k_i^{(r)}=\sum_{\ell=1}^q b_{i\ell},
-\]</span> entonces su contribución ponderada es <span class="math display">\[
-N_{ij}^{(r,w)}
-=
-\frac{1}{k_j^{(r)}}
-\sum_{\ell=1}^q
-\mathbf{1}_{\{\,w_{i\ell}&gt;w_{j\ell}&gt;0\,\}}.
-\]</span></p>
-<p>Análogamente, para columnas <span class="math inline">\(u,v\)</span> con <span class="math display">\[
-k_u^{(c)} &gt; k_v^{(c)} &gt; 0,
-\]</span> se define <span class="math display">\[
-N_{uv}^{(c,w)}
-=
-\frac{1}{k_v^{(c)}}
-\sum_{m=1}^p
-\mathbf{1}_{\{\,w_{mu}&gt;w_{mv}&gt;0\,\}}.
-\]</span></p>
-<p><strong>Índice global.</strong> <span class="math display">\[
-\mathrm{WNODF}
-=
-100\,
-\frac{
-\sum_{i&lt;j} N_{ij}^{(r,w)}+\sum_{u&lt;v} N_{uv}^{(c,w)}
-}{
-\binom{p}{2}+\binom{q}{2}
-}.
-\]</span></p>
-<p>El valor es grande cuando, además del patrón anidado binario, las especies más generalistas tienden a tener <strong>interacciones más intensas</strong> que las menos generalistas sobre los socios que comparten.</p>
-<hr>
-<p>El <strong>WNODF</strong> es la versión <strong>cuantitativa</strong> del NODF: combina la idea de <em>solapamiento</em> entre socios con la condición de <em>decreasing fill</em>, pero incorporando además la <strong>intensidad</strong> de las interacciones.</p>
-<p><strong>Importante.</strong> <span class="math display">\[
-\mathrm{WNODF}(W)\neq \mathrm{NODF}(\mathbf{1}_{\{W&gt;0\}})
-\]</span> en general. Es decir, <strong>no</strong> se obtiene simplemente binarizando la matriz y calculando luego el NODF usual.</p>
-<p>El WNODF es alto cuando:</p>
-<ul>
-<li>las especies con menos socios interactúan con subconjuntos de los socios de las más generalistas; y</li>
-<li>sobre esos socios compartidos, las especies más generalistas tienden a presentar <strong>mayores pesos de interacción</strong>.</li>
-</ul>
-<p>En la implementación usada por <code>bipartite</code>, el cálculo se apoya en <code>vegan::nestednodf</code>: la matriz se ordena por frecuencias marginales (y, en la versión ponderada, los empates se rompen por abundancia total).</p>
+<section id="qué-mide-la-especialización" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="qué-mide-la-especialización"><span class="header-section-number">5.1</span> ¿Qué mide la especialización?</h2>
+<p>La especialización indica qué tan <strong>selectiva</strong> es la red completa, y cuánto se aparta el uso observado del patrón esperable por los <strong>marginales</strong>.</p>
 </section>
-<section id="bipartite-conectancia-y-nodf" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="bipartite-conectancia-y-nodf"><span class="header-section-number">5.2</span> <code>bipartite</code>: conectancia y NODF</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Métrica</th>
-<th>Función de R</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Conectancia</td>
-<td><code>networklevel(web, index='connectance')</code></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\mathrm{NODF}\)</span></td>
-<td><code>networklevel(web, index='NODF')</code></td>
-</tr>
-<tr class="odd">
-<td>NODF ponderado</td>
-<td><code>networklevel(web, index='weighted NODF')</code></td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="especialización-de-red-h_2" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="especialización-de-red-h_2"><span class="header-section-number">5.2</span> Especialización de red <span class="math inline">\(H_2'\)</span></h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Nota</span>Definición
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(\mathrm{NODF}\)</span> en <code>bipartite</code> se evalúa sobre la matriz <strong>ordenada por decreasing fill</strong>.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="ejemplos-nodf" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="ejemplos-nodf"><span class="header-section-number">5.3</span> Ejemplos: NODF</h2>
-<div class="columns">
-<div class="column" style="width:33%;">
-<p><strong>Anidamiento perfecto</strong> <span class="math display">\[
-\begin{pmatrix}
-1&amp;1&amp;1\\
-1&amp;1&amp;0\\
-1&amp;0&amp;0
-\end{pmatrix}
-\]</span> <span class="math display">\[
-\mathrm{NODF}=100
-\]</span> Cada par admisible comparte exactamente los contactos del miembro menos conectado.</p>
-</div><div class="column" style="width:33%;">
-<p><strong>Identidad / permutación</strong> <span class="math display">\[
-\begin{pmatrix}
-1&amp;0&amp;0\\
-0&amp;1&amp;0\\
-0&amp;0&amp;1
-\end{pmatrix}
-\]</span> <span class="math display">\[
-\mathrm{NODF}=0
-\]</span> No aparecen subconjuntos: cada especialista usa un socio distinto.</p>
-</div><div class="column" style="width:33%;">
-<p><strong>Matriz llena</strong> <span class="math display">\[
-\begin{pmatrix}
-1&amp;1&amp;1\\
-1&amp;1&amp;1\\
-1&amp;1&amp;1
-\end{pmatrix}
-\]</span> <span class="math display">\[
-\text{NODF no está definido}
-\]</span> No existe <em>decreasing fill</em>: todos los grados de filas y columnas son iguales, de modo que no hay pares comparables para el cálculo del índice.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\(\mathrm{NODF}\)</span> debe alcanzar 100 en la triangular perfecta y 0 en una permutación sin solapamiento anidado.</p>
-</div>
-</div>
-</section>
-<section id="nodf-limitaciones-y-casos-degenerados" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="nodf-limitaciones-y-casos-degenerados"><span class="header-section-number">5.4</span> NODF: limitaciones y casos degenerados</h2>
-<ul>
-<li>Si <span class="math inline">\(p&lt;2\)</span> o <span class="math inline">\(q&lt;2\)</span>, no existen pares de filas o columnas que comparar.</li>
-<li>Si la matriz es <strong>vacía</strong> o <strong>completamente llena</strong>, el índice deja de ser útil como descriptor de anidamiento.</li>
-<li>Si muchas filas o columnas tienen <strong>el mismo grado</strong>, esas parejas no aportan por la condición de <em>decreasing fill</em>; la métrica puede subestimar estructura.</li>
-<li>En matrices cuantitativas conviene distinguir entre <strong>NODF binario</strong> y <strong>NODF ponderado</strong>; no responden exactamente a la misma pregunta.</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="En R">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>En R
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>networklevel(web, index='NODF')</code> calcula el NODF binario global.</p>
-<p><code>networklevel(web, index='weighted NODF')</code> agrega la versión ponderada.</p>
-<p>Si la matriz ponderada está llena y se quiere explotar el orden por abundancia, el complemento es <code>nest.smdm(web, weighted=TRUE, decreasing='abund')</code>.</p>
-</div>
-</div>
-</section>
-<section id="especialización-de-red-h_2" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="especialización-de-red-h_2"><span class="header-section-number">5.5</span> Especialización de red <span class="math inline">\(H_2'\)</span></h2>
-<p>Sea <span class="math inline">\(W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}\)</span> una matriz <strong>ponderada</strong>, y sea <span class="math display">\[
+<p>Consideremos <span class="math inline">\(W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}\)</span> la matriz de interacción <strong>ponderada</strong> de un <strong>grafo bipartito</strong>. Sean: <span class="math display">\[
 m=\sum_{i=1}^{p}\sum_{j=1}^{q} w_{ij},
 \qquad
 p_{ij}=\frac{w_{ij}}{m}.
-\]</span> La cantidad que el paquete llama <code>H2uncorr</code> es la entropía bidimensional <span class="math display">\[
-H_{2,\mathrm{uncorr}}=-\sum_{i=1}^{p}\sum_{j=1}^{q} p_{ij}\ln(p_{ij}),
-\qquad 0\ln 0:=0.
-\]</span> La especialización de red <strong>estandarizada</strong> es <span class="math display">\[
+\]</span> Se define el <strong>valor no corregido</strong> (<strong>entropía de Shanon</strong>) como, <span class="math display">\[
+H_{2,\mathrm{uncorr}}=-\sum_{i=1}^{p}\sum_{j=1}^{q} p_{ij}\ln(p_{ij})
+\]</span> (donde por convención <span class="math inline">\(0\ln 0:=0\)</span>). La <strong>especialización de red estandarizada</strong> es: <span class="math display">\[
 H_2'=\frac{H_{2,\max}-H_{2,\mathrm{uncorr}}}{H_{2,\max}-H_{2,\min}}\in[0,1].
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+</div>
+</div>
+<p><strong>Observación: </strong> <span class="math inline">\(H_{2,\min}\)</span> y <span class="math inline">\(H_{2,\max}\)</span> no son valores libres, se construyen <strong>respetando los marginales observados</strong>. Por eso <span class="math inline">\(H_2'\)</span> compara <strong>selectividad</strong> y no simplemente densidad o abundancia total.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Advertencia</span>Ejemplo
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(H_{2,\min}\)</span> y <span class="math inline">\(H_{2,\max}\)</span> no son valores libres: se construyen <strong>respetando los marginales observados</strong>. Por eso <span class="math inline">\(H_2'\)</span> compara <em>selectividad</em> y no simplemente densidad o abundancia total.</p>
-</div>
-</div>
-</section>
-<section id="ejemplo" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="ejemplo"><span class="header-section-number">5.6</span> Ejemplo</h2>
-<p>Las tres matrices siguientes tienen los mismos totales por fila y columna: <span class="math inline">\((10,10)\)</span>.</p>
-<div class="columns">
-<div class="column" style="width:33%;">
-<p><strong>Uso difuso</strong> <span class="math display">\[
-W_1=
-\begin{pmatrix}
-5&amp;5\\
-5&amp;5
-\end{pmatrix}
-\]</span> <span class="math display">\[
-H_2'=0
-\]</span></p>
-</div><div class="column" style="width:33%;">
-<p><strong>Uso parcialmente selectivo</strong> <span class="math display">\[
-W_2=
-\begin{pmatrix}
-9&amp;1\\
-1&amp;9
-\end{pmatrix}
-\]</span> <span class="math display">\[
-H_2'\approx 0.53
-\]</span></p>
-</div><div class="column" style="width:33%;">
-<p><strong>Uso perfectamente selectivo</strong> <span class="math display">\[
-W_3=
-\begin{pmatrix}
-10&amp;0\\
-0&amp;10
-\end{pmatrix}
-\]</span> <span class="math display">\[
-H_2'=1
-\]</span></p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Lo que cambia no es la disponibilidad total, sino <strong>cómo se reparte</strong> la actividad entre socios posibles. Ese es precisamente el rasgo que captura <span class="math inline">\(H_2'\)</span>.</p>
-</div>
-</div>
-</section>
-<section id="cálculo-de-h_2-para-un-caso-simple" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="cálculo-de-h_2-para-un-caso-simple"><span class="header-section-number">5.7</span> Cálculo de <span class="math inline">\(H_2'\)</span> para un caso simple</h2>
+<p>Ejemplo: Cálculo de <span class="math inline">\(H_2'\)</span> para un caso simple: Sea <span class="math inline">\(W_2\)</span> la matriz ponderada de <span class="math inline">\(2\times 2\)</span> siguiente:</p>
 <p><span class="math display">\[
 W_2=
 \begin{pmatrix}
 9&amp;1\\
 1&amp;9
 \end{pmatrix},
-\qquad
+\]</span> entonces <span class="math display">\[
 m=\sum_{i,j} w_{ij}=20,
 \qquad
 p_{ij}=\frac{w_{ij}}{m}.
@@ -475,7 +307,7 @@ P=(p_{ij})=
 1/20&amp;9/20
 \end{pmatrix}.
 \]</span></p>
-<p><strong>Paso 1: valor no corregido.</strong> <span class="math display">\[
+<p><strong>Paso 1: Valor no corregido.</strong> <span class="math display">\[
 H_{2,\mathrm{uncorr}}
 =
 -\sum_{i,j} p_{ij}\ln p_{ij}
@@ -487,7 +319,7 @@ H_{2,\mathrm{uncorr}}
 \right)
 \approx 1.01823.
 \]</span></p>
-<p><strong>Paso 2: máximo y mínimo usados por <code>H2fun</code>.</strong> Las sumas marginales son <span class="math display">\[
+<p><strong>Paso 2: Máximo y mínimo.</strong> Las sumas marginales son <span class="math display">\[
 r=(10,10),
 \qquad
 c=(10,10).
@@ -521,7 +353,7 @@ H_{2,\min}
 \approx 0.69315.
 \]</span></p>
 <p><strong>Paso 3: Estandarización</strong></p>
-<p>La estandarización que usa <code>H2fun</code> es <span class="math display">\[
+<p>La estandarización es <span class="math display">\[
 H_2'
 =
 \frac{H_{2,\max}-H_{2,\mathrm{uncorr}}}
@@ -535,65 +367,205 @@ H_2'
 \frac{0.36806}{0.69314}
 \approx 0.53100.
 \]</span></p>
-<p><span class="math display">\[
+<!--
+$$
 \boxed{H_2' \approx 0.53}
-\]</span></p>
-<p><strong>Interpretación:</strong> La red muestra <em>selectividad parcial</em>: las interacciones se concentran sobre la diagonal, pero todavía existen interacciones cruzadas.</p>
-</section>
-<section id="h_2-qué-dice-y-qué-no-dice" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="h_2-qué-dice-y-qué-no-dice"><span class="header-section-number">5.8</span> <span class="math inline">\(H_2'\)</span>: qué dice y qué no dice</h2>
+$$
+-->
+<p>Podemos interpretar este valor como sigue: La red muestra <em>selectividad parcial</em>: las interacciones se concentran sobre la diagonal, pero todavía existen interacciones cruzadas.</p>
+</div>
+</div>
+<p><strong>Observación:</strong></p>
+<p>Las tres matrices siguientes tienen los mismos totales por renglón y columna: <span class="math inline">\((10,10)\)</span>.</p>
 <div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Sí dice</strong></p>
-<ul>
-<li>Qué tan <strong>selectiva</strong> es la red completa.</li>
-<li>Cuánto se aparta el uso observado del patrón esperable por los <strong>marginales</strong>.</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><strong>No dice / limitaciones</strong></p>
+<div class="column" style="width:33%;">
+<p><strong>Uso difuso</strong> <span class="math display">\[
+W_1=
+\begin{pmatrix}
+5&amp;5\\
+5&amp;5
+\end{pmatrix}
+\]</span> <span class="math display">\[
+H_2'=0
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Uso parcialmente selectivo</strong> <span class="math display">\[
+W_2=
+\begin{pmatrix}
+9&amp;1\\
+1&amp;9
+\end{pmatrix}
+\]</span> <span class="math display">\[
+H_2'\approx 0.53
+\]</span></p>
+</div><div class="column" style="width:33%;">
+<p><strong>Uso perfectamente selectivo</strong> <span class="math display">\[
+W_3=
+\begin{pmatrix}
+10&amp;0\\
+0&amp;10
+\end{pmatrix}
+\]</span> <span class="math display">\[
+H_2'=1
+\]</span></p>
+</div>
+</div>
+<p>Lo que cambia no es la disponibilidad total, sino <strong>cómo se reparte</strong> la actividad entre socios posibles. Ese es precisamente el rasgo que captura <span class="math inline">\(H_2'\)</span>.</p>
+</section>
+<section id="ejemplo-h_2-en-la-red-plantapolinizador" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="ejemplo-h_2-en-la-red-plantapolinizador"><span class="header-section-number">5.3</span> Ejemplo: <span class="math inline">\(H_2'\)</span> en la red planta–polinizador</h2>
+<p>Consideremos la versión <strong>ponderada</strong> de la red transversal planta-polinizador que usamos en la sección WNODF:</p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion5_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:58%;">
+<p><span class="math display">\[
+W=\begin{array}{c|ccc|c}
+   &amp; a_1 &amp; a_2 &amp; a_3 &amp; r_i\\ \hline
+p_1&amp; 3 &amp; 5 &amp; 0 &amp; 8\\
+p_2&amp; 0 &amp; 4 &amp; 2 &amp; 6\\
+p_3&amp; 0 &amp; 2 &amp; 0 &amp; 2\\
+p_4&amp; 0 &amp; 0 &amp; 3 &amp; 3\\ \hline
+c_j&amp; 3 &amp; 11 &amp; 5 &amp; 19
+\end{array}
+\]</span></p>
+</div>
+</div>
+<p>con total <span class="math inline">\(m=19\)</span> y <span class="math inline">\(p_{ij}=w_{ij}/m\)</span>.</p>
+<p><strong>Paso 1: Valor no corregido.</strong> <span class="math display">\[
+H_{2,\mathrm{uncorr}}=-\sum_{i,j} p_{ij}\ln p_{ij}\approx 1.7362.
+\]</span></p>
+<p><strong>Paso 2: Máximo y mínimo compatibles con los marginales.</strong> La matriz de referencia para <span class="math inline">\(H_{2,\max}\)</span> reparte proporcionalmente a los marginales, <span class="math inline">\(E_{ij}=r_i\,c_j/m\)</span>, de donde <span class="math display">\[
+H_{2,\max}=-\sum_{i,j}\frac{r_i c_j}{m^2}\ln\frac{r_i c_j}{m^2}\approx 2.2158.
+\]</span> Para <span class="math inline">\(H_{2,\min}\)</span> se concentra al máximo la actividad respetando los marginales, <!-- (procedimiento de agregación que usa `H2fun`),
+--> lo que da <span class="math display">\[
+H_{2,\min}\approx 1.3989.
+\]</span></p>
+<p><strong>Paso 3: Estandarización.</strong> <span class="math display">\[
+H_2'=\frac{H_{2,\max}-H_{2,\mathrm{uncorr}}}{H_{2,\max}-H_{2,\min}}
+=\frac{2.2158-1.7362}{2.2158-1.3989}\approx 0.59.
+\]</span> <!--
+$$
+\boxed{H_2'\approx 0.59}
+$$
+--></p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Interpretación ecológica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación ecológica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>especialización intermedia</strong>: la red no es difusa (<span class="math inline">\(H_2'\approx 0\)</span>) ni perfectamente selectiva (<span class="math inline">\(H_2'\approx 1\)</span>). Las interacciones se concentran algo —sobre todo alrededor del polinizador generalista <span class="math inline">\(a_2\)</span>—, pero hay reparto suficiente como para no aislar a las especies en socios exclusivos.</p>
+</div>
+</div>
+</section>
+<section id="en-r-con-bipartite-especialización" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="en-r-con-bipartite-especialización"><span class="header-section-number">5.4</span> En R con <code>bipartite</code>: Especialización</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Consideremos la red ponderada planta-polinizador del ejemplo anterior</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Wt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">0</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">2</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>,<span class="st">"p3"</span>,<span class="st">"p4"</span>), <span class="fu">c</span>(<span class="st">"a1"</span>,<span class="st">"a2"</span>,<span class="st">"a3"</span>)))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener la lista H2, H2min, H2max y H2uncorr; la componente llamada H2 es precisamente el valor estandarizado $H_2'$.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">H2fun</span>(Wt) <span class="co"># la componente 'H2' es H2' ≈ 0.59</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       H2     H2min     H2max  H2uncorr 
+0.5545573 1.3990000 2.1560000 1.7360000 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># O alternativamente, podemos obtener solo $H_2$</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(Wt, <span class="at">index =</span> <span class="st">"H2"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       H2 
+0.5545573 </code></pre>
+</div>
+</div>
+<p>La componente <strong><code>H2</code></strong> de <code>H2fun</code> es <span class="math inline">\(H_2'\approx 0.59\)</span>, que coincide con el ejemplo. A diferencia de <span class="math inline">\(H_{2,\mathrm{uncorr}}\)</span> y <span class="math inline">\(H_{2,\mathrm{max}}\)</span> que se calculan con una fórmula cerrada, <span class="math inline">\(H_{2,\min}\)</span> se obtiene por un <strong>algoritmo de agregación</strong>, así que en redes grandes puede variar levemente entre corridas).</p>
+<!--
+::: {.callout-note title="Modularidad"}
+La fórmula binaria de Barber es la **versión especial** para matrices binarias. El paquete usa por defecto una **modularidad bipartita ponderada** mediante `computeModules(web)`; si la matriz es binaria, se recupera el caso de Barber.
+
+:::
+
+* **En R para $H_2'$:** `H2fun(web)` o `networklevel(web, index='H2')`.
+
+-->
+<!--* **En R para modularidad:** `computeModules(web)` o `networklevel(web, index='modularity')`.
+
+-->
+</section>
+<section id="h2-limitaciones" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="h2-limitaciones"><span class="header-section-number">5.5</span> <span class="math inline">\(H2'\)</span>: limitaciones</h2>
 <ul>
 <li>No es una medida de <strong>conectancia</strong>.</li>
 <li>En matrices <strong>binarias</strong> pierde su principal ventaja: la intensidad.</li>
 <li>Si los datos son continuos o tasas, conviene usar <code>H2fun(web, H2_integer=FALSE)</code>.</li>
 <li>En redes muy pequeñas o triviales, el denominador puede colapsar y la métrica deja de ser informativa.</li>
 </ul>
-</div>
-</div>
 </section>
-<section id="en-r" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="en-r"><span class="header-section-number">5.9</span> En R</h2>
-<div class="callout callout-style-default callout-note callout-titled" title="Notación para $H_2'$">
+<section id="resumen-en-contexto-biológico" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="resumen-en-contexto-biológico"><span class="header-section-number">5.6</span> Resumen en contexto biológico</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="🍃 Especialización de la red">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Notación para <span class="math inline">\(H_2'\)</span>
+<span class="screen-reader-only">Tip</span>🍃 Especialización de la red
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En la literatura, la métrica de especialización de red se denota <span class="math inline">\(H_2'\)</span>. En <code>bipartite</code>, la función <code>H2fun(web)</code> devuelve un vector con nombres <code>H2</code>, <code>H2min</code>, <code>H2max</code> y <code>H2uncorr</code>; la componente llamada <code>H2</code> es precisamente el valor estandarizado <span class="math inline">\(H_2'\)</span>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>Pregunta ecológica que responde</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Especialización <span class="math inline">\(H_2'\)</span></td>
+<td>Fijadas las abundancias (marginales), ¿las interacciones son <strong>selectivas</strong> o <strong>difusas</strong>?</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_2'\approx 0\)</span></td>
+<td>Red poco selectiva: cada especie reparte sus interacciones casi como cabría esperar por sus marginales</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_2'\approx 1\)</span></td>
+<td>Red muy selectiva: las especies concentran sus interacciones en socios específicos</td>
+</tr>
+</tbody>
+</table>
+<p>A diferencia de la conectancia y el NODF (que se leen sobre la matriz <strong>binaria</strong>), <span class="math inline">\(H_2'\)</span> <strong>usa las intensidades</strong>: mide <em>cómo</em> se reparte la actividad, no cuántos enlaces hay. Por eso dos redes con la misma conectancia pueden tener <span class="math inline">\(H_2'\)</span> muy distintos.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Modularidad">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Modularidad
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La fórmula binaria de Barber es la <strong>versión especial</strong> para matrices binarias. El paquete usa por defecto una <strong>modularidad bipartita ponderada</strong> mediante <code>computeModules(web)</code>; si la matriz es binaria, se recupera el caso de Barber.</p>
-</div>
-</div>
-<ul>
-<li><strong>En R para <span class="math inline">\(H_2'\)</span>:</strong> <code>H2fun(web)</code> o <code>networklevel(web, index='H2')</code>.</li>
-</ul>
-<!--* **En R para modularidad:** `computeModules(web)` o `networklevel(web, index='modularity')`.
-
----
+<!-- Con esto cerramos densidad (conectancia), anidamiento (NODF/WNODF) y selectividad ($H_2'$).
+Falta una última pieza del panorama global: la **modularidad $Q_B$** —¿se organiza la red en
+bloques de interacción preferente?—, que quedará para la continuación del seminario.-->
+<!--
 
 ## Modularidad bipartita
 
@@ -1100,8 +1072,8 @@ Conectancia, $\mathrm{NODF}$, $H_2'$ y modularidad son **métricas complementari
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Sesion4.html" class="pagination-link" aria-label="Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span>
+      <a href="./Sesion4.html" class="pagination-link" aria-label="Métricas globales de red: conectancia y anidamiento">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
