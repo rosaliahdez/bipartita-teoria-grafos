@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Sesión 4: Métricas globales de red: Conectancia, anidamiento, H_2' y modularidad – Grafos bipartitos en redes de interacción ecológicas</title>
+<title>4&nbsp; Métricas globales de red: conectancia y anidamiento – Grafos bipartitos en redes de interacción ecológicas</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -44,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bac3027a5876e01c08fed17debf2ea73.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -114,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -148,31 +183,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Métricas locales y análisis de redes: grado, cercanía, intermediación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion4.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></span></a>
   </div>
 </li>
     </ul>
@@ -185,20 +220,19 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#temas" id="toc-temas" class="nav-link active" data-scroll-target="#temas"><span class="header-section-number">4.1</span> Temas</a></li>
-  <li><a href="#red-bipartita-y-matriz-de-interacción" id="toc-red-bipartita-y-matriz-de-interacción" class="nav-link" data-scroll-target="#red-bipartita-y-matriz-de-interacción"><span class="header-section-number">4.2</span> Red bipartita y matriz de interacción</a></li>
-  <li><a href="#caminos-distancias-y-conectividad" id="toc-caminos-distancias-y-conectividad" class="nav-link" data-scroll-target="#caminos-distancias-y-conectividad"><span class="header-section-number">4.3</span> Caminos, distancias y conectividad</a></li>
-  <li><a href="#medidas-de-centralidad" id="toc-medidas-de-centralidad" class="nav-link" data-scroll-target="#medidas-de-centralidad"><span class="header-section-number">4.4</span> Medidas de centralidad</a></li>
-  <li><a href="#métricas-globales" id="toc-métricas-globales" class="nav-link" data-scroll-target="#métricas-globales"><span class="header-section-number">5</span> Métricas globales</a>
-  <ul class="collapse">
-  <li><a href="#aspectos-sobre-la-red" id="toc-aspectos-sobre-la-red" class="nav-link" data-scroll-target="#aspectos-sobre-la-red"><span class="header-section-number">5.1</span> Aspectos sobre la red…</a></li>
-  <li><a href="#conectancia" id="toc-conectancia" class="nav-link" data-scroll-target="#conectancia"><span class="header-section-number">5.2</span> Conectancia</a></li>
-  <li><a href="#ejemplo-de-conectancia" id="toc-ejemplo-de-conectancia" class="nav-link" data-scroll-target="#ejemplo-de-conectancia"><span class="header-section-number">5.3</span> Ejemplo de conectancia</a></li>
-  <li><a href="#conectancia-1" id="toc-conectancia-1" class="nav-link" data-scroll-target="#conectancia-1"><span class="header-section-number">5.4</span> Conectancia</a></li>
-  <li><a href="#anidamiento" id="toc-anidamiento" class="nav-link" data-scroll-target="#anidamiento"><span class="header-section-number">5.5</span> Anidamiento</a></li>
-  <li><a href="#nodf" id="toc-nodf" class="nav-link" data-scroll-target="#nodf"><span class="header-section-number">5.6</span> NODF</a></li>
-  <li><a href="#índice-nodf-global" id="toc-índice-nodf-global" class="nav-link" data-scroll-target="#índice-nodf-global"><span class="header-section-number">5.7</span> Índice NODF Global</a></li>
-  </ul></li>
+  <li><a href="#métricas-globales" id="toc-métricas-globales" class="nav-link active" data-scroll-target="#métricas-globales"><span class="header-section-number">4.1</span> Métricas globales</a></li>
+  <li><a href="#qué-mide-la-conectancia" id="toc-qué-mide-la-conectancia" class="nav-link" data-scroll-target="#qué-mide-la-conectancia"><span class="header-section-number">4.2</span> ¿Qué mide la “conectancia”</a></li>
+  <li><a href="#ejemplo-conectancia-en-una-red-plantapolinizador" id="toc-ejemplo-conectancia-en-una-red-plantapolinizador" class="nav-link" data-scroll-target="#ejemplo-conectancia-en-una-red-plantapolinizador"><span class="header-section-number">4.3</span> Ejemplo: conectancia en una red planta–polinizador</a></li>
+  <li><a href="#en-r-con-bipartite-conectancia" id="toc-en-r-con-bipartite-conectancia" class="nav-link" data-scroll-target="#en-r-con-bipartite-conectancia"><span class="header-section-number">4.4</span> En R con <code>bipartite</code>: conectancia</a></li>
+  <li><a href="#qué-mide-el-anidamiento" id="toc-qué-mide-el-anidamiento" class="nav-link" data-scroll-target="#qué-mide-el-anidamiento"><span class="header-section-number">4.5</span> ¿Qué mide el “anidamiento”?</a></li>
+  <li><a href="#anidamiento-nodf" id="toc-anidamiento-nodf" class="nav-link" data-scroll-target="#anidamiento-nodf"><span class="header-section-number">4.6</span> Anidamiento (NODF)</a></li>
+  <li><a href="#ejemplo-nodf-en-la-red-plantapolinizador" id="toc-ejemplo-nodf-en-la-red-plantapolinizador" class="nav-link" data-scroll-target="#ejemplo-nodf-en-la-red-plantapolinizador"><span class="header-section-number">4.7</span> Ejemplo: NODF en la red planta–polinizador</a></li>
+  <li><a href="#en-r-con-bipartite-nodf" id="toc-en-r-con-bipartite-nodf" class="nav-link" data-scroll-target="#en-r-con-bipartite-nodf"><span class="header-section-number">4.8</span> En R con <code>bipartite</code>: NODF</a></li>
+  <li><a href="#nodf-ponderado-weighted-nodf" id="toc-nodf-ponderado-weighted-nodf" class="nav-link" data-scroll-target="#nodf-ponderado-weighted-nodf"><span class="header-section-number">4.9</span> NODF ponderado (weighted NODF)</a></li>
+  <li><a href="#ejemplo-wnodf-en-la-red-plantapolinizador" id="toc-ejemplo-wnodf-en-la-red-plantapolinizador" class="nav-link" data-scroll-target="#ejemplo-wnodf-en-la-red-plantapolinizador"><span class="header-section-number">4.10</span> Ejemplo: WNODF en la red planta–polinizador</a></li>
+  <li><a href="#en-r-con-paquetería-wnodf" id="toc-en-r-con-paquetería-wnodf" class="nav-link" data-scroll-target="#en-r-con-paquetería-wnodf"><span class="header-section-number">4.11</span> En R con paquetería: WNODF</a></li>
+  <li><a href="#nodf-limitaciones-y-casos-degenerados" id="toc-nodf-limitaciones-y-casos-degenerados" class="nav-link" data-scroll-target="#nodf-limitaciones-y-casos-degenerados"><span class="header-section-number">4.12</span> NODF: limitaciones y casos degenerados</a></li>
+  <li><a href="#resumen-en-contexto-biológico" id="toc-resumen-en-contexto-biológico" class="nav-link" data-scroll-target="#resumen-en-contexto-biológico"><span class="header-section-number">4.13</span> Resumen en contexto biológico</a></li>
   </ul>
 </nav>
     </div>
@@ -207,7 +241,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></h1>
 </div>
 
 
@@ -224,43 +258,95 @@ window.Quarto = {
 </header>
 
 
-<section id="temas" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="temas"><span class="header-section-number">4.1</span> Temas</h2>
-<ol type="1">
-<li><strong>Repaso</strong>: red bipartita, matriz de interacción, caminos y centralidades vistas.</li>
-<li><strong>Conectancia</strong>: fracción de interacciones potenciales que se observan.</li>
-<li><strong>Anidamiento</strong>: especialistas como subconjuntos de generalistas; índice <span class="math inline">\(\mathrm{NODF}\)</span>.</li>
-<li><strong>Especialización cuantitativa</strong>: significado e interpretación de <span class="math inline">\(H_2'\)</span>.</li>
-<li><strong>Modularidad</strong>: bloques o módulos de interacción preferente.</li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="métricas-globales" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="métricas-globales"><span class="header-section-number">4.1</span> Métricas globales</h2>
+<p>Hasta ahora describimos <strong>especies individuales</strong>; ahora buscamos describir la <strong>arquitectura de la red completa</strong> mediante las siguientes métricas:</p>
+<ul>
+<li>Conectancia</li>
+<li>Anidamiento</li>
+<li>Especialización</li>
+<li>Modularidad</li>
+</ul>
+<!--
+## Aspectos sobre la red...
+
+| Métrica | Pregunta estructural |
+|---|---|
+| **Conectancia** $\mathcal{C}$ | ¿Qué fracción de las interacciones *posibles* está presente? |
+| **Anidamiento** $\mathrm{NODF}$ | ¿Los socios de las especies especialistas son subconjuntos de los de las generalistas? |
+| **Especialización** $H_2'$ | En una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales? |
+| **Modularidad** $Q_B$ | ¿Existen grupos con interacción preferente hacia adentro del mismo módulo? |
+-->
+<p>Dos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular. Por eso ninguna métrica por sí sola agota la estructura de la red.</p>
+</section>
+<section id="qué-mide-la-conectancia" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="qué-mide-la-conectancia"><span class="header-section-number">4.2</span> ¿Qué mide la “conectancia”</h2>
+<p>La <strong>conectancia</strong> es la proporción de interacciones que sí aparecen en la red, en relación con todas aquellas interacciones potenciales.</p>
+<!-- 3. **Anidamiento**: especialistas como subconjuntos de generalistas; índice $\mathrm{NODF}$.
+4. **Especialización cuantitativa**: significado e interpretación de $H_2'$.
+5. **Modularidad**: bloques o módulos de interacción preferente.
+-->
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Nota</span>Definición
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hasta ahora describimos <strong>especies individuales</strong>; ahora buscamos describir la <strong>arquitectura de la red completa</strong>.</p>
+<p>Para una matriz <strong>bipartita binaria</strong> <span class="math inline">\(B\in\{0,1\}^{p\times q}\)</span>, la <strong>conectancia</strong> es <span class="math display">\[
+\mathcal{C} = \frac{|E|}{p\,q}=\frac{1}{p\,q}\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}\in[0,1].
+\]</span></p>
+</div>
+</div>
+<p>Podemos distinguir los dos casos extremos:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{C}=1\)</span>: La matriz llena de “unos”, indicando que todas las interacciones posibles entre nodos están presentes.</li>
+<li><span class="math inline">\(\mathcal{C}=0\)</span>: La matriz llena de “ceros”, indicando que no existe interacción alguna.</li>
+</ul>
+<p>Observemos que un <span class="math inline">\(\mathcal{C}\)</span> cercano a 0 indica que la red es muy <strong>dispersa</strong>.</p>
+<p><strong>En redes ponderadas:</strong> la conectancia suele calcularse sobre la versión <strong>binarizada</strong> de la matriz.</p>
+<p><strong>Observación:</strong></p>
+<p>La conectancia captura la <strong>densidad de enlaces</strong> de la red bipartita. Indica cuán densa es la red, pero no si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).</p>
+<p>No distingue una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas. Debe interpretarse con cuidado, ya que depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.</p>
+<p>La conectancia es una buena primera descripción, pero no basta para caracterizar la <strong>arquitectura interna</strong> de una red.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consideremos el siguiente grafo bipartito con particiones <span class="math inline">\(V_1=\{1,2,3\}\)</span> y <span class="math inline">\(V_2=\{4,5,6\}\)</span>, junto con su respectiva matriz bipartita binaria (bloque <span class="math inline">\(B\)</span>):</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este caso, tenemos <span class="math inline">\(p=3\)</span> vértices en el primer conjunto (renglones de <span class="math inline">\(B\)</span>), <span class="math inline">\(q=3\)</span> vértices en el segundo conjunto (columnas de <span class="math inline">\(B\)</span>), y observamos <span class="math inline">\(|E|=5\)</span> aristas (que coincide precisamente con la cantidad de “unos” en la matriz <span class="math inline">\(B\)</span>).</p>
+<p>Por lo tanto, la conectancia de la red es:<span class="math display">\[\mathcal{C}=\frac{|E|}{p\,q}=\frac{5}{3 \times 3} = \frac{5}{9}\approx 0.56.\]</span></p>
 </div>
 </div>
 </section>
-<section id="red-bipartita-y-matriz-de-interacción" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="red-bipartita-y-matriz-de-interacción"><span class="header-section-number">4.2</span> Red bipartita y matriz de interacción</h2>
-<p>Una red bipartita separa las especies en dos clases, por ejemplo plantas y polinizadores. La información puede codificarse como una matriz</p>
-<p><span class="math display">\[
-B\in \mathbb{R}_{\ge 0}^{p\times q},
-\]</span></p>
-<p>con <span class="math inline">\(B_{ij}=0\)</span> si no hay interacción y <span class="math inline">\(B_{ij}&gt;0\)</span> si la interacción se observa.</p>
+<section id="ejemplo-conectancia-en-una-red-plantapolinizador" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="ejemplo-conectancia-en-una-red-plantapolinizador"><span class="header-section-number">4.3</span> Ejemplo: conectancia en una red planta–polinizador</h2>
+<p>Consideremos la red:</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Sesion4_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -277,205 +363,23 @@ p_4&amp; 0   &amp; 0   &amp; 1
 \]</span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>En redes <strong>binarias</strong>, la matriz registra presencia/ausencia. En redes <strong>ponderadas</strong>, <span class="math inline">\(B_{ij}\)</span> puede representar frecuencia, biomasa o número de eventos.</p>
-</div>
-</div>
-</section>
-<section id="caminos-distancias-y-conectividad" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="caminos-distancias-y-conectividad"><span class="header-section-number">4.3</span> Caminos, distancias y conectividad</h2>
-<p><strong>Camino</strong>: sucesión de vértices <span class="math inline">\(v_0,v_1,\dots,v_k\)</span> tal que cada par consecutivo está unido por una arista.</p>
-<p><strong>Distancia geodésica</strong>: <span class="math display">\[
-d(u,v)=\min\{k:\text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
-\]</span></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Conectividad">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Conectividad
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Un grafo es <strong>conexo</strong> si todo par de vértices puede unirse por un camino. Si no lo es, se descompone en <strong>componentes conexas</strong>.</p>
-</div>
-</div>
-<ul>
-<li>La <strong>cercanía</strong> usa sumas de distancias al resto de la red.</li>
-<li>La <strong>intermediación</strong> cuenta cuántas geodésicas pasan por un nodo.</li>
-<li>Estas ideas reaparecen al distinguir entre una red densa, anidada o modular.</li>
-</ul>
-</section>
-<section id="medidas-de-centralidad" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="medidas-de-centralidad"><span class="header-section-number">4.4</span> Medidas de centralidad</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Métrica</th>
-<th>Definición típica</th>
-<th>Lectura ecológica</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Grado</strong> <span class="math inline">\(C_D(v)\)</span></td>
-<td><span class="math inline">\(\deg(v)\)</span></td>
-<td>Número de vecinos directos; generalismo o especialización local.</td>
-</tr>
-<tr class="even">
-<td><strong>Cercanía</strong> <span class="math inline">\(C_C(v)\)</span></td>
-<td>Inverso de la distancia total al resto</td>
-<td>Accesibilidad global; rapidez potencial de propagación.</td>
-</tr>
-<tr class="odd">
-<td><strong>Intermediación</strong> <span class="math inline">\(C_B(v)\)</span></td>
-<td>Fracción de geodésicas que pasan por <span class="math inline">\(v\)</span></td>
-<td>Rol de puente; conexión entre grupos o rutas cortas.</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Estas medidas son <strong>locales</strong>: asignan un valor a cada especie. Lo que sigue son medidas <strong>globales</strong>: asignan un valor a la red completa.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="métricas-globales" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Métricas globales</h1>
-<section id="aspectos-sobre-la-red" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="aspectos-sobre-la-red"><span class="header-section-number">5.1</span> Aspectos sobre la red…</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Métrica</th>
-<th>Pregunta estructural</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Conectancia</strong> <span class="math inline">\(\mathcal{C}\)</span></td>
-<td>¿Qué fracción de las interacciones <em>posibles</em> está presente?</td>
-</tr>
-<tr class="even">
-<td><strong>Anidamiento</strong> <span class="math inline">\(\mathrm{NODF}\)</span></td>
-<td>¿Los socios de las especies especialistas son subconjuntos de los de las generalistas?</td>
-</tr>
-<tr class="odd">
-<td><strong>Especialización</strong> <span class="math inline">\(H_2'\)</span></td>
-<td>En una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales?</td>
-</tr>
-<tr class="even">
-<td><strong>Modularidad</strong> <span class="math inline">\(Q_B\)</span></td>
-<td>¿Existen grupos con interacción preferente hacia adentro del mismo módulo?</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular. Por eso ninguna métrica por sí sola agota la estructura de la red.</p>
-</div>
-</div>
-<hr>
-</section>
-<section id="conectancia" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="conectancia"><span class="header-section-number">5.2</span> Conectancia</h2>
-<p>Mide la proporción de interacciones potenciales que sí aparecen en la red.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Definición">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Definición
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para una matriz binaria <span class="math inline">\(B\in\{0,1\}^{p\times q}\)</span>, la <strong>conectancia</strong> es <span class="math display">\[
-\mathcal{C} = \frac{|E|}{p\,q}=\frac{1}{p\,q}\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}\in[0,1].
-\]</span></p>
-</div>
-</div>
-<ul>
-<li><span class="math inline">\(\mathcal{C}=1\)</span>: todas las interacciones posibles están presentes.</li>
-<li><span class="math inline">\(\mathcal{C}\)</span> cercana a 0: la red es muy <em>dispersa</em>.</li>
-<li>En redes ponderadas, la conectancia suele calcularse sobre la versión <strong>binarizada</strong> de la matriz.</li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La conectancia captura la <strong>densidad de enlaces</strong> de la red bipartita.</p>
-</div>
-</div>
-</section>
-<section id="ejemplo-de-conectancia" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="ejemplo-de-conectancia"><span class="header-section-number">5.3</span> Ejemplo de conectancia</h2>
-<p>Para la matriz <span class="math display">\[
-\begin{array}{c|ccc}
-   &amp; a_1 &amp; a_2 &amp; a_3 \\ \hline
-p_1&amp; 1   &amp; 1   &amp; 0\\
-p_2&amp; 0   &amp; 1   &amp; 1\\
-p_3&amp; 0   &amp; 1   &amp; 0\\
-p_4&amp; 0   &amp; 0   &amp; 1
-\end{array}
-\]</span> se tiene:</p>
+<p>se tiene:</p>
 <ul>
 <li><span class="math inline">\(p=4\)</span> plantas,</li>
 <li><span class="math inline">\(q=3\)</span> polinizadores,</li>
-<li><span class="math inline">\(|E|=6\)</span> interacciones observadas.</li>
+<li><span class="math inline">\(|E|=6\)</span> interacciones observadas</li>
 </ul>
+<p>por lo que la conectancia es:</p>
 <p><span class="math display">\[
 \mathcal{C}=\frac{|E|}{p\,q}=\frac{6}{4\cdot 3}=\frac{6}{12}=0.5.
 \]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Interpretación">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Tip</span>Interpretación
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -483,64 +387,87 @@ Nota
 </div>
 </div>
 </section>
-<section id="conectancia-1" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="conectancia-1"><span class="header-section-number">5.4</span> Conectancia</h2>
-<ul>
-<li><strong>Sí dice:</strong> cuán densa es la red.</li>
-<li><strong>No dice:</strong> si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).</li>
-<li><strong>No distingue:</strong> una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas.</li>
-<li><strong>Debe interpretarse con cuidado:</strong> depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="en-r-con-bipartite-conectancia" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="en-r-con-bipartite-conectancia"><span class="header-section-number">4.4</span> En R con <code>bipartite</code>: conectancia</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Consideramos la red planta-polinizador del ejemplo anterior</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>web <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>,<span class="st">"p3"</span>,<span class="st">"p4"</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">c</span>(<span class="st">"a1"</span>,<span class="st">"a2"</span>,<span class="st">"a3"</span>)))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la conectancia con bipartite</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(web, <span class="at">index =</span> <span class="st">"connectance"</span>)   <span class="co"># 0.5</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>connectance 
+        0.5 </code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Nota
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La conectancia es una buena primera descripción, pero no basta para caracterizar la <strong>arquitectura interna</strong> de una red.</p>
-</div>
-</div>
-<hr>
+<!--
+De paso, esta red
+tiene un anidamiento intermedio:
+
+
+::: {.cell}
+
+```{.r .cell-code}
+networklevel(web, index = "NODF")   # 50  (ni permutación ni triangular perfecta)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+NODF 
+  50 
+```
+
+
+:::
+:::
+
+
+-->
 </section>
-<section id="anidamiento" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="anidamiento"><span class="header-section-number">5.5</span> Anidamiento</h2>
-<p>Una red está <strong>anidada</strong> si, al ordenar filas y columnas por grado decreciente, los socios de las especies especialistas tienden a ser <strong>subconjuntos</strong> de los socios de las generalistas.</p>
+<section id="qué-mide-el-anidamiento" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="qué-mide-el-anidamiento"><span class="header-section-number">4.5</span> ¿Qué mide el “anidamiento”?</h2>
+<p>El NODF mide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.</p>
+<p>Intuitivamente, una red está <strong>anidada</strong> si al ordenar renglones y columnas por grado decreciente, los socios de las especies especialistas tienden a ser <strong>subconjuntos</strong> de los socios de las generalistas.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="Sesion4_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+</section>
+<section id="anidamiento-nodf" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="anidamiento-nodf"><span class="header-section-number">4.6</span> Anidamiento (NODF)</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Nota</span>Definición
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Las especies especialistas interactúan con subconjuntos de socios que también son usados por las especies más generalistas.</p>
-</div>
-</div>
-</section>
-<section id="nodf" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="nodf"><span class="header-section-number">5.6</span> NODF</h2>
-<p>Sea <span class="math inline">\(B\in\{0,1\}^{p\times q}\)</span> una matriz <strong>ordenada</strong> por grado decreciente en filas y columnas.</p>
+<p>Consideremos un <strong>grafo bipartito</strong>. Sea <span class="math inline">\(B\in\{0,1\}^{p\times q}\)</span> la matriz binaria <strong>ordenada</strong> por grado decreciente en renglones y columnas. Sean:</p>
 <div class="columns">
 <div class="column" style="width:54%;">
-<p><strong>Filas</strong></p>
+<p><strong>Renglones</strong></p>
 <ul>
 <li>Grados: <span class="math inline">\(k_i=\sum_{\alpha=1}^{q} B_{i\alpha}\)</span>.</li>
-<li>Solapamiento entre filas <span class="math inline">\(i&lt;j\)</span>: <span class="math display">\[
+<li>Solapamiento entre renglones <span class="math inline">\(i&lt;j\)</span>: <span class="math display">\[
 O^{(r)}_{ij}=\sum_{\alpha=1}^{q} B_{i\alpha}B_{j\alpha}.
 \]</span></li>
 <li>Contribución anidada del par: <span class="math display">\[
@@ -568,30 +495,77 @@ N^{(c)}_{\alpha\beta}=
 </ul>
 </div>
 </div>
-</section>
-<section id="índice-nodf-global" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="índice-nodf-global"><span class="header-section-number">5.7</span> Índice NODF Global</h2>
-<p>El índice <strong>NODF</strong> (<em>Nestedness based on Overlap and Decreasing Fill</em>) promedia las contribuciones de filas y columnas: <span class="math display">\[
+<p>El índice <strong>NODF</strong> (<em>Nestedness based on Overlap and Decreasing Fill</em>) promedia las contribuciones de renglones y columnas: <span class="math display">\[
 \mathrm{NODF}=
 \frac{\displaystyle\sum_{i&lt;j} N^{(r)}_{ij}+\sum_{\alpha&lt;\beta} N^{(c)}_{\alpha\beta}}
 {\displaystyle \binom{p}{2}+\binom{q}{2}}
 \in[0,100].
 \]</span></p>
+</div>
+</div>
 <ul>
 <li><span class="math inline">\(\mathrm{NODF}=100\)</span>: anidamiento perfecto.</li>
 <li><span class="math inline">\(\mathrm{NODF}=0\)</span>: ausencia de solapamiento anidado entre pares con grado decreciente.</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p><strong>Observación:</strong></p>
+<p>Es importante notar que reordenar renglones y columnas por grado decreciente sirve para <strong>visualizar</strong> el patrón triangular del anidamiento, pero <strong>el valor de NODF no depende del orden</strong>: la fórmula recorre todos los pares y para cada uno compara el grado mayor con el menor. Un mismo conjunto de interacciones da el mismo NODF sin importar cómo se dibuje la matriz.</p>
+<p><strong>En la versión ponderada</strong> el orden solo interviene para <em>desempatar</em> pares con igual número de socios.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="En ecología">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>En ecología
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Mide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.</p>
+<p>En términos ecológicos: NODF pregunta, para cada par «generalista–especialista», qué fracción de los socios del especialista son también socios del generalista. Un anidamiento alto describe una red con un <strong>núcleo de generalistas que se interconectan</strong> y una <strong>periferia de especialistas</strong> que interactúan con subconjuntos de ese núcleo —una arquitectura que suele asociarse a mayor robustez frente a extinciones aleatorias.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Anidamiento perfecto</strong> <span class="math display">\[
+\begin{pmatrix}
+1&amp;1&amp;1\\
+1&amp;1&amp;0\\
+1&amp;0&amp;0
+\end{pmatrix}
+\]</span> <span class="math display">\[
+\mathrm{NODF}=100
+\]</span> Cada par admisible comparte exactamente los contactos del miembro menos conectado.</p>
+</div><div class="column" style="width:33%;">
+<p><strong>Identidad / permutación</strong> <span class="math display">\[
+\begin{pmatrix}
+1&amp;0&amp;0\\
+0&amp;1&amp;0\\
+0&amp;0&amp;1
+\end{pmatrix}
+\]</span> <span class="math display">\[
+\mathrm{NODF}=0
+\]</span> No aparecen subconjuntos: cada especialista usa un socio distinto.</p>
+</div><div class="column" style="width:33%;">
+<p><strong>Matriz llena</strong> <span class="math display">\[
+\begin{pmatrix}
+1&amp;1&amp;1\\
+1&amp;1&amp;1\\
+1&amp;1&amp;1
+\end{pmatrix}
+\]</span> <span class="math display">\[
+\mathrm{NODF}=0 \;\;\text{(degenerado)}
+\]</span> Todos los grados son iguales, así que ningún par cumple la condición de <em>decreasing fill</em> (<span class="math inline">\(k_i&gt;k_j\)</span>): cada contribución es <span class="math inline">\(0\)</span> y la fórmula devuelve <span class="math inline">\(0\)</span>. El valor existe, pero <strong>no es informativo</strong>: no hay especialistas ni generalistas que comparar, de modo que el anidamiento no es un descriptor significativo de esta red.</p>
+</div>
+</div>
 </div>
 </div>
 <!--
@@ -780,12 +754,414 @@ $Q_B$ mira **bloques y exceso intra-módulo** frente a un nulo.
 Estas métricas son **complementarias**: ninguna resume por sí sola toda la organización de una red bipartita ecológica.
 
 :::
-```eof
-
 -->
-
-
 </section>
+<section id="ejemplo-nodf-en-la-red-plantapolinizador" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="ejemplo-nodf-en-la-red-plantapolinizador"><span class="header-section-number">4.7</span> Ejemplo: NODF en la red planta–polinizador</h2>
+<p>Retomamos la red planta-polinizador y su matriz binaria, ordenada por grado decreciente:</p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:58%;">
+<p><span class="math display">\[
+\begin{array}{c|ccc|c}
+B &amp; a_2 &amp; a_3 &amp; a_1 &amp; k_i\\ \hline
+p_1&amp; 1 &amp; 0 &amp; 1 &amp; 2\\
+p_2&amp; 1 &amp; 1 &amp; 0 &amp; 2\\
+p_3&amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+p_4&amp; 0 &amp; 1 &amp; 0 &amp; 1\\ \hline
+h_\alpha &amp; 3 &amp; 2 &amp; 1 &amp;
+\end{array}
+\]</span></p>
+</div>
+</div>
+<p><strong>Contribuciones por renglones</strong> (solo cuentan los pares con <span class="math inline">\(k_i&gt;k_j\)</span>):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Par</th>
+<th style="text-align: center;">Solapamiento</th>
+<th style="text-align: center;"><span class="math inline">\(N^{(r)}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((p_1,p_3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{a_2\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100\cdot 1/1=100\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((p_2,p_3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{a_2\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100\cdot 1/1=100\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((p_2,p_4)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{a_3\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100\cdot 1/1=100\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((p_1,p_4)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\varnothing\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>(los pares <span class="math inline">\((p_1,p_2)\)</span> y <span class="math inline">\((p_3,p_4)\)</span> tienen igual grado y no aportan). Suma de renglones <span class="math inline">\(=300\)</span>.</p>
+<p><strong>Contribuciones por columnas:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Par</th>
+<th style="text-align: center;">Solapamiento</th>
+<th style="text-align: center;"><span class="math inline">\(N^{(c)}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((a_2,a_1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{p_1\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100\cdot 1/1=100\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((a_2,a_3)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\{p_2\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100\cdot 1/2=50\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((a_3,a_1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\varnothing\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Suma de columnas <span class="math inline">\(=150\)</span>. Por lo tanto</p>
+<p><span class="math display">\[
+\mathrm{NODF}=\frac{300+150}{\binom{4}{2}+\binom{3}{2}}=\frac{450}{9}=50.
+\]</span></p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Interpretación ecológica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación ecológica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un valor intermedio (<span class="math inline">\(\mathrm{NODF}=50\)</span>): la red muestra <strong>algo</strong> de anidamiento —los especialistas <span class="math inline">\(p_3\)</span> y <span class="math inline">\(p_4\)</span> visitan a polinizadores (<span class="math inline">\(a_2\)</span>, <span class="math inline">\(a_3\)</span>) que también usan las generalistas—, pero no es una jerarquía perfecta: <span class="math inline">\(p_1\)</span> y <span class="math inline">\(p_4\)</span> no comparten socios, y <span class="math inline">\(a_1\)</span> queda aparte. Ni permutación (<span class="math inline">\(0\)</span>) ni triangular perfecta (<span class="math inline">\(100\)</span>).</p>
+</div>
+</div>
+</section>
+<section id="en-r-con-bipartite-nodf" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="en-r-con-bipartite-nodf"><span class="header-section-number">4.8</span> En R con <code>bipartite</code>: NODF</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bipartite)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Consideramos la red planta-polinizador del ejemplo anterior</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>web <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>,<span class="st">"p3"</span>,<span class="st">"p4"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">c</span>(<span class="st">"a1"</span>,<span class="st">"a2"</span>,<span class="st">"a3"</span>)))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el índice NODF con bipartite</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(web, <span class="at">index =</span> <span class="st">"NODF"</span>)   <span class="co"># 50</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NODF 
+  50 </code></pre>
+</div>
+</div>
+<p><code>bipartite</code> ordena internamente la matriz por <em>decreasing fill</em>, pero como mencionamos, el <strong>valor no depende del orden</strong>.</p>
+</section>
+<section id="nodf-ponderado-weighted-nodf" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="nodf-ponderado-weighted-nodf"><span class="header-section-number">4.9</span> NODF ponderado (weighted NODF)</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}\)</span> la matriz bipartita ponderada de un <strong>grafo bipartito</strong>.</p>
+<p>Definimos <strong>la matriz binaria asociada</strong> <span class="math display">\[
+B=(b_{ij}),\qquad b_{ij}=\mathbf{1}_{\{w_{ij}&gt;0\}}.
+\]</span></p>
+<p><strong>Ordenamiento.</strong> Para calcular el NODF ponderado, primero se ordenan renglones y columnas por <strong>número de socios</strong> en orden decreciente; en caso de empate, se rompe el empate por la <strong>suma de pesos</strong> del renglón o columna.</p>
+<p><strong>Contribución de un par de renglones</strong> Si los renglones <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> satisfacen <span class="math display">\[
+k_i^{(r)} &gt; k_j^{(r)} &gt; 0,
+\qquad
+k_i^{(r)}=\sum_{\ell=1}^q b_{i\ell},
+\]</span> entonces su contribución ponderada es <span class="math display">\[
+N_{ij}^{(r,w)}
+=
+\frac{1}{k_j^{(r)}}
+\sum_{\ell=1}^q
+\mathbf{1}_{\{\,w_{i\ell}&gt;w_{j\ell}&gt;0\,\}}.
+\]</span></p>
+<p>Análogamente, para columnas <span class="math inline">\(u,v\)</span> con <span class="math display">\[
+k_u^{(c)} &gt; k_v^{(c)} &gt; 0,
+\]</span> se define <span class="math display">\[
+N_{uv}^{(c,w)}
+=
+\frac{1}{k_v^{(c)}}
+\sum_{m=1}^p
+\mathbf{1}_{\{\,w_{mu}&gt;w_{mv}&gt;0\,\}}.
+\]</span></p>
+<p>Índice global ponderado: <span class="math display">\[
+\mathrm{WNODF}
+=
+100\,
+\frac{
+\sum_{i&lt;j} N_{ij}^{(r,w)}+\sum_{u&lt;v} N_{uv}^{(c,w)}
+}{
+\binom{p}{2}+\binom{q}{2}
+}.
+\]</span></p>
+</div>
+</div>
+<p>El valor es grande cuando, además del patrón anidado binario, las especies más generalistas tienden a tener <strong>interacciones más intensas</strong> que las menos generalistas sobre los socios que comparten.</p>
+<!--
+El **WNODF** es la versión **cuantitativa** del NODF: combina la idea de *solapamiento* entre socios con la condición de *decreasing fill*, pero incorporando además la **intensidad** de las interacciones.
+-->
+<p><strong>Observación:</strong></p>
+<p>En general <span class="math display">\[
+\mathrm{WNODF}(W)\neq \mathrm{NODF}(\mathbf{1}_{\{W&gt;0\}})
+\]</span> Es decir, WNODF <strong>no se obtiene simplemente binarizando la matriz y calculando luego el NODF usual</strong>.</p>
+<p>El WNODF <em>exige</em> que, además del patrón binario, la generalista pese <strong>estrictamente más</strong> sobre los socios compartidos. Por eso, en general, <span class="math inline">\(\mathrm{WNODF}(W)\neq \mathrm{NODF}(\mathbf{1}_{\{W&gt;0\}})\)</span>.</p>
+<!--
+El WNODF es alto cuando:
+
+* las especies con menos socios interactúan con subconjuntos de los socios de las más generalistas; y
+* sobre esos socios compartidos, las especies más generalistas tienden a presentar **mayores pesos de interacción**.
+-->
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las dos matrices <span class="math inline">\(W_a\)</span> y <span class="math inline">\(W_b\)</span> tienen <strong>el mismo patrón binario</strong> (y por tanto el mismo <span class="math inline">\(\mathrm{NODF}=100\)</span>), pero pesos distintos:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Pesos que respetan el anidamiento</strong> <span class="math display">\[
+W_a=\begin{pmatrix} 3 &amp; 2\\ 1 &amp; 0\end{pmatrix},
+\qquad \mathrm{WNODF}=100.
+\]</span> Sobre el socio compartido, la generalista (renglón 1) tiene <strong>más</strong> peso (<span class="math inline">\(3&gt;1\)</span>).</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Pesos iguales sobre el socio compartido</strong> <span class="math display">\[
+W_b=\begin{pmatrix} 2 &amp; 2\\ 2 &amp; 0\end{pmatrix},
+\qquad \mathrm{WNODF}=0.
+\]</span> En el socio compartido los pesos empatan (<span class="math inline">\(2\not&gt; 2\)</span>), así que no hay anidamiento <em>ponderado</em>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejemplo-wnodf-en-la-red-plantapolinizador" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="ejemplo-wnodf-en-la-red-plantapolinizador"><span class="header-section-number">4.10</span> Ejemplo: WNODF en la red planta–polinizador</h2>
+<p>Ahora ponemos <strong>pesos</strong> (número de visitas) sobre la misma red planta-polinizador:</p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion4_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:58%;">
+<p><span class="math display">\[
+W=\begin{array}{c|ccc}
+   &amp; a_1 &amp; a_2 &amp; a_3 \\ \hline
+p_1&amp; 3 &amp; 5 &amp; 0\\
+p_2&amp; 0 &amp; 4 &amp; 2\\
+p_3&amp; 0 &amp; 2 &amp; 0\\
+p_4&amp; 0 &amp; 0 &amp; 3
+\end{array}
+\]</span></p>
+</div>
+</div>
+<p>Solo aportan los pares en que, sobre el socio compartido, la generalista pesa <strong>estrictamente más</strong>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Renglones</th>
+<th style="text-align: center;">aporta</th>
+<th></th>
+<th style="text-align: center;">Columnas</th>
+<th style="text-align: center;">aporta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((p_1,p_3)\)</span>: <span class="math inline">\(5&gt;2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/1=1\)</span></td>
+<td></td>
+<td style="text-align: center;"><span class="math inline">\((a_2,a_1)\)</span>: <span class="math inline">\(5&gt;3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/1=1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((p_2,p_3)\)</span>: <span class="math inline">\(4&gt;2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/1=1\)</span></td>
+<td></td>
+<td style="text-align: center;"><span class="math inline">\((a_2,a_3)\)</span>: <span class="math inline">\(4&gt;2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1/2=0.5\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\((p_2,p_4)\)</span>: <span class="math inline">\(2\not&gt;3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td></td>
+<td style="text-align: center;"><span class="math inline">\((a_3,a_1)\)</span>: sin socio</td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\mathrm{WNODF}=100\cdot\frac{(1+1)+(1+0.5)}{\binom{4}{2}+\binom{3}{2}}
+=100\cdot\frac{3.5}{9}\approx 38.9.
+\]</span></p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Interpretación ecológica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpretación ecológica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El WNODF (<span class="math inline">\(\approx 38.9\)</span>) es <strong>menor</strong> que el NODF binario (<span class="math inline">\(=50\)</span>). Esto se debe a que sobre el socio compartido <span class="math inline">\(a_3\)</span>, la especialista <span class="math inline">\(p_4\)</span> interactúa más intensamente (<span class="math inline">\(3\)</span>) que la generalista <span class="math inline">\(p_2\)</span> (<span class="math inline">\(2\)</span>). Es decir, aunque el <em>patrón</em> de presencias esté algo anidado, las <em>intensidades</em> no siguen del todo la jerarquía generalista–especialista. Por eso conviene reportar ambos: el binario resume el patrón; el ponderado, si las <strong>intensidades</strong> lo acompañan.</p>
+</div>
+</div>
+</section>
+<section id="en-r-con-paquetería-wnodf" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="en-r-con-paquetería-wnodf"><span class="header-section-number">4.11</span> En R con paquetería: WNODF</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Consideramos la red ponderada planta-polinizador del ejemplo anterior</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Wt <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">0</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">2</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"p1"</span>,<span class="st">"p2"</span>,<span class="st">"p3"</span>,<span class="st">"p4"</span>), <span class="fu">c</span>(<span class="st">"a1"</span>,<span class="st">"a2"</span>,<span class="st">"a3"</span>)))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular NODF y WNODF</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">networklevel</span>(Wt, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"NODF"</span>, <span class="st">"weighted NODF"</span>)) <span class="co"># NODF = 50 (sobre la binarizada)  ;  weighted NODF ≈ 38.9</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         NODF weighted NODF 
+     50.00000      38.88889 </code></pre>
+</div>
+</div>
+<p>El <code>weighted NODF</code> (<span class="math inline">\(\approx 38.9\)</span>) queda por debajo del <code>NODF</code> binario (<span class="math inline">\(=50\)</span>) lo que confirma que binarizar y luego calcular NODF <strong>no</strong> es lo mismo que el WNODF, y que aquí las intensidades no siguen del todo la jerarquía generalista–especialista.</p>
+<p>En la implementación usada por <code>bipartite</code>, el cálculo se apoya en <code>vegan::nestednodf</code>: la matriz se ordena por frecuencias marginales (y, en la versión ponderada, los empates se rompen por abundancia total).</p>
+<!--
+## `bipartite`: conectancia y NODF
+
+| Métrica | Función de R |
+|---|---|
+| Conectancia | `networklevel(web, index='connectance')` |
+| $\mathrm{NODF}$ | `networklevel(web, index='NODF')` |
+| NODF ponderado | `networklevel(web, index='weighted NODF')` |
+
+::: {.callout-note}
+$\mathrm{NODF}$ en `bipartite` se evalúa sobre la matriz **ordenada por decreasing fill**.
+
+:::
+
+---
+
+
+::: {.callout-tip}
+$\mathrm{NODF}$ debe alcanzar 100 en la triangular perfecta y 0 en una permutación sin solapamiento anidado.
+
+:::
+-->
+</section>
+<section id="nodf-limitaciones-y-casos-degenerados" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="nodf-limitaciones-y-casos-degenerados"><span class="header-section-number">4.12</span> NODF: limitaciones y casos degenerados</h2>
+<ul>
+<li>Si <span class="math inline">\(p&lt;2\)</span> o <span class="math inline">\(q&lt;2\)</span>, no existen pares de renglones o columnas que comparar.</li>
+<li>Si la matriz es <strong>vacía</strong> (puros ceros) o <strong>completamente llena</strong> (puros unos), el índice deja de ser útil como descriptor de anidamiento.</li>
+<li>Si muchos renglones o columnas tienen <strong>el mismo grado</strong>, esas parejas no aportan por la condición de <em>decreasing fill</em>; la métrica puede subestimar estructura.</li>
+<li>En matrices con pesos conviene distinguir entre <strong>NODF binario</strong> y <strong>NODF ponderado</strong> ya que no responden exactamente a la misma pregunta.</li>
+</ul>
+<!-- 
+::: {.callout-tip title="En R"}
+`networklevel(web, index='NODF')` calcula el NODF binario global.
+
+`networklevel(web, index='weighted NODF')` agrega la versión ponderada.
+
+Si la matriz ponderada está llena y se quiere explotar el orden por abundancia, el complemento es `nest.smdm(web, weighted=TRUE, decreasing='abund')`.
+
+:::
+-->
+</section>
+<section id="resumen-en-contexto-biológico" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="resumen-en-contexto-biológico"><span class="header-section-number">4.13</span> Resumen en contexto biológico</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="🍃 ¿qué pregunta sobre la comunidad responde cada métrica?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🍃 ¿qué pregunta sobre la comunidad responde cada métrica?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Métrica de red</th>
+<th>Pregunta estructural sobre la comunidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Conectancia <span class="math inline">\(\mathcal{C}\)</span></td>
+<td>¿Qué fracción de las interacciones <em>posibles</em> realmente ocurre? (densidad)</td>
+</tr>
+<tr class="even">
+<td>Anidamiento <span class="math inline">\(\mathrm{NODF}\)</span></td>
+<td>¿Los socios de las especies especialistas son subconjuntos de los de las generalistas? (núcleo–periferia)</td>
+</tr>
+<tr class="odd">
+<td>NODF ponderado (WNODF)</td>
+<td>Lo mismo, pero pesando además la <strong>intensidad</strong> de las interacciones</td>
+</tr>
+</tbody>
+</table>
+<p>Ninguna métrica por sí sola agota la estructura de la red. La <strong>especialización <span class="math inline">\(H_2'\)</span></strong> y la <strong>modularidad <span class="math inline">\(Q_B\)</span></strong> completarán este panorama.</p>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1191,13 +1567,13 @@ Estas métricas son **complementarias**: ninguna resume por sí sola toda la org
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Sesion3.html" class="pagination-link" aria-label="Sesión 3: Métricas y análisis de redes: Centralidad">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span>
+      <a href="./Sesion3.html" class="pagination-link" aria-label="Métricas locales y análisis de redes: grado, cercanía, intermediación">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Métricas locales y análisis de redes: grado, cercanía, intermediación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Sesion5.html" class="pagination-link" aria-label="Sesión 5: Métricas globales de red: $H_2'$ y modularidad">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Sesion5.html" class="pagination-link" aria-label="Más métricas globales de red: especialización y modularidad">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

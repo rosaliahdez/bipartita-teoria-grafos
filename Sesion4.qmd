@@ -1,32 +1,123 @@
 ---
-title: "Sesión 4: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad"
+title: "Métricas globales de red: conectancia y anidamiento"
 editor: source
 engine: knitr
 ---
 
-## Temas
+## Métricas globales
 
-1. **Repaso**: red bipartita, matriz de interacción, caminos y centralidades vistas.
-2. **Conectancia**: fracción de interacciones potenciales que se observan.
-3. **Anidamiento**: especialistas como subconjuntos de generalistas; índice $\mathrm{NODF}$.
+Hasta ahora describimos **especies individuales**; ahora buscamos describir la **arquitectura de la red completa** mediante las siguientes métricas:
+
+- Conectancia
+- Anidamiento
+- Especialización
+- Modularidad
+
+
+<!--
+## Aspectos sobre la red...
+
+| Métrica | Pregunta estructural |
+|---|---|
+| **Conectancia** $\mathcal{C}$ | ¿Qué fracción de las interacciones *posibles* está presente? |
+| **Anidamiento** $\mathrm{NODF}$ | ¿Los socios de las especies especialistas son subconjuntos de los de las generalistas? |
+| **Especialización** $H_2'$ | En una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales? |
+| **Modularidad** $Q_B$ | ¿Existen grupos con interacción preferente hacia adentro del mismo módulo? |
+-->
+
+Dos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular.
+Por eso ninguna métrica por sí sola agota la estructura de la red.
+
+## ¿Qué mide la "conectancia"
+
+La **conectancia** es la proporción de interacciones que sí aparecen en la red, en relación con todas aquellas interacciones potenciales.
+
+<!-- 3. **Anidamiento**: especialistas como subconjuntos de generalistas; índice $\mathrm{NODF}$.
 4. **Especialización cuantitativa**: significado e interpretación de $H_2'$.
 5. **Modularidad**: bloques o módulos de interacción preferente.
+-->
 
-::: {.callout-tip}
-Hasta ahora describimos **especies individuales**; ahora buscamos describir la **arquitectura de la red completa**.
 
+::: {.callout-note title="Definición"}
+Para una matriz **bipartita binaria** $B\in\{0,1\}^{p\times q}$, la **conectancia** es
+$$
+\mathcal{C} = \frac{|E|}{p\,q}=\frac{1}{p\,q}\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}\in[0,1].
+$$
 :::
 
-## Red bipartita y matriz de interacción
+Podemos distinguir los dos casos extremos:
 
-Una red bipartita separa las especies en dos clases, por ejemplo plantas y polinizadores.
-La información puede codificarse como una matriz
+* $\mathcal{C}=1$: La matriz llena de "unos", indicando que todas las interacciones posibles entre nodos están presentes.
+* $\mathcal{C}=0$: La matriz llena de "ceros", indicando que no existe interacción alguna.
 
-$$
-B\in \mathbb{R}_{\ge 0}^{p\times q},
-$$
+Observemos que un $\mathcal{C}$ cercano a 0 indica que la red es muy **dispersa**.
 
-con $B_{ij}=0$ si no hay interacción y $B_{ij}>0$ si la interacción se observa.
+**En redes ponderadas:** la conectancia suele calcularse sobre la versión **binarizada** de la matriz.
+
+
+**Observación:**
+
+La conectancia captura la **densidad de enlaces** de la red bipartita. Indica cuán densa es la red, pero no si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).
+
+No distingue una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas. Debe interpretarse con cuidado, ya que depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.
+
+La conectancia es una buena primera descripción, pero no basta para caracterizar la **arquitectura interna** de una red.
+
+::: {.callout-warning title="Ejemplo"}
+Consideremos el siguiente grafo bipartito con particiones $V_1=\{1,2,3\}$ y $V_2=\{4,5,6\}$, junto con su respectiva matriz bipartita binaria (bloque $B$):
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| out-width: "75%"
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=6mm, inner sep=0pt, font=\small},
+  nodo/.style={base, fill=blue!15},
+  edge/.style={thick}
+}
+\begin{tikzpicture}[>=Latex]
+  % --- Lado Izquierdo: Grafo Bipartito ---
+  \begin{scope}
+    % Conjunto U
+    \node[nodo] (1) at (-1.5, 1) {1};
+    \node[nodo] (2) at (-1.5, 0) {2};
+    \node[nodo] (3) at (-1.5, -1) {3};
+    
+    % Conjunto V
+    \node[nodo] (4) at (1.5, 1) {4};
+    \node[nodo] (5) at (1.5, 0) {5};
+    \node[nodo] (6) at (1.5, -1) {6};
+    
+    % Aristas basadas en los unos de la matriz
+    \draw[edge] (1)--(4);
+    \draw[edge] (1)--(5);
+    \draw[edge] (2)--(5);
+    \draw[edge] (3)--(4);
+    \draw[edge] (3)--(6);
+  \end{scope}
+  
+  % --- Lado Derecho: Matriz B ---
+  \begin{scope}[xshift=4.5cm, yshift=0cm]
+    \node[right] at (0,0) {
+      $B = \begin{array}{c|ccc}
+         & 4 & 5 & 6 \\ \hline
+       1 & 1 & 1 & 0 \\
+       2 & 0 & 1 & 0 \\
+       3 & 1 & 0 & 1
+      \end{array}$
+    };
+  \end{scope}
+\end{tikzpicture}
+```
+En este caso, tenemos $p=3$ vértices en el primer conjunto (renglones de $B$), $q=3$ vértices en el segundo conjunto (columnas de $B$), y observamos $|E|=5$ aristas (que coincide precisamente con la cantidad de "unos" en la matriz $B$).
+
+Por lo tanto, la conectancia de la red es:$$\mathcal{C}=\frac{|E|}{p\,q}=\frac{5}{3 \times 3} = \frac{5}{9}\approx 0.56.$$
+:::
+
+## Ejemplo: conectancia en una red planta--polinizador
+
+Consideremos la red:
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -79,130 +170,64 @@ $$
 :::
 ::::
 
-::: {.callout-tip}
-En redes **binarias**, la matriz registra presencia/ausencia. En redes **ponderadas**, $B_{ij}$ puede representar frecuencia, biomasa o número de eventos.
-
-:::
-
-## Caminos, distancias y conectividad
-
-**Camino**: sucesión de vértices $v_0,v_1,\dots,v_k$ tal que cada par consecutivo está unido por una arista.
-
-**Distancia geodésica**: 
-$$
-d(u,v)=\min\{k:\text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
-$$
-
-::: {.callout-note title="Conectividad"}
-Un grafo es **conexo** si todo par de vértices puede unirse por un camino.
-Si no lo es, se descompone en **componentes conexas**.
-
-:::
-
-* La **cercanía** usa sumas de distancias al resto de la red.
-* La **intermediación** cuenta cuántas geodésicas pasan por un nodo.
-* Estas ideas reaparecen al distinguir entre una red densa, anidada o modular.
-
-## Medidas de centralidad
-
-| Métrica | Definición típica | Lectura ecológica |
-|---|---|---|
-| **Grado** $C_D(v)$ | $\deg(v)$ | Número de vecinos directos; generalismo o especialización local. |
-| **Cercanía** $C_C(v)$ | Inverso de la distancia total al resto | Accesibilidad global; rapidez potencial de propagación. |
-| **Intermediación** $C_B(v)$ | Fracción de geodésicas que pasan por $v$ | Rol de puente; conexión entre grupos o rutas cortas. |
-
-::: {.callout-note}
-Estas medidas son **locales**: asignan un valor a cada especie.
-Lo que sigue son medidas **globales**: asignan un valor a la red completa.
-
-:::
-
----
-
-# Métricas globales
-
-## Aspectos sobre la red...
-
-| Métrica | Pregunta estructural |
-|---|---|
-| **Conectancia** $\mathcal{C}$ | ¿Qué fracción de las interacciones *posibles* está presente? |
-| **Anidamiento** $\mathrm{NODF}$ | ¿Los socios de las especies especialistas son subconjuntos de los de las generalistas? |
-| **Especialización** $H_2'$ | En una red ponderada, ¿qué tan concentradas o selectivas son las interacciones, una vez considerados los marginales? |
-| **Modularidad** $Q_B$ | ¿Existen grupos con interacción preferente hacia adentro del mismo módulo? |
-
-::: {.callout-note}
-Dos redes pueden tener la misma conectancia y, aun así, una ser anidada y la otra modular.
-Por eso ninguna métrica por sí sola agota la estructura de la red.
-
-:::
-
----
-
-## Conectancia
-
-Mide la proporción de interacciones potenciales que sí aparecen en la red.
-
-::: {.callout-note title="Definición"}
-Para una matriz binaria $B\in\{0,1\}^{p\times q}$, la **conectancia** es
-$$
-\mathcal{C} = \frac{|E|}{p\,q}=\frac{1}{p\,q}\sum_{i=1}^{p}\sum_{j=1}^{q} B_{ij}\in[0,1].
-$$
-
-:::
-
-* $\mathcal{C}=1$: todas las interacciones posibles están presentes.
-* $\mathcal{C}$ cercana a 0: la red es muy *dispersa*.
-* En redes ponderadas, la conectancia suele calcularse sobre la versión **binarizada** de la matriz.
-
-::: {.callout-tip}
-La conectancia captura la **densidad de enlaces** de la red bipartita.
-
-:::
-
-## Ejemplo de conectancia
-
-Para la matriz
-$$
-\begin{array}{c|ccc}
-   & a_1 & a_2 & a_3 \\ \hline
-p_1& 1   & 1   & 0\\
-p_2& 0   & 1   & 1\\
-p_3& 0   & 1   & 0\\
-p_4& 0   & 0   & 1
-\end{array}
-$$
 se tiene:
 
 * $p=4$ plantas,
 * $q=3$ polinizadores,
-* $|E|=6$ interacciones observadas.
+* $|E|=6$ interacciones observadas
+
+por lo que la conectancia es:
 
 $$
 \mathcal{C}=\frac{|E|}{p\,q}=\frac{6}{4\cdot 3}=\frac{6}{12}=0.5.
 $$
 
-::: {.callout-note}
+::: {.callout-tip title="Interpretación"}
 Se realiza la mitad de las interacciones potenciales planta--polinizador de esta red.
 
 :::
 
-## Conectancia
 
-* **Sí dice:** cuán densa es la red.
-* **No dice:** si la red está organizada en un patrón triangular (anidamiento) o en bloques (modularidad).
-* **No distingue:** una red con muchas interacciones débiles de otra con pocas interacciones muy intensas; para eso se requieren medidas ponderadas.
-* **Debe interpretarse con cuidado:** depende del tamaño de la red y de cuántas interacciones fueron detectadas por el muestreo.
+## En R con `bipartite`: conectancia
 
-::: {.callout-note}
-La conectancia es una buena primera descripción, pero no basta para caracterizar la **arquitectura interna** de una red.
+```{r}
+#| message: false
+#| warning: false
 
-:::
 
----
+library(bipartite)
 
-## Anidamiento
+# Consideramos la red planta-polinizador del ejemplo anterior
 
-Una red está **anidada** si, al ordenar filas y columnas por grado decreciente, los socios de las especies especialistas tienden a ser **subconjuntos** de los socios de las generalistas.
+web <- matrix(c(
+  1, 1, 0,
+  0, 1, 1,
+  0, 1, 0,
+  0, 0, 1
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"),
+                   c("a1","a2","a3")))
+
+# Calcular la conectancia con bipartite
+networklevel(web, index = "connectance")   # 0.5
+```
+
+
+<!--
+De paso, esta red
+tiene un anidamiento intermedio:
+
+```{r}
+networklevel(web, index = "NODF")   # 50  (ni permutación ni triangular perfecta)
+```
+
+-->
+
+## ¿Qué mide el "anidamiento"?
+
+El NODF mide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.
+
+Intuitivamente, una red está **anidada** si al ordenar renglones y columnas por grado decreciente, los socios de las especies especialistas tienden a ser **subconjuntos** de los socios de las generalistas.
 
 
 ```{tikz}
@@ -245,21 +270,19 @@ Una red está **anidada** si, al ordenar filas y columnas por grado decreciente,
 
 ```
 
-::: {.callout-note}
-Las especies especialistas interactúan con subconjuntos de socios que también son usados por las especies más generalistas.
 
-:::
+## Anidamiento (NODF)
 
-## NODF
+:::: {.callout-note title="Definición"}
 
-Sea $B\in\{0,1\}^{p\times q}$ una matriz **ordenada** por grado decreciente en filas y columnas.
+Consideremos un **grafo bipartito**. Sea $B\in\{0,1\}^{p\times q}$ la matriz binaria **ordenada** por grado decreciente en renglones y columnas. Sean:
 
 :::: {.columns}
 ::: {.column width="54%"}
-**Filas**
+**Renglones**
 
 * Grados: $k_i=\sum_{\alpha=1}^{q} B_{i\alpha}$.
-* Solapamiento entre filas $i<j$:
+* Solapamiento entre renglones $i<j$:
   $$
   O^{(r)}_{ij}=\sum_{\alpha=1}^{q} B_{i\alpha}B_{j\alpha}.
   $$
@@ -292,22 +315,89 @@ Sea $B\in\{0,1\}^{p\times q}$ una matriz **ordenada** por grado decreciente en f
 :::
 ::::
 
-## Índice NODF Global
-
-El índice **NODF** (*Nestedness based on Overlap and Decreasing Fill*) promedia las contribuciones de filas y columnas:
+El índice **NODF** (*Nestedness based on Overlap and Decreasing Fill*) promedia las contribuciones de renglones y columnas:
 $$
 \mathrm{NODF}=
 \frac{\displaystyle\sum_{i<j} N^{(r)}_{ij}+\sum_{\alpha<\beta} N^{(c)}_{\alpha\beta}}
 {\displaystyle \binom{p}{2}+\binom{q}{2}}
 \in[0,100].
 $$
+::::
 
 * $\mathrm{NODF}=100$: anidamiento perfecto.
 * $\mathrm{NODF}=0$: ausencia de solapamiento anidado entre pares con grado decreciente.
 
-::: {.callout-tip}
-Mide el promedio del porcentaje de contactos compartidos entre pares ordenados por grado decreciente, tomando como referencia el grado del nodo menos conectado de cada par.
+**Observación:**
 
+Es importante notar que reordenar renglones y columnas por grado decreciente sirve para **visualizar** el patrón triangular del anidamiento, pero **el valor de NODF no depende del orden**: la fórmula recorre todos los pares y para cada uno compara el grado
+mayor con el menor. Un mismo conjunto de interacciones da el mismo NODF sin
+importar cómo se dibuje la matriz. 
+
+**En la versión ponderada** el orden solo interviene para *desempatar* pares con igual número de socios.
+
+
+
+::: {.callout-tip title="En ecología"}
+En términos ecológicos: NODF pregunta, para cada par «generalista–especialista»,
+qué fracción de los socios del especialista son también socios del generalista.
+Un anidamiento alto describe una red con un **núcleo de generalistas que se
+interconectan** y una **periferia de especialistas** que interactúan con
+subconjuntos de ese núcleo —una arquitectura que suele asociarse a mayor
+robustez frente a extinciones aleatorias.
+:::
+
+::: {.callout-warning title="Ejemplo"}
+
+:::: {.columns}
+::: {.column width="33%"}
+**Anidamiento perfecto**
+$$
+\begin{pmatrix}
+1&1&1\\
+1&1&0\\
+1&0&0
+\end{pmatrix}
+$$
+$$
+\mathrm{NODF}=100
+$$
+Cada par admisible comparte exactamente los contactos del miembro menos conectado.
+:::
+
+::: {.column width="33%"}
+**Identidad / permutación**
+$$
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}
+$$
+$$
+\mathrm{NODF}=0
+$$
+No aparecen subconjuntos: cada especialista usa un socio distinto.
+:::
+
+::: {.column width="33%"}
+**Matriz llena**
+$$
+\begin{pmatrix}
+1&1&1\\
+1&1&1\\
+1&1&1
+\end{pmatrix}
+$$
+$$
+\mathrm{NODF}=0 \;\;\text{(degenerado)}
+$$
+Todos los grados son iguales, así que ningún par cumple la condición de
+*decreasing fill* ($k_i>k_j$): cada contribución es $0$ y la fórmula devuelve
+$0$. El valor existe, pero **no es informativo**: no hay especialistas ni
+generalistas que comparar, de modo que el anidamiento no es un descriptor
+significativo de esta red.
+:::
+::::
 :::
 
 <!--
@@ -496,6 +586,365 @@ $Q_B$ mira **bloques y exceso intra-módulo** frente a un nulo.
 Estas métricas son **complementarias**: ninguna resume por sí sola toda la organización de una red bipartita ecológica.
 
 :::
-```eof
-
 -->
+
+## Ejemplo: NODF en la red planta--polinizador
+
+Retomamos la red planta-polinizador y su matriz binaria, ordenada por grado decreciente:
+
+:::: {.columns}
+::: {.column width="42%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick}, lab/.style={font=\small\bfseries}
+}
+\begin{tikzpicture}[>=Latex, scale=0.9]
+  \node[lab] at (-2,1.9) {Plantas};
+  \node[lab] at ( 2,1.9) {Polinizadores};
+  \node[planta] (p1) at (-2, 1.1) {$p_1$};
+  \node[planta] (p2) at (-2, 0.3) {$p_2$};
+  \node[planta] (p3) at (-2,-0.5) {$p_3$};
+  \node[planta] (p4) at (-2,-1.3) {$p_4$};
+  \node[animal] (a1) at ( 2, 0.7) {$a_1$};
+  \node[animal] (a2) at ( 2,-0.1) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.9) {$a_3$};
+  \draw[edge] (p1)--(a1);
+  \draw[edge] (p1)--(a2);
+  \draw[edge] (p2)--(a2);
+  \draw[edge] (p2)--(a3);
+  \draw[edge] (p3)--(a2);
+  \draw[edge] (p4)--(a3);
+\end{tikzpicture}
+```
+:::
+::: {.column width="58%"}
+$$
+\begin{array}{c|ccc|c}
+ B & a_2 & a_3 & a_1 & k_i\\ \hline
+p_1& 1 & 0 & 1 & 2\\
+p_2& 1 & 1 & 0 & 2\\
+p_3& 1 & 0 & 0 & 1\\
+p_4& 0 & 1 & 0 & 1\\ \hline
+h_\alpha & 3 & 2 & 1 &
+\end{array}
+$$
+:::
+::::
+
+**Contribuciones por renglones** (solo cuentan los pares con $k_i>k_j$):
+
+| Par | Solapamiento | $N^{(r)}$ |
+|:--:|:--:|:--:|
+| $(p_1,p_3)$ | $\{a_2\}$ | $100\cdot 1/1=100$ |
+| $(p_2,p_3)$ | $\{a_2\}$ | $100\cdot 1/1=100$ |
+| $(p_2,p_4)$ | $\{a_3\}$ | $100\cdot 1/1=100$ |
+| $(p_1,p_4)$ | $\varnothing$ | $0$ |
+
+(los pares $(p_1,p_2)$ y $(p_3,p_4)$ tienen igual grado y no aportan). Suma de renglones $=300$.
+
+**Contribuciones por columnas:**
+
+| Par | Solapamiento | $N^{(c)}$ |
+|:--:|:--:|:--:|
+| $(a_2,a_1)$ | $\{p_1\}$ | $100\cdot 1/1=100$ |
+| $(a_2,a_3)$ | $\{p_2\}$ | $100\cdot 1/2=50$ |
+| $(a_3,a_1)$ | $\varnothing$ | $0$ |
+
+Suma de columnas $=150$. Por lo tanto
+
+$$
+\mathrm{NODF}=\frac{300+150}{\binom{4}{2}+\binom{3}{2}}=\frac{450}{9}=50.
+$$
+
+::: {.callout-tip title="Interpretación ecológica"}
+Un valor intermedio ($\mathrm{NODF}=50$): la red muestra **algo** de anidamiento
+—los especialistas $p_3$ y $p_4$ visitan a polinizadores ($a_2$, $a_3$) que también
+usan las generalistas—, pero no es una jerarquía perfecta: $p_1$ y $p_4$ no
+comparten socios, y $a_1$ queda aparte. Ni permutación ($0$) ni triangular
+perfecta ($100$).
+:::
+
+## En R con `bipartite`: NODF
+
+```{r}
+#| message: false
+#| warning: false
+
+library(bipartite)
+
+# Consideramos la red planta-polinizador del ejemplo anterior
+
+web <- matrix(c(
+  1, 1, 0,
+  0, 1, 1,
+  0, 1, 0,
+  0, 0, 1
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"),
+                   c("a1","a2","a3")))
+
+# Calcular el índice NODF con bipartite
+networklevel(web, index = "NODF")   # 50
+```
+
+`bipartite` ordena internamente la matriz por *decreasing fill*, pero como mencionamos, el **valor no depende del orden**.
+
+## NODF ponderado (weighted NODF)
+
+:::{.callout-note title="Definición"}
+Sea $W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}$ la matriz bipartita ponderada de un **grafo bipartito**.
+
+Definimos **la matriz binaria asociada**
+$$
+B=(b_{ij}),\qquad b_{ij}=\mathbf{1}_{\{w_{ij}>0\}}.
+$$
+
+**Ordenamiento.**
+Para calcular el NODF ponderado, primero se ordenan renglones y columnas por **número de socios** en orden decreciente; en caso de empate, se rompe el empate por la **suma de pesos** del renglón o columna.
+
+**Contribución de un par de renglones**
+Si los renglones $i$ y $j$ satisfacen
+$$
+k_i^{(r)} > k_j^{(r)} > 0,
+\qquad
+k_i^{(r)}=\sum_{\ell=1}^q b_{i\ell},
+$$
+entonces su contribución ponderada es
+$$
+N_{ij}^{(r,w)}
+=
+\frac{1}{k_j^{(r)}}
+\sum_{\ell=1}^q
+\mathbf{1}_{\{\,w_{i\ell}>w_{j\ell}>0\,\}}.
+$$
+
+Análogamente, para columnas $u,v$ con
+$$
+k_u^{(c)} > k_v^{(c)} > 0,
+$$
+se define
+$$
+N_{uv}^{(c,w)}
+=
+\frac{1}{k_v^{(c)}}
+\sum_{m=1}^p
+\mathbf{1}_{\{\,w_{mu}>w_{mv}>0\,\}}.
+$$
+
+
+Índice global ponderado:
+$$
+\mathrm{WNODF}
+=
+100\,
+\frac{
+\sum_{i<j} N_{ij}^{(r,w)}+\sum_{u<v} N_{uv}^{(c,w)}
+}{
+\binom{p}{2}+\binom{q}{2}
+}.
+$$
+:::
+
+El valor es grande cuando, además del patrón anidado binario, las especies más generalistas tienden a tener **interacciones más intensas** que las menos generalistas sobre los socios que comparten.
+
+<!--
+El **WNODF** es la versión **cuantitativa** del NODF: combina la idea de *solapamiento* entre socios con la condición de *decreasing fill*, pero incorporando además la **intensidad** de las interacciones.
+-->
+
+**Observación:**
+
+En general
+$$
+\mathrm{WNODF}(W)\neq \mathrm{NODF}(\mathbf{1}_{\{W>0\}})
+$$
+Es decir, WNODF **no se obtiene simplemente binarizando la matriz y calculando luego el NODF usual**.
+
+El WNODF *exige* que, además del patrón binario, la generalista pese
+**estrictamente más** sobre los socios compartidos. Por eso, en general,
+$\mathrm{WNODF}(W)\neq \mathrm{NODF}(\mathbf{1}_{\{W>0\}})$.
+
+
+<!--
+El WNODF es alto cuando:
+
+* las especies con menos socios interactúan con subconjuntos de los socios de las más generalistas; y
+* sobre esos socios compartidos, las especies más generalistas tienden a presentar **mayores pesos de interacción**.
+-->
+
+::: {.callout-warning title="Ejemplo"}
+Las dos matrices $W_a$ y $W_b$ tienen **el mismo patrón binario** (y por tanto el mismo
+$\mathrm{NODF}=100$), pero pesos distintos:
+
+:::: {.columns}
+::: {.column width="50%"}
+**Pesos que respetan el anidamiento**
+$$
+W_a=\begin{pmatrix} 3 & 2\\ 1 & 0\end{pmatrix},
+\qquad \mathrm{WNODF}=100.
+$$
+Sobre el socio compartido, la generalista (renglón 1) tiene **más** peso
+($3>1$).
+:::
+::: {.column width="50%"}
+**Pesos iguales sobre el socio compartido**
+$$
+W_b=\begin{pmatrix} 2 & 2\\ 2 & 0\end{pmatrix},
+\qquad \mathrm{WNODF}=0.
+$$
+En el socio compartido los pesos empatan ($2\not> 2$), así que no hay anidamiento
+*ponderado*.
+:::
+::::
+
+:::
+
+## Ejemplo: WNODF en la red planta--polinizador
+
+Ahora ponemos **pesos** (número de visitas) sobre la misma red planta-polinizador:
+
+:::: {.columns}
+::: {.column width="42%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick}, lab/.style={font=\small\bfseries},
+  peso/.style={fill=white, inner sep=1pt, font=\scriptsize}
+}
+\begin{tikzpicture}[>=Latex, scale=0.95]
+  \node[lab] at (-2,1.9) {Plantas};
+  \node[lab] at ( 2,1.9) {Polinizadores};
+  \node[planta] (p1) at (-2, 1.1) {$p_1$};
+  \node[planta] (p2) at (-2, 0.3) {$p_2$};
+  \node[planta] (p3) at (-2,-0.5) {$p_3$};
+  \node[planta] (p4) at (-2,-1.3) {$p_4$};
+  \node[animal] (a1) at ( 2, 0.7) {$a_1$};
+  \node[animal] (a2) at ( 2,-0.1) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.9) {$a_3$};
+  \draw[edge] (p1)--(a1) node[peso,pos=0.5]{3};
+  \draw[edge] (p1)--(a2) node[peso,pos=0.5]{5};
+  \draw[edge] (p2)--(a2) node[peso,pos=0.5]{4};
+  \draw[edge] (p2)--(a3) node[peso,pos=0.5]{2};
+  \draw[edge] (p3)--(a2) node[peso,pos=0.5]{2};
+  \draw[edge] (p4)--(a3) node[peso,pos=0.5]{3};
+\end{tikzpicture}
+```
+:::
+::: {.column width="58%"}
+$$
+W=\begin{array}{c|ccc}
+   & a_1 & a_2 & a_3 \\ \hline
+p_1& 3 & 5 & 0\\
+p_2& 0 & 4 & 2\\
+p_3& 0 & 2 & 0\\
+p_4& 0 & 0 & 3
+\end{array}
+$$
+:::
+::::
+
+Solo aportan los pares en que, sobre el socio compartido, la generalista pesa
+**estrictamente más**:
+
+| Renglones | aporta | | Columnas | aporta |
+|:--:|:--:|---|:--:|:--:|
+| $(p_1,p_3)$: $5>2$ | $1/1=1$ | | $(a_2,a_1)$: $5>3$ | $1/1=1$ |
+| $(p_2,p_3)$: $4>2$ | $1/1=1$ | | $(a_2,a_3)$: $4>2$ | $1/2=0.5$ |
+| $(p_2,p_4)$: $2\not>3$ | $0$ | | $(a_3,a_1)$: sin socio | $0$ |
+
+$$
+\mathrm{WNODF}=100\cdot\frac{(1+1)+(1+0.5)}{\binom{4}{2}+\binom{3}{2}}
+=100\cdot\frac{3.5}{9}\approx 38.9.
+$$
+
+::: {.callout-tip title="Interpretación ecológica"}
+El WNODF ($\approx 38.9$) es **menor** que el NODF binario ($=50$). Esto se debe a que sobre el socio compartido $a_3$, la especialista $p_4$ interactúa más intensamente ($3$) que la generalista $p_2$ ($2$). Es decir, aunque el *patrón* de presencias esté algo anidado, las *intensidades* no siguen del todo la jerarquía generalista–especialista. Por eso conviene reportar ambos: el binario resume el patrón; el ponderado, si las **intensidades** lo acompañan.
+:::
+
+## En R con paquetería: WNODF
+
+```{r}
+#| message: false
+#| warning: false
+
+# Consideramos la red ponderada planta-polinizador del ejemplo anterior
+Wt <- matrix(c(
+  3, 5, 0,
+  0, 4, 2,
+  0, 2, 0,
+  0, 0, 3
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"), c("a1","a2","a3")))
+
+# Calcular NODF y WNODF
+networklevel(Wt, index = c("NODF", "weighted NODF")) # NODF = 50 (sobre la binarizada)  ;  weighted NODF ≈ 38.9
+```
+
+El `weighted NODF` ($\approx 38.9$) queda por debajo del `NODF` binario ($=50$) lo que confirma que binarizar y luego calcular NODF **no** es lo mismo que el WNODF, y que aquí las intensidades no siguen del todo la jerarquía generalista–especialista.
+
+En la implementación usada por `bipartite`, el cálculo se apoya en `vegan::nestednodf`: la matriz se ordena por frecuencias marginales (y, en la versión ponderada, los empates se rompen por abundancia total).
+
+
+<!--
+## `bipartite`: conectancia y NODF
+
+| Métrica | Función de R |
+|---|---|
+| Conectancia | `networklevel(web, index='connectance')` |
+| $\mathrm{NODF}$ | `networklevel(web, index='NODF')` |
+| NODF ponderado | `networklevel(web, index='weighted NODF')` |
+
+::: {.callout-note}
+$\mathrm{NODF}$ en `bipartite` se evalúa sobre la matriz **ordenada por decreasing fill**.
+
+:::
+
+---
+
+
+::: {.callout-tip}
+$\mathrm{NODF}$ debe alcanzar 100 en la triangular perfecta y 0 en una permutación sin solapamiento anidado.
+
+:::
+-->
+
+## NODF: limitaciones y casos degenerados
+
+* Si $p<2$ o $q<2$, no existen pares de renglones o columnas que comparar.
+* Si la matriz es **vacía** (puros ceros) o **completamente llena** (puros unos), el índice deja de ser útil como descriptor de anidamiento.
+* Si muchos renglones o columnas tienen **el mismo grado**, esas parejas no aportan por la condición de *decreasing fill*; la métrica puede subestimar estructura.
+* En matrices con pesos conviene distinguir entre **NODF binario** y **NODF ponderado** ya que no responden exactamente a la misma pregunta.
+
+<!-- 
+::: {.callout-tip title="En R"}
+`networklevel(web, index='NODF')` calcula el NODF binario global.
+
+`networklevel(web, index='weighted NODF')` agrega la versión ponderada.
+
+Si la matriz ponderada está llena y se quiere explotar el orden por abundancia, el complemento es `nest.smdm(web, weighted=TRUE, decreasing='abund')`.
+
+:::
+-->
+
+## Resumen en contexto biológico
+::: {.callout-tip title="🍃 ¿qué pregunta sobre la comunidad responde cada métrica?"}
+| Métrica de red | Pregunta estructural sobre la comunidad |
+|---|---|
+| Conectancia $\mathcal{C}$ | ¿Qué fracción de las interacciones *posibles* realmente ocurre? (densidad) |
+| Anidamiento $\mathrm{NODF}$ | ¿Los socios de las especies especialistas son subconjuntos de los de las generalistas? (núcleo–periferia) |
+| NODF ponderado (WNODF) | Lo mismo, pero pesando además la **intensidad** de las interacciones |
+
+Ninguna métrica por sí sola agota la estructura de la red. La **especialización $H_2'$**
+y la **modularidad $Q_B$** completarán este panorama.
+:::
+

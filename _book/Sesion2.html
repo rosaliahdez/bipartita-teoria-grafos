@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Sesión 2: Introducción a la Teoría de Grafos – Grafos bipartitos en redes de interacción ecológicas</title>
+<title>2&nbsp; Fundamentos de la Teoría de Grafos y contexto bipartito – Grafos bipartitos en redes de interacción ecológicas</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bac3027a5876e01c08fed17debf2ea73.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -114,7 +114,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Sesion2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -148,31 +148,31 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Métricas locales y análisis de redes: grado, cercanía, intermediación</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sesión 4: Métricas globales de red: Conectancia, anidamiento, <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Métricas globales de red: conectancia y anidamiento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Sesion5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sesión 5: Métricas globales de red: <span class="math inline">\(H_2'\)</span> y modularidad</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Más métricas globales de red: especialización y modularidad</span></span></a>
   </div>
 </li>
     </ul>
@@ -185,17 +185,22 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#fundamentos-de-grafos-qué-es-un-grafo" id="toc-fundamentos-de-grafos-qué-es-un-grafo" class="nav-link active" data-scroll-target="#fundamentos-de-grafos-qué-es-un-grafo"><span class="header-section-number">2.1</span> Fundamentos de Grafos: Qué es un grafo</a>
-  <ul class="collapse">
-  <li><a href="#terminología-básica" id="toc-terminología-básica" class="nav-link" data-scroll-target="#terminología-básica"><span class="header-section-number">2.1.1</span> Terminología básica</a></li>
-  </ul></li>
-  <li><a href="#variaciones-del-concepto-de-grafo" id="toc-variaciones-del-concepto-de-grafo" class="nav-link" data-scroll-target="#variaciones-del-concepto-de-grafo"><span class="header-section-number">2.2</span> Variaciones del concepto de grafo</a>
-  <ul class="collapse">
-  <li><a href="#actividad-rápida-modelado-con-grafos" id="toc-actividad-rápida-modelado-con-grafos" class="nav-link" data-scroll-target="#actividad-rápida-modelado-con-grafos"><span class="header-section-number">2.2.1</span> Actividad rápida: Modelado con grafos</a></li>
-  </ul></li>
-  <li><a href="#subgrafos-y-subgrafos-inducidos" id="toc-subgrafos-y-subgrafos-inducidos" class="nav-link" data-scroll-target="#subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.3</span> Subgrafos y Subgrafos inducidos</a></li>
-  <li><a href="#isomorfismo-de-grafos" id="toc-isomorfismo-de-grafos" class="nav-link" data-scroll-target="#isomorfismo-de-grafos"><span class="header-section-number">2.4</span> Isomorfismo de grafos</a></li>
-  <li><a href="#grado-de-un-vértice" id="toc-grado-de-un-vértice" class="nav-link" data-scroll-target="#grado-de-un-vértice"><span class="header-section-number">2.5</span> Grado de un vértice</a></li>
+  <li><a href="#qué-es-un-grafo" id="toc-qué-es-un-grafo" class="nav-link active" data-scroll-target="#qué-es-un-grafo"><span class="header-section-number">2.1</span> ¿Qué es un grafo?</a></li>
+  <li><a href="#adyacencia-e-incidencia" id="toc-adyacencia-e-incidencia" class="nav-link" data-scroll-target="#adyacencia-e-incidencia"><span class="header-section-number">2.2</span> Adyacencia e Incidencia</a></li>
+  <li><a href="#algunos-tipos-de-grafos" id="toc-algunos-tipos-de-grafos" class="nav-link" data-scroll-target="#algunos-tipos-de-grafos"><span class="header-section-number">2.3</span> Algunos tipos de grafos</a></li>
+  <li><a href="#grafos-bipartitos" id="toc-grafos-bipartitos" class="nav-link" data-scroll-target="#grafos-bipartitos"><span class="header-section-number">2.4</span> Grafos Bipartitos</a></li>
+  <li><a href="#ejemplos-de-estructuras-bipartitas-en-ecología" id="toc-ejemplos-de-estructuras-bipartitas-en-ecología" class="nav-link" data-scroll-target="#ejemplos-de-estructuras-bipartitas-en-ecología"><span class="header-section-number">2.5</span> Ejemplos de estructuras bipartitas en ecología</a></li>
+  <li><a href="#subgrafos-y-subgrafos-inducidos" id="toc-subgrafos-y-subgrafos-inducidos" class="nav-link" data-scroll-target="#subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.6</span> Subgrafos y Subgrafos inducidos</a></li>
+  <li><a href="#isomorfismo-de-grafos" id="toc-isomorfismo-de-grafos" class="nav-link" data-scroll-target="#isomorfismo-de-grafos"><span class="header-section-number">2.7</span> Isomorfismo de grafos</a></li>
+  <li><a href="#grado-de-un-vértice" id="toc-grado-de-un-vértice" class="nav-link" data-scroll-target="#grado-de-un-vértice"><span class="header-section-number">2.8</span> Grado de un vértice</a></li>
+  <li><a href="#caminos-ciclos-y-conexidad" id="toc-caminos-ciclos-y-conexidad" class="nav-link" data-scroll-target="#caminos-ciclos-y-conexidad"><span class="header-section-number">2.9</span> Caminos, ciclos y conexidad</a></li>
+  <li><a href="#caracterización-de-grafos-bipartitos" id="toc-caracterización-de-grafos-bipartitos" class="nav-link" data-scroll-target="#caracterización-de-grafos-bipartitos"><span class="header-section-number">2.10</span> Caracterización de grafos bipartitos</a></li>
+  <li><a href="#distancias-y-caminos-más-cortos" id="toc-distancias-y-caminos-más-cortos" class="nav-link" data-scroll-target="#distancias-y-caminos-más-cortos"><span class="header-section-number">2.11</span> Distancias y caminos más cortos</a></li>
+  <li><a href="#matriz-de-grados" id="toc-matriz-de-grados" class="nav-link" data-scroll-target="#matriz-de-grados"><span class="header-section-number">2.12</span> Matriz de grados</a></li>
+  <li><a href="#matriz-de-adyacencia" id="toc-matriz-de-adyacencia" class="nav-link" data-scroll-target="#matriz-de-adyacencia"><span class="header-section-number">2.13</span> Matriz de adyacencia</a></li>
+  <li><a href="#matriz-de-incidencia" id="toc-matriz-de-incidencia" class="nav-link" data-scroll-target="#matriz-de-incidencia"><span class="header-section-number">2.14</span> Matriz de incidencia</a></li>
+  <li><a href="#matriz-de-interacción-en-una-red-bipartita" id="toc-matriz-de-interacción-en-una-red-bipartita" class="nav-link" data-scroll-target="#matriz-de-interacción-en-una-red-bipartita"><span class="header-section-number">2.15</span> Matriz de interacción en una red bipartita</a></li>
+  <li><a href="#resumen-en-contexto-biológico" id="toc-resumen-en-contexto-biológico" class="nav-link" data-scroll-target="#resumen-en-contexto-biológico"><span class="header-section-number">2.16</span> Resumen en contexto biológico</a></li>
   </ul>
 </nav>
     </div>
@@ -204,7 +209,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sesión 2: Introducción a la Teoría de Grafos</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de la Teoría de Grafos y contexto bipartito</span></h1>
 </div>
 
 
@@ -221,76 +226,397 @@ window.Quarto = {
 </header>
 
 
-<section id="fundamentos-de-grafos-qué-es-un-grafo" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="fundamentos-de-grafos-qué-es-un-grafo"><span class="header-section-number">2.1</span> Fundamentos de Grafos: Qué es un grafo</h2>
-<blockquote class="blockquote">
-<p><strong>Definición: grafo simple</strong></p>
+<section id="qué-es-un-grafo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="qué-es-un-grafo"><span class="header-section-number">2.1</span> ¿Qué es un grafo?</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Un <strong>grafo simple</strong> <span class="math inline">\(G\)</span> es un par ordenado <span class="math inline">\((V, E)\)</span>, donde:</p>
 <ul>
-<li><span class="math inline">\(V\)</span> es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman <strong>vértices</strong> (o nodos).</li>
-<li><span class="math inline">\(E\)</span> es un conjunto de pares no ordenados de vértices distintos. Los elementos de <span class="math inline">\(E\)</span> se llaman <strong>aristas</strong> (o enlaces).</li>
+<li><span class="math inline">\(V\)</span> es un conjunto (finito, por conveniencia en este curso), cuyos elementos se llaman <strong>vértices (o nodos)</strong>.</li>
+<li><span class="math inline">\(E\)</span> es un conjunto de pares no ordenados de vértices distintos. Los elementos de <span class="math inline">\(E\)</span> se llaman <strong>aristas (o enlaces)</strong>.</li>
 </ul>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Ejemplo</strong></p>
-<p>Sean</p>
+<p>El <strong>orden</strong> del grafo es el número de vértices, <span class="math inline">\(|V|\)</span>. El <strong>tamaño</strong> del grafo es el número de aristas, <span class="math inline">\(|E|\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El par <span class="math inline">\(G=(V,E)\)</span> donde <span class="math inline">\(V=\{1, 2, 3, 4\}\)</span> y <span class="math inline">\(E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}\)</span> es un grafo simple, con cuatro vértices y cuatro aristas. Una representación gráfica de <span class="math inline">\(G\)</span> puede ser la siguiente:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="adyacencia-e-incidencia" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="adyacencia-e-incidencia"><span class="header-section-number">2.2</span> Adyacencia e Incidencia</h2>
 <ul>
-<li><span class="math inline">\(V=\{1, 2, 3, 4\}\)</span></li>
-<li><span class="math inline">\(E=\{\{1, 2\}, \{1, 3\}, \{2, 3\}, \{3, 4\}\}\)</span></li>
+<li>Dos vértices <span class="math inline">\(u, v \in V\)</span> son <strong>adyacentes (o vecinos)</strong> si existe una arista que los une, es decir, si <span class="math inline">\(\{u, v\} \in E\)</span>.</li>
+<li>Una arista <span class="math inline">\(e \in E\)</span> es <strong>incidente</strong> a un vértice <span class="math inline">\(v \in V\)</span> si <span class="math inline">\(v\)</span> es uno de los extremos de <span class="math inline">\(e\)</span>.</li>
 </ul>
-</blockquote>
-<section id="terminología-básica" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="terminología-básica"><span class="header-section-number">2.1.1</span> Terminología básica</h3>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En el ejemplo anterior:</p>
 <ul>
-<li><strong>Adyacencia:</strong> Dos vértices <span class="math inline">\(u, v \in V\)</span> son <strong>adyacentes</strong> (o vecinos) si existe una arista que los une, es decir, si <span class="math inline">\(\{u, v\} \in E\)</span>.</li>
-<li><strong>Incidencia:</strong> Una arista <span class="math inline">\(e \in E\)</span> es <strong>incidente</strong> a un vértice <span class="math inline">\(v \in V\)</span> si <span class="math inline">\(v\)</span> es uno de los extremos de <span class="math inline">\(e\)</span>.</li>
-<li><strong>Orden y tamaño:</strong> El <strong>orden</strong> del grafo es el número de vértices, <span class="math inline">\(|V|\)</span>. El <strong>tamaño</strong> del grafo es el número de aristas, <span class="math inline">\(|E|\)</span>.</li>
+<li><p>Los vértices <span class="math inline">\(1\)</span> y <span class="math inline">\(2\)</span> son adyacentes, mientras que los vértices <span class="math inline">\(1\)</span> y <span class="math inline">\(4\)</span> no son adyacentes.</p></li>
+<li><p>La arista <span class="math inline">\(\{1,2\}\)</span> es incidente a los vértices <span class="math inline">\(1\)</span> y <span class="math inline">\(2\)</span>.</p></li>
 </ul>
+</div>
+</div>
 </section>
-</section>
-<section id="variaciones-del-concepto-de-grafo" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="variaciones-del-concepto-de-grafo"><span class="header-section-number">2.2</span> Variaciones del concepto de grafo</h2>
-<p>No todos los sistemas se modelan con grafos simples.</p>
+<section id="algunos-tipos-de-grafos" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="algunos-tipos-de-grafos"><span class="header-section-number">2.3</span> Algunos tipos de grafos</h2>
+<p>No todos los sistemas se modelan con grafos simples. Existen variaciones del concepto de grafo, los cuales se clasifican según la conexión entre sus nodos, direcciones, pesos y estructura.</p>
 <ul>
-<li><strong>Grafo dirigido (digrafo):</strong> Las aristas son <strong>pares ordenados</strong> de vértices, <span class="math inline">\((u, v)\)</span>, representando una dirección (de <span class="math inline">\(u\)</span> a <span class="math inline">\(v\)</span>). Se suelen llamar <strong>arcos</strong>.</li>
-<li><strong>Multigrafo:</strong> Se permiten múltiples aristas entre el mismo par de vértices (Ej: Rutas de vuelo entre ciudades).</li>
-<li><strong>Pseudografo:</strong> Se permiten <strong>bucles</strong> o lazos (aristas que conectan un vértice consigo mismo, <span class="math inline">\(\{v, v\}\)</span>).</li>
-<li><strong>Grafo ponderado (o red):</strong> A cada arista <span class="math inline">\(e \in E\)</span> se le asigna un valor numérico <span class="math inline">\(w(e)\)</span>, llamado <strong>peso</strong> (Ej: Pesos que representan distancias entre vuelos).</li>
+<li><strong>Grafo dirigido (digrafo):</strong> Las aristas son <em>pares ordenados</em> de vértices, <span class="math inline">\((u, v)\)</span>, representando una dirección (de <span class="math inline">\(u\)</span> a <span class="math inline">\(v\)</span>). Dichas aristas se suelen llamar <strong>arcos</strong>.</li>
 </ul>
-<section id="actividad-rápida-modelado-con-grafos" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="actividad-rápida-modelado-con-grafos"><span class="header-section-number">2.2.1</span> Actividad rápida: Modelado con grafos</h3>
-<blockquote class="blockquote">
-<p><strong>Pregunta para la audiencia</strong> En los siguientes sistemas, ¿qué representarían los vértices y las aristas?, ¿qué tipo de grafo sería el más adecuado? 1. La red de amigos en Facebook. 2. El sistema de calles de una ciudad. 3. Las dependencias entre tareas en un proyecto.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Solución sugerida</strong> 1. Vértices: Personas. Aristas: Amistad (simétrica). Grafo simple (o quizás ponderado por intensidad). 2. Vértices: Intersecciones. Aristas: Calles. Grafo dirigido (si hay un sentido) y ponderado (distancia/tiempo). 3. Vértices: Tareas. Aristas: Dependencia. Grafo dirigido, acíclico.</p>
-</blockquote>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(V = \{1, 2, 3\}\)</span> y el conjunto de arcos <span class="math inline">\(E = \{(1, 2), (2, 3), (3, 1)\}\)</span>. Se suelen representar los arcos de un grafo dirigido en forma de flechas:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Multigrafo:</strong> Se permiten múltiples aristas entre el mismo par de vértices.</li>
+</ul>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(V = \{A, B, C\}\)</span>. En la siguiente estructura, existen dos aristas distintas que conectan <span class="math inline">\(A\)</span> con <span class="math inline">\(B\)</span>, y una que conecta <span class="math inline">\(B\)</span> con <span class="math inline">\(C\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Pseudografo:</strong> Se permiten <strong>bucles (o lazos)</strong>, es decir, aristas que conectan un vértice consigo mismo.</li>
+</ul>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Grafo ponderado (o red):</strong> A cada arista <span class="math inline">\(e \in E\)</span> se le asigna un valor numérico <span class="math inline">\(w(e)\in\mathbb{R}\)</span> llamado <strong>peso</strong>.</li>
+</ul>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Grafos como redes de interacción">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Grafos como redes de interacción
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En ecología:</p>
+<ul>
+<li><p>Los <strong>grafos dirigidos</strong> son útiles para representar redes tróficas (la dirección indica quién se come a quién).</p></li>
+<li><p>Los <strong>multigrafos</strong> pueden representar diferentes tipos de interacciones entre especies.</p></li>
+<li><p>Los bucles en un <strong>pseudografo</strong> pueden representar canibalismo.</p></li>
+<li><p>Los pesos en un <strong>grafo ponderado</strong> pueden representar frecuencias de interacción (como el número de visitas de un polinizador a una planta).</p></li>
+</ul>
+</div>
+</div>
 </section>
+<section id="grafos-bipartitos" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="grafos-bipartitos"><span class="header-section-number">2.4</span> Grafos Bipartitos</h2>
+<p>De particular interés para este curso son los grafos bipartitos:</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un grafo <span class="math inline">\(G=(V, E)\)</span> es <strong>bipartito</strong> si el conjunto de vértices puede partirse en dos subconjuntos disjuntos <span class="math inline">\(V_1\)</span> y <span class="math inline">\(V_2\)</span> (con <span class="math inline">\(V=V_1\cup V_2\)</span>) de modo que <strong>toda arista tiene un extremo en <span class="math inline">\(V_1\)</span> y el otro en <span class="math inline">\(V_2\)</span></strong>. Equivalentemente: no existe ninguna arista con sus dos extremos dentro de <span class="math inline">\(V_1\)</span>, ni ninguna con sus dos extremos dentro de <span class="math inline">\(V_2\)</span>.</p>
+</div>
+</div>
+<!--
+> **Teorema:** Un grafo es bipartito si y sólo si no contiene ciclos de longitud impar.
+-->
 </section>
-<section id="subgrafos-y-subgrafos-inducidos" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.3</span> Subgrafos y Subgrafos inducidos</h2>
-<blockquote class="blockquote">
-<p><strong>Definición: Subgrafo</strong></p>
-<p>Un grafo <span class="math inline">\(H=(V_H, E_H)\)</span> es un <strong>subgrafo</strong> de <span class="math inline">\(G=(V_G, E_G)\)</span> si <span class="math inline">\(V_H \subseteq V_G\)</span>, <span class="math inline">\(E_H \subseteq E_G\)</span> y todas las aristas en <span class="math inline">\(E_H\)</span> tienen sus extremos en <span class="math inline">\(V_H\)</span>.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Definición: Subgrafo inducido</strong></p>
-<p>Dado un subconjunto de vértices <span class="math inline">\(S \subseteq V_G\)</span>, el <strong>subgrafo inducido</strong> por <span class="math inline">\(S\)</span>, denotado <span class="math inline">\(G[S]\)</span>, es el grafo <span class="math inline">\((S, E_S)\)</span> donde <span class="math inline">\(E_S\)</span> contiene todas las aristas de <span class="math inline">\(E_G\)</span> cuyos dos extremos están en <span class="math inline">\(S\)</span>.</p>
-</blockquote>
+<section id="ejemplos-de-estructuras-bipartitas-en-ecología" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="ejemplos-de-estructuras-bipartitas-en-ecología"><span class="header-section-number">2.5</span> Ejemplos de estructuras bipartitas en ecología</h2>
+<p>Muchas redes de interacción ecológicas admiten una <strong>partición natural</strong> de sus nodos en dos conjuntos disjuntos; los nodos representan especies y las aristas interacción entre especies. Esta estructura se puede modelar con grafos bipartitos:</p>
+<ul>
+<li><p>Planta – polinizador: estructura <strong>bipartita no dirigida</strong>, que modela la asociación mutua donde no se prioriza un solo sentido.</p></li>
+<li><p>Hospedero – parásito: estructura <strong>bipartita no dirigida</strong>, donde la arista simplemente registra la existencia de la asociación o infección, independientemente de que el efecto biológico sea asimétrico.</p></li>
+<li><p>Planta <span class="math inline">\(\rightarrow\)</span> herbívoro: estructura <strong>bipartita</strong>, frecuentemente analizada como <strong>dirigida</strong>, usando flechas para representar el flujo unidireccional de biomasa o energía de la planta al animal.</p></li>
+<li><p>Red trófica: a diferencia de las anteriores, <strong>no es bipartita</strong>.</p></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<!--
+## Ejercicios: Modelado con grafos
+
+> En los siguientes sistemas, ¿qué representarían los vértices y las aristas?, ¿qué tipo de grafo sería el más adecuado? 
+> 
+> 1. La red de amigos en Facebook. 
+> 2. El sistema de calles de una ciudad. 
+> 3. Las dependencias entre tareas en un proyecto.
+> 4. Las rutas de vuelos entre ciudades.
+
+
+> **Solución sugerida** 1. Vértices: Personas. Aristas: Amistad (simétrica). Grafo simple (o quizás ponderado por intensidad). 2. Vértices: Intersecciones. Aristas: Calles. Grafo dirigido (si hay un sentido) y ponderado (distancia/tiempo). 3. Vértices: Tareas. Aristas: Dependencia. Grafo dirigido, acíclico. 4. Multigrafo ponderado con pesos igual a distancias entre ciudades
+-->
 </section>
-<section id="isomorfismo-de-grafos" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="isomorfismo-de-grafos"><span class="header-section-number">2.4</span> Isomorfismo de grafos</h2>
-<p>¿Cuándo son dos grafos “<em>esencialmente el mismo</em>”?</p>
-<blockquote class="blockquote">
-<p><strong>Definición: Isomorfismo</strong></p>
+<section id="subgrafos-y-subgrafos-inducidos" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="subgrafos-y-subgrafos-inducidos"><span class="header-section-number">2.6</span> Subgrafos y Subgrafos inducidos</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(G=(V_G, E_G)\)</span> un grafo:</p>
+<ul>
+<li><p>Decimos que <span class="math inline">\(H=(V_H, E_H)\)</span> es <strong>subgrafo</strong> de <span class="math inline">\(G\)</span> si <span class="math inline">\(V_H \subseteq V_G\)</span>, <span class="math inline">\(E_H \subseteq E_G\)</span> y todas las aristas en <span class="math inline">\(E_H\)</span> tienen sus extremos en <span class="math inline">\(V_H\)</span>.</p></li>
+<li><p>Por otro lado, dado si <span class="math inline">\(S \subseteq V_G\)</span>, el <strong>subgrafo inducido (o generado)</strong> por el conjunto de vértices <span class="math inline">\(S\)</span>, es el grafo <span class="math inline">\(G[S] = (S, E_S)\)</span> donde <span class="math inline">\(E_S\)</span> contiene todas las aristas de <span class="math inline">\(E_G\)</span> cuyos <em>dos extremos</em> están en <span class="math inline">\(S\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(G\)</span> el grafo con <span class="math inline">\(V_G=\{1,2,3,4,5\}\)</span> y <span class="math inline">\(E_G=\big\{\{1,2\},\{1,3\},\{2,3\},\{3,4\},\{4,5\}\big\}\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Tomemos el subconjunto <span class="math inline">\(S=\{1,2,3\}\subseteq V_G\)</span>. Por definición, <strong>el subgrafo inducido <span class="math inline">\(G[S]\)</span></strong> <em>obliga</em> a incluir todas las aristas de <span class="math inline">\(E_G\)</span> con <em>ambos</em> extremos en <span class="math inline">\(S\)</span>: eso deja fuera a <span class="math inline">\(\{3,4\}\)</span> y <span class="math inline">\(\{4,5\}\)</span> (porque <span class="math inline">\(4,5\notin S\)</span>), pero incluye a <span class="math inline">\(\{1,2\}\)</span>, <span class="math inline">\(\{1,3\}\)</span> y <span class="math inline">\(\{2,3\}\)</span>. Así que <span class="math inline">\(G[S]\)</span> es el triángulo (naranja ilustrado en la imagen de abajo), y de hecho, es el <strong>único</strong> subgrafo inducido sobre <span class="math inline">\(S\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:23.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por otro lado, sea <span class="math inline">\(H\)</span> el grafo con <span class="math inline">\(V_H=\{1,2,3\}\)</span> y <span class="math inline">\(E_H=\ \{\{1,3\},\{2,3\}\}\)</span>. Obsérvese que <span class="math inline">\(H\)</span> <strong>sí es un subgrafo</strong> de <span class="math inline">\(G\)</span>, pues se cumple que <span class="math inline">\(V_H\subseteq V_G\)</span>, que <span class="math inline">\(E_H\subseteq E_G\)</span>, y cada arista tiene sus dos extremos dentro de <span class="math inline">\(V_H\)</span>. Pero <span class="math inline">\(H\)</span> <strong>no es inducido</strong>: la arista <span class="math inline">\(\{1,2\}\)</span> está en <span class="math inline">\(E_G\)</span> y tiene sus dos extremos en <span class="math inline">\(S\)</span>, pero no pertenece a <span class="math inline">\(E_H\)</span> (la arista punteada en la imagen):</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notemos que <span class="math inline">\(H\)</span> y <span class="math inline">\(G[S]\)</span> tienen <strong>exactamente el mismo conjunto de vértices</strong>, y sin embargo <span class="math inline">\(H\neq G[S]\)</span>.</p>
+</div>
+</div>
+<p>Podemos concluir que todo subgrafo inducido es un subgrafo, pero no todo subgrafo es inducido. Un subgrafo puede descartar aristas de <span class="math inline">\(G\)</span>; un subgrafo inducido no puede, pues está completamente determinado por <span class="math inline">\(S\)</span>.</p>
+</section>
+<section id="isomorfismo-de-grafos" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="isomorfismo-de-grafos"><span class="header-section-number">2.7</span> Isomorfismo de grafos</h2>
+<p>Dos grafos son isomorfos si son <strong>esencialmente el mismo</strong>, sin importar cómo se dibujen en el espacio o qué etiquetas tengan sus vértices. Es como observar la misma red matemática, pero con nombres y/o posiciones diferentes.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Dos grafos <span class="math inline">\(G_1=(V_1, E_1)\)</span> y <span class="math inline">\(G_2=(V_2, E_2)\)</span> son <strong>isomorfos</strong> (<span class="math inline">\(G_1 \cong G_2\)</span>) si existe una función biyectiva <span class="math inline">\(f: V_1 \to V_2\)</span> tal que: <span class="math display">\[\{u, v\} \in E_1 \Leftrightarrow \{f(u), f(v)\} \in E_2\]</span> La función <span class="math inline">\(f\)</span> preserva la adyacencia.</p>
-</blockquote>
+</div>
+</div>
+<p>Esto nos dice que la realización geométrica no importa en la teoría de grafos, sino su definición intrínseca subyacente, que representamos combinatoriamente.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A veces, la representación geométrica de una red oculta su verdadera naturaleza. Consideremos los grafos <span class="math inline">\(G_1\)</span> y <span class="math inline">\(G_2\)</span>. A primera vista, <span class="math inline">\(G_1\)</span> parece un grafo con forma “poligonal”, mientras que <span class="math inline">\(G_2\)</span> tiene la clásica estructura de dos columnas de una red bipartita.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos comprobar que estos grafos son isomorfos al reetiquetar los nodos mediante la siguiente relación (función biyectiva):</p>
+<ul>
+<li><p>El nodo <span class="math inline">\(3\)</span> de <span class="math inline">\(G_1\)</span> es el único conectado a tres vecinos. En <span class="math inline">\(G_2\)</span>, el único con esa característica es <span class="math inline">\(b\)</span>. Por tanto, <span class="math inline">\(f(3) = b\)</span>.</p></li>
+<li><p>El nodo <span class="math inline">\(5\)</span> de <span class="math inline">\(G_1\)</span> es el único con 1 vecino (una <strong>hoja</strong>). En <span class="math inline">\(G_2\)</span>, su equivalente es <span class="math inline">\(z\)</span>. Por tanto, <span class="math inline">\(f(5) = z\)</span>.</p></li>
+<li><p>El nodo <span class="math inline">\(1\)</span> de <span class="math inline">\(G_1\)</span> tiene 2 vecinos y no está conectado a la hoja. En <span class="math inline">\(G_2\)</span>, ese nodo es <span class="math inline">\(a\)</span>. Así que <span class="math inline">\(f(1) = a\)</span>.</p></li>
+<li><p>Los nodos <span class="math inline">\(2\)</span> y <span class="math inline">\(4\)</span> de <span class="math inline">\(G_1\)</span> comparten exactamente a los mismos vecinos (<span class="math inline">\(1\)</span> y <span class="math inline">\(3\)</span>). En <span class="math inline">\(G_2\)</span>, los nodos <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> comparten a los vecinos <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span>. Podemos asignar <span class="math inline">\(f(2) = x\)</span> y <span class="math inline">\(f(4) = y\)</span>.</p></li>
+</ul>
+<p>Al estirar los nodos de <span class="math inline">\(G_1\)</span> hacia la izquierda y la derecha siguiendo estas reglas, obtenemos exactamente el dibujo de <span class="math inline">\(G_2\)</span>.</p>
+</div>
+</div>
+<p><strong>Nota:</strong> Determinar si dos grafos arbitrarios son isomorfos es un problema computacionalmente difícil. La complejidad exacta del problema es abierta; actualmente se conoce un algoritmo cuasipolinomial.</p>
 </section>
-<section id="grado-de-un-vértice" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="grado-de-un-vértice"><span class="header-section-number">2.5</span> Grado de un vértice</h2>
-<blockquote class="blockquote">
-<p><strong>Definición: Grado</strong> El <strong>grado</strong> de un vértice <span class="math inline">\(v\)</span> en un grafo <span class="math inline">\(G\)</span>, denotado <span class="math inline">\(\deg(v)\)</span> o <span class="math inline">\(d(v)\)</span>, es el número de aristas incidentes a <span class="math inline">\(v\)</span>. Equivalentemente, es el número de vecinos de <span class="math inline">\(v\)</span>.</p>
-</blockquote>
+<section id="grado-de-un-vértice" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="grado-de-un-vértice"><span class="header-section-number">2.8</span> Grado de un vértice</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El <strong>grado</strong> de un vértice <span class="math inline">\(v\)</span> en un grafo <span class="math inline">\(G\)</span>, denotado <span class="math inline">\(\deg(v)\)</span>, es el número de aristas incidentes a <span class="math inline">\(v\)</span>.</p>
+</div>
+</div>
+<p>La colección de todos los vecinos de <span class="math inline">\(v\)</span> se denota por <span class="math inline">\(N(v)\)</span> y usualmente se llama <strong>vecindad</strong> de <span class="math inline">\(v\)</span>. En estos términos, el grado equivale al número de vecinos de <span class="math inline">\(v\)</span>: <span class="math display">\[\deg(v) = |N(v)|.\]</span></p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considerando el cuadrado con aristas <span class="math inline">\(\{1,2\}, \{2,3\}, \{3,4\}, \{4,1\}\)</span> y diagonal <span class="math inline">\(\{1,3\}\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ESTO NO SE USÓ EN ESTA SESION
 **Teorema: Lema del apretón de manos** Para cualquier grafo $G=(V, E)$, la suma de los grados de todos los vértices es igual al doble del número de aristas: $$\sum_{v \in V} \deg(v) = 2|E|$$ *Idea de la demostración:* Cada arista $\{u, v\}$ contribuye exactamente dos veces a la suma total de grados.
 
@@ -300,27 +626,295 @@ window.Quarto = {
 
 > **Solución** Calculamos la suma de los grados: $3+3+3+1+0 = 10$. Según el Lema del apretón de manos, la suma debe ser $2|E|$. Como $10$ es par, el lema se cumple ($|E|=5$). Sin embargo, cumplir el lema no garantiza la existencia del grafo. Un vértice tiene grado 0 (aislado). En el subgrafo restante de 4 vértices, los grados deben ser 3, 3, 3, 1. Si tres vértices tienen grado 3 en un grafo de 4, todos deben estar conectados a todos, lo que obliga al cuarto vértice a tener grado 3, contradiciendo que debe tener grado 1. **No es posible.**
 
-## Caminos, ciclos y conectividad
-
-- **Camino (simple):** Sucesión de vértices distintos $v_0, v_1, \dots, v_k$ tal que $\{v_{i-1}, v_i\}$ es una arista para todo $i$. Longitud = $k$.
-- **Ciclo (simple):** Un camino con $k \geq 3$ donde el primer y último vértice son el mismo ($v_0=v_k$).
-- **Conectividad:** Un grafo es **conexo** si existe un camino entre cualquier par de vértices distintos.
-- **Componente conexa:** Subgrafo maximal conexo.
-
+-->
+</section>
+<section id="caminos-ciclos-y-conexidad" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="caminos-ciclos-y-conexidad"><span class="header-section-number">2.9</span> Caminos, ciclos y conexidad</h2>
+<p>Dado un grafo <span class="math inline">\(G\)</span>:</p>
+<ul>
+<li><p>Un <strong>camino (simple)</strong> de longitud <span class="math inline">\(k\)</span>, es una sucesión de vértices distintos <span class="math inline">\(v_0, v_1, \dots, v_k\)</span> tal que <span class="math inline">\(\{v_{i-1}, v_i\}\)</span> es una arista para todo <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Un <strong>ciclo (simple)</strong> es un camino con <span class="math inline">\(k \geq 3\)</span> donde el primer y último vértice son el mismo (<span class="math inline">\(v_0=v_k\)</span>) y los vértices intermedios (<span class="math inline">\(v_1, \dots, v_{k-1}\)</span>) son distintos entre sí y distintos de <span class="math inline">\(v_0\)</span>. Es decir, un camino que solo repite su punto de partida, y únicamente al cerrarse.</p></li>
+<li><p>Decimos que un grafo es <strong>conexo</strong> si existe un camino entre cualquier par de vértices distintos.</p></li>
+<li><p>Una <strong>componente conexa</strong> es un subgrafo maximal conexo. Obsérvese que un grafo no conexo se puede descomponer en componentes conexas.</p></li>
+</ul>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(G\)</span> el grafo con <span class="math inline">\(V_G=\{1,\dots,7\}\)</span> y <span class="math inline">\(E_G=\big\{\{1,2\},\{1,3\},\{2,3\},\{3,4\},\{5,6\}\big\}\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La sucesión <span class="math inline">\(4,3,1,2\)</span> (ilustrada en naranja en la imagen siguiente) es un <strong>camino simple</strong> en <span class="math inline">\(G\)</span>: los cuatro vértices son distintos y cada par consecutivo (<span class="math inline">\(\{4,3\}\)</span>, <span class="math inline">\(\{3,1\}\)</span>, <span class="math inline">\(\{1,2\}\)</span>) es una arista. Este camino tiene longitud <span class="math inline">\(k=3\)</span> (<strong>se cuentan las aristas, no los vértices</strong>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Por otro lado, la sucesión <span class="math inline">\(4,3,1,2,3\)</span> <em>no</em> es un camino simple, porque el vértice 3 se repite.</p>
+<p>Notemos ahora que la sucesión <span class="math inline">\(1,2,3,1\)</span> es un ciclo de longitud <span class="math inline">\(k=3\)</span>, pues regresa al punto de partida (<span class="math inline">\(v_0=v_3=1\)</span>). <!-- Aquí se ve por qué se pide $k\geq 3$: con $k=2$ tendríamos $1,2,1$, que recorre la arista $\{1,2\}$ de ida y de vuelta (no da la vuelta a nada), y con $k=1$ se formaría un bucle, que no existe en un grafo simple.--> De hecho, <strong>el triángulo es el ciclo más corto posible</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:23.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finalmente, <span class="math inline">\(G\)</span> <strong>no</strong> es conexo, pues por ejemplo, no existe ningún camino de <span class="math inline">\(1\)</span> a <span class="math inline">\(5\)</span>. La razón es que cualquier camino que arranque en <span class="math inline">\(1\)</span> solo puede moverse por aristas de <span class="math inline">\(E_G\)</span>, y todas las que parten de <span class="math inline">\(\{1,2,3,4\}\)</span> terminan dentro de ese mismo conjunto. <!-- Basta **un solo** par de vértices sin camino entre ellos para que el grafo deje de ser conexo.
+--></p>
+<p>Las tres componentes conexas de <span class="math inline">\(G\)</span> se distinguen por colores en la siguiente imagen, y de hecho corresponden a los inducidos <span class="math inline">\(G[\{1,2,3,4\}]\)</span>, <span class="math inline">\(G[\{5,6\}]\)</span> y <span class="math inline">\(G[\{7\}]\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Nótese que el vértice aislado <span class="math inline">\(7\)</span> <strong>sí</strong> es una componente por sí solo: la definición de conexo pide un camino entre cualquier par de vértices <em>distintos</em>, y como no hay ningún par de vértices distintos que revisar, la condición se cumple por vacuidad.</p>
+<!--
+**La palabra clave es *maximal*.** El subgrafo $G[\{1,2\}]$ es conexo (la arista $\{1,2\}$ une sus dos vértices), pero **no** es una componente conexa: podemos agregarle el vértice $3$ y el resultado sigue siendo conexo, así que $G[\{1,2\}]$ no era maximal. Una componente es un pedazo conexo al que ya **no se le puede agregar nada** sin romper la conexidad.
+-->
+</div>
+</div>
+</section>
+<section id="caracterización-de-grafos-bipartitos" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="caracterización-de-grafos-bipartitos"><span class="header-section-number">2.10</span> Caracterización de grafos bipartitos</h2>
+<p>Existe una caracterízación de los grafos bipartitos en términos de ciclos, que es muy visual y nos permite reconocer si un grafo es bipartito sin la necesidad de exhibir la partición de los nodos.</p>
+<p><strong>Teorema.</strong> Un grafo es <strong>bipartito</strong> si y sólo si <strong>no contiene ciclos de longitud impar</strong>.</p>
+<p>Intuitivamente, el teorema nos dice que si los vértices están repartidos en dos lados y cada arista cruza de un lado al otro, entonces al recorrer un ciclo alternamos de lado en cada paso; para volver al vértice inicial (y quedar del lado en que empezamos) hace falta un número par de pasos. Por eso ningún ciclo puede tener longitud impar.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Retomemos el ejemplo del grafo <span class="math inline">\(G_1\)</span> con forma de “pentágono” de la sección de Isomorfismos. Para comprobar que es bipartito, el teorema nos dice que podemos <strong>contar sus ciclos</strong>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El único camino cerrado que existe es la ruta <span class="math inline">\(1 \to 2 \to 3 \to 4 \to 1\)</span>. Si contamos las aristas que conforman este ciclo, son exactamente 4, de modo que tiene longitud par. El vértice <span class="math inline">\(5\)</span> es una “hoja”, por lo que no forma ningún ciclo.</p>
+<p>Por lo tanto, como <span class="math inline">\(G_1\)</span> carece de ciclos de longitud impar (3, 5, 7…), el teorema nos garantiza matemáticamente que es bipartito, confirmando lo que comprobábamos al reacomodarlo en dos columnas.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Nota ecológica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Nota ecológica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una red bipartita (como plantas-polinizadores) este teorema dice, en particular, que <strong>nunca hay triángulos</strong> (ciclos de longitud 3): una planta no interactúa con otra planta, ni un polinizador con otro. Es la razón de que el <strong>coeficiente de agrupamiento</strong> clásico, que se basa en contar triángulos, sea siempre <span class="math inline">\(0\)</span> en estas redes. Para medir “cohesión” en redes bipartitas se recurre a versiones específicas como el solapamiento de socios, que es justo la idea detrás del anidamiento.</p>
+</div>
+</div>
+</section>
+<section id="distancias-y-caminos-más-cortos" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="distancias-y-caminos-más-cortos"><span class="header-section-number">2.11</span> Distancias y caminos más cortos</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <strong>distancia geodésica (o distancia de grafo)</strong> entre dos vértices <span class="math inline">\(u\)</span> y <span class="math inline">\(v\)</span> se define como: <span class="math display">\[
+d(u,v)=\min\{k \mid \text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
+\]</span></p>
+</div>
+</div>
+<p>Si <span class="math inline">\(s\)</span> y <span class="math inline">\(t\)</span> son vértices, denotaremos por:</p>
+<ul>
+<li><p><span class="math inline">\(\sigma_{st}\)</span> al número de caminos más cortos (<strong>geodésicas</strong>) entre <span class="math inline">\(s\)</span> y <span class="math inline">\(t\)</span>.</p></li>
+<li><p><span class="math inline">\(\sigma_{st}(v)\)</span> el número de esos caminos que pasan por <span class="math inline">\(v\)</span> (como vértice <em>interno</em>).</p></li>
+</ul>
+<!--
+::: {.callout-important title="Intuición"}
+Si una especie $v$ está "en medio" de muchos caminos más cortos entre pares de especies, entonces puede actuar como **puente** o **cuello de botella**.
+:::
+-->
+<p><strong>Observación:</strong></p>
+<p>Al trabajar con distancias y conteo de caminos, podemos considerar dos situaciones extremas:</p>
+<ul>
+<li><p><strong>Vértices desconectados:</strong> Si no existe ninguna ruta que conecte a <span class="math inline">\(s\)</span> con <span class="math inline">\(t\)</span> (por ejemplo, si la red tiene partes aisladas), se dice que la distancia es infinita, <span class="math inline">\(d(s,t) = \infty\)</span>, y el número de caminos más cortos es cero, <span class="math inline">\(\sigma_{st} = 0\)</span>.</p></li>
+<li><p><strong>El mismo vértice (<span class="math inline">\(s = t\)</span>):</strong> La distancia de un vértice a sí mismo siempre es cero, <span class="math inline">\(d(s,s) = 0\)</span>. Por convención, existe exactamente <span class="math inline">\(1\)</span> “camino trivial” de longitud cero, así que <span class="math inline">\(\sigma_{ss} = 1\)</span>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Nota técnica">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Nota técnica
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Más adelante, al calcular métricas como la centralidad de intermediación, si <span class="math inline">\(\sigma_{st} = 0\)</span>, la proporción <span class="math inline">\(\frac{\sigma_{st}(v)}{\sigma_{st}}\)</span> se asume directamente como <span class="math inline">\(0\)</span>. Esto tiene sentido ecológico: un vértice <span class="math inline">\(v\)</span> no puede servir de “puente” entre dos especies que no tienen forma alguna de conectarse en la red.</p>
+</div>
+</div>
+<!--
 ## Representaciones de grafos
 
 ### Lista de adyacencia
 
 Para cada vértice, almacenamos una lista de sus vecinos. \* **Ventaja:** Eficiente en memoria para grafos **esparsos** (pocos enlaces). \* **Desventaja:** Verificar existencia de una arista toma tiempo.
-
-### Matriz de adyacencia
-
-> **Definición:** Sea $G=(V, E)$ con $|V|=n$. La matriz $A$ de $n \times n$ donde: $$A_{ij} = \begin{cases} 1 & \text{si } \{i, j\} \in E \\ 0 & \text{en otro caso} \end{cases}$$
-
-### Matriz de incidencia
-
-> **Definición:** Sea $G=(V, E)$ con $|V|=n$ y $|E|=m$. La matriz $B$ de $n \times m$ donde: $$B_{ie} = \begin{cases} 1 & \text{si el vértice } i \text{ es incidente a la arista } e \\ 0 & \text{en otro caso} \end{cases}$$
-
+-->
+</section>
+<section id="matriz-de-grados" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="matriz-de-grados"><span class="header-section-number">2.12</span> Matriz de grados</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(G=(V, E)\)</span> con <span class="math inline">\(|V|=n\)</span>. La <strong>matriz de grados</strong> <span class="math inline">\(D\)</span> del grafo, es la matriz diagonal de <span class="math inline">\(n \times n\)</span> donde: <span class="math display">\[D_{ii} = \deg(i)\]</span></p>
+</div>
+</div>
+<p>Esta matriz captura exclusivamente el número de vecinos de cada vértice.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consideremos el grafo con vértices <span class="math inline">\(V=\{1,2,3\}\)</span> y aristas <span class="math inline">\(E = \{\{1, 2\}, \{1, 3\}, \{2, 3\}\}\)</span>. Para construir su matriz de grados, calculamos el grado de cada nodo:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-adyacencia" class="level2" data-number="2.13">
+<h2 data-number="2.13" class="anchored" data-anchor-id="matriz-de-adyacencia"><span class="header-section-number">2.13</span> Matriz de adyacencia</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(G=(V, E)\)</span> con <span class="math inline">\(|V|=n\)</span>. La <strong>matriz de adyacencia</strong> <span class="math inline">\(A\)</span> del grafo, es una matriz de <span class="math inline">\(n \times n\)</span> donde: <span class="math display">\[A_{ij} = \begin{cases} 1 &amp; \text{si } \{i, j\} \in E \\ 0 &amp; \text{en otro caso} \end{cases}\]</span></p>
+</div>
+</div>
+<p>Observemos que la suma de las entradas del <span class="math inline">\(i\)</span>-esimo renglón de <span class="math inline">\(A\)</span> es el número de vecinos del vértice <span class="math inline">\(i\)</span> es decir, su <strong>grado</strong>, y la suma de la <span class="math inline">\(j\)</span>-esima columna es el grado del vértice <span class="math inline">\(j\)</span>: <span class="math display">\[
+\deg(i)=\sum_{j} A_{ij}, \qquad \deg(j)=\sum_{i} A_{ij}.
+\]</span> Es decir, el grado no es más que el <strong>total marginal</strong> del renglón o la columna correspondiente.</p>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consideremos el grafo del ejemplo anterior. Para construir la matriz de adyacencia, tomamos un vértice (<span class="math inline">\(i\)</span>) y registramos cuáles de los otros vértices (<span class="math inline">\(j\)</span>) son sus vecinos; para realizar sistemáticamente este registro podemos construir una tabla de adyacencias, con las etiquetas de los vértices por renglón y por columnas. A partir de esta tabla, extraemos el arreglo numérico binario para conformar la matriz de adyacencia <span class="math inline">\(B\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para grafos simples como este, <span class="math inline">\(A\)</span> es simétrica y tiene ceros en la diagonal.</p>
+</div>
+</div>
+<p>Trabajar con esta matriz tiene la ventaja de que verificar si dos nodos son adyacentes es un proceso rápido (tiempo constante, <span class="math inline">\(O(1)\)</span>). Sin embargo, requiere muchísima memoria para almacenarse, ya que su tamaño crece al cuadrado respecto a la cantidad de nodos (<span class="math inline">\(O(|V|^2)\)</span>).</p>
+<p>Esto la vuelve muy ineficiente para almacenar la estructura de <strong>grafos dispersos</strong> (redes que tienen muy pocas aristas en comparación con todas las conexiones posibles). En un grafo disperso, la inmensa mayoría de los nodos no interactúan entre sí, por lo que la matriz contendrá muchos ceros. Almacenar todos esos ceros representa un gran desperdicio de espacio computacional.</p>
+</section>
+<section id="matriz-de-incidencia" class="level2" data-number="2.14">
+<h2 data-number="2.14" class="anchored" data-anchor-id="matriz-de-incidencia"><span class="header-section-number">2.14</span> Matriz de incidencia</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Definición">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Definición
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sea <span class="math inline">\(G=(V, E)\)</span> con <span class="math inline">\(|V|=n\)</span> y <span class="math inline">\(|E|=m\)</span>. La <strong>matriz de incidencia</strong> <span class="math inline">\(B\)</span> del grafo, es una matriz de <span class="math inline">\(n \times m\)</span> donde: <span class="math display">\[B_{ie} = \begin{cases} 1 &amp; \text{si el vértice } i \text{ es incidente a la arista } e \\ 0 &amp; \text{en otro caso} \end{cases}\]</span> Cada columna tiene exactamente dos unos, porque cada arista siempre une exactamente a dos vértices.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning no-icon callout-titled" title="Ejemplo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Ejemplo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si etiquetamos las aristas del grafo como <span class="math inline">\(e_1 = \{1, 2\}\)</span>, <span class="math inline">\(e_2 = \{2, 3\}\)</span> y <span class="math inline">\(e_3 = \{1, 3\}\)</span>, podemos construir primero una tabla de incidencias con las etiquetas de los vértices por renglón y las de las aristas en las columnas. A partir de ella, extraemos el arreglo numérico para conformar la matriz de incidencia <span class="math inline">\(B\)</span>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
 ### El Laplaciano del grafo
 
 Se define con la matriz de grados $D$ (diagonal con $D_{ii} = \deg(i)$).
@@ -374,15 +968,95 @@ Medidas para cuantificar la "importancia" de un nodo.
 > **Modularidad (Q):** $$Q = \frac{1}{2m} \sum_{i,j} \left[ A_{ij} - \frac{k_i k_j}{2m} \right] \delta(c_i, c_j)$$ Valores altos indican una fuerte estructura de comunidad.
 
 ------------------------------------------------------------------------
-
-# Grafos Bipartitos y Emparejamientos
-
-> **Definición: Grafo bipartito** Un grafo $G=(V, E)$ es **bipartito** si $V$ puede dividirse en $V_1$ y $V_2$ disjuntos tal que toda arista conecta $V_1$ con $V_2$. No hay aristas internas en los conjuntos.
-
-> **Teorema:** Un grafo es bipartito si y sólo si no contiene ciclos de longitud impar.
-
-> **Representación Matricial:** $$A = \begin{pmatrix}\mathbf{0} & B \\B^T & \mathbf{0}\end{pmatrix}$$ Donde $B$ es la matriz de **biadyacencia**.
-
+-->
+</section>
+<section id="matriz-de-interacción-en-una-red-bipartita" class="level2" data-number="2.15">
+<h2 data-number="2.15" class="anchored" data-anchor-id="matriz-de-interacción-en-una-red-bipartita"><span class="header-section-number">2.15</span> Matriz de interacción en una red bipartita</h2>
+<p>Una red bipartita separa las especies en dos clases, por ejemplo plantas (<span class="math inline">\(p\)</span> especies) y polinizadores (<span class="math inline">\(q\)</span> especies). La matriz de adyacencia <span class="math inline">\((p+q) \times (p+q)\)</span> del grafo que codifica la interacción entre especies tiene entonces la forma <span class="math display">\[A = \begin{pmatrix}\mathbf{0} &amp; B \\B^T &amp; \mathbf{0}\end{pmatrix}\]</span> donde <span class="math display">\[
+B\in \mathbb{R}_{\ge 0}^{p\times q},
+\]</span> con <span class="math inline">\(B_{ij}=0\)</span> si no hay interacción y <span class="math inline">\(B_{ij}=1\)</span> si la interacción se observa. Notemos que este <strong>bloque</strong> <span class="math inline">\(B\)</span> de tamaño <span class="math inline">\(p\times q\)</span> codifica toda la información de las conexiones de la red. Llamamos a esta submatriz <strong>matriz de interacciones o matriz bipartita.</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sesion2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La suma de las entradas del <span class="math inline">\(i\)</span>-esimo renglón de <span class="math inline">\(B\)</span> es el número de animales que interactúan con la planta <span class="math inline">\(p_i\)</span> (su <strong>grado</strong> <span class="math inline">\(\deg(p_i\)</span>)) y la suma de la <span class="math inline">\(j\)</span>-esima columna es el grado del animal <span class="math inline">\(a_j\)</span> (<span class="math inline">\(\deg(a_j)\)</span>).</p>
+<p>Muchas métricas que veremos (grado, fuerza, conectancia, anidamiento) se leen directamente como operaciones sobre los renglones y columnas de este bloque <span class="math inline">\(B\)</span>.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="Matrices binarias vs ponderadas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Matrices binarias vs ponderadas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En general, en redes <strong>ponderadas</strong>, <span class="math inline">\(B_{ij}\geq 0\)</span> donde cada entrada puede representar frecuencia, biomasa o número de visitas, a diferencia del caso <strong>binario</strong> donde la matriz registra solamente presencia/ausencia.</p>
+</div>
+</div>
+</section>
+<section id="resumen-en-contexto-biológico" class="level2" data-number="2.16">
+<h2 data-number="2.16" class="anchored" data-anchor-id="resumen-en-contexto-biológico"><span class="header-section-number">2.16</span> Resumen en contexto biológico</h2>
+<div class="callout callout-style-default callout-tip no-icon callout-titled" title="🍃 Lectura ecológica de elementos básicos de la Teoría de Grafos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>🍃 Lectura ecológica de elementos básicos de la Teoría de Grafos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto matemático</th>
+<th>Lectura ecológica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vértice / arista</td>
+<td>Especie / interacción observada entre dos especies</td>
+</tr>
+<tr class="even">
+<td>Grafo bipartito</td>
+<td>La comunidad se separa en dos gremios (por ejemplo plantas / polinizadores)</td>
+</tr>
+<tr class="odd">
+<td>Grafo ponderado</td>
+<td>La interacción trae una intensidad (visitas, biomasa, frecuencia)</td>
+</tr>
+<tr class="even">
+<td>Grado <span class="math inline">\(\deg(v)\)</span></td>
+<td>Número de socios de una especie (¿generalista o especialista?)</td>
+</tr>
+<tr class="odd">
+<td>Camino y conexidad</td>
+<td>¿Están dos especies conectadas, aunque sea de forma indirecta?</td>
+</tr>
+<tr class="even">
+<td>Componente conexa</td>
+<td>Un grupo de especies aislado del resto de la comunidad</td>
+</tr>
+<tr class="odd">
+<td>Matriz bipartita <span class="math inline">\(B\)</span></td>
+<td>La tabla de interacciones que se carga en <code>bipartite</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!--
 ## Emparejamientos (Matchings)
 
 - **Emparejamiento:** Subconjunto de aristas que no comparten vértices.
@@ -799,13 +1473,13 @@ Medidas para cuantificar la "importancia" de un nodo.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Sesion1.html" class="pagination-link" aria-label="Sesión 1: Roadmap del curso">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sesión 1: Roadmap del curso</span></span>
+      <a href="./Sesion1.html" class="pagination-link" aria-label="Introducción">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Sesion3.html" class="pagination-link" aria-label="Sesión 3: Métricas y análisis de redes: Centralidad">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sesión 3: Métricas y análisis de redes: Centralidad</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Sesion3.html" class="pagination-link" aria-label="Métricas locales y análisis de redes: grado, cercanía, intermediación">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Métricas locales y análisis de redes: grado, cercanía, intermediación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

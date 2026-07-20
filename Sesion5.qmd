@@ -1,243 +1,41 @@
 ---
-title: "Sesión 5: Métricas globales de red: Conectancia, anidamiento, $H_2'$ y modularidad"
+title: "Más métricas globales de red: especialización y modularidad"
 editor: source
 ---
 
-## NODF ponderado (weighted NODF)
+## ¿Qué mide la especialización?
 
-Sea $W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}$ una matriz de interacciones.
-Definimos la matriz binaria asociada
-$$
-B=(b_{ij}),\qquad b_{ij}=\mathbf{1}_{\{w_{ij}>0\}}.
-$$
-
-**Ordenamiento.**
-Para calcular el NODF ponderado, primero se ordenan filas y columnas por **número de socios** en orden decreciente; en caso de empate, se rompe el empate por la **suma de pesos** de la fila o columna.
-
-**Contribución de un par de filas.**
-Si las filas $i$ y $j$ satisfacen
-$$
-k_i^{(r)} > k_j^{(r)} > 0,
-\qquad
-k_i^{(r)}=\sum_{\ell=1}^q b_{i\ell},
-$$
-entonces su contribución ponderada es
-$$
-N_{ij}^{(r,w)}
-=
-\frac{1}{k_j^{(r)}}
-\sum_{\ell=1}^q
-\mathbf{1}_{\{\,w_{i\ell}>w_{j\ell}>0\,\}}.
-$$
-
-Análogamente, para columnas $u,v$ con
-$$
-k_u^{(c)} > k_v^{(c)} > 0,
-$$
-se define
-$$
-N_{uv}^{(c,w)}
-=
-\frac{1}{k_v^{(c)}}
-\sum_{m=1}^p
-\mathbf{1}_{\{\,w_{mu}>w_{mv}>0\,\}}.
-$$
-
-**Índice global.**
-$$
-\mathrm{WNODF}
-=
-100\,
-\frac{
-\sum_{i<j} N_{ij}^{(r,w)}+\sum_{u<v} N_{uv}^{(c,w)}
-}{
-\binom{p}{2}+\binom{q}{2}
-}.
-$$
-
-El valor es grande cuando, además del patrón anidado binario, las especies más generalistas tienden a tener **interacciones más intensas** que las menos generalistas sobre los socios que comparten.
-
----
-
-El **WNODF** es la versión **cuantitativa** del NODF: combina la idea de *solapamiento* entre socios con la condición de *decreasing fill*, pero incorporando además la **intensidad** de las interacciones.
-
-**Importante.**
-$$
-\mathrm{WNODF}(W)\neq \mathrm{NODF}(\mathbf{1}_{\{W>0\}})
-$$
-en general. Es decir, **no** se obtiene simplemente binarizando la matriz y calculando luego el NODF usual.
-
-El WNODF es alto cuando:
-
-* las especies con menos socios interactúan con subconjuntos de los socios de las más generalistas; y
-* sobre esos socios compartidos, las especies más generalistas tienden a presentar **mayores pesos de interacción**.
-
-En la implementación usada por `bipartite`, el cálculo se apoya en `vegan::nestednodf`: la matriz se ordena por frecuencias marginales (y, en la versión ponderada, los empates se rompen por abundancia total).
-
-## `bipartite`: conectancia y NODF
-
-| Métrica | Función de R |
-|---|---|
-| Conectancia | `networklevel(web, index='connectance')` |
-| $\mathrm{NODF}$ | `networklevel(web, index='NODF')` |
-| NODF ponderado | `networklevel(web, index='weighted NODF')` |
-
-::: {.callout-note}
-$\mathrm{NODF}$ en `bipartite` se evalúa sobre la matriz **ordenada por decreasing fill**.
-
-:::
-
----
-
-## Ejemplos: NODF
-
-:::: {.columns}
-::: {.column width="33%"}
-**Anidamiento perfecto**
-$$
-\begin{pmatrix}
-1&1&1\\
-1&1&0\\
-1&0&0
-\end{pmatrix}
-$$
-$$
-\mathrm{NODF}=100
-$$
-Cada par admisible comparte exactamente los contactos del miembro menos conectado.
-:::
-
-::: {.column width="33%"}
-**Identidad / permutación**
-$$
-\begin{pmatrix}
-1&0&0\\
-0&1&0\\
-0&0&1
-\end{pmatrix}
-$$
-$$
-\mathrm{NODF}=0
-$$
-No aparecen subconjuntos: cada especialista usa un socio distinto.
-:::
-
-::: {.column width="33%"}
-**Matriz llena**
-$$
-\begin{pmatrix}
-1&1&1\\
-1&1&1\\
-1&1&1
-\end{pmatrix}
-$$
-$$
-\text{NODF no está definido}
-$$
-No existe *decreasing fill*: todos los grados de filas y columnas son iguales, de modo que no hay pares comparables para el cálculo del índice.
-:::
-::::
-
-::: {.callout-tip}
-$\mathrm{NODF}$ debe alcanzar 100 en la triangular perfecta y 0 en una permutación sin solapamiento anidado.
-
-:::
-
-## NODF: limitaciones y casos degenerados
-
-* Si $p<2$ o $q<2$, no existen pares de filas o columnas que comparar.
-* Si la matriz es **vacía** o **completamente llena**, el índice deja de ser útil como descriptor de anidamiento.
-* Si muchas filas o columnas tienen **el mismo grado**, esas parejas no aportan por la condición de *decreasing fill*; la métrica puede subestimar estructura.
-* En matrices cuantitativas conviene distinguir entre **NODF binario** y **NODF ponderado**; no responden exactamente a la misma pregunta.
-
-::: {.callout-tip title="En R"}
-`networklevel(web, index='NODF')` calcula el NODF binario global.
-
-`networklevel(web, index='weighted NODF')` agrega la versión ponderada.
-
-Si la matriz ponderada está llena y se quiere explotar el orden por abundancia, el complemento es `nest.smdm(web, weighted=TRUE, decreasing='abund')`.
-
-:::
-
+La especialización indica qué tan **selectiva** es la red completa, y cuánto se aparta el uso observado del patrón esperable por los **marginales**.
 
 
 ## Especialización de red $H_2'$
 
-Sea $W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}$ una matriz **ponderada**, y sea
+::: {.callout-note title="Definición"}
+
+Consideremos $W=(w_{ij})\in\mathbb{R}_{\ge 0}^{p\times q}$ la matriz de interacción **ponderada** de un **grafo bipartito**. Sean:
 $$
 m=\sum_{i=1}^{p}\sum_{j=1}^{q} w_{ij},
 \qquad
 p_{ij}=\frac{w_{ij}}{m}.
 $$
-La cantidad que el paquete llama `H2uncorr` es la entropía bidimensional
+Se define el **valor no corregido** (**entropía de Shanon**) como,
 $$
-H_{2,\mathrm{uncorr}}=-\sum_{i=1}^{p}\sum_{j=1}^{q} p_{ij}\ln(p_{ij}),
-\qquad 0\ln 0:=0.
+H_{2,\mathrm{uncorr}}=-\sum_{i=1}^{p}\sum_{j=1}^{q} p_{ij}\ln(p_{ij})
 $$
-La especialización de red **estandarizada** es
+(donde por convención $0\ln 0:=0$). La **especialización de red estandarizada** es:
 $$
 H_2'=\frac{H_{2,\max}-H_{2,\mathrm{uncorr}}}{H_{2,\max}-H_{2,\min}}\in[0,1].
 $$
-
-::: {.callout-tip}
-$H_{2,\min}$ y $H_{2,\max}$ no son valores libres: se construyen **respetando los marginales observados**. Por eso $H_2'$ compara *selectividad* y no simplemente densidad o abundancia total.
-
 :::
 
-## Ejemplo
 
-Las tres matrices siguientes tienen los mismos totales por fila y columna: $(10,10)$.
+**Observación: **
+$H_{2,\min}$ y $H_{2,\max}$ no son valores libres, se construyen **respetando los marginales observados**. Por eso $H_2'$ compara **selectividad** y no simplemente densidad o abundancia total.
 
-:::: {.columns}
-::: {.column width="33%"}
-**Uso difuso**
-$$
-W_1=
-\begin{pmatrix}
-5&5\\
-5&5
-\end{pmatrix}
-$$
-$$
-H_2'=0
-$$
-:::
 
-::: {.column width="33%"}
-**Uso parcialmente selectivo**
-$$
-W_2=
-\begin{pmatrix}
-9&1\\
-1&9
-\end{pmatrix}
-$$
-$$
-H_2'\approx 0.53
-$$
-:::
 
-::: {.column width="33%"}
-**Uso perfectamente selectivo**
-$$
-W_3=
-\begin{pmatrix}
-10&0\\
-0&10
-\end{pmatrix}
-$$
-$$
-H_2'=1
-$$
-:::
-::::
-
-::: {.callout-note}
-Lo que cambia no es la disponibilidad total, sino **cómo se reparte** la actividad entre socios posibles. Ese es precisamente el rasgo que captura $H_2'$.
-
-:::
-
-## Cálculo de $H_2'$ para un caso simple
+::: {.callout-warning title="Ejemplo"}
+Ejemplo: Cálculo de $H_2'$ para un caso simple: Sea $W_2$ la matriz ponderada de $2\times 2$ siguiente:
 
 $$
 W_2=
@@ -245,7 +43,9 @@ W_2=
 9&1\\
 1&9
 \end{pmatrix},
-\qquad
+$$
+entonces
+$$
 m=\sum_{i,j} w_{ij}=20,
 \qquad
 p_{ij}=\frac{w_{ij}}{m}.
@@ -260,7 +60,7 @@ P=(p_{ij})=
 \end{pmatrix}.
 $$
 
-**Paso 1: valor no corregido.**
+**Paso 1: Valor no corregido.**
 $$
 H_{2,\mathrm{uncorr}}
 =
@@ -274,7 +74,7 @@ H_{2,\mathrm{uncorr}}
 \approx 1.01823.
 $$
 
-**Paso 2: máximo y mínimo usados por `H2fun`.**
+**Paso 2: Máximo y mínimo.**
 Las sumas marginales son
 $$
 r=(10,10),
@@ -320,7 +120,7 @@ $$
 
 **Paso 3: Estandarización**
 
-La estandarización que usa `H2fun` es
+La estandarización es
 $$
 H_2'
 =
@@ -338,41 +138,191 @@ H_2'
 \approx 0.53100.
 $$
 
+<!--
 $$
 \boxed{H_2' \approx 0.53}
 $$
+-->
 
-**Interpretación:**
-La red muestra *selectividad parcial*: las interacciones se concentran sobre la diagonal, pero todavía existen interacciones cruzadas.
+Podemos interpretar este valor como sigue: La red muestra *selectividad parcial*: las interacciones se concentran sobre la diagonal, pero todavía existen interacciones cruzadas.
 
-## $H_2'$: qué dice y qué no dice
-
-:::: {.columns}
-::: {.column width="50%"}
-**Sí dice**
-
-* Qué tan **selectiva** es la red completa.
-* Cuánto se aparta el uso observado del patrón esperable por los **marginales**.
 :::
 
-::: {.column width="50%"}
-**No dice / limitaciones**
+**Observación:**
 
-* No es una medida de **conectancia**.
-* En matrices **binarias** pierde su principal ventaja: la intensidad.
-* Si los datos son continuos o tasas, conviene usar `H2fun(web, H2_integer=FALSE)`.
-* En redes muy pequeñas o triviales, el denominador puede colapsar y la métrica deja de ser informativa.
+Las tres matrices siguientes tienen los mismos totales por renglón y columna: $(10,10)$.
+
+:::: {.columns}
+::: {.column width="33%"}
+**Uso difuso**
+$$
+W_1=
+\begin{pmatrix}
+5&5\\
+5&5
+\end{pmatrix}
+$$
+$$
+H_2'=0
+$$
+:::
+
+::: {.column width="33%"}
+**Uso parcialmente selectivo**
+$$
+W_2=
+\begin{pmatrix}
+9&1\\
+1&9
+\end{pmatrix}
+$$
+$$
+H_2'\approx 0.53
+$$
+:::
+
+::: {.column width="33%"}
+**Uso perfectamente selectivo**
+$$
+W_3=
+\begin{pmatrix}
+10&0\\
+0&10
+\end{pmatrix}
+$$
+$$
+H_2'=1
+$$
 :::
 ::::
 
-## En R
+Lo que cambia no es la disponibilidad total, sino **cómo se reparte** la actividad entre socios posibles. Ese es precisamente el rasgo que captura $H_2'$.
 
-::: {.callout-note title="Notación para $H_2'$"}
-En la literatura, la métrica de especialización de red se denota $H_2'$.
-En `bipartite`, la función `H2fun(web)` devuelve un vector con nombres `H2`, `H2min`, `H2max` y `H2uncorr`; la componente llamada `H2` es precisamente el valor estandarizado $H_2'$.
 
+
+
+## Ejemplo: $H_2'$ en la red planta--polinizador
+
+Consideremos la versión **ponderada** de la red transversal planta-polinizador que usamos en la sección WNODF:
+
+:::: {.columns}
+::: {.column width="42%"}
+```{tikz}
+%| echo: false
+%| fig-align: center
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick}, lab/.style={font=\small\bfseries},
+  peso/.style={fill=white, inner sep=1pt, font=\scriptsize}
+}
+\begin{tikzpicture}[>=Latex, scale=0.95]
+  \node[lab] at (-2,1.9) {Plantas};
+  \node[lab] at ( 2,1.9) {Polinizadores};
+  \node[planta] (p1) at (-2, 1.1) {$p_1$};
+  \node[planta] (p2) at (-2, 0.3) {$p_2$};
+  \node[planta] (p3) at (-2,-0.5) {$p_3$};
+  \node[planta] (p4) at (-2,-1.3) {$p_4$};
+  \node[animal] (a1) at ( 2, 0.7) {$a_1$};
+  \node[animal] (a2) at ( 2,-0.1) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.9) {$a_3$};
+  \draw[edge] (p1)--(a1) node[peso,pos=0.5]{3};
+  \draw[edge] (p1)--(a2) node[peso,pos=0.5]{5};
+  \draw[edge] (p2)--(a2) node[peso,pos=0.5]{4};
+  \draw[edge] (p2)--(a3) node[peso,pos=0.5]{2};
+  \draw[edge] (p3)--(a2) node[peso,pos=0.5]{2};
+  \draw[edge] (p4)--(a3) node[peso,pos=0.5]{3};
+\end{tikzpicture}
+```
+:::
+::: {.column width="58%"}
+$$
+W=\begin{array}{c|ccc|c}
+   & a_1 & a_2 & a_3 & r_i\\ \hline
+p_1& 3 & 5 & 0 & 8\\
+p_2& 0 & 4 & 2 & 6\\
+p_3& 0 & 2 & 0 & 2\\
+p_4& 0 & 0 & 3 & 3\\ \hline
+c_j& 3 & 11 & 5 & 19
+\end{array}
+$$
+:::
+::::
+
+
+con total $m=19$ y $p_{ij}=w_{ij}/m$.
+
+**Paso 1: Valor no corregido.**
+$$
+H_{2,\mathrm{uncorr}}=-\sum_{i,j} p_{ij}\ln p_{ij}\approx 1.7362.
+$$
+
+**Paso 2: Máximo y mínimo compatibles con los marginales.**
+La matriz de referencia para $H_{2,\max}$ reparte proporcionalmente a los
+marginales, $E_{ij}=r_i\,c_j/m$, de donde
+$$
+H_{2,\max}=-\sum_{i,j}\frac{r_i c_j}{m^2}\ln\frac{r_i c_j}{m^2}\approx 2.2158.
+$$
+Para $H_{2,\min}$ se concentra al máximo la actividad respetando los marginales,
+<!-- (procedimiento de agregación que usa `H2fun`),
+-->
+lo que da
+$$
+H_{2,\min}\approx 1.3989.
+$$
+
+**Paso 3: Estandarización.**
+$$
+H_2'=\frac{H_{2,\max}-H_{2,\mathrm{uncorr}}}{H_{2,\max}-H_{2,\min}}
+=\frac{2.2158-1.7362}{2.2158-1.3989}\approx 0.59.
+$$
+<!--
+$$
+\boxed{H_2'\approx 0.59}
+$$
+-->
+
+::: {.callout-tip title="Interpretación ecológica"}
+Una **especialización intermedia**: la red no es difusa ($H_2'\approx 0$) ni
+perfectamente selectiva ($H_2'\approx 1$). Las interacciones se concentran algo
+—sobre todo alrededor del polinizador generalista $a_2$—, pero hay reparto
+suficiente como para no aislar a las especies en socios exclusivos.
 :::
 
+
+
+## En R con `bipartite`: Especialización
+
+```{r}
+#| message: false
+#| warning: false
+
+
+library(bipartite)
+
+# Consideremos la red ponderada planta-polinizador del ejemplo anterior
+Wt <- matrix(c(
+  3, 5, 0,
+  0, 4, 2,
+  0, 2, 0,
+  0, 0, 3
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"), c("a1","a2","a3")))
+
+# Obtener la lista H2, H2min, H2max y H2uncorr; la componente llamada H2 es precisamente el valor estandarizado $H_2'$.
+H2fun(Wt) # la componente 'H2' es H2' ≈ 0.59
+
+# O alternativamente, podemos obtener solo $H_2$
+networklevel(Wt, index = "H2")
+```
+
+La componente **`H2`** de `H2fun` es $H_2'\approx 0.59$, que coincide con el ejemplo. A diferencia de $H_{2,\mathrm{uncorr}}$ y $H_{2,\mathrm{max}}$ que se calculan con una fórmula cerrada, $H_{2,\min}$ se obtiene por un **algoritmo de agregación**, así que en redes grandes puede variar levemente entre corridas).
+
+
+
+<!--
 ::: {.callout-note title="Modularidad"}
 La fórmula binaria de Barber es la **versión especial** para matrices binarias. El paquete usa por defecto una **modularidad bipartita ponderada** mediante `computeModules(web)`; si la matriz es binaria, se recupera el caso de Barber.
 
@@ -380,9 +330,39 @@ La fórmula binaria de Barber es la **versión especial** para matrices binarias
 
 * **En R para $H_2'$:** `H2fun(web)` o `networklevel(web, index='H2')`.
 
+--> 
+
 <!--* **En R para modularidad:** `computeModules(web)` o `networklevel(web, index='modularity')`.
 
----
+-->
+
+## $H2'$: limitaciones
+
+* No es una medida de **conectancia**.
+* En matrices **binarias** pierde su principal ventaja: la intensidad.
+* Si los datos son continuos o tasas, conviene usar `H2fun(web, H2_integer=FALSE)`.
+* En redes muy pequeñas o triviales, el denominador puede colapsar y la métrica deja de ser informativa.
+
+
+## Resumen en contexto biológico
+
+::: {.callout-tip title="🍃 Especialización de la red"}
+| Concepto | Pregunta ecológica que responde |
+|---|---|
+| Especialización $H_2'$ | Fijadas las abundancias (marginales), ¿las interacciones son **selectivas** o **difusas**? |
+| $H_2'\approx 0$ | Red poco selectiva: cada especie reparte sus interacciones casi como cabría esperar por sus marginales |
+| $H_2'\approx 1$ | Red muy selectiva: las especies concentran sus interacciones en socios específicos |
+
+A diferencia de la conectancia y el NODF (que se leen sobre la matriz **binaria**),
+$H_2'$ **usa las intensidades**: mide *cómo* se reparte la actividad, no cuántos enlaces
+hay. Por eso dos redes con la misma conectancia pueden tener $H_2'$ muy distintos.
+:::
+<!-- Con esto cerramos densidad (conectancia), anidamiento (NODF/WNODF) y selectividad ($H_2'$).
+Falta una última pieza del panorama global: la **modularidad $Q_B$** —¿se organiza la red en
+bloques de interacción preferente?—, que quedará para la continuación del seminario.-->
+
+
+<!--
 
 ## Modularidad bipartita
 
@@ -482,4 +462,7 @@ Conectancia, $\mathrm{NODF}$, $H_2'$ y modularidad son **métricas complementari
 
 :::
 -->
+
+
+
 

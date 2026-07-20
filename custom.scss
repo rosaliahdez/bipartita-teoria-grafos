@@ -1,0 +1,12 @@
+/*-- scss:rules --*/
+div.callout-note li::marker {
+  color: $callout-color-note;
+}
+
+div.callout-tip li::marker {
+  color: $callout-color-tip;
+}
+
+div.callout-warning li::marker {
+  color: $callout-color-warning;
+}

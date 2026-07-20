@@ -1,25 +1,36 @@
 # Bibliografía general recomendada {.unnumbered}
 
-## Fundamentos de grafos bipartitos
+## El paquete `bipartite` y su documentación
 
-- **Asratian, A. S., Denley, T. M. J., & Häggkvist, R. (1998).** *Bipartite Graphs and their Applications*. Cambridge University Press.
-- **Hall, P. (1935).** "On Representatives of Subsets." *Journal of the London Mathematical Society*, 10(1), 26–30.
-- **Bondy, J. A., & Murty, U. S. R. (1976).** *Graph Theory with Applications*. London: Macmillan.
-- **Lovász, L., & Plummer, M. D. (1986).** *Matching Theory*. North-Holland.
-- **Wasserman, S., & Faust, K. (1994).** *Social Network Analysis: Methods and Applications*. Cambridge University Press.
+- **Dormann, C. F., Gruber, B., & Fründ, J. (2008).** Introducing the bipartite package: Analysing ecological networks. *R News, 8*(2), 8–11. — **Referencia oficial del paquete `bipartite`** (la que conviene citar al usar el software).
+- **Dormann, C. F., Fründ, J., Blüthgen, N., & Gruber, B. (2009).** Indices, graphs and null models: analyzing bipartite ecological networks. *The Open Ecology Journal, 2*, 7–24. — **Panorama de índices bipartitos y modelos nulos**; la mejor guía para interpretar `networklevel`.
+- **Dormann, C. F. (2011).** How to be a specialist? Quantifying specialisation in pollination networks. *Network Biology, 1*(1), 1–20. — Especialización **a nivel de especie** ($d'$) y su interpretación.
 
-## Métricas y propiedades estructurales en grafos bipartitos
+## Definición original de cada métrica
 
-- **Latapy, M., Magnien, C., & Del Vecchio, N. (2008).** "Basic Notions for the Analysis of Large Two-Mode Networks." *Social Networks*, 30(1), 31–48.
-- **Borgatti, S. P., & Everett, M. G. (1997).** "Network Analysis of 2-Mode Data." *Social Networks*, 19(3), 243–269.
-- **Dormann, C. F., et al. (2009).** "Indices, Graphs and Null Models: Analyzing Bipartite Ecological Networks." *The Open Ecology Journal*, 2, 7–24.
-- **Almeida-Neto, M., et al. (2008).** "A Consistent Metric for Nestedness Analysis in Ecological Systems: Reconciling Concept and Measurement." *Oikos*, 117(8), 1227–1239.
-- **Barber, M. J. (2007).** "Modularity and Community Detection in Bipartite Networks." *Physical Review E*, 76(6), 066102.
-- **Ouadah, S., Latouche, P., & Robin, S. (2022).** "Motif-Based Tests for Bipartite Networks." *Electronic Journal of Statistics*, 16(1), 293–330.
-- **Borgatti, S. P., & Everett, M. G. (1999).** "Models of Core/Periphery Structures." *Social Networks*, 21(4), 375–395.
+- **Almeida-Neto, M., Guimarães, P., Guimarães Jr., P. R., Loyola, R. D., & Ulrich, W. (2008).** A consistent metric for nestedness analysis in ecological systems: reconciling concept and measurement. *Oikos, 117*, 1227–1239. — **Define el NODF** (anidamiento binario).
+- **Almeida-Neto, M., & Ulrich, W. (2011).** A straightforward computational approach for measuring nestedness using quantitative matrices. *Environmental Modelling & Software, 26*, 173–178. — **Define el NODF ponderado (WNODF)**.
+- **Blüthgen, N., Menzel, F., & Blüthgen, N. (2006).** Measuring specialization in species interaction networks. *BMC Ecology, 6*:9. — **Define $H_2'$** (especialización de red) y $d'$.
+- **Barber, M. J. (2007).** Modularity and community detection in bipartite networks. *Physical Review E, 76*, 066102. — **Define la modularidad bipartita $Q_B$** (la fórmula de Barber).
+- **Beckett, S. J. (2016).** Improved community detection in weighted bipartite networks. *Royal Society Open Science, 3*:140536. — **Algoritmo que usa `computeModules` por defecto** (DIRTLPAwb+) para optimizar $Q_B$.
+- **Newman, M. E. J. (2006).** Modularity and community structure in networks. *PNAS, 103*(23), 8577–8582. — Modularidad $Q$ en redes de un modo; **antecedente de la versión de Barber**.
+- **Freeman, L. C. (1978).** Centrality in social networks: conceptual clarification. *Social Networks, 1*(3), 215–239. — **Define grado, cercanía e intermediación** (las centralidades de la Sesión 3).
+- **Martín González, A. M., Dalsgaard, B., & Olesen, J. M. (2010).** Centrality measures and the importance of generalist species in pollination networks. *Ecological Complexity, 7*(1), 36–43. — **Cómo `bipartite` calcula y reescala** cercanía/intermediación en redes de polinización.
 
-## Modelos y métricas generalizables a redes bipartitas
+## Teoría de grafos (para fundamentar las definiciones)
 
-- **Kunegis, J. (2015).** "Exploiting the Structure of Bipartite Graphs for Algebraic and Spectral Graph Theory Applications." *Internet Mathematics*, 11(4), 201–231.
-- **Saracco, F., et al. (2015).** "Randomizing Bipartite Networks: The Case of the World Trade Web." *Scientific Reports*, 5, 10595.
-- **Cimini, G., et al. (2019).** "The Statistical Physics of Real-World Networks." *Nature Reviews Physics*, 1(1), 58–71.
+- **Diestel, R. (2017).** *Graph Theory* (5.ª ed.). Springer. — Texto de referencia riguroso: **bipartición (sin ciclos impares)**, caminos, conexidad, Menger.
+- **Bondy, J. A., & Murty, U. S. R. (2008).** *Graph Theory*. Springer. — Alternativa clásica, con definiciones formales y muchos ejemplos.
+- **Newman, M. E. J. (2018).** *Networks* (2.ª ed.). Oxford University Press. — Puente entre teoría de grafos y redes reales; **capítulos de centralidad, componentes y modularidad**.
+
+## Ecología de redes (por qué importan estas métricas)
+
+- **Bascompte, J., Jordano, P., Melián, C. J., & Olesen, J. M. (2003).** The nested assembly of plant–animal mutualistic networks. *PNAS, 100*(16), 9383–9387. — **El anidamiento en redes mutualistas** y su relevancia ecológica.
+- **Bascompte, J., & Jordano, P. (2007).** Plant–animal mutualistic networks: the architecture of biodiversity. *Annual Review of Ecology, Evolution, and Systematics, 38*, 567–593. — Panorama de la **arquitectura de las redes mutualistas**.
+- **Olesen, J. M., Bascompte, J., Dupont, Y. L., & Jordano, P. (2007).** The modularity of pollination networks. *PNAS, 104*(50), 19891–19896. — **Modularidad en redes de polinización** (lectura ecológica de $Q_B$).
+
+## Software de apoyo
+
+- **Csárdi, G., & Nepusz, T. (2006).** The igraph software package for complex network research. *InterJournal, Complex Systems*, 1695. — El paquete **`igraph`**, útil para las centralidades estándar sobre el grafo bipartito.
+- **Oksanen, J., et al.** *vegan: Community Ecology Package* (paquete de R). — Provee `nestednodf`, el motor que `bipartite` usa por debajo para el NODF.
+

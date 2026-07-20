@@ -1,77 +1,77 @@
 ---
-title: "Sesión 1: Roadmap del curso"
+title: "Introducción"
 editor: source
 ---
-
-
-## Objetivos de la sesión 1
-
-- Presentar una **propuesta de temario** (roadmap) para el estudio de *redes de interacción en Ecología* con el enfoque de la Teoría de Grafos.
-- Motivar **por qué** el lenguaje de grafos bipartitos es natural en redes de interacción ecológicas.
-- Delinear **qué haremos** en las siguientes sesiones: definiciones, cálculo computacional, interpretación y casos reales.
-- Alinear expectativas sobre **productos entregables** y prácticas de reproducibilidad.
-
-## Objetivos de la parte de Teoría de Grafos
-
-Al finalizar esta parte del seminario, buscaremos que el grupo pueda:
-
-1.  **Definir matemáticamente** métricas estándar en grafos bipartitos usados en ecología.
-2.  **Calcular las métricas computacionalmente en R** (paquete `bipartite`), con ejemplos ilustrativos, casos extremos y redes sintéticas.
-3.  **Interpretarlas en contexto matemático** (qué cuantifican, qué no cuantifican, y qué supuestos implican).
-4.  **Conectar** las métricas con **redes reales** (bases de datos abiertas y datos proporcionados), y con preguntas ecológicas concretas.
 
 ## ¿Por qué grafos bipartitos en ecología de interacciones?
 
 Muchos sistemas de interacción admiten una partición natural en dos tipos de entidades:
 
-- plantas $\leftrightarrow$ polinizadores,
-- plantas $\leftrightarrow$ dispersores,
-- hospederos $\leftrightarrow$ parásitos,
-- plantas $\leftrightarrow$ herbívoros, etc.
-
-La estructura bipartita permite: 
-
-- Representar el sistema combinatoriamente y/o como una **matriz de incidencia** (binaria o ponderada). 
-- Cuantificar **patrones estructurales** (especialización, anidamiento, modularidad). 
-- Evaluar **robustez** ante perturbaciones y cambios (tiempo/espacio).
-
-## Ejemplo: esquema de un grafo bipartito
-
 ```{tikz}
-%| fig-cap: "Esquema visual de interacciones bipartitas."
 %| echo: false
+%| fig-align: left
+%| out-width: "95%"
 \usetikzlibrary{positioning,arrows,fit,backgrounds,arrows.meta}
-\begin{tikzpicture}[>=Latex, node distance=0.9cm]
 \tikzset{
-  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  base/.style={circle, draw, thick, minimum size=5.5mm, inner sep=0pt, font=\small},
   planta/.style={base, fill=green!30},
   animal/.style={base, fill=brown!40},
   lab/.style={font=\small\bfseries}
 }
-\node[lab] at (-2.4,2.2) {Plantas};
-\node[lab] at ( 2.4,2.2) {Animales};
+\begin{tikzpicture}[>=Latex]
 
-\node[planta] (p1) at (-2, 1.4) {$p_1$};
-\node[planta] (p2) at (-2, 0.6) {$p_2$};
-\node[planta] (p3) at (-2,-0.2) {$p_3$};
-\node[planta] (p4) at (-2,-1.0) {$p_4$};
+  % --- Lado Izquierdo: Lista de ejemplos ---
+  \begin{scope}
+    \node[align=left, right] at (0, 0) {
+      \textbf{Ejemplos ecológicos:}\\[0.3cm]
+      $\bullet$ plantas -- polinizadores\\[0.15cm]
+      $\bullet$ plantas -- dispersores\\[0.15cm]
+      $\bullet$ hospederos -- parásitos\\[0.15cm]
+      $\bullet$ plantas -- herbívoros, etc.
+    };
+  \end{scope}
 
-\node[animal] (a1) at ( 2, 1.2) {$a_1$};
-\node[animal] (a2) at ( 2, 0.4) {$a_2$};
-\node[animal] (a3) at ( 2,-0.4) {$a_3$};
-\node[animal] (a4) at ( 2,-1.2) {$a_4$};
+  % --- Lado Derecho: Diagrama Bipartito Compacto ---
+  % Aumentamos el xshift a 8.5cm para separar más la gráfica
+  \begin{scope}[xshift=8.5cm, yshift=-0.2cm]
+    \node[lab] at (-1.5, 1.8) {Plantas};
+    \node[lab] at ( 1.5, 1.8) {Animales};
 
-\draw[thick] (p1) -- (a1);
-\draw[thick] (p1) -- (a2);
-\draw[thick] (p2) -- (a2);
-\draw[thick] (p2) -- (a3);
-\draw[thick] (p3) -- (a2);
-\draw[thick] (p4) -- (a4);
+    \node[planta] (p1) at (-1.5, 1.1) {$p_1$};
+    \node[planta] (p2) at (-1.5, 0.4) {$p_2$};
+    \node[planta] (p3) at (-1.5,-0.3) {$p_3$};
+    \node[planta] (p4) at (-1.5,-1.0) {$p_4$};
 
-\node[lab, anchor=west, font=\footnotesize] at (-3.6, -2.2) {Cada arista representa una interaccion observada (o ponderada).};
+    \node[animal] (a1) at ( 1.5, 0.9) {$a_1$};
+    \node[animal] (a2) at ( 1.5, 0.2) {$a_2$};
+    \node[animal] (a3) at ( 1.5,-0.5) {$a_3$};
+    \node[animal] (a4) at ( 1.5,-1.2) {$a_4$};
+
+    \draw[thick] (p1) -- (a1);
+    \draw[thick] (p1) -- (a2);
+    \draw[thick] (p2) -- (a2);
+    \draw[thick] (p2) -- (a3);
+    \draw[thick] (p3) -- (a2);
+    \draw[thick] (p4) -- (a4);
+
+    % Etiqueta inferior
+    % Texto inferior centrado y dividido en dos líneas
+\node[anchor=center, font=\footnotesize] at (0, -2.0) {Cada arista representa una interacción};
+\node[anchor=center, font=\footnotesize] at (0, -2.4) {observada (o ponderada).};
+  \end{scope}
+
 \end{tikzpicture}
 ```
 
+La estructura matemática de grafo bipartito permite: 
+
+- Representar el sistema **combinatoriamente** y/o como una **matriz** (binaria o ponderada). 
+- Medir **importancia de elementos locales** en la red (centralidad, cercanía, intermediación).
+- Cuantificar **patrones estructurales** de la red (anidamiento, especialización, modularidad). 
+- Evaluar **robustez** ante perturbaciones y cambios (tiempo/espacio).
+
+
+<!--
 ## Ejemplo: matriz bipartita
 
 Una red bipartita puede representarse por una matriz $B\in\mathbb{R}_{\ge 0}^{p\times q}$:
@@ -90,34 +90,70 @@ p_2& 0   & 1   & 1   & 0\\
 p_3& 0   & 1   & 0   & 0\\
 p_4& 0   & 0   & 0   & 1
 \end{array}$$
+-->
 
-## Propuesta de temario (roadmap)
+## Roadmap del curso
 
-1.  **Fundamentos y datos**: redes bipartitas, matrices de incidencia, datos binarios/ponderados.
-2.  **Métricas locales (por nodo/especie)**: grado/fuerza, dependencia, índices de especialización y roles.
-3.  **Métricas globales (por red)**: conectancia, diversidad de interacciones, anidamiento, modularidad y estructuras mesoscópicas.
+En este seminario se pretende estudiar:
+
+1.  **Fundamentos de la Teoría de grafos**: redes bipartitas, matrices de interacción, datos binarios/ponderados.
+2.  **Métricas locales (por nodo/especie)**: grado/fuerza, dependencia, conectancia, diversidad de interacciones.
+3.  **Métricas globales (por red)**: anidamiento, modularidad, especialización.
 4.  **Dinámica temporal y espacial**: redes por temporada/año/sitio, recambio de enlaces, beta-diversidad de interacciones.
 5.  **Robustez y perturbaciones**: extinción primaria/secundaria, curvas de robustez, sensibilidad a especies clave.
-6.  **Casos de estudio + prácticas reproducibles**: datasets abiertos, ejercicios en R, reporte en Quarto y repositorio en GitHub.
+6.  **Casos de estudio + prácticas reproducibles**: datasets abiertos, implementación en R.
 
 ## Herramienta central: `bipartite` en R
 
-Usaremos `bipartite` como marco común de implementación:
+Usaremos `bipartite` como marco común de implementación para:
 
-- Cálculo de métricas a nivel red/especie.
+- Cálculo de métricas a nivel de red y de especie.
 - Visualizaciones (matriz, `plotweb`, módulos).
 - Detección de modularidad en bipartitas.
 - Simulaciones de extinción y coextinción.
 
-### Ejemplo de código y visualización
+En estas notas se conciben ejemplos pequeños que se pueden trabajar a mano, y la implementación del softwware pretende resaltar que **el paquete no es una caja negra**, sino que **confirma** lo expuesto en la teoría.
+
+**Observación:**
+
+`bipartite` es la herramienta central de estas notas. Sin embargo, aparecerán otras
+dos librerías mencionadas:
+
+- **`vegan`**, aunque no se usa directamente: es el *motor* que `bipartite` llama por
+  debajo para algunos índices (por ejemplo, el NODF se calcula internamente con
+  `vegan::nestednodf`). Lo mencionamos solo por transparencia.
+- **`igraph`** aparece de forma puntual en las **centralidades clásicas**
+  (cercanía, intermediación), cuando queremos el valor **estándar de Teoría de
+  Grafos**. Ahí `bipartite` también las calcula, pero las entrega reescaladas a
+  $[0,1]$; usar `igraph` nos deja reproducir exactamente el número calculado a mano.
+
+
+**Sugerencia práctica**: tener instalado R/RStudio y el paquete `bipartite`.
+
+## Ejemplo de código y visualización
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
-library(bipartite)
-data(Safariland)
-networklevel(Safariland, index = c("connectance","nestedness","H2"))
+#| warning: false
+#| message: false
+#| results: hold
 
+# Cargar el paquete central,que contiene las funciones matemáticas
+library(bipartite)
+
+# Cargar un conjunto de datos empíricos (reales) de la librería biprtite
+data(Safariland)
+
+# Calcular las métricas globales 
+metricas <- networklevel(Safariland, 
+                         index = c("connectance", "NODF", "weighted NODF", "H2"))
+
+# Imprimir una línea de texto con los resultados
+cat("Salida:\n")
+print(metricas)
+
+# Calcular la modularidad y la representación gráfica
 m <- computeModules(Safariland)
 plotModuleWeb(m,
               plotModules = TRUE,
@@ -127,40 +163,54 @@ plotModuleWeb(m,
               displayBlabels = TRUE,
               labsize = 0.8)
 ```
-
-> **Salida esperada:** **connectance**: 0.160493827160494 **nestedness**: 19.8578346403513 **H2**: 0.853730724291418
-
-![Red Safariland](Safariland.JPG)
-
 ## Conexión con datos reales (y abiertos)
 
-Trabajaremos con redes provenientes de:
+Con el objetivo de vincular métricas con **preguntas ecológicas** concretas y con decisiones de modelado (binaria vs ponderada), trabajaremos con redes provenientes de:
 
-- **Datasets incluidos en `bipartite`** (para arrancar rápido).
+- **Datos sintéticos controlados** para ilustración de conceptos e interpretaciones generales.
+- **Datasets incluidos en `bipartite`** (por ejemplo, Safariland).
 - **Repositorios abiertos** (por ejemplo, *Web of Life*, *Mangal*).
-- **Datos del grupo** (cuando se proporcionen) y redes sintéticas controladas.
+- **Datos del grupo** (cuando se proporcionen).
 
-Objetivo: vincular métricas con **preguntas ecológicas** concretas y con decisiones de modelado (binaria vs ponderada).
-
-## Producto entregable: GitHub + Quarto
-
-- notas en entorno web interactivo (definiciones, ejemplos, discusión),
-- código en R (funciones y scripts),
-- datasets (o instrucciones claras para descargarlos),
-- figuras y salidas reproducibles.
-
-**Meta**: que el repositorio funcione como referencia del seminario y como punto de partida para proyectos.
-
+<!--
 ## ¿Qué sigue?
 
 En las próximas sesiones avanzaremos en el siguiente orden:
 
-1.  Notación y construcción de redes bipartitas desde datos.
+1.  Notación y construcción de redes.
 2.  Métricas locales y globales: definiciones, propiedades y ejemplos.
 3.  Implementación en R con `bipartite`: funciones, salidas y visualización.
 4.  Interpretación y comparación; incorporación de dinámica y robustez.
 5.  Casos de estudio con redes reales (y documentación).
 
-**Sugerencia práctica**: tener instalado R/RStudio y el paquete `bipartite` antes de la siguiente sesión.
+-->
+
+## Un idioma común: grafo ↔ ecología
+
+Antes de empezar, fijemos el diccionario que usaremos a lo largo del curso.
+La columna matemática es el objeto formal; la biológica, su lectura habitual
+en una red de interacción.
+
+| Objeto matemático | Lectura ecológica |
+|---|---|
+| Vértice / nodo | Especie (o grupo funcional) |
+| Arista / enlace | Interacción observada entre dos especies |
+| Peso de la arista | Frecuencia, número de visitas, biomasa |
+| Grado de un vértice | Número de socios (parejas de interacción) |
+| Partición $V_1,V_2$ | Los dos gremios (por ejemplo plantas / polinizadores) |
+| Componente conexa | Grupo de especies aisladas del resto de la red |
+| Camino más corto | Cadena mínima de interacciones que conecta dos especies |
+
+Cada concepto se define con precisión en su momento; esta tabla es solo una guía inicial para tomar intuición al ir introduciendo cada término.
+
+::: {.callout-tip title="🍃 Nota ecológica sobre lo que este curso permite responder"}
+| Herramienta que veremos | Pregunta ecológica que ayuda a responder |
+|---|---|
+| Representar la comunidad como grafo y como matriz $B$ | ¿Cómo paso de mis observaciones de campo a un objeto que puedo medir? |
+| Métricas locales (por especie) | ¿Qué especies son más importantes, y en qué sentido? |
+| Métricas globales (por red) | ¿Cómo está organizada la comunidad en su conjunto? |
+| Robustez y perturbaciones | ¿Qué le pasa a la red si una especie desaparece? |
+
+:::
 
 

@@ -1,15 +1,18 @@
 ---
-title: "Sesión 3: Métricas y análisis de redes: Centralidad"
+title: "Métricas locales y análisis de redes: grado, cercanía, intermediación"
 editor: source
 engine: knitr
 ---
 
+<!-- 
 ## Objetivos
 
 1. Entender qué significa "ser importante" en una red y por qué existen múltiples centralidades.
 2. Definir y calcular las centralidades: $C_D$ (grado), $C_C$ (cercanía), $C_B$ (intermediación), y centralidad de vector propio.
 3. Interpretar cada métrica en redes ecológicas de interacción (planta--polinizador, hospedero--parásito, tróficas).
 4. Identificar fortalezas, limitaciones y cuándo conviene usar cada medida.
+
+-->
 
 <!-- 
 ## Temas
@@ -19,12 +22,6 @@ engine: knitr
 3. **Ejemplos**: cálculo e interpretación ecológica.
 4. **Ejercicios**: problemas para resolver.
 
-::: {.callout-note title="Subtemas"}
-1. Centralidad de grado (*Degree centrality*).
-2. Centralidad de cercanía (*Closeness centrality*).
-3. Centralidad de intermediación (*Betweenness centrality*).
-4. Centralidad de vector propio (*Eigenvector centrality*).
-:::
 
 ## Motivación ecológica: "especies importantes"
 
@@ -37,134 +34,155 @@ En ecología de redes solemos preguntarnos:
 
 > **Nota:** La "importancia" depende del mecanismo que nos interesa (contactos directos, accesibilidad global, rol de puente, influencia recursiva, etc.).
 
----
 
-# 1. Elementos previos
 -->
 
-## Recordatorio: grafo simple y notación
+## Medidas locales
+Se analizan a continuación algunas medidas locales de red que estudian las características de un nodo:
 
-Consideremos un **Grafo simple (no dirigido)** esto es $G=(V,E)$, donde:
+- Centralidad de grado.
+- Centralidad de cercanía.
+- Centralidad de intermediación.
 
-- $V$ es el conjunto de vértices (nodos).
-- $E \subseteq \{\{u,v\}: u,v\in V,\ u\neq v\}$ es el conjunto de aristas.
-
-
-> **Definición: Vecindad**
->
-> Se define **una vecindad de $v$:** $N(v)=\{u\in V: \{u,v\}\in E\}$.
-
-> **Definición: Grado**: $\deg(v)=|N(v)|$.
-
-::: {.callout-tip title="Redes de interacción ecológica:"}
-* Planta--polinizador (bipartita, no dirigida por simplicidad).
-* Hospedero--parásito (bipartita).
-* Red trófica (naturalmente dirigida; veremos la versión no dirigida como aproximación).
-
-:::
-
-## Distancias y caminos más cortos
-
-> **Definición: Camino**
->
-> Un **camino** es una sucesión de vértices $v_0,v_1,\dots,v_k$ tal que $\{v_{i-1},v_i\}\in E$.
-
-> **Definición: Distancia geodésica**
->
-> La **distancia geodésica (o distancia de grafo)**:
-$$
-d(u,v)=\min\{k: \text{existe un camino de longitud }k\text{ entre }u\text{ y }v\}.
-$$
-
-::: {.callout-note title="Conectividad"}
-* Un grafo es **conexo** si para todo $u\neq v$ existe un camino entre ellos.
-
-:::
-
-## Caminos más cortos: contar geodésicas
-
-En varias métricas necesitamos contar **cuántos** caminos más cortos hay.
-
-* Sea $\sigma_{st}$ el número de caminos más cortos (geodésicos) entre $s$ y $t$.
-* Sea $\sigma_{st}(v)$ el número de esos caminos que pasan por $v$ (como vértice *interno*).
-
-::: {.callout-important title="Intuición"}
-Si una especie $v$ está "en medio" de muchos caminos más cortos entre pares de especies, entonces puede actuar como **puente** o **cuello de botella**.
-:::
-
-## Representación matricial
-
-Sea $|V|=n$ y vértices $1,\dots,n$.
-
-* **Matriz de adyacencia** $A\in\{0,1\}^{n\times n}$: $A_{ij}=1$ si $\{i,j\}\in E$, y 0 en otro caso.
-* **Matriz de grados** $D$: diagonal con $D_{ii}=\deg(i)$.
-
-<!-- 
-> **Vector propio (eigenvector)**: aparece al resolver $Ax=\lambda x$.
-
----
--->
-
-
-
-# Tipos de centralidad: 
+Estas medidas son **locales** pues asignan un valor a cada especie. Las medidas **globales** asignan un valor a la red completa.
 
 ## Qué mide una "centralidad"
 
 Una **centralidad** es una función que asigna a cada nodo $v$ un número real (su "importancia"):
 $$
-\text{centralidad: } V\to \mathbb{R}_{\ge 0},\qquad v\mapsto C(v).
+C: V\to \mathbb{R}_{\ge 0},\qquad v\mapsto C(v).
 $$
-**No hay una sola "mejor"**: cada definición formaliza un criterio distinto.
+En estas notas analizaremos distintas centralidades. ¿En qué difieren estas métricas de centralidad?:
 
-::: {.callout-note title="En redes ecológicas"}
+* La **centralidad de grado** mira solo socios directos.
+* La **centralidad de cercanía** usa sumas de distancias al resto de la red.
+* La **centralidad de intermediación** cuenta cuántas geodésicas pasan por un nodo.
+* Estas ideas reaparecen al distinguir entre una red densa, anidada o modular.
+
+**No hay una centralidad "mejor"**, cada definición formaliza un criterio distinto.
+
+::: {.callout-tip title="En redes ecológicas"}
 Distintas centralidades pueden sugerir distintos tipos de **especies clave**:
+
 * generalistas (muchas interacciones),
+
 * conectores entre grupos,
-* especies "cercanas" a todas (difusión rápida),
-* especies influyentes por estar conectadas a otras influyentes.
+
+* especies "cercanas" a todas.
 
 :::
 
 ## Centralidad de grado (Degree centrality)
 
-**Definición** (no ponderado):
+::: {.callout-note title="Definición"}
+En una red no ponderada, se define la **centralidad de grado** del nodo $v$ como:
+
 $$
 C_D(v)=\deg(v).
 $$
 
-**Normalización frecuente** (para comparar redes de distinto tamaño, $|V|=n$):
+:::
+
+
+**Normalización frecuente** (para comparar redes de distinto tamaño, pero con el mismo orden $|V|=n$):
 $$
 C_D^{\mathrm{norm}}(v)=\frac{\deg(v)}{n-1}\in[0,1].
 $$
 
-::: {.callout-tip title="Interpretación"}
-En una red planta--polinizador, $C_D$ mide cuántas especies del otro gremio interactúan con $v$.
-* Planta con alto grado: polinizada por muchas especies.
-* Polinizador con alto grado: visita muchas plantas (generalista).
+::: {.callout-tip title="Normalización en redes bipartitas"}
+
+La normalización $\deg(v)/(n-1)$ no se aplica en una red bipartita. En el caso
+**bipartito**, como el caso planta-polinizador, una planta interactúa como máximo con las $q$ especies del otro gremio (y un animal con a lo más $p$ plantas), no con los $n-1$ vértices
+restantes. Por eso se normaliza contra el tamaño del **gremio opuesto**:
+$$
+C_D^{\text{norm}}(p_i)=\frac{\deg(p_i)}{q}, \qquad
+C_D^{\text{norm}}(a_j)=\frac{\deg(a_j)}{p}.
+$$
+Así ambos gremios quedan en $[0,1]$ y son comparables entre sí.
+
 :::
 
-### Nota: redes ponderadas (fuerza)
-
-Si las aristas tienen pesos $w_{uv}\ge 0$ (frecuencia, biomasa, visitas), se usa la **fuerza**:
+**En redes ponderadas:** Si las aristas tienen pesos $w_{uv}\ge 0$ (frecuencia, visitas, etc.), se usan los pesos (o **fuerza**),
 $$
-s(v)=\sum_{u\sim v} w_{uv}.
+s(v)=\sum_{u\sim v} w_{u\in N(v)}.
 $$
 
 **Observación:**
-* $\deg(v)$ cuenta *diversidad de socios*.
+
+* $\deg(v)$ mide la *diversidad de socios (vecinos)*.
+
 * $s(v)$ mide *intensidad total* (puede estar dominada por pocas interacciones muy fuertes).
 
-### Ejemplo 1: grado en una red planta--polinizador
 
-Considerar la red bipartita (no ponderada) con plantas $\{p_1,p_2,p_3,p_4\}$ y polinizadores $\{a_1,a_2,a_3\}$.
+::: {.callout-tip title="Interpretación del grado en redes ecológicas"}
 
-:::: {.columns}
+En una red bipartita no ponderada, $C_D(v)$ mide cuántas especies del otro gremio interactúan con $v$. Por ejemplo en una red planta--polinizador,
 
-::: {.column width="55%"}
+* Planta con alto grado, indica polinizada por muchas especies.
+
+* Polinizador con alto grado, indica visita muchas plantas (generalista).
+
+:::
+
+
+Esta misma cantidad reaparecerá como insumo del anidamiento
+(NODF) y de la modularidad.
+
+::: {.callout-warning title="Ejemplo"}
+
+Consideremos el siguiente grafo:
+
 ```{tikz}
 %| echo: false
 %| fig-align: center
+%| out-width: "80%"
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  nodo/.style={base, fill=blue!15}
+}
+\begin{tikzpicture}[>=Latex]
+  % --- Grafo ---
+  \begin{scope}
+    \node[nodo] (1) at (0,0) {1};
+    \node[nodo] (2) at (-1.3, 0.9) {2};
+    \node[nodo] (3) at (-1.3,-0.9) {3};
+    \node[nodo] (4) at (1.4, 0) {4};
+    \node[nodo] (5) at (2.8, 0.6) {5};
+    \draw[thick] (1)--(2);
+    \draw[thick] (1)--(3);
+    \draw[thick] (1)--(4);
+    \draw[thick] (4)--(5);
+  \end{scope}
+  % --- Grados ---
+  \begin{scope}[xshift=4.3cm, yshift=0.1cm]
+    \node[align=left, right] at (0,0) {
+      \textbf{Grados de los vértices:}\\[0.2cm]
+      $\deg(1)=3$ \quad (vecinos: $2,3,4$)\\[0.1cm]
+      $\deg(2)=1$ \quad (vecino: $1$)\\[0.1cm]
+      $\deg(3)=1$ \quad (vecino: $1$)\\[0.1cm]
+      $\deg(4)=2$ \quad (vecinos: $1,5$)\\[0.1cm]
+      $\deg(5)=1$ \quad (vecino: $4$)
+    };
+  \end{scope}
+\end{tikzpicture}
+```
+
+Observemos que $C_D(1)=3$ de modo que $1$ es el vértice "más central" por grado, mientras que los vértices $2,3,5$ son hojas ($\deg=1$). 
+
+Como el grado solo mira la vecindad inmediata, de acuerdo a esta métrica el nodo $1$ es "popular" porque se conecta con muchos vecinos directamente.
+
+:::
+
+
+## Ejemplo: centralidad de grado en una red planta--polinizador
+
+Consideremos la red bipartita (no ponderada) con plantas $\{p_1,p_2,p_3,p_4\}$ y polinizadores $\{a_1,a_2,a_3\}$.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| out-width: "85%"
 \usetikzlibrary{arrows.meta}
 \tikzset{
   base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
@@ -174,16 +192,206 @@ Considerar la red bipartita (no ponderada) con plantas $\{p_1,p_2,p_3,p_4\}$ y p
   edge/.style={thick}
 }
 \begin{tikzpicture}[>=Latex, node distance=0.8cm]
-  % Plantas
-  \node[planta] (p1) at (-2, 1.2) {$p_1$};
-  \node[planta] (p2) at (-2, 0.4) {$p_2$};
-  \node[planta] (p3) at (-2,-0.4) {$p_3$};
-  \node[planta] (p4) at (-2,-1.2) {$p_4$};
-  % Animales
-  \node[animal] (a1) at ( 2, 0.8) {$a_1$};
-  \node[animal] (a2) at ( 2, 0.0) {$a_2$};
-  \node[animal] (a3) at ( 2,-0.8) {$a_3$};
-  % Edges
+  % --- Lado Izquierdo: El Grafo Bipartito ---
+  \begin{scope}
+    % Plantas
+    \node[planta] (p1) at (-2, 1.2) {$p_1$};
+    \node[planta] (p2) at (-2, 0.4) {$p_2$};
+    \node[planta] (p3) at (-2,-0.4) {$p_3$};
+    \node[planta] (p4) at (-2,-1.2) {$p_4$};
+    
+    % Animales
+    \node[animal] (a1) at ( 2, 0.8) {$a_1$};
+    \node[animal] (a2) at ( 2, 0.0) {$a_2$};
+    \node[animal] (a3) at ( 2,-0.8) {$a_3$};
+    
+    % Edges
+    \draw[edge] (p1)--(a1);
+    \draw[edge] (p1)--(a2);
+    \draw[edge] (p2)--(a2);
+    \draw[edge] (p2)--(a3);
+    \draw[edge] (p3)--(a2);
+    \draw[edge] (p4)--(a3);
+  \end{scope}
+
+  % --- Lado Derecho: Cálculos de grados ---
+  \begin{scope}[xshift=3.5cm, yshift=0cm]
+    \node[align=left, right] at (0,0) {
+      \textbf{Cálculo de grados:}\\[0.2cm]
+      $\bullet$ $\deg(p_1)=2$ (vecinos: $a_1,a_2$).\\[0.1cm]
+      $\bullet$ $\deg(p_2)=2$ (vecinos: $a_2,a_3$).\\[0.1cm]
+      $\bullet$ $\deg(p_3)=1$ (vecino: $a_2$).\\[0.1cm]
+      $\bullet$ $\deg(p_4)=1$ (vecino: $a_3$).\\[0.1cm]
+      $\bullet$ $\deg(a_1)=1$
+(vecino: $p_1$).\\[0.1cm]
+      $\bullet$ $\deg(a_2)=3$
+(vecinos: $p_1, p_2,p_3$).\\[0.1cm]
+      $\bullet$ $\deg(a_3)=2$
+(vecinos: $p_2,p_4$).\\[0.1cm]
+    };
+  \end{scope}
+\end{tikzpicture}
+```
+
+de modo que,
+$$
+C_D(a_2)=3,\qquad C_D(p_3)=1 = C_D(p_4).
+$$
+
+
+::: {.callout-tip title="Interpretación ecológica"}
+
+Estas métricas indican que $a_2$ es el polinizador **más generalista** (se conecta con 3 plantas). Por otro lado, las plantas $p_3$ y $p_4$ son más vulnerables a la pérdida de sus socios directos.
+
+:::
+
+## En R con `bipartite`: grado
+
+```{r}
+#| message: false
+#| warning: false
+
+library(bipartite)
+
+# La misma red del ejemplo (plantas en renglones, polinizadores en columnas)
+web <- matrix(c(
+  1, 1, 0,
+  0, 1, 1,
+  0, 1, 0,
+  0, 0, 1
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"),
+                   c("a1","a2","a3")))
+
+# Se calcula el grado como el total marginal: 
+# suma de renglón para plantas
+rowSums(web)   # p1=2, p2=2, p3=1, p4=1
+
+# suma de columna para polinizadores
+colSums(web)   # a1=1, a2=3, a3=2
+
+# Se calcula el grado ahora a nivel de especie usando bipartite:
+specieslevel(web, index = "degree")
+```
+
+Podemos ver que el resultado coincide **exactamente** con los grados calculados a mano.
+
+
+## Centralidad de cercanía (Closeness centrality)
+
+::: {.callout-note title="Definición"}
+En un grafo conexo, definimos la **centralidad de cercanía** del vértice $v$ como:
+
+$$
+C_C(v)=\frac{1}{\sum_{u\neq v} d(v,u)}.
+$$
+
+:::
+
+**Normalización común**:
+
+$$
+C_C^{\mathrm{norm}}(v)=\frac{n-1}{\sum_{u\neq v} d(v,u)}\in(0,1].
+$$
+
+**Si el grafo no es conexo** algunas distancias son $\infty$, y $C_C$ no está definida. En este caso usamos como alternativa la **cercanía armónica**:
+
+$$
+C_{\mathrm{harm}}(v)=\sum_{u\neq v}\frac{1}{d(v,u)},
+$$
+
+donde por convención $1/\infty=0$.
+
+**Observación**: 
+
+- Un valor mas grande de $C_C^{\mathrm{norm}}(v)$ indica un nodo que está mas "cerca" de todos los demás.
+
+- Para $C_{\mathrm{harm}}$ los nodos lejanos contribuyen poco ($1/d$ pequeño), de modo que la medida es robusta cuando el grafo no es conexo.
+
+::: {.callout-tip title="En redes de interacción"}
+En ecología, si una perturbación (como una enfermedad) se propaga a través de interacciones, un nodo con alta cercanía puede afectar rápidamente a muchos otros vía efectos indirectos.
+:::
+
+::: {.callout-warning title="Ejemplo"}
+Consideremos el grafo conexo "estrella" $K_{1,3}$: un nodo central conectado a tres hojas.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| out-width: "90%"
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  nodo/.style={base, fill=blue!15}
+}
+\begin{tikzpicture}[>=Latex]
+  % --- Lado Izquierdo: Grafo (Estrella) ---
+  \begin{scope}
+    \node[nodo] (c) at (0,0) {c};
+    \node[nodo] (l1) at (-1.3,0.9) {1};
+    \node[nodo] (l2) at (-1.3,-0.9) {2};
+    \node[nodo] (l3) at (1.5,0) {3};
+    
+    \draw[thick] (c)--(l1);
+    \draw[thick] (c)--(l2);
+    \draw[thick] (c)--(l3);
+  \end{scope}
+
+  % --- Lado Derecho: Texto de distancias ---
+  \begin{scope}[xshift=2.8cm]
+    \node[align=left, right] at (0,0) {
+      \textbf{Distancias:}\\[0.3cm]
+      $\bullet$ Desde el centro: $d(c,1)=d(c,2)=d(c,3)=1$.\\[0.2cm]
+      $\bullet$ Desde la hoja 1:\\[0.1cm]
+      \quad $d(1,c)=1$, $d(1,2)=2$, $d(1,3)=2$.\\[0.2cm]
+      $\bullet$ Desde la hoja 2:\\[0.1cm]
+      \quad $d(2,c)=1$, $d(2,1)=2$, $d(2,3)=2$.\\[0.2cm]
+      $\bullet$ Desde la hoja 3:\\[0.1cm]
+      \quad $d(3,c)=1$, $d(3,2)=2$, $d(3,1)=2$.
+
+    };
+  \end{scope}
+\end{tikzpicture}
+
+```
+
+**Cálculo normalizado ($n=4$):**
+
+$$
+C_C^{\mathrm{norm}}(c)=\frac{3}{1+1+1}=1,\qquad
+C_C^{\mathrm{norm}}(1)=\frac{3}{1+2+2}=\frac{3}{5}=0.6.
+$$
+lo que nos dice que el centro $c$ es el punto desde el cual se llega más rápido al resto. 
+:::
+
+
+## Ejemplo: Centralidad de cercanía en una red planta--polinizador
+
+Retomamos la red bipartita de la sección anterior: plantas $\{p_1,p_2,p_3,p_4\}$
+y polinizadores $\{a_1,a_2,a_3\}$.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| out-width: "55%"
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick},
+  lab/.style={font=\small\bfseries}
+}
+\begin{tikzpicture}[>=Latex, node distance=0.8cm, scale=0.9]
+  \node[lab] at (-2.2,1.9) {Plantas};
+  \node[lab] at ( 2.2,1.9) {Polinizadores};
+  \node[planta] (p1) at (-2, 1.1) {$p_1$};
+  \node[planta] (p2) at (-2, 0.3) {$p_2$};
+  \node[planta] (p3) at (-2,-0.5) {$p_3$};
+  \node[planta] (p4) at (-2,-1.3) {$p_4$};
+  \node[animal] (a1) at ( 2, 0.7) {$a_1$};
+  \node[animal] (a2) at ( 2,-0.1) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.9) {$a_3$};
   \draw[edge] (p1)--(a1);
   \draw[edge] (p1)--(a2);
   \draw[edge] (p2)--(a2);
@@ -192,178 +400,166 @@ Considerar la red bipartita (no ponderada) con plantas $\{p_1,p_2,p_3,p_4\}$ y p
   \draw[edge] (p4)--(a3);
 \end{tikzpicture}
 ```
+
+Observemos que **el grafo es conexo** pues existe un camino entre
+cualquier par de especies, así que todas las distancias son finitas y la cercanía
+está bien definida, de modo que no hace falta recurrir a la versión armónica para los cálculos.
+
+Calculemos la tabla de distancias geodésicas sobre el grafo bipartito completo. Por ejemplo, $p_1$ y $p_4$ no comparten polinizador, y su (único) camino más corto es
+$$
+p_1 - a_2 - p_2 - a_3 - p_4, \qquad \Longrightarrow \qquad d(p_1,p_4)=4.
+$$
+
+La tabla de distancias geodésicas (donde se ha añadido en la última columna la suma del renglón) es:
+$$
+\begin{array}{c|ccccccc|c}
+ d & p_1 & p_2 & p_3 & p_4 & a_1 & a_2 & a_3 & \textstyle\sum_{u} d(v,u)\\ \hline
+p_1 & 0 & 2 & 2 & 4 & 1 & 1 & 3 & 13\\
+p_2 & 2 & 0 & 2 & 2 & 3 & 1 & 1 & 11\\
+p_3 & 2 & 2 & 0 & 4 & 3 & 1 & 3 & 15\\
+p_4 & 4 & 2 & 4 & 0 & 5 & 3 & 1 & 19\\
+a_1 & 1 & 3 & 3 & 5 & 0 & 2 & 4 & 18\\
+a_2 & 1 & 1 & 1 & 3 & 2 & 0 & 2 & 10\\
+a_3 & 3 & 1 & 3 & 1 & 4 & 2 & 0 & 14
+\end{array}
+$$
+
+Como cada paso alterna de gremio, las distancias **planta--planta** y
+**animal--animal** son pares, y las **planta--animal**, impares.
+
+Como $n=7$, la cercanía normalizada es
+$$C_C^{\mathrm{norm}}(v)=\dfrac{n-1}{\sum_{u} d(v,u)}=\dfrac{6}{\sum_{u} d(v,u)}:$$
+
+| Especie | $\sum_{u} d(v,u)$ | $C_C^{\mathrm{norm}}$ |
+|:--:|:--:|:--:|
+| $a_2$ | $10$ | $6/10=0.60$ |
+| $p_2$ | $11$ | $6/11\approx 0.55$ |
+| $p_1$ | $13$ | $6/13\approx 0.46$ |
+| $a_3$ | $14$ | $6/14\approx 0.43$ |
+| $p_3$ | $15$ | $6/15=0.40$ |
+| $a_1$ | $18$ | $6/18\approx 0.33$ |
+| $p_4$ | $19$ | $6/19\approx 0.32$ |
+
+::: {.callout-tip title="Interpretación ecológica"}
+El polinizador generalista $a_2$ es la especie **más cercana** a toda la red:
+alcanza al resto en el menor número de pasos, de modo que una perturbación que
+lo afecte (o que se propague desde él) llegaría más rápido al resto del sistema.
+Entre las plantas, $p_2$ es la **más central**, porque es la única que enlaza a los
+dos polinizadores ($a_2$ y $a_3$). En el extremo opuesto, la planta $p_4$ y
+el polinizador $a_1$ son los más **periféricos**: cada uno es un especialista
+unido a un único socio en el borde de la red, y por eso es el más lento en
+alcanzar (o ser alcanzado por) las demás especies.
 :::
 
-::: {.column width="45%"}
-**Cálculo de grados**
+## En R con `bipartite` / `igraph`: cercanía
 
-- $\deg(p_1)=2$ ($a_1,a_2$).
-- $\deg(p_2)=2$ ($a_2,a_3$).
-- $\deg(p_3)=1$ ($a_2$).
-- $\deg(p_4)=1$ ($a_3$).
-- $\deg(a_1)=1$, $\deg(a_2)=3$, $\deg(a_3)=2$.
-:::
+```{r}
+#| message: false
+#| warning: false
 
-::::
+# Retomemos la misma red del ejemplo anterior (plantas en renglones, polinizadores en columnas)
+web <- matrix(c(
+  1, 1, 0,
+  0, 1, 1,
+  0, 1, 0,
+  0, 0, 1
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"),
+                   c("a1","a2","a3")))
 
-::: {.callout-note title="Interpretación"}
-$a_2$ es el polinizador más generalista (se conecta con 3 plantas). $p_3$ y $p_4$ son más vulnerables a la pérdida de su(s) socio(s) directo(s).
-:::
+# bipartite reescala la cercanía a [0,1] (Martín González et al. 2010):
+# el orden coincide con la tabla, pero el valor absoluto no.
+specieslevel(web, index = "closeness")
 
-## Centralidad de cercanía
+# Usamos ahora igraph para reproducir EXACTAMENTE la tabla (como en la definición estándar de Teoría de Grafos):
+library(igraph)
 
-### Centralidad de cercanía (Closeness centrality)
+# Grafo desde la lista de aristas (no depende del nombre de la función de incidencia):
+aristas <- data.frame(
+  from = c("p1","p1","p2","p2","p3","p4"),
+  to   = c("a1","a2","a2","a3","a2","a3")
+)
+g <- graph_from_data_frame(aristas, directed = FALSE)
 
-**Idea:** un nodo es central si está "cerca" de todos los demás.
-
-En un grafo conexo, definimos:
-
-$$
-C_C(v)=\frac{1}{\sum_{u\in V\setminus\{v\}} d(v,u)}.
-$$
-
-**Normalización común**:
-
-$$
-C_C^{\mathrm{norm}}(v)=\frac{n-1}{\sum_{u\neq v} d(v,u)}\in(0,1].
-$$
-
-::: {.callout-tip title="Interpretación (difusión)"}
-Si una perturbación (enfermedad, cambio ambiental) se propaga a través de interacciones, un nodo con alta cercanía puede verse afectado (o afectar) rápidamente a muchos otros vía efectos indirectos.
-:::
-
-### ¿Y si el grafo no es conexo?
-
-Si el grafo tiene componentes desconectadas, algunas distancias son $\infty$, y $C_C$ queda mal definida.
-
-Alternativa: **cercanía armónica**
-
-$$
-C_{\mathrm{harm}}(v)=\sum_{u\neq v}\frac{1}{d(v,u)},
-$$
-
-donde por convención $1/\infty=0$.
-
-**Interpretación**: solo cuentan los nodos alcanzables, penalizando fuertemente distancias grandes.
-
-### Ejemplo 2: cercanía en una red "estrella"
-
-Considerar el grafo estrella $K_{1,3}$: un nodo central conectado a tres hojas.
-
-:::: {.columns}
-
-::: {.column width="45%"}
-```{tikz}
-%| echo: false
-%| fig-align: center
-\usetikzlibrary{arrows.meta}
-\tikzset{
-  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
-  nodo/.style={base, fill=blue!15}
-}
-\begin{tikzpicture}[>=Latex]
-  \node[nodo] (c) at (0,0) {c};
-  \node[nodo] (l1) at (-1.3,0.9) {1};
-  \node[nodo] (l2) at (-1.3,-0.9) {2};
-  \node[nodo] (l3) at (1.5,0) {3};
-  \draw[thick] (c)--(l1);
-  \draw[thick] (c)--(l2);
-  \draw[thick] (c)--(l3);
-\end{tikzpicture}
+# igraph:: explícito porque 'sna' (que carga bipartite) también tiene closeness():
+igraph::closeness(g, normalized = TRUE)    # a2=0.60, p2≈0.545, p1≈0.462, ...
 ```
-:::
 
-::: {.column width="55%"}
+`igraph` devuelve $(n-1)/\sum_u d(v,u)$, que es justo la columna $C_C^{\mathrm{norm}}(v)$ de la tabla. 
 
-**Distancias**
+**Observación:** 
 
-- Desde el centro: $d(c,1)=d(c,2)=d(c,3)=1$.
-- Desde una hoja (por ejemplo, el vértice 1): $d(1,c)=1$, $d(1,2)=2$, $d(1,3)=2$.
+Es importante resaltar que **hay que saber qué normalización aplica cada función** de `R` antes de interpretar el número.
 
-:::
 
-::::
+## Centralidad de intermediación (Betweenness)
 
-**Cálculo (normalizado, $n=4$):**
 
-$$
-C_C^{\mathrm{norm}}(c)=\frac{3}{1+1+1}=1,\qquad
-C_C^{\mathrm{norm}}(1)=\frac{3}{1+2+2}=\frac{3}{5}=0.6.
-$$
-
-::: {.callout-tip title="Interpretación"}
-El centro es el punto desde el cual se llega más rápido al resto: en ecología, un "hub" puede acelerar la propagación de perturbaciones a través de la red.
-:::
-
-## Centralidad de intermediación
-
-### Centralidad de intermediación (Betweenness)
-
-**Idea:** un nodo es central si aparece frecuentemente en caminos más cortos entre otros.
-
-Sea $\sigma_{st}$ el número de caminos más cortos entre $s$ y $t$, y $\sigma_{st}(v)$ los que pasan por $v$. En grafos no dirigidos es natural sumar sobre pares no ordenados:
+::: {.callout-note title="Definición"}
+Sea $\sigma_{st}$ el número de caminos más cortos entre $s$ y $t$, y $\sigma_{st}(v)$ los que pasan por $v$ como vértice interno. En grafos no dirigidos es natural sumar sobre pares no ordenados:
 
 $$
 C_B(v)=\sum_{\substack{s<t\\ s\neq v,\ t\neq v}} \frac{\sigma_{st}(v)}{\sigma_{st}}.
 $$
+:::
 
 **Normalización común** (no dirigida): dividir por $(n-1)(n-2)/2$.
 
 ::: {.callout-tip title='Interpretación ("conectores")'}
+Un nodo es "central" si aparece frecuentemente en caminos más cortos entre otros.
+
 Una especie con alta intermediación puede conectar subcomunidades (módulos) o rutas de flujo (por ejemplo: movimiento de polen, transmisión de parásitos).
+
+En una red **mutualista**, una planta con muchas visitas (alto grado) puede tener **baja intermediación** si está dentro de un módulo denso; una especie "rara" con pocas interacciones puede conectar módulos (alta intermediación).
+
 :::
 
-### Ejemplo 3: intermediación en una "corbata de moño"
+::: {.callout-warning title="Ejemplo"}
 
-Grafo con dos triángulos que comparten el nodo 3:
+Grafo de una "corbata de moño" con dos triángulos que comparten el nodo 3:
 
-:::: {.columns}
-
-::: {.column width="45%"}
 ```{tikz}
 %| echo: false
 %| fig-align: center
+%| out-width: "85%"
 \usetikzlibrary{arrows.meta}
 \tikzset{
   base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
   nodo/.style={base, fill=blue!15}
 }
 \begin{tikzpicture}[>=Latex, scale=1.0]
-  \node[nodo] (1) at (-1.4, 0.8) {1};
-  \node[nodo] (2) at (-1.4,-0.8) {2};
-  \node[nodo] (3) at ( 0.0, 0.0) {3};
-  \node[nodo] (4) at ( 1.4, 0.8) {4};
-  \node[nodo] (5) at ( 1.4,-0.8) {5};
-  % Triángulo izquierdo
-  \draw[thick] (1)--(2);
-  \draw[thick] (1)--(3);
-  \draw[thick] (2)--(3);
-  % Triángulo derecho
-  \draw[thick] (4)--(5);
-  \draw[thick] (4)--(3);
-  \draw[thick] (5)--(3);
+  % --- Lado Izquierdo: Grafo (Corbata de moño) ---
+  \begin{scope}
+    \node[nodo] (1) at (-1.4, 0.8) {1};
+    \node[nodo] (2) at (-1.4,-0.8) {2};
+    \node[nodo] (3) at ( 0.0, 0.0) {3};
+    \node[nodo] (4) at ( 1.4, 0.8) {4};
+    \node[nodo] (5) at ( 1.4,-0.8) {5};
+    % Triángulo izquierdo
+    \draw[thick] (1)--(2);
+    \draw[thick] (1)--(3);
+    \draw[thick] (2)--(3);
+    % Triángulo derecho
+    \draw[thick] (4)--(5);
+    \draw[thick] (4)--(3);
+    \draw[thick] (5)--(3);
+  \end{scope}
+
+  % --- Lado Derecho: Texto y Fórmulas ---
+  \begin{scope}[xshift=2.8cm, yshift=0.2cm]
+    \node[align=left, right] at (0,0) {
+      \textbf{Paso 1: pares relevantes}\\[0.2cm]
+      Para $C_B(3)$, buscamos pares $(s,t)$ con $s,t\neq 3$:\\[0.15cm]
+      \quad $\{1,2,4,5\} \Rightarrow \binom{4}{2}=6 \text{ pares.}$\\[0.4cm]
+      \textbf{Paso 2: caminos más cortos}\\[0.2cm]
+      $\bullet$ Entre 1 y 2: camino directo 1--2 (no pasa por 3).\\[0.15cm]
+      $\bullet$ Entre 4 y 5: camino directo 4--5 (no pasa por 3).\\[0.15cm]
+      $\bullet$ Entre $\{1,2\}$ y $\{4,5\}$: el camino más corto siempre\\[0.05cm]
+      \quad pasa por 3.
+    };
+  \end{scope}
 \end{tikzpicture}
 ```
-:::
-
-:::{.column width="50%"}
-
-**Paso 1: pares relevantes**
-
-Para $C_B(3)$, miramos pares $(s,t)$ con $s,t\neq 3$:
-
-$$
-\{1,2,4,5\}\Rightarrow \binom{4}{2}=6\text{ pares.}
-$$
-
-**Paso 2: caminos más cortos**
-
-- Entre $1$ y $2$: camino directo $1-2$ (no pasa por 3).
-- Entre $4$ y $5$: camino directo $4-5$ (no pasa por 3).
-- Entre $\{1,2\}$ y $\{4,5\}$: el camino más corto siempre pasa por 3.
-:::
-
-::::
 
 **Cálculo** (contando pares no ordenados):
 
@@ -373,9 +569,101 @@ $$
 
 Para los nodos $1,2,4,5$, la intermediación es 0 (no están "entre" otros pares).
 
-::: {.callout-tip title="Interpretación ecológica"}
-El nodo 3 es un **conector** entre dos "módulos"; su pérdida puede fragmentar la red, aun si otros nodos tienen grados similares dentro de su módulo.
+Lo anterior indica que el nodo 3 es un **conector** entre dos **módulos**; su pérdida puede **fragmentar la red**, aun si otros nodos tienen grados similares dentro de su módulo.
+
 :::
+
+
+## Ejemplo: Centralidad de intermediación en una red planta--polinizador
+
+Usamos la misma red planta--polinizador.
+
+```{tikz}
+%| echo: false
+%| fig-align: center
+%| out-width: "55%"
+\usetikzlibrary{arrows.meta}
+\tikzset{
+  base/.style={circle, draw, thick, minimum size=7mm, inner sep=0pt},
+  planta/.style={base, fill=green!30},
+  animal/.style={base, fill=brown!40},
+  edge/.style={thick},
+  lab/.style={font=\small\bfseries}
+}
+\begin{tikzpicture}[>=Latex, node distance=0.8cm, scale=0.9]
+  \node[lab] at (-2.2,1.9) {Plantas};
+  \node[lab] at ( 2.2,1.9) {Polinizadores};
+  \node[planta] (p1) at (-2, 1.1) {$p_1$};
+  \node[planta] (p2) at (-2, 0.3) {$p_2$};
+  \node[planta] (p3) at (-2,-0.5) {$p_3$};
+  \node[planta] (p4) at (-2,-1.3) {$p_4$};
+  \node[animal] (a1) at ( 2, 0.7) {$a_1$};
+  \node[animal] (a2) at ( 2,-0.1) {$a_2$};
+  \node[animal] (a3) at ( 2,-0.9) {$a_3$};
+  \draw[edge] (p1)--(a1);
+  \draw[edge] (p1)--(a2);
+  \draw[edge] (p2)--(a2);
+  \draw[edge] (p2)--(a3);
+  \draw[edge] (p3)--(a2);
+  \draw[edge] (p4)--(a3);
+\end{tikzpicture}
+```
+
+Esta red tiene $n=7$ especies. Para cada especie $v$, la intermediación suma, sobre los
+$\binom{6}{2}=15$ pares de especies restantes, la fracción de caminos más cortos
+que pasan por $v$. <!-- Como esta red es un árbol, -->
+En esta red entre cada par hay un **único**
+camino más corto, así que cada par aporta exactamente $0$ o $1$.
+
+**Cálculo para el polinizador generalista $a_2$.**
+
+*Paso 1 --- pares relevantes.* Los $\binom{6}{2}=15$ pares entre
+$\{p_1,p_2,p_3,p_4,a_1,a_3\}$.
+
+*Paso 2 --- ¿cuáles pasan por $a_2$?* El camino más corto **no** pasa por $a_2$
+solo en $4$ casos: los pares unidos por una arista directa
+---$(p_1,a_1)$, $(p_2,a_3)$, $(p_4,a_3)$--- y el par $(p_2,p_4)$, que se conecta
+a través de $a_3$. En los $15-4=11$ pares restantes, el único camino más corto
+pasa por $a_2$. Por lo tanto
+$$
+C_B(a_2)=11.
+$$
+
+Repitiendo el conteo para las demás especies se obtiene:
+
+| Especie | $C_B(v)$ | $C_B^{\mathrm{norm}}=C_B/15$ |
+|:--:|:--:|:--:|
+| $a_2$ | $11$ | $0.73$ |
+| $p_2$ | $8$  | $0.53$ |
+| $p_1$ | $5$  | $0.33$ |
+| $a_3$ | $5$  | $0.33$ |
+| $p_3$ | $0$  | $0.00$ |
+| $p_4$ | $0$  | $0.00$ |
+| $a_1$ | $0$  | $0.00$ |
+
+(La normalización divide entre $(n-1)(n-2)/2 = 15$.)
+
+::: {.callout-tip title="Interpretación ecológica"}
+El polinizador generalista $a_2$ es, con mucho, el principal **conector** de la
+red: su pérdida fragmentaría casi todas las rutas de flujo (polen, patógenos)
+entre especies. La planta $p_2$ ocupa el segundo lugar porque es la única que
+une a los dos polinizadores, actuando como puente hacia el subgrupo de $a_3$ y
+$p_4$. Las especies $p_1$ y $a_3$ solo son intermediarias como **puerta de
+entrada** obligada a un especialista colgante ---$p_1$ hacia $a_1$, $a_3$ hacia
+$p_4$---. Finalmente, $p_3$, $p_4$ y $a_1$ tienen intermediación $0$: son
+especies de **grado 1**, y un vértice de grado 1 nunca puede ser nodo interno de
+un camino más corto.
+:::
+
+**Observación:**
+
+Comparemos lo anterior con la centralidad de grado: $p_1$ y $p_2$ tienen el **mismo grado**
+($2$), pero $p_2$ supera a $p_1$ tanto en cercanía como en intermediación,
+porque enlaza a los dos polinizadores en vez de a uno solo. 
+
+Este es un ejemplo concreto de por qué "no hay una centralidad mejor": cada una responde una
+pregunta distinta sobre la posición de la especie en la red.
+
 
 <!-- 
 ## Centralidad de vector propio y PageRank
@@ -445,25 +733,83 @@ El centro es más central no solo por su grado, sino porque concentra la "influe
 
 -->
 
-## ¿Cuándo difieren estas métricas?
+<!--
 
-- **Grado** mira solo vecindad inmediata (radio 1).
-- **Cercanía** mira distancias a todos (geometría global).
-- **Intermediación** mira control de rutas cortas (puentes/cuello de botella).
-- **Vector propio** mira influencia recursiva.
+::: {.callout-tip title="Distancias en una red bipartita"}
+Al medir distancias en el grafo bipartito, los caminos **alternan de gremio**
+en cada paso: la distancia entre dos plantas es siempre par (planta–animal–planta…)
+y entre planta y animal, impar. Por eso, la cercanía y la intermediación entre
+especies del *mismo* gremio se transmiten necesariamente a través de especies
+del *otro* gremio, que actúan como intermediarias obligadas. Esto vuelve
+especialmente interpretable la intermediación: un polinizador con alta
+$C_B$ es una vía de conexión difícilmente sustituible entre plantas.
+:::
+-->
 
-::: {.callout-tip title="Ejemplo"}
-En una red mutualista, una planta con muchas visitas (alto grado) puede tener **baja intermediación** si está dentro de un módulo denso; una especie "rara" con pocas interacciones puede conectar módulos (alta intermediación).
+## En R con `bipartite` / `igraph`: intermediación
+
+```{r}
+#| message: false
+#| warning: false
+
+# Retomemos la misma red del ejemplo anterior (plantas en renglones, polinizadores en columnas)
+web <- matrix(c(
+  1, 1, 0,
+  0, 1, 1,
+  0, 1, 0,
+  0, 0, 1
+), nrow = 4, byrow = TRUE,
+   dimnames = list(c("p1","p2","p3","p4"),
+                   c("a1","a2","a3")))
+
+
+# bipartite devuelve la intermediación reescalada a $[0,1]$ (dividida entre el máximo)
+# los valores difieren, pero el ranking es idéntico: a2 = 1 encabeza, los especialistas colgantes = 0
+specieslevel(web, index = "betweenness")
+
+# Usamos ahora igraph para reproducir EXACTAMENTE los valores sin normalizar (como en la definición estándar de Teoría de Grafos):
+library(igraph)
+
+# Grafo desde la lista de aristas (no depende del nombre de la función de incidencia):
+aristas <- data.frame(
+  from = c("p1","p1","p2","p2","p3","p4"),
+  to   = c("a1","a2","a2","a3","a2","a3")
+)
+g <- graph_from_data_frame(aristas, directed = FALSE)
+
+igraph::betweenness(g)   # a2=11, p2=8, p1=5, a3=5, p3=p4=a1=0
+```
+
+`igraph` devuelve intermediación sin normalizar, que es justo la columna $C_B(v)$ de la tabla.
+
+**Observación:** 
+
+Aquí como en el cálculo de cercanía, es importante resaltar que **hay que saber qué normalización aplica cada función** de `R` antes de interpretar el número.
+
+
+## Resumen comparativo (qué captura cada centralidad)
+
+
+| Métrica |  Definición | Pregunta matemática | Lectura ecológica típica |
+|---|---|---|---|
+| Grado $C_D(v)$ | $\deg(v)$  | ¿Cuántos vecinos directos tengo? | Diversidad de socios directos / Generalismo. |
+| Cercanía $C_C(v)$ | Inverso de la distancia total al resto | ¿Qué tan pequeña es mi distancia promedio al resto? | Accesibilidad global; rapidez potencial de propagación de perturbaciones / efectos indirectos. |
+| Intermediación $C_B(v)$ | Fracción de geodésicas que pasan por $v$ | ¿Cuántos caminos más cortos pasan por mí? | Conexión entre grupos / rutas cortas; "puente" funcional; control de flujo entre grupos. |
+<!--| Vector propio | |¿Estoy conectado a nodos conectados? | Pertenencia al núcleo; influencia recursiva; relevancia estructural. |-->
+
+
+::: {.callout-tip title="🍃 ¿Qué especie clave señala cada centralidad?"}
+| Centralidad | ¿Qué tipo de especie clave detecta? |
+|---|---|
+| Grado $C_D$ | La más **generalista**: muchos socios directos |
+| Cercanía $C_C$ | La mejor posicionada para que un efecto se **propague rápido** por toda la red |
+| Intermediación $C_B$ | El **puente** entre grupos: su pérdida fragmenta las rutas de la red |
+
+Cada una responde una pregunta distinta, así que **no hay una "mejor" centralidad**:
+una misma especie puede ser central para una y periférica para otra.
 :::
 
-## Resumen comparativo (qué captura cada una)
 
-| Métrica | Pregunta matemática | Lectura ecológica típica |
-|---|---|---|
-| Grado $C_D$ | ¿Cuántos vecinos directos tengo? | Generalismo / diversidad de socios; exposición directa. |
-| Cercanía $C_C$ | ¿Qué tan pequeña es mi distancia promedio al resto? | Accesibilidad global; propagación rápida de perturbaciones/efectos indirectos. |
-| Intermediación $C_B$ | ¿Cuántos caminos más cortos pasan por mí? | Conector entre módulos; "puente" funcional; control de flujo entre grupos. |
-<!--| Vector propio | ¿Estoy conectado a nodos conectados? | Pertenencia al núcleo; influencia recursiva; relevancia estructural. |-->
 
 <!-- 
 ## Ejercicios para la sesión

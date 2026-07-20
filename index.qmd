@@ -1,7 +1,11 @@
 # Bienvenida {.unnumbered}
 
-Estas notas corresponden a la segunda parte del **Seminario Bipartita**, donde se estudia una introducción a la **Teoría de Grafos**, impartido durante el semestre 2026-1 en la Universidad de Sonora.
+Estas notas corresponden a la segunda parte del **Seminario Bipartita**, donde se estudia una introducción a la **Teoría de Grafos**, impartido durante el semestre 2026-1 en la Universidad de Sonora, donde participan activamente estudiantes y docentes del Departamento de Matemáticas y el Posgrado en Biociencias de la Universidad de Sonora.
 
-El objetivo de estas notas es establecer desde un punto de vista formal y riguroso definiciones matemáticas de la Teoría de Grafos y explorar su interpretación en el análisis de redes de interacción ecológicas. 
+El objetivo de estas notas es estudiar **redes de interacción en ecología** con el enfoque de la Teoría de Grafos. Para ésto, se establecen desde un punto de vista formal y riguroso definiciones matemáticas de la Teoría de Grafos y particularmente de métricas en grafos bipartitos usados en ecología, así como su implementacion computacional en R (paquete `bipartite`).
 
-En este seminario participan activamente estudiantes y docentes del Departamento de Matemáticas y el Posgrado en Biociencias de la Universidad de Sonora.
+La idea general es abordar los conceptos con ejemplos ilustrativos, casos extremos y redes sintéticas, e interpretar las métricas en un contexto matemático y ecológico (qué cuantifican, qué no cuantifican, y qué supuestos implican).
+
+Se espera que este repositorio funcione como referencia del seminario y como punto de partida para futuros proyectos colaborativos.
+
+
